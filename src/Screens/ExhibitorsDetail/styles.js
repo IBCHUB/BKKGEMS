@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
   containerproduct: {
     width: width,
-    height: height,
   },
   viewproduct: {
     width: width * 0.8,
@@ -128,6 +127,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 10,
   },
+
   minibutton: {
     height: 30,
     backgroundColor: '#DEDDD4',
@@ -166,6 +166,60 @@ const styles = StyleSheet.create({
 
     paddingHorizontal: 10,
     marginTop: 10,
+  },
+  containerabout: {
+    width: width,
+    paddingHorizontal: 20,
+    marginBottom: 20,
+  },
+  textdetailabout: {
+    fontSize: 16,
+    color: '#000',
+    alignSelf: 'center',
+    marginVertical: 20,
+  },
+  textsupabout: {
+    fontSize: 14,
+    color: '#DAA560',
+    fontWeight: '500',
+    width: width * 0.45,
+  },
+  listsocial: {
+    borderWidth: 1,
+    borderRadius: 20,
+    justifyContent: 'center',
+    width: 40,
+    height: 40,
+    borderColor: '#DAA560',
+    marginRight: 10,
+  },
+  rowsocial: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  buttondowload: {
+    width: width * 0.88,
+    height: 60,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5.46,
+    elevation: 2,
+    backgroundColor: '#FAFAFA',
+    alignSelf: 'center',
+    marginVertical: 20,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textconten: {
+    fontSize: 12,
+    color: '#000',
+
+    width: width * 0.45,
   },
 });
 

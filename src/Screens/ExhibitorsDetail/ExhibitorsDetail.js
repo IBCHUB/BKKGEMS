@@ -8,11 +8,13 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  Animated,
 } from 'react-native';
 import HeaderDetail from '../../Components/HeaderDetail';
 import styles from './styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Product from './product';
+import Aboutexhi from './aboutexhi';
 
 const ExhibitorsDetail = ({navigation, route}) => {
   const {item} = route.params;
@@ -43,7 +45,8 @@ const ExhibitorsDetail = ({navigation, route}) => {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.row}>
+
+          <Animated.View style={styles.row}>
             <TouchableOpacity
               onPress={() => {
                 setpage(0);
@@ -70,13 +73,9 @@ const ExhibitorsDetail = ({navigation, route}) => {
                 ABOUT
               </Text>
             </TouchableOpacity>
-          </View>
-          {page === 0 && <Product />}
-          {page === 1 && (
-            <View>
-              <Text>2</Text>
-            </View>
-          )}
+          </Animated.View>
+          {page === 0 && <Product item={item} />}
+          {page === 1 && <Aboutexhi />}
         </ScrollView>
       </SafeAreaView>
     </View>
