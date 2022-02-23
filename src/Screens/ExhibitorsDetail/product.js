@@ -14,7 +14,7 @@ import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 
-const product = ({item}) => {
+const product = () => {
   const [highligth, sethighligth] = useState(false);
   const [list, setlist] = useState(false);
   const [data, setData] = useState([
@@ -37,7 +37,9 @@ const product = ({item}) => {
   ]);
   return (
     <View style={styles.containerproduct}>
-      <ImageBackground source={item.img} style={styles.viewproduct}>
+      <ImageBackground
+        source={require('../../../assets/image/exhi/2.png')}
+        style={styles.viewproduct}>
         <View style={styles.viewlist}>
           <TouchableOpacity
             style={[
