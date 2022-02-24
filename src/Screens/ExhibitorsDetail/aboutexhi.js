@@ -1,15 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
-  FlatList,
-} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';

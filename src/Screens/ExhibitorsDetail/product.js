@@ -2,10 +2,7 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  SafeAreaView,
   Image,
-  ScrollView,
-  TextInput,
   TouchableOpacity,
   ImageBackground,
   FlatList,

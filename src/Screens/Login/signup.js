@@ -1,16 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
-  Animated,
-  Modal,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import Input from './input';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';

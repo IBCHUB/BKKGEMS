@@ -26,7 +26,7 @@ function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Splash"
+        initialRouteName="TabStackScreen"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
         <Stack.Screen name="Home" component={Home} />

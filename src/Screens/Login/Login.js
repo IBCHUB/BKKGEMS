@@ -4,10 +4,7 @@ import {
   Text,
   SafeAreaView,
   Image,
-  ScrollView,
-  TextInput,
   TouchableOpacity,
-  ImageBackground,
   Animated,
 } from 'react-native';
 import Signin from './signin';

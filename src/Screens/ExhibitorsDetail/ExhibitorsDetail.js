@@ -5,9 +5,7 @@ import {
   SafeAreaView,
   Image,
   ScrollView,
-  TextInput,
   TouchableOpacity,
-  ImageBackground,
   Animated,
 } from 'react-native';
 import HeaderDetail from '../../Components/HeaderDetail';

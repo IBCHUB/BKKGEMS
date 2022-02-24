@@ -7,7 +7,6 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  ImageBackground,
   FlatList,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
