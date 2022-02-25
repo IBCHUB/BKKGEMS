@@ -5,13 +5,15 @@ import styles from './styleHeadercomp';
 const Headercomp = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/image/BKKGEMSlogo.png')}
-        style={styles.logoBkk}
-      />
+      <View style={styles.row}>
+        <Image
+          source={require('../../assets/image/BKKGEMSlogo.png')}
+          style={styles.logoBkk}
+        />
+      </View>
       <View style={styles.row}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Login')}
+          // onPress={() => navigation.navigate('Login')}
           style={{marginRight: 20}}>
           <Image
             source={require('../../assets/image/iconSend.png')}

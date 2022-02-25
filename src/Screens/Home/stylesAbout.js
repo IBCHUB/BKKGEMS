@@ -54,12 +54,14 @@ const styles = StyleSheet.create({
     color: '#DAA560',
     alignSelf: 'center',
     marginTop: 20,
+    fontFamily: 'Cantoria MT Std',
   },
   textsuphead: {
     fontSize: 20,
     color: '#DAA560',
     textAlign: 'center',
     marginTop: 20,
+    fontFamily: 'Cantoria MT Std',
   },
   textdetail: {
     fontSize: 16,
@@ -67,6 +69,7 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     alignSelf: 'center',
     marginTop: 10,
+    fontFamily: 'Cantoria MT Std',
   },
   view: {
     flexDirection: 'row',
@@ -85,6 +88,7 @@ const styles = StyleSheet.create({
     color: '#DAA560',
     fontSize: 16,
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   logoditp: {
     width: 70,
@@ -109,6 +113,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
     marginBottom: 20,
+    fontFamily: 'Cantoria MT Std',
   },
   review: {
     height: 60,
@@ -126,10 +131,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   textsup: {
     fontSize: 15,
     color: '#fff',
+    fontFamily: 'Cantoria MT Std',
     textAlign: 'center',
   },
   imgpat: {

@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
   },
   viewhead: {
     width: width,
-    borderTopWidth: 0.5,
+
     borderBottomWidth: 0.5,
-    borderTopColor: '#EEECE2',
+
     borderBottomColor: '#EEECE2',
   },
 
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignSelf: 'center',
     width: width * 0.35,
+    fontFamily: 'Cantoria MT Std',
   },
 });
 

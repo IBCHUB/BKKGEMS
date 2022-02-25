@@ -53,6 +53,7 @@
 	<false/>
 	<key>UIAppFonts</key>
 <array>
+  <string>Cantoria-MT-Std_9238.ttf</string>
   <string>AntDesign.ttf</string>
   <string>Entypo.ttf</string>
   <string>EvilIcons.ttf</string>

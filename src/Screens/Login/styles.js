@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     alignSelf: 'center',
     fontSize: 18,
+    fontFamily: 'Cantoria MT Std',
   },
   icon: {
     marginLeft: -40,
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     color: '#000',
+    fontFamily: 'Cantoria MT Std',
   },
   buttonsignup: {
     backgroundColor: '#DAA560',
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   up: {
     borderBottomColor: '#DAA560',
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
   textup: {
     fontSize: 18,
     color: '#DAA560',
+    fontFamily: 'Cantoria MT Std',
   },
   containermodal: {
     width: width,
@@ -114,12 +118,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
     textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   textdetailmodal: {
     fontSize: 18,
     color: '#646363',
     alignSelf: 'center',
     textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   textemaillmodal: {
     fontSize: 18,
@@ -127,6 +133,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     textAlign: 'center',
     marginVertical: 5,
+    fontFamily: 'Cantoria MT Std',
   },
   liner: {
     borderBottomWidth: 2,
@@ -152,6 +159,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     alignSelf: 'center',
     marginBottom: -10,
+    fontFamily: 'Cantoria MT Std',
   },
   buttonexhi: {
     backgroundColor: '#EEECE2',
@@ -170,6 +178,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#DAA560',
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
 });
 

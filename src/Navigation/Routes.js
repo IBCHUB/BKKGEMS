@@ -53,7 +53,7 @@ function TabStackScreen(navigation) {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: '#DAA560',
-          bottom: 16,
+          bottom: 25,
           alignSelf: 'center',
           left: 16,
           right: 16,
@@ -84,6 +84,7 @@ function TabStackScreen(navigation) {
                   fontSize: focused ? 9 : 7,
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
+                  fontFamily: 'Cantoria MT Std',
                 }}>
                 HOME
               </Text>
@@ -112,6 +113,7 @@ function TabStackScreen(navigation) {
                   fontSize: focused ? 9 : 7,
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
+                  fontFamily: 'Cantoria MT Std',
                 }}>
                 EXHIBITORS
               </Text>
@@ -140,6 +142,7 @@ function TabStackScreen(navigation) {
                   fontSize: focused ? 9 : 7,
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
+                  fontFamily: 'Cantoria MT Std',
                 }}>
                 HIGHTLIGTH
               </Text>
@@ -148,8 +151,8 @@ function TabStackScreen(navigation) {
         }}
       />
       <Tab.Screen
-        name="News"
-        component={News}
+        name="Event"
+        component={Event}
         options={{
           tabBarIcon: ({tintColor, focused}) => (
             <MaterialCommunityIcons
@@ -168,16 +171,17 @@ function TabStackScreen(navigation) {
                   fontSize: focused ? 9 : 7,
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
+                  fontFamily: 'Cantoria MT Std',
                 }}>
-                NEWS
+                EVENTS
               </Text>
             </View>
           ),
         }}
       />
       <Tab.Screen
-        name="Event"
-        component={Event}
+        name="News"
+        component={News}
         options={{
           tabBarIcon: ({tintColor, focused}) => (
             <MaterialCommunityIcons
@@ -196,8 +200,9 @@ function TabStackScreen(navigation) {
                   fontSize: focused ? 9 : 7,
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
+                  fontFamily: 'Cantoria MT Std',
                 }}>
-                EVENTS
+                NEWS
               </Text>
             </View>
           ),

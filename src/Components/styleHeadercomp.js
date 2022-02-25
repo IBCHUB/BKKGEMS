@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     height: 50,
     backgroundColor: '#000',
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#FFECAC',
   },
   logoBkk: {
     height: 40,

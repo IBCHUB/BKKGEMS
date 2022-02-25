@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     fontSize: 14,
     color: '#888888',
+    fontFamily: 'Cantoria MT Std',
   },
   iconsea: {
     width: 25,
@@ -56,12 +57,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#CCCCCC',
     alignSelf: 'center',
     justifyContent: 'center',
-    marginVertical: 30,
+    marginTop: 30,
+    marginBottom: 50,
   },
   textloadmore: {
     fontSize: 12,
     color: '#fff',
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   row: {
     flexDirection: 'row',
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginLeft: 10,
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
 });
 

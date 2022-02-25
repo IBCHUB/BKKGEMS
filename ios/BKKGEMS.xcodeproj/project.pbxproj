@@ -43,6 +43,7 @@
 		8DC19796A5E92E8C242CCB91 /* Pods-BKKGEMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BKKGEMS.release.xcconfig"; path = "Target Support Files/Pods-BKKGEMS/Pods-BKKGEMS.release.xcconfig"; sourceTree = "<group>"; };
 		9F6BB53D0DFCE96ACD0DD374 /* libPods-BKKGEMS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BKKGEMS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEE2F715BB9F8471CCDD9498 /* Pods-BKKGEMS-BKKGEMSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BKKGEMS-BKKGEMSTests.release.xcconfig"; path = "Target Support Files/Pods-BKKGEMS-BKKGEMSTests/Pods-BKKGEMS-BKKGEMSTests.release.xcconfig"; sourceTree = "<group>"; };
+		E82F82B027C8C41800D31EED /* Cantoria-MT-Std_9238.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cantoria-MT-Std_9238.ttf"; path = "../../../../Downloads/Cantoria-MT-Std_9238.ttf"; sourceTree = "<group>"; };
 		E8D7C0A727BF9F9E00E942FE /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		E8D7C0A827BF9F9E00E942FE /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		E8D7C0A927BF9F9E00E942FE /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E82F82B027C8C41800D31EED /* Cantoria-MT-Std_9238.ttf */,
 				E8D7C0A627BF9F9E00E942FE /* Fonts */,
 				13B07FAE1A68108700A75B9A /* BKKGEMS */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,

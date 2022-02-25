@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     color: '#000',
     alignSelf: 'center',
     marginBottom: 10,
+    fontFamily: 'Cantoria MT Std',
   },
   icon: {
     alignSelf: 'center',
@@ -62,6 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#DAA560',
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   viewrow: {
     flexDirection: 'row',

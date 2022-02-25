@@ -35,18 +35,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     width: width * 0.75,
     textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   texthead: {
     fontSize: 14,
     color: '#000',
     alignSelf: 'center',
     marginTop: 10,
+    fontFamily: 'Cantoria MT Std',
   },
   textloca: {
     fontSize: 10,
     color: '#000',
     alignSelf: 'center',
     marginLeft: 5,
+    fontFamily: 'Cantoria MT Std',
   },
   row: {
     flexDirection: 'row',
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#DAA560',
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   page: {
     marginHorizontal: 10,
@@ -74,6 +78,7 @@ const styles = StyleSheet.create({
   textpage: {
     fontSize: 16,
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   containerproduct: {
     width: width,
@@ -119,6 +124,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignSelf: 'center',
     fontWeight: '600',
+    fontFamily: 'Cantoria MT Std',
   },
   textdetailproduct: {
     fontSize: 16,
@@ -127,6 +133,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     alignSelf: 'center',
     marginTop: 10,
+    fontFamily: 'Cantoria MT Std',
   },
   minibutton: {
     height: 30,
@@ -141,6 +148,7 @@ const styles = StyleSheet.create({
   minitext: {
     fontSize: 10,
     color: '#000',
+    fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
   },
   buttonflat: {
@@ -163,6 +171,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginLeft: 10,
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
 
     paddingHorizontal: 10,
     marginTop: 10,
@@ -177,12 +186,14 @@ const styles = StyleSheet.create({
     color: '#000',
     alignSelf: 'center',
     marginVertical: 20,
+    fontFamily: 'Cantoria MT Std',
   },
   textsupabout: {
     fontSize: 14,
     color: '#DAA560',
     fontWeight: '500',
     width: width * 0.45,
+    fontFamily: 'Cantoria MT Std',
   },
   listsocial: {
     borderWidth: 1,
@@ -218,6 +229,7 @@ const styles = StyleSheet.create({
   textconten: {
     fontSize: 12,
     color: '#000',
+    fontFamily: 'Cantoria MT Std',
 
     width: width * 0.45,
   },

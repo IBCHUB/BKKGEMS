@@ -4,14 +4,24 @@ import CountDown from 'react-native-countdown-component';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
-
+import LinearGradient from 'react-native-linear-gradient';
 const TopicHome = () => {
   return (
     <View style={styles.linearGradient}>
-      <Image
-        source={require('../../../assets/image/imggems.jpg')}
-        style={styles.imghome}
-      />
+      <View style={styles.viewfair}>
+        <Text style={styles.textfair}>BANGKOK GEMS</Text>
+        <Text style={styles.textfair}>& JEWELRY FAIR</Text>
+        <View style={styles.rowfair}>
+          <View style={styles.dimon} />
+          <View style={styles.linerfair} />
+          <View style={styles.dimon} />
+        </View>
+        <View style={styles.rowfair}>
+          <Text style={styles.texttime}>67</Text>
+          <Text style={styles.texttime1}>th</Text>
+          <Text style={styles.texttime}> Edition September 2022</Text>
+        </View>
+      </View>
       <Image
         source={require('../../../assets/image/logopre.png')}
         style={styles.imgpre}
@@ -19,10 +29,13 @@ const TopicHome = () => {
       <ImageBackground
         source={require('../../../assets/image/imgtime.png')}
         style={styles.imgtime}>
-        <Text style={{fontSize: 10}}>Fair start in</Text>
+        <Text
+          style={{fontSize: 10, fontFamily: 'Cantoria MT Std', marginLeft: 70}}>
+          Fair start in
+        </Text>
         <CountDown
           // moment().add(6, "hours").valueOf()
-          until={500000000}
+          until={500000}
           size={30}
           // onFinish={() => alert('Finished')}
           digitStyle={{height: 25}}
@@ -33,8 +46,17 @@ const TopicHome = () => {
           }}
           // timeToShow={['M', 'S']}
           // timeLabels={{m: 'MM', s: 'SS'}}
-          separatorStyle={{fontSize: 30, marginTop: -15}}
-          timeLabelStyle={{fontSize: 8, color: '#000'}}
+          separatorStyle={{
+            fontSize: 30,
+            marginTop: -10,
+            fontFamily: 'Cantoria MT Std',
+            marginLeft: -10,
+          }}
+          timeLabelStyle={{
+            fontSize: 8,
+            color: '#000',
+            fontFamily: 'Cantoria MT Std',
+          }}
           showSeparator
         />
       </ImageBackground>
@@ -43,8 +65,8 @@ const TopicHome = () => {
           <MaterialCommunityIcons
             name="star-four-points"
             color="#D7A360"
-            size={20}
-            style={{marginRight: 10}}
+            size={16}
+            style={{marginRight: 5, alignSelf: 'center', marginTop: -5}}
           />
           <Text style={styles.texttop}>TRADE DAY</Text>
         </View>
@@ -56,8 +78,8 @@ const TopicHome = () => {
           <MaterialCommunityIcons
             name="star-four-points"
             color="#D7A360"
-            size={20}
-            style={{marginRight: 10}}
+            size={16}
+            style={{marginRight: 5, alignSelf: 'center', marginTop: -5}}
           />
           <Text style={styles.texttop}>PUBLIC DAY</Text>
         </View>
@@ -68,7 +90,7 @@ const TopicHome = () => {
         <MaterialIcons
           name="location-pin"
           color="#D7A360"
-          size={20}
+          size={14}
           style={{marginRight: 10}}
         />
         <Text style={[styles.texttop1, {fontSize: 12}]}>

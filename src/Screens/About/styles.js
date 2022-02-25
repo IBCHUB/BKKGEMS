@@ -25,12 +25,14 @@ const styles = StyleSheet.create({
     color: '#DAA560',
     marginVertical: 20,
     textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   textdetail: {
     color: '#646363',
     alignSelf: 'center',
     fontSize: 16,
     width: width * 0.88,
+    fontFamily: 'Cantoria MT Std',
     marginBottom: 20,
   },
   textsuphead: {
@@ -39,6 +41,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     width: width * 0.88,
     marginBottom: 20,
+    fontFamily: 'Cantoria MT Std',
   },
   viewdetail: {
     width: width,

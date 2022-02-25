@@ -1,10 +1,55 @@
-import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
+import Headercomp from '../../Components/Headercomp';
+import styles from './styles';
 
-const Event = () => {
+const Event = ({navigation}) => {
+  const [data, setData] = useState([
+    {
+      text: 'THE NEW FACES',
+    },
+    {
+      text: 'THE NICHE SHOWCASE',
+    },
+    {
+      text: 'THE JEWELLERS',
+    },
+    {
+      text: 'FASHION SHOW',
+    },
+    {
+      text: 'WORKSHOPS AND DEMONSTRATIONS',
+    },
+  ]);
   return (
-    <View>
-      <Text>Event</Text>
+    <View style={styles.container}>
+      <SafeAreaView>
+        <Headercomp navigation={navigation} />
+        <View style={styles.containerview}>
+          <FlatList
+            data={data}
+            renderItem={({index, item}) => {
+              return (
+                <View>
+                  <TouchableOpacity
+                    // onPress={() => {
+                    //   navigation.navigate('ExhibitorsDetail', {item});
+                    // }}
+                    style={styles.buttonflat}>
+                    <Text style={styles.text}>{item.text}</Text>
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
+          />
+        </View>
+      </SafeAreaView>
     </View>
   );
 };
