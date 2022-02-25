@@ -35,7 +35,7 @@ const TopicHome = () => {
         </Text>
         <CountDown
           // moment().add(6, "hours").valueOf()
-          until={500000}
+          until={5000000000}
           size={30}
           // onFinish={() => alert('Finished')}
           digitStyle={{height: 25}}
@@ -51,6 +51,7 @@ const TopicHome = () => {
             marginTop: -10,
             fontFamily: 'Cantoria MT Std',
             marginLeft: -10,
+            marginRight: -10,
           }}
           timeLabelStyle={{
             fontSize: 8,

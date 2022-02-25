@@ -18,6 +18,7 @@ import {
   Hightligth,
   ExhibitorsDetail,
   Splash,
+  NewDetail,
 } from '../Screens';
 
 const Stack = createNativeStackNavigator();
@@ -29,15 +30,22 @@ function Routes() {
         initialRouteName="TabStackScreen"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Event" component={Event} />
-        <Stack.Screen name="Exhibitors" component={Exhibitors} />
-        <Stack.Screen name="About" component={About} />
-        <Stack.Screen name="News" component={News} />
+
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Splash" component={Splash} />
-        <Stack.Screen name="Hightligth" component={Hightligth} />
+
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="About" component={About} />
+
+        <Stack.Screen name="Exhibitors" component={Exhibitors} />
         <Stack.Screen name="ExhibitorsDetail" component={ExhibitorsDetail} />
+
+        <Stack.Screen name="Hightligth" component={Hightligth} />
+
+        <Stack.Screen name="Event" component={Event} />
+
+        <Stack.Screen name="News" component={News} />
+        <Stack.Screen name="NewDetail" component={NewDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );

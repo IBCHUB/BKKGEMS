@@ -7,3 +7,4 @@ export {default as Login} from './Login/Login';
 export {default as Hightligth} from './Hightligth/Hightligth';
 export {default as ExhibitorsDetail} from './ExhibitorsDetail/ExhibitorsDetail';
 export {default as Splash} from './Splash/Splash';
+export {default as NewDetail} from './NewDetail/NewDetail';

@@ -13,6 +13,7 @@ import {
 import Headercomp from '../../Components/Headercomp';
 import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
+import Feather from 'react-native-vector-icons/Feather';
 const News = ({navigation}) => {
   const [data, setData] = useState([
     {
@@ -45,16 +46,15 @@ const News = ({navigation}) => {
       <SafeAreaView>
         <Headercomp navigation={navigation} />
         <ScrollView style={styles.containerview}>
-          <View>
+          <View style={{paddingBottom: 50}}>
             <FlatList
               data={data}
               renderItem={({index, item}) => {
                 return (
                   <TouchableOpacity
-                  // onPress={() => {
-                  //   navigation.navigate('ExhibitorsDetail', {item});
-                  // }}
-                  >
+                    onPress={() => {
+                      navigation.navigate('NewDetail', {item});
+                    }}>
                     <ImageBackground
                       style={styles.buttonflat}
                       source={item.img}>
@@ -68,9 +68,20 @@ const News = ({navigation}) => {
                 );
               }}
             />
+            <TouchableOpacity style={styles.dimon}>
+              <Feather
+                size={25}
+                name="arrow-up-left"
+                color={'#DAA560'}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
             <View style={styles.row}>
               <TouchableOpacity style={styles.button}>
-                <Text style={styles.textbotton}>122</Text>
+                <Text style={styles.textbotton}>PREVIOUS</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.textbotton}>NEXT</Text>
               </TouchableOpacity>
             </View>
           </View>

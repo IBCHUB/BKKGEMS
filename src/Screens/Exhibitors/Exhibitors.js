@@ -12,6 +12,7 @@ import {
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headercomp from '../../Components/Headercomp';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
 import RBSheetHome from '../Home/RBSheetHome';
 
@@ -129,9 +130,22 @@ const Exhibitors = ({navigation}) => {
                 );
               }}
             />
-            <TouchableOpacity style={styles.buttonloadmore}>
-              <Text style={styles.textloadmore}>Load more Exhibitors</Text>
+            <TouchableOpacity style={styles.dimon}>
+              <Feather
+                size={25}
+                name="arrow-up-left"
+                color={'#DAA560'}
+                style={styles.icon}
+              />
             </TouchableOpacity>
+            <View style={styles.row1}>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.textbotton}>PREVIOUS</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.textbotton}>NEXT</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>

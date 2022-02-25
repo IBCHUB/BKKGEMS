@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     width: width * 0.5,
     height: 200,
     alignSelf: 'center',
+    marginTop: -40,
   },
   textHeader: {
     fontSize: 22,

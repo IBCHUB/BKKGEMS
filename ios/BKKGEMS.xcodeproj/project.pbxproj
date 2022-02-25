@@ -14,6 +14,7 @@
 		761771E107274D70BE5BE916 /* libPods-BKKGEMS-BKKGEMSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9B90546FE2380C7677BBCF /* libPods-BKKGEMS-BKKGEMSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E1F99F7353931B3CDFCE60D1 /* libPods-BKKGEMS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6BB53D0DFCE96ACD0DD374 /* libPods-BKKGEMS.a */; };
+		E8AD97E227C8FF150087762D /* Cantoria-MT-Std_9238.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E82F82B027C8C41800D31EED /* Cantoria-MT-Std_9238.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8AD97E227C8FF150087762D /* Cantoria-MT-Std_9238.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

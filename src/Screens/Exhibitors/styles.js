@@ -85,6 +85,50 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: 'Cantoria MT Std',
   },
+  row1: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    width: width * 0.7,
+    justifyContent: 'space-between',
+    marginTop: 20,
+    marginBottom: 70,
+  },
+  button: {
+    width: width * 0.3,
+    height: 42,
+    borderWidth: 1,
+    borderColor: '#DAA560',
+    borderRadius: 2,
+    justifyContent: 'center',
+  },
+  textbotton: {
+    fontSize: 16,
+    color: '#DAA560',
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+  },
+  dimon: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#fff',
+    transform: [{rotate: '45deg'}],
+    alignSelf: 'flex-end',
+    marginTop: -20,
+    marginRight: 30,
+    justifyContent: 'center',
+    shadowColor: '#00000029',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+
+    elevation: 15,
+  },
+  icon: {
+    alignSelf: 'center',
+  },
 });
 
 export default styles;

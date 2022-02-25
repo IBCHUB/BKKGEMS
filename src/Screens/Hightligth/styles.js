@@ -56,6 +56,29 @@ const styles = StyleSheet.create({
     width: width * 0.35,
     fontFamily: 'Cantoria MT Std',
   },
+  dimon: {
+    width: 40,
+    height: 40,
+    backgroundColor: '#fff',
+    transform: [{rotate: '45deg'}],
+    alignSelf: 'flex-end',
+    marginTop: -20,
+    marginRight: 30,
+    justifyContent: 'center',
+    shadowColor: '#00000029',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+
+    elevation: 15,
+    marginBottom: 20,
+  },
+  icon: {
+    alignSelf: 'center',
+  },
 });
 
 export default styles;

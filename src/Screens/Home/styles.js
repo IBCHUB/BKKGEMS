@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   imgB: {
     width: width,
     height: 290,
-    marginTop: height * 1,
+    marginTop: height * 0.9,
     marginLeft: -60,
   },
   viewon: {

@@ -10,6 +10,7 @@ import {
   FlatList,
 } from 'react-native';
 import Headercomp from '../../Components/Headercomp';
+import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
 const Hightligth = ({navigation}) => {
   const [data, setData] = useState([
@@ -96,6 +97,14 @@ const Hightligth = ({navigation}) => {
                 );
               }}
             />
+            <TouchableOpacity style={styles.dimon}>
+              <Feather
+                size={25}
+                name="arrow-up-left"
+                color={'#DAA560'}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
