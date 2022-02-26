@@ -1,10 +1,18 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styleHeadercomp';
-
+import Octicons from 'react-native-vector-icons/Octicons';
 const Headercomp = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.row}>
+        <Octicons
+          size={20}
+          name="three-bars"
+          color={'#DAA560'}
+          style={{alignSelf: 'center'}}
+        />
+      </TouchableOpacity>
       <View style={styles.row}>
         <Image
           source={require('../../assets/image/BKKGEMSlogo.png')}
@@ -22,7 +30,7 @@ const Headercomp = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity>
           <Image
-            source={require('../../assets/image/iconProfile.png')}
+            source={require('../../assets/image/iconprofile.png')}
             style={styles.iconprofile}
           />
         </TouchableOpacity>

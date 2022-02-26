@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 130,
     alignSelf: 'center',
+    marginLeft: 30,
   },
   row: {
     flexDirection: 'row',
@@ -25,8 +26,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   iconprofile: {
-    height: 20,
-    width: 16,
+    height: 22,
+    width: 22,
     alignSelf: 'center',
   },
   icon: {
