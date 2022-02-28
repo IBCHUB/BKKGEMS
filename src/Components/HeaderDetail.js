@@ -26,7 +26,7 @@ const HeaderDetail = ({navigation}) => {
         </TouchableOpacity>
         <TouchableOpacity>
           <Image
-            source={require('../../assets/image/iconProfile.png')}
+            source={require('../../assets/image/iconprofile.png')}
             style={styles.iconprofile}
           />
         </TouchableOpacity>
