@@ -3,11 +3,11 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView, Dimensions} from 'react-native';
 import {
   Home,
   Event,
@@ -20,34 +20,59 @@ import {
   Splash,
   NewDetail,
 } from '../Screens';
+const {width, height} = Dimensions.get('window');
 
-const Stack = createNativeStackNavigator();
-
-function Routes() {
+const HomeStack = createNativeStackNavigator();
+function HomeStackScreen() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="TabStackScreen"
-        screenOptions={{headerShown: false}}>
-        <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
+    <HomeStack.Navigator
+      initialRouteName="Home"
+      screenListeners={'Home'}
+      screenOptions={{headerShown: false}}>
+      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="About" component={About} />
+    </HomeStack.Navigator>
+  );
+}
 
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Splash" component={Splash} />
+const ExhibitorsStack = createNativeStackNavigator();
+function ExhibitorsStackScreen() {
+  return (
+    <ExhibitorsStack.Navigator screenOptions={{headerShown: false}}>
+      <ExhibitorsStack.Screen name="Exhibitors" component={Exhibitors} />
+      <ExhibitorsStack.Screen
+        name="ExhibitorsDetail"
+        component={ExhibitorsDetail}
+      />
+    </ExhibitorsStack.Navigator>
+  );
+}
 
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="About" component={About} />
+const HightligthStack = createNativeStackNavigator();
+function HightligthStackScreen() {
+  return (
+    <HightligthStack.Navigator screenOptions={{headerShown: false}}>
+      <HightligthStack.Screen name="Hightligth" component={Hightligth} />
+    </HightligthStack.Navigator>
+  );
+}
 
-        <Stack.Screen name="Exhibitors" component={Exhibitors} />
-        <Stack.Screen name="ExhibitorsDetail" component={ExhibitorsDetail} />
+const EventStack = createNativeStackNavigator();
+function EventStackScreen() {
+  return (
+    <EventStack.Navigator screenOptions={{headerShown: false}}>
+      <EventStack.Screen name="Event" component={Event} />
+    </EventStack.Navigator>
+  );
+}
 
-        <Stack.Screen name="Hightligth" component={Hightligth} />
-
-        <Stack.Screen name="Event" component={Event} />
-
-        <Stack.Screen name="News" component={News} />
-        <Stack.Screen name="NewDetail" component={NewDetail} />
-      </Stack.Navigator>
-    </NavigationContainer>
+const NewsStack = createNativeStackNavigator();
+function NewsStackScreen() {
+  return (
+    <NewsStack.Navigator screenOptions={{headerShown: false}}>
+      <NewsStack.Screen name="News" component={News} />
+      <NewsStack.Screen name="NewDetail" component={NewDetail} />
+    </NewsStack.Navigator>
   );
 }
 
@@ -73,7 +98,7 @@ function TabStackScreen(navigation) {
       }}>
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeStackScreen}
         options={{
           tabBarIcon: ({tintColor, focused}) => (
             <Foundation
@@ -102,7 +127,7 @@ function TabStackScreen(navigation) {
       />
       <Tab.Screen
         name="Exhibitors"
-        component={Exhibitors}
+        component={ExhibitorsStackScreen}
         options={{
           tabBarIcon: ({tintColor, focused}) => (
             <Foundation
@@ -131,7 +156,7 @@ function TabStackScreen(navigation) {
       />
       <Tab.Screen
         name="Hightligth"
-        component={Hightligth}
+        component={HightligthStackScreen}
         options={{
           tabBarIcon: ({tintColor, focused}) => (
             <Foundation
@@ -160,7 +185,7 @@ function TabStackScreen(navigation) {
       />
       <Tab.Screen
         name="Event"
-        component={Event}
+        component={EventStackScreen}
         options={{
           tabBarIcon: ({tintColor, focused}) => (
             <MaterialCommunityIcons
@@ -189,7 +214,7 @@ function TabStackScreen(navigation) {
       />
       <Tab.Screen
         name="News"
-        component={News}
+        component={NewsStackScreen}
         options={{
           tabBarIcon: ({tintColor, focused}) => (
             <MaterialCommunityIcons
@@ -218,6 +243,49 @@ function TabStackScreen(navigation) {
       />
     </Tab.Navigator>
   );
+}
+
+const Stack = createNativeStackNavigator();
+function screenStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="TabStackScreen"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Splash" component={Splash} />
+    </Stack.Navigator>
+  );
+}
+
+function CustomDrawerContent(props) {
+  return (
+    <View style={{height: '100%'}}>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
+        <View style={{backgroundColor: '#232323', height: height}}></View>
+      </SafeAreaView>
+    </View>
+  );
+}
+const Drawer = createDrawerNavigator();
+function DrawerStack() {
+  return (
+    <Drawer.Navigator
+      drawerPosition="right"
+      edgeWidth={0}
+      drawerStyle={{
+        width: '60%',
+      }}
+      headerMode="none"
+      initialRouteName={'Home'}
+      screenOptions={{headerShown: false}}
+      drawerContent={props => <CustomDrawerContent {...props} />}>
+      <Drawer.Screen name="Home" component={screenStack} />
+    </Drawer.Navigator>
+  );
+}
+function Routes() {
+  return <NavigationContainer>{DrawerStack()}</NavigationContainer>;
 }
 
 export default Routes;

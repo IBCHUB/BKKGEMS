@@ -5,7 +5,9 @@ import Octicons from 'react-native-vector-icons/Octicons';
 const Headercomp = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.row}>
+      <TouchableOpacity
+        onPress={() => navigation.openDrawer()}
+        style={styles.row}>
         <Octicons
           size={20}
           name="three-bars"
