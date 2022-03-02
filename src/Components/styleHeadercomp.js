@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   iconSend: {
     height: 20,
@@ -32,6 +33,23 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: 'center',
+  },
+  texthead: {
+    fontSize: 22,
+    color: '#DAA560',
+    textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
+    marginLeft: 30,
+    alignSelf: 'center',
+    marginTop: 5,
+  },
+  texthead1: {
+    fontSize: 22,
+    color: '#DAA560',
+    textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+    marginTop: 5,
   },
 });
 

@@ -9,7 +9,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import Headercomp from '../../Components/Headercomp';
+import Headerhome from '../../Components/Headerhome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
 import TopicHome from './TopicHome';
@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} />
+        <Headerhome navigation={navigation} />
         <RBSheet
           ref={refRBSheet}
           closeOnPressMask={false}

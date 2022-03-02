@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Animated,
 } from 'react-native';
-import HeaderDetail from '../../Components/HeaderDetail';
+import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Product from './product';
@@ -22,7 +22,7 @@ const ExhibitorsDetail = ({navigation, route}) => {
     <View style={styles.container}>
       <SafeAreaView>
         <ScrollView>
-          <HeaderDetail navigation={navigation} />
+          <Headerback navigation={navigation} />
           <View style={styles.viewHeader}>
             <Image source={item.icon} style={styles.logo} />
             <Text style={styles.textTopic}>{item.text}</Text>

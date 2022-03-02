@@ -11,7 +11,7 @@ import {
   ImageBackground,
   Share,
 } from 'react-native';
-import Headercomp from '../../Components/Headercomp';
+import Headerback from '../../Components/Headerback';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import styles from './styles';
@@ -56,21 +56,10 @@ const NewDetail = ({navigation, route}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} />
+        <Headerback navigation={navigation} />
         <ScrollView style={{backgroundColor: '#EEECE2', marginBottom: 20}}>
-          <ImageBackground source={item.img} style={styles.imgHeader}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <FontAwesome5
-                name="arrow-left"
-                size={20}
-                color={'#DAA560'}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-          </ImageBackground>
+          <Image source={item.img} style={styles.imgHeader} />
+
           <Text style={styles.textheader}>
             Bangkok Gems & Jewelry Fair’s Highest Covid-19 Preventive Measures
           </Text>

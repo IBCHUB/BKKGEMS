@@ -14,6 +14,7 @@ import Headercomp from '../../Components/Headercomp';
 import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 const News = ({navigation}) => {
   const [data, setData] = useState([
     {
@@ -44,9 +45,21 @@ const News = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} />
+        <Headercomp item={'NEWS'} navigation={navigation} />
         <ScrollView style={styles.containerview}>
           <View style={{paddingBottom: 50}}>
+            <View style={styles.viewsearch}>
+              <FontAwesome5
+                name="search"
+                size={15}
+                color={'#44444480'}
+                style={styles.icon1}
+              />
+              <TextInput
+                placeholder="Search news or articles"
+                style={styles.input}
+              />
+            </View>
             <FlatList
               data={data}
               renderItem={({index, item}) => {

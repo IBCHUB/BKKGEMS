@@ -30,7 +30,7 @@ const Event = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} />
+        <Headercomp item={'EVENTS'} navigation={navigation} />
         <View style={styles.containerview}>
           <FlatList
             data={data}

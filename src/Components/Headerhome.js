@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styleHeadercomp';
 import Octicons from 'react-native-vector-icons/Octicons';
-const Headercomp = ({navigation, item}) => {
+const Headerhome = ({navigation}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -16,7 +16,10 @@ const Headercomp = ({navigation, item}) => {
         />
       </TouchableOpacity>
       <View style={styles.row}>
-        <Text style={styles.texthead}>{item}</Text>
+        <Image
+          source={require('../../assets/image/BKKGEMSlogo.png')}
+          style={styles.logoBkk}
+        />
       </View>
       <View style={styles.row}>
         <TouchableOpacity
@@ -38,4 +41,4 @@ const Headercomp = ({navigation, item}) => {
   );
 };
 
-export default Headercomp;
+export default Headerhome;

@@ -68,7 +68,7 @@ const Hightligth = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} />
+        <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
         <ScrollView style={{backgroundColor: '#010302'}}>
           <View style={styles.viewhead}>
             <Image

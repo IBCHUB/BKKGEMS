@@ -64,7 +64,7 @@ const Exhibitors = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} />
+        <Headercomp item={'EXHIBITORS LIST'} navigation={navigation} />
         <RBSheet
           ref={refRBSheet}
           closeOnPressMask={false}

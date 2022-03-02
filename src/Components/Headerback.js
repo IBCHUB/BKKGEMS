@@ -1,27 +1,27 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styleHeadercomp';
-import Octicons from 'react-native-vector-icons/Octicons';
-const Headercomp = ({navigation, item}) => {
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+const Headerback = ({navigation, item}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => navigation.openDrawer()}
-        style={styles.row}>
-        <Octicons
-          size={20}
-          name="three-bars"
+        style={styles.icon}
+        onPress={() => {
+          navigation.goBack('');
+        }}>
+        <FontAwesome5
+          name="arrow-left"
+          size={15}
           color={'#DAA560'}
-          style={{alignSelf: 'center'}}
+          style={styles.icon}
         />
       </TouchableOpacity>
       <View style={styles.row}>
         <Text style={styles.texthead}>{item}</Text>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Chat')}
-          style={{marginRight: 20}}>
+        <TouchableOpacity style={{marginRight: 20}}>
           <Image
             source={require('../../assets/image/iconSend.png')}
             style={styles.iconSend}
@@ -38,4 +38,4 @@ const Headercomp = ({navigation, item}) => {
   );
 };
 
-export default Headercomp;
+export default Headerback;

@@ -66,11 +66,34 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.43,
     shadowRadius: 9.51,
-
     elevation: 15,
   },
   icon: {
     alignSelf: 'center',
+  },
+  input: {
+    width: width * 0.9,
+    height: 35,
+    border: 1,
+    backgroundColor: '#fff',
+    paddingLeft: 35,
+    borderRadius: 8,
+    fontSize: 14,
+    color: '#888888',
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+  },
+  icon1: {
+    alignSelf: 'center',
+    marginRight: -30,
+    zIndex: 99,
+    marginLeft: 20,
+  },
+  viewsearch: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    marginVertical: 10,
+    justifyContent: 'center',
   },
 });
 

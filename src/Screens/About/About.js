@@ -16,7 +16,7 @@ const About = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} />
+        <Headercomp navigation={navigation} item={'ABOUT FAIR'} />
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <ImageBackground
             source={require('../../../assets/image/about1.png')}
@@ -33,8 +33,8 @@ const About = ({navigation}) => {
               />
             </TouchableOpacity>
           </ImageBackground>
-          <Text style={styles.textheader}>ABOUT FAIR</Text>
-          <Text style={styles.textdetail}>
+
+          <Text style={[styles.textdetail, {marginTop: 20}]}>
             <Text style={[styles.textdetail, {color: '#DAA560'}]}>
               Bangkok Gems & Jewelry Fair (BGJF)
             </Text>{' '}

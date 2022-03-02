@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styleHeadercomp';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const HeaderDetail = ({navigation}) => {
+const Headerchat = ({navigation, item}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -12,27 +12,25 @@ const HeaderDetail = ({navigation}) => {
         }}>
         <FontAwesome5
           name="arrow-left"
-          size={15}
+          size={20}
           color={'#DAA560'}
           style={styles.icon}
         />
       </TouchableOpacity>
       <View style={styles.row}>
-        <TouchableOpacity style={{marginRight: 20}}>
-          <Image
-            source={require('../../assets/image/iconSend.png')}
-            style={styles.iconSend}
-          />
-        </TouchableOpacity>
+        <Text style={styles.texthead1}>{item}</Text>
+      </View>
+      <View style={styles.row}>
         <TouchableOpacity>
-          <Image
-            source={require('../../assets/image/iconprofile.png')}
-            style={styles.iconprofile}
+          <FontAwesome5
+            name="search"
+            size={18}
+            color={'#DAA560'}
+            style={styles.icon}
           />
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-export default HeaderDetail;
+export default Headerchat;
