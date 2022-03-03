@@ -87,14 +87,15 @@ const Exhibitors = ({navigation}) => {
         </RBSheet>
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <View style={styles.viewsearch}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={styles.viewinsearch}>
               <FontAwesome5
                 name="search"
                 size={20}
                 color={'#44444480'}
-                style={styles.icon}
+                style={styles.icon1}
               />
               <TextInput
+                clearButtonMode="always"
                 placeholder="What are you looking for?"
                 style={styles.input}
               />

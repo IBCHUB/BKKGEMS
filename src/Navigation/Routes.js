@@ -21,6 +21,7 @@ import {
   NewDetail,
   Chat,
   Contact,
+  Faqs,
 } from '../Screens';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('window');
@@ -259,6 +260,7 @@ function screenStack() {
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Contact" component={Contact} />
+      <Stack.Screen name="Faqs" component={Faqs} />
     </Stack.Navigator>
   );
 }
@@ -308,12 +310,18 @@ function CustomDrawerContent(props) {
             onPress={() => {
               props.navigation.toggleDrawer();
               setTimeout(() => {
-                props.navigation.navigate('Login');
+                props.navigation.navigate('Contact');
               }, 100);
             }}>
             <Text style={styles.touchdrawer}>Contact Us</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.toggleDrawer();
+              setTimeout(() => {
+                props.navigation.navigate('Faqs');
+              }, 100);
+            }}>
             <Text style={styles.touchdrawer}>FAQs</Text>
           </TouchableOpacity>
         </View>

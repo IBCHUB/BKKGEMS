@@ -19,7 +19,14 @@ import AboutHome from './AboutHome';
 const Home = ({navigation}) => {
   const [online, setOnline] = useState(false);
   const refRBSheet = useRef();
-
+  // const SearchSubmit = e => {
+  //   const newData = this.arrayholder.filter(item => {
+  //     const itemData = `${item.activity_list_topic_th.toUpperCase()}`;
+  //     const textData = e.toUpperCase();
+  //     return itemData.indexOf(textData) > -1;
+  //   });
+  //   this.setState({Recommend: newData});
+  // };
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -65,16 +72,20 @@ const Home = ({navigation}) => {
           </View>
           <View style={styles.viewon}>
             <View style={styles.viewsearch}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={styles.viewinsearch}>
                 <FontAwesome5
                   name="search"
-                  size={20}
+                  size={18}
                   color={'#44444480'}
                   style={styles.icon}
                 />
                 <TextInput
+                  clearButtonMode="always"
                   placeholder="What are you looking for?"
                   style={styles.input}
+                  // onChangeText={e => {
+                  //   SearchSubmit(e);
+                  // }}
                 />
               </View>
               <TouchableOpacity

@@ -21,7 +21,9 @@ const Headerback = ({navigation, item}) => {
         <Text style={styles.texthead}>{item}</Text>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity style={{marginRight: 20}}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Chat')}
+          style={{marginRight: 20}}>
           <Image
             source={require('../../assets/image/iconSend.png')}
             style={styles.iconSend}

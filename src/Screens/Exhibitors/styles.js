@@ -14,17 +14,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: 10,
   },
-  icon: {
+  viewinsearch: {
+    flexDirection: 'row',
+    width: width * 0.8,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+  },
+  icon1: {
     alignSelf: 'center',
-    marginRight: -30,
+    marginLeft: 10,
     zIndex: 99,
   },
   input: {
-    width: 320,
+    width: 270,
     height: 35,
-    border: 1,
-    backgroundColor: '#fff',
-    paddingLeft: 35,
+    marginLeft: 10,
     borderRadius: 8,
     fontSize: 14,
     color: '#888888',

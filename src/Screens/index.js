@@ -10,3 +10,4 @@ export {default as Splash} from './Splash/Splash';
 export {default as NewDetail} from './NewDetail/NewDetail';
 export {default as Chat} from './Chat/Chat';
 export {default as Contact} from './Contact/Contact';
+export {default as Faqs} from './Faqs/Faqs';
