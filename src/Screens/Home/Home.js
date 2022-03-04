@@ -49,7 +49,11 @@ const Home = ({navigation}) => {
               height: '60%',
             },
           }}>
-          <RBSheetHome onPress={() => refRBSheet.current.close()} />
+          <RBSheetHome
+            onPress={() => {
+              refRBSheet.current.close();
+            }}
+          />
         </RBSheet>
         <ScrollView style={{backgroundColor: '#000'}}>
           <View style={styles.viewback}>

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import Headercomp from '../../Components/Headercomp';
+import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LinearGradient from 'react-native-linear-gradient';
@@ -16,23 +16,12 @@ const About = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headercomp navigation={navigation} item={'ABOUT FAIR'} />
+        <Headerback navigation={navigation} item={'ABOUT FAIR'} />
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
-          <ImageBackground
+          <Image
             source={require('../../../assets/image/about1.png')}
-            style={styles.imgHeader}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.goBack();
-              }}>
-              <FontAwesome5
-                name="arrow-left"
-                size={15}
-                color={'#DAA560'}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-          </ImageBackground>
+            style={styles.imgHeader}
+          />
 
           <Text style={[styles.textdetail, {marginTop: 20}]}>
             <Text style={[styles.textdetail, {color: '#DAA560'}]}>

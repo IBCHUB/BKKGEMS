@@ -12,7 +12,7 @@ const Headerback = ({navigation, item}) => {
         }}>
         <FontAwesome5
           name="arrow-left"
-          size={15}
+          size={20}
           color={'#DAA560'}
           style={styles.icon}
         />

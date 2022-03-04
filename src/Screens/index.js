@@ -11,3 +11,6 @@ export {default as NewDetail} from './NewDetail/NewDetail';
 export {default as Chat} from './Chat/Chat';
 export {default as Contact} from './Contact/Contact';
 export {default as Faqs} from './Faqs/Faqs';
+export {default as Suppliers} from './Suppliers/Suppliers';
+export {default as Search} from './Search/Search';
+export {default as Meeting} from './Meeting/Meeting';

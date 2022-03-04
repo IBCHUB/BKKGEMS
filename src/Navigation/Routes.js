@@ -22,6 +22,9 @@ import {
   Chat,
   Contact,
   Faqs,
+  Suppliers,
+  Search,
+  Meeting,
 } from '../Screens';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 const {width, height} = Dimensions.get('window');
@@ -48,6 +51,7 @@ function ExhibitorsStackScreen() {
         name="ExhibitorsDetail"
         component={ExhibitorsDetail}
       />
+      <ExhibitorsStack.Screen name="Search" component={Search} />
     </ExhibitorsStack.Navigator>
   );
 }
@@ -261,6 +265,8 @@ function screenStack() {
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Contact" component={Contact} />
       <Stack.Screen name="Faqs" component={Faqs} />
+      <Stack.Screen name="Suppliers" component={Suppliers} />
+      <Stack.Screen name="Meeting" component={Meeting} />
     </Stack.Navigator>
   );
 }
@@ -270,10 +276,22 @@ function CustomDrawerContent(props) {
     <View style={{height: '100%'}}>
       <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <View style={{backgroundColor: '#232323', height: height}}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.toggleDrawer();
+              setTimeout(() => {
+                props.navigation.navigate('About');
+              }, 100);
+            }}>
             <Text style={styles.touchdrawer}>About Fair</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.toggleDrawer();
+              setTimeout(() => {
+                props.navigation.navigate('Suppliers');
+              }, 100);
+            }}>
             <Text style={styles.touchdrawer}>Suppliers and Manufacturers</Text>
           </TouchableOpacity>
           <TouchableOpacity

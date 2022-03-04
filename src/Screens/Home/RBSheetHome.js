@@ -12,7 +12,7 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 const {width, height} = Dimensions.get('window');
-const RBSheetHome = ({onPress}) => {
+const RBSheetHome = ({onPress, navigation}) => {
   const [selectedId, setselectedId] = useState([]);
   const [checked, setChecked] = useState(false);
 

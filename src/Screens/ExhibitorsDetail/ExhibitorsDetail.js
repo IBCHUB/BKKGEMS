@@ -38,7 +38,9 @@ const ExhibitorsDetail = ({navigation, route}) => {
               <TouchableOpacity style={styles.button}>
                 <Text style={styles.textbutton}>CONTACT</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Meeting')}
+                style={styles.button}>
                 <Text style={styles.textbutton}>MEETING</Text>
               </TouchableOpacity>
             </View>

@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   texthead: {
-    fontSize: 22,
+    fontSize: 18,
     color: '#DAA560',
     textAlign: 'center',
     fontFamily: 'Cantoria MT Std',
