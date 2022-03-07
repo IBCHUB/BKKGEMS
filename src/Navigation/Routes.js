@@ -25,8 +25,10 @@ import {
   Suppliers,
   Search,
   Meeting,
+  Profile,
 } from '../Screens';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import CustomDrawerContent from './drawer';
+
 const {width, height} = Dimensions.get('window');
 
 const HomeStack = createNativeStackNavigator();
@@ -267,86 +269,11 @@ function screenStack() {
       <Stack.Screen name="Faqs" component={Faqs} />
       <Stack.Screen name="Suppliers" component={Suppliers} />
       <Stack.Screen name="Meeting" component={Meeting} />
+      <Stack.Screen name="Profile" component={Profile} />
     </Stack.Navigator>
   );
 }
 
-function CustomDrawerContent(props) {
-  return (
-    <View style={{height: '100%'}}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <View style={{backgroundColor: '#232323', height: height}}>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.toggleDrawer();
-              setTimeout(() => {
-                props.navigation.navigate('About');
-              }, 100);
-            }}>
-            <Text style={styles.touchdrawer}>About Fair</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.toggleDrawer();
-              setTimeout(() => {
-                props.navigation.navigate('Suppliers');
-              }, 100);
-            }}>
-            <Text style={styles.touchdrawer}>Suppliers and Manufacturers</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.toggleDrawer();
-              setTimeout(() => {
-                props.navigation.navigate('Exhibitors');
-              }, 100);
-            }}>
-            <Text style={styles.touchdrawer}>Exhibitors List</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.toggleDrawer();
-              setTimeout(() => {
-                props.navigation.navigate('Hightligth');
-              }, 100);
-            }}>
-            <Text style={styles.touchdrawer}>Highlight</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.toggleDrawer();
-              setTimeout(() => {
-                props.navigation.navigate('News');
-              }, 100);
-            }}>
-            <Text style={styles.touchdrawer}>News</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text style={styles.touchdrawer}>For Visitor</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.toggleDrawer();
-              setTimeout(() => {
-                props.navigation.navigate('Contact');
-              }, 100);
-            }}>
-            <Text style={styles.touchdrawer}>Contact Us</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.toggleDrawer();
-              setTimeout(() => {
-                props.navigation.navigate('Faqs');
-              }, 100);
-            }}>
-            <Text style={styles.touchdrawer}>FAQs</Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    </View>
-  );
-}
 const Drawer = createDrawerNavigator();
 function DrawerStack() {
   return (
@@ -369,12 +296,3 @@ function Routes() {
 }
 
 export default Routes;
-
-const styles = StyleSheet.create({
-  touchdrawer: {
-    fontSize: 16,
-    marginTop: 20,
-    color: '#fff',
-    marginLeft: 20,
-  },
-});

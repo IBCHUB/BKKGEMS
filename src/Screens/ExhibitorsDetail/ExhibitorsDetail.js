@@ -7,19 +7,63 @@ import {
   ScrollView,
   TouchableOpacity,
   Animated,
+  Modal,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Product from './product';
 import Aboutexhi from './aboutexhi';
-
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {TextInput} from 'react-native-gesture-handler';
 const ExhibitorsDetail = ({navigation, route}) => {
   const {item} = route.params;
-
+  const [modal, setmodal] = useState(false);
   const [page, setpage] = useState(0);
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modal}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setmodal(!modal);
+        }}>
+        <View style={styles.containermodal}>
+          <View style={styles.viewmodal}>
+            <TouchableOpacity
+              onPress={() => {
+                setmodal(false);
+              }}
+              style={styles.iconmodal}>
+              <AntDesign name="close" size={20} color="#444444" />
+            </TouchableOpacity>
+            <Text style={styles.textopmodal}>Contact to company</Text>
+            <View style={styles.viewinput}>
+              <TextInput placeholder="Name" style={styles.input} />
+            </View>
+            <View style={styles.viewinput}>
+              <TextInput placeholder="Country" style={styles.input} />
+            </View>
+            <View style={styles.viewinput}>
+              <TextInput placeholder="Business Type" style={styles.input} />
+            </View>
+            <View style={styles.viewinput}>
+              <TextInput placeholder="Tel." style={styles.input} />
+            </View>
+            <View style={styles.viewinput}>
+              <TextInput placeholder="Email" style={styles.input} />
+            </View>
+            <View style={styles.viewinput1}>
+              <TextInput placeholder="Message" style={styles.input} multiline />
+            </View>
+            <TouchableOpacity style={styles.touchedit}>
+              <Text style={styles.textedit}>SEAN MESSAGE</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       <SafeAreaView>
         <ScrollView>
           <Headerback navigation={navigation} />
@@ -32,10 +76,16 @@ const ExhibitorsDetail = ({navigation, route}) => {
               <Text style={styles.textloca}>Bangkok, Thailand</Text>
             </View>
             <View style={[styles.row, {marginTop: 10}]}>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Chat')}
+                style={styles.button}>
                 <Text style={styles.textbutton}>LIVE CHAT</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity
+                onPress={() => {
+                  setmodal(true);
+                }}
+                style={styles.button}>
                 <Text style={styles.textbutton}>CONTACT</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -50,11 +100,20 @@ const ExhibitorsDetail = ({navigation, route}) => {
               onPress={() => {
                 setpage(0);
               }}
-              style={styles.page}>
+              style={[
+                styles.page,
+                {
+                  borderBottomWidth: page === 0 ? 0.5 : 0,
+                  borderBottomColor: page === 0 ? '#DAA569' : '#000',
+                },
+              ]}>
               <Text
                 style={[
                   styles.textpage,
-                  {color: page === 0 ? '#DAA560' : '#000'},
+                  {
+                    color: page === 0 ? '#DAA560' : '#000',
+                    fontSize: page === 0 ? 20 : 18,
+                  },
                 ]}>
                 PRODUCT
               </Text>
@@ -63,11 +122,20 @@ const ExhibitorsDetail = ({navigation, route}) => {
               onPress={() => {
                 setpage(1);
               }}
-              style={styles.page}>
+              style={[
+                styles.page,
+                {
+                  borderBottomWidth: page === 1 ? 0.5 : 0,
+                  borderBottomColor: page === 1 ? '#DAA569' : '#000',
+                },
+              ]}>
               <Text
                 style={[
                   styles.textpage,
-                  {color: page === 1 ? '#DAA560' : '#000'},
+                  {
+                    color: page === 1 ? '#DAA560' : '#000',
+                    fontSize: page === 1 ? 20 : 17,
+                  },
                 ]}>
                 ABOUT
               </Text>

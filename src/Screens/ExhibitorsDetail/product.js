@@ -15,23 +15,66 @@ import Carousel, {Pagination} from 'react-native-snap-carousel';
 const {width, height} = Dimensions.get('window');
 const product = ({item}) => {
   const carouselRef = useRef();
-  const [highligth, sethighligth] = useState(false);
-  const [list, setlist] = useState(false);
+
   const [index, setIndex] = useState(0);
+  const [highligth, sethighligth] = useState(false);
+  const [selectedtags, setselectedtags] = useState([]);
+
+  const [list, setlist] = useState(false);
+  const [selectedlist, setselectedlist] = useState([]);
+
+  const isHighligth = id => {
+    const isChecktags = selectedtags.includes(id);
+    return isChecktags;
+  };
+
+  const handleCheckBoxtags = id => {
+    const ids = [...selectedtags, id];
+    if (isHighligth(id)) {
+      console.log('เอาออก');
+      setselectedtags(selectedtags.filter(item => item !== id));
+    } else {
+      console.log('เอาเข้า');
+      setselectedtags(ids);
+    }
+    sethighligth(selectedtags.length + 1 == data.length);
+  };
+
+  const isList = id => {
+    const isCheck = selectedlist.includes(id);
+    return isCheck;
+  };
+
+  const handleChecklist = id => {
+    const ids = [...selectedlist, id];
+    if (isList(id)) {
+      console.log('เอาออก');
+      setselectedlist(selectedlist.filter(item => item !== id));
+    } else {
+      console.log('เอาเข้า');
+      setselectedlist(ids);
+    }
+    setlist(selectedlist.length + 1 == data.length);
+  };
+
   const [data, setData] = useState([
     {
+      id: 1,
       img: require('../../../assets/image/exhi/1.png'),
       text: 'Sapphire Earring',
     },
     {
+      id: 2,
       img: require('../../../assets/image/exhi/2.png'),
       text: '7 Days Birthstone',
     },
     {
+      id: 3,
       img: require('../../../assets/image/exhi/3.png'),
       text: 'Ruby Rosegold Ring',
     },
     {
+      id: 4,
       img: require('../../../assets/image/exhi/4.png'),
       text: 'Sapphire Topaz Bracelet',
     },
@@ -56,19 +99,21 @@ const product = ({item}) => {
                     style={[
                       styles.buttonlist,
                       {
-                        borderColor: highligth === true ? '#999' : '#DAA560',
+                        borderColor:
+                          isHighligth(item.id) === false ? '#999' : '#DAA560',
                         backgroundColor:
-                          highligth === true ? '#fff' : '#DAA560',
+                          isHighligth(item.id) === false ? '#fff' : '#DAA560',
                         marginRight: 10,
                       },
                     ]}
                     onPress={() => {
                       sethighligth(val => !val);
+                      handleCheckBoxtags(item.id);
                     }}>
                     <AntDesign
                       name="star"
                       size={20}
-                      color={highligth === true ? '#999' : '#fff'}
+                      color={isHighligth(item.id) === false ? '#999' : '#fff'}
                       style={{alignSelf: 'center'}}
                     />
                   </TouchableOpacity>
@@ -76,17 +121,20 @@ const product = ({item}) => {
                     style={[
                       styles.buttonlist,
                       {
-                        borderColor: list === true ? '#999' : '#DAA560',
-                        backgroundColor: list === true ? '#fff' : '#DAA560',
+                        borderColor:
+                          isList(item.id) === false ? '#999' : '#DAA560',
+                        backgroundColor:
+                          isList(item.id) === false ? '#fff' : '#DAA560',
                       },
                     ]}
                     onPress={() => {
                       setlist(val => !val);
+                      handleChecklist(item.id);
                     }}>
                     <Feather
                       name="file-text"
                       size={20}
-                      color={list === true ? '#999' : '#fff'}
+                      color={isList(item.id) === false ? '#999' : '#fff'}
                       style={{alignSelf: 'center'}}
                     />
                   </TouchableOpacity>

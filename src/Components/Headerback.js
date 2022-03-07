@@ -29,7 +29,7 @@ const Headerback = ({navigation, item}) => {
             style={styles.iconSend}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Image
             source={require('../../assets/image/iconprofile.png')}
             style={styles.iconprofile}

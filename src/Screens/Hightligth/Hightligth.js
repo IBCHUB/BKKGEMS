@@ -70,12 +70,6 @@ const Hightligth = ({navigation}) => {
       <SafeAreaView>
         <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
         <ScrollView style={{backgroundColor: '#010302'}}>
-          <View style={styles.viewhead}>
-            <Image
-              source={require('../../../assets/image/tab.png')}
-              style={styles.headtab}
-            />
-          </View>
           <View style={{marginBottom: 90}}>
             <FlatList
               data={data}

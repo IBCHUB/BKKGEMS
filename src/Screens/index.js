@@ -14,3 +14,4 @@ export {default as Faqs} from './Faqs/Faqs';
 export {default as Suppliers} from './Suppliers/Suppliers';
 export {default as Search} from './Search/Search';
 export {default as Meeting} from './Meeting/Meeting';
+export {default as Profile} from './Profile/Profile';
