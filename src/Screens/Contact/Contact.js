@@ -15,7 +15,7 @@ const Contact = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headerback navigation={navigation} item={'ABOUT FAIR'} />
+        <Headerback navigation={navigation} item={'CONTACT US'} />
         <ScrollView style={{backgroundColor: '#000', marginBottom: 10}}>
           <View style={styles.viewinput}>
             <TextInput style={styles.input} placeholder="Name" />

@@ -345,6 +345,10 @@ PODS:
     - React-perflogger (= 0.67.2)
   - RNGestureHandler (2.2.0):
     - React-Core
+  - RNI18n (2.0.15):
+    - React
+  - RNLocalize (2.2.0):
+    - React-Core
   - RNReanimated (1.13.2):
     - React-Core
   - RNScreens (3.12.0):
@@ -414,6 +418,8 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNI18n (from `../node_modules/react-native-i18n`)
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -503,6 +509,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNI18n:
+    :path: "../node_modules/react-native-i18n"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -559,6 +569,8 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 2450b43df7ffe8e805a0b3dcb2abd4282f1f1836
   ReactCommon: d98c6c96b567f9b3a15f9fd4cc302c1eda8e3cf2
   RNGestureHandler: bf572f552ea324acd5b5464b8d30755b2d8c1de6
+  RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
+  RNLocalize: 6571ea792a7dcb6d217c98c14d9147e9417cef62
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b

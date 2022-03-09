@@ -15,3 +15,6 @@ export {default as Suppliers} from './Suppliers/Suppliers';
 export {default as Search} from './Search/Search';
 export {default as Meeting} from './Meeting/Meeting';
 export {default as Profile} from './Profile/Profile';
+export {default as Mylist} from './Mylist/Mylist';
+export {default as Inmylist} from './Inmylist/Inmylist';
+export {default as Myfavorite} from './Myfavorite/Myfavorite';

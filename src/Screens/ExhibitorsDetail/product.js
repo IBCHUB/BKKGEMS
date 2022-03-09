@@ -13,7 +13,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 const {width, height} = Dimensions.get('window');
-const product = ({item}) => {
+const product = ({item, navigation}) => {
   const carouselRef = useRef();
 
   const [index, setIndex] = useState(0);
@@ -188,7 +188,7 @@ const product = ({item}) => {
         </TouchableOpacity>
       </View>
       <Text style={styles.texthead}>OTHER PRODUCTS</Text>
-      <View style={{marginBottom: 50}}>
+      <View style={{marginBottom: 100}}>
         <FlatList
           data={data}
           numColumns={2}

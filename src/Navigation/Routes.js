@@ -26,6 +26,9 @@ import {
   Search,
   Meeting,
   Profile,
+  Mylist,
+  Inmylist,
+  Myfavorite,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 
@@ -270,6 +273,9 @@ function screenStack() {
       <Stack.Screen name="Suppliers" component={Suppliers} />
       <Stack.Screen name="Meeting" component={Meeting} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Mylist" component={Mylist} />
+      <Stack.Screen name="Inmylist" component={Inmylist} />
+      <Stack.Screen name="Myfavorite" component={Myfavorite} />
     </Stack.Navigator>
   );
 }

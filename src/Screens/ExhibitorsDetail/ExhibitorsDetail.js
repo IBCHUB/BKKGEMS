@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Animated,
   Modal,
+  TextInput,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
@@ -15,7 +16,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Product from './product';
 import Aboutexhi from './aboutexhi';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {TextInput} from 'react-native-gesture-handler';
+
 const ExhibitorsDetail = ({navigation, route}) => {
   const {item} = route.params;
   const [modal, setmodal] = useState(false);
@@ -65,7 +66,7 @@ const ExhibitorsDetail = ({navigation, route}) => {
         </View>
       </Modal>
       <SafeAreaView>
-        <ScrollView>
+        <ScrollView style={{marginBottom: 50}}>
           <Headerback navigation={navigation} />
           <View style={styles.viewHeader}>
             <Image source={item.icon} style={styles.logo} />

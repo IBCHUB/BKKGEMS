@@ -9,12 +9,16 @@ import {
   TouchableOpacity,
   FlatList,
   ScrollView,
+  Alert,
 } from 'react-native';
 import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {useIsFocused, CommonActions} from '@react-navigation/native';
+import I18n from '../utils/I18n';
 const CustomDrawerContent = props => {
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
+  const [language, setlanguage] = useState('TH');
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
@@ -116,10 +120,16 @@ const CustomDrawerContent = props => {
           </View>
           <View style={styles.liner} />
           <View style={{marginBottom: 20}}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                props.navigation.navigate('Myfavorite');
+              }}>
               <Text style={styles.touchdrawer}>My Favorite</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                props.navigation.navigate('Mylist');
+              }}>
               <Text style={styles.touchdrawer}>My List</Text>
             </TouchableOpacity>
           </View>
@@ -136,7 +146,7 @@ const CustomDrawerContent = props => {
                 setsetting(val => !val);
               }}
               style={styles.rowlist}>
-              <Text style={styles.touchdrawer}>Setting</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('name')}</Text>
               <FontAwesome
                 name={setting === true ? 'angle-down' : 'angle-right'}
                 size={20}
@@ -146,7 +156,48 @@ const CustomDrawerContent = props => {
             </TouchableOpacity>
             {setting === true && (
               <View>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    Alert.alert(
+                      'Language Selection',
+                      'Multi language support',
+                      [
+                        {
+                          text: 'TH',
+                          onPress: () => {
+                            I18n.locale = 'th';
+                            setlanguage();
+                            props.navigation.dispatch(
+                              CommonActions.navigate({
+                                name: 'Home',
+                              }),
+                            );
+                          },
+                        },
+                        {
+                          text: 'EN',
+                          onPress: () => {
+                            I18n.locale = 'en';
+                            setlanguage();
+                            props.navigation.dispatch(
+                              CommonActions.navigate({
+                                name: 'Home',
+                              }),
+                            );
+                          },
+                        },
+
+                        {
+                          text: 'Cancel',
+                          onPress: () => {
+                            console.log('Cancel Pressed');
+                          },
+                          style: 'cancel',
+                        },
+                      ],
+                      {cancelable: false},
+                    );
+                  }}>
                   <Text style={styles.touchindrawer}>Change Language</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
