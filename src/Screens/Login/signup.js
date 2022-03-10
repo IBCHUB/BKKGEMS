@@ -5,7 +5,7 @@ import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const signup = ({navigation, onPress}) => {
+const signup = ({navigation, onPress, loginUser}) => {
   const [modal, setmodal] = useState(false);
   const [body, setbody] = useState({
     Email: 'drive.bkkgems2022@gmail.com',
@@ -166,7 +166,8 @@ const signup = ({navigation, onPress}) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          setmodal(true);
+          // setmodal(true);
+          loginUser();
         }}
         style={styles.buttonsignup}>
         <Text style={styles.textsigeup}>CREATE ACCOUNT</Text>

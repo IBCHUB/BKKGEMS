@@ -10,11 +10,41 @@ import {
 import Signin from './signin';
 import Signup from './signup';
 import styles from './styles';
+import {loginUser} from 'actions/auth.action';
+import {connect} from 'react-redux';
+import Loader from '../../Components/Loader';
 
-const Login = ({navigation}) => {
+const Login = ({navigation, dispatch, authData, LoadingCounters}) => {
   const [page, setpage] = useState(0);
+
+  const _loginUser = async values => {
+    try {
+      var request =
+        'email=' +
+        'pronthep.d@ibusiness.co.th' +
+        '&password=' +
+        '123456789' +
+        '&type=' +
+        '1' +
+        '&version=' +
+        '11' +
+        '&token=' +
+        '11';
+      const response = await dispatch(loginUser(request));
+      console.log('data');
+      console.log(response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
   return (
     <View style={styles.container}>
+      {console.log(authData.token)}
+      {LoadingCounters > 0 && <Loader />}
       <SafeAreaView>
         <Image
           source={require('../../../assets/image/BKKGEMSlogo.png')}
@@ -69,7 +99,9 @@ const Login = ({navigation}) => {
               </Text>
             </TouchableOpacity>
           </Animated.View>
-          {page === 0 && <Signup onPress={() => setpage(1)} />}
+          {page === 0 && (
+            <Signup onPress={() => setpage(1)} loginUser={_loginUser} />
+          )}
           {page === 1 && (
             <Signin onPress={() => setpage(0)} navigation={navigation} />
           )}
@@ -79,4 +111,14 @@ const Login = ({navigation}) => {
   );
 };
 
-export default Login;
+// export default Login;
+
+const mapStateToProps = state => ({
+  LoadingCounters: state.dataReducer.LoadingCounters,
+  authData: state.authReducer.authData,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

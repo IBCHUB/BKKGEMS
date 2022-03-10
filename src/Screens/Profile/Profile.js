@@ -10,6 +10,8 @@ import {
 import styles from './styles';
 import ImgToBase64 from 'react-native-image-base64';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import RNPickerSelect from 'react-native-picker-select';
+
 const Profile = ({navigation}) => {
   const [imgbase64, setimgbase64] = useState();
 
@@ -69,7 +71,7 @@ const Profile = ({navigation}) => {
           <TextInput placeholder="Gemy Jewell" style={styles.textinput} />
         </View>
         <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>Email</Text>
+          <Text style={styles.texttopic}>Company</Text>
           <TextInput
             placeholder="Bkkgems company limited"
             style={styles.textinput}
@@ -77,7 +79,15 @@ const Profile = ({navigation}) => {
         </View>
         <View style={styles.viewinput}>
           <Text style={styles.texttopic}>Country</Text>
-          <TextInput placeholder="Thailand" style={styles.textinput} />
+          {/* <TextInput placeholder="Thailand" style={styles.textinput} /> */}
+          <RNPickerSelect
+            onValueChange={value => console.log(value)}
+            items={[
+              {label: 'Football', value: 'football'},
+              {label: 'Baseball', value: 'baseball'},
+              {label: 'Hockey', value: 'hockey'},
+            ]}
+          />
         </View>
         <View style={styles.viewinput1}>
           <Text style={styles.texttopic}>Address</Text>

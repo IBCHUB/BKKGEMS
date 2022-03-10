@@ -53,6 +53,7 @@ const Home = ({navigation}) => {
             onPress={() => {
               refRBSheet.current.close();
             }}
+            navigation={navigation}
           />
         </RBSheet>
         <ScrollView style={{backgroundColor: '#000'}}>
