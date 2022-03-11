@@ -41,7 +41,7 @@ const CustomDrawerContent = props => {
               onPress={() => {
                 props.navigation.navigate('About');
               }}>
-              <Text style={styles.touchdrawer}>About Fair</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('AboutFair')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -55,7 +55,7 @@ const CustomDrawerContent = props => {
               onPress={() => {
                 props.navigation.navigate('Exhibitors');
               }}>
-              <Text style={styles.touchdrawer}>Exhibitors List</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('ExhibitorsList')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
@@ -67,14 +67,14 @@ const CustomDrawerContent = props => {
               onPress={() => {
                 props.navigation.navigate('News');
               }}>
-              <Text style={styles.touchdrawer}>News</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('News')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 setvisitor(val => !val);
               }}
               style={styles.rowlist}>
-              <Text style={styles.touchdrawer}>For Visitor</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('Visitor')}</Text>
               <FontAwesome
                 name={visitor === true ? 'angle-down' : 'angle-right'}
                 size={20}
@@ -85,23 +85,33 @@ const CustomDrawerContent = props => {
             {visitor === true && (
               <View>
                 <TouchableOpacity>
-                  <Text style={styles.touchindrawer}>Pre-Registration</Text>
+                  <Text style={styles.touchindrawer}>
+                    {I18n.t('PreRegistration')}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.touchindrawer}>Admission</Text>
+                  <Text style={styles.touchindrawer}>
+                    {I18n.t('Admission')}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.touchindrawer}>Seminar</Text>
+                  <Text style={styles.touchindrawer}>{I18n.t('Seminar')}</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity>
-                  <Text style={styles.touchindrawer}>Business Matching</Text>
+                  <Text style={styles.touchindrawer}>
+                    {I18n.t('BusinessMatching')}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.touchindrawer}>Floor Plan</Text>
+                  <Text style={styles.touchindrawer}>
+                    {I18n.t('FloorPlan')}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.touchindrawer}>Visitor Guide</Text>
+                  <Text style={styles.touchindrawer}>
+                    {I18n.t('VisitorGuide')}
+                  </Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -109,13 +119,13 @@ const CustomDrawerContent = props => {
               onPress={() => {
                 props.navigation.navigate('Contact');
               }}>
-              <Text style={styles.touchdrawer}>Contact Us</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('ContactUs')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 props.navigation.navigate('Faqs');
               }}>
-              <Text style={styles.touchdrawer}>FAQs</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('FAQs')}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.liner} />
@@ -124,29 +134,31 @@ const CustomDrawerContent = props => {
               onPress={() => {
                 props.navigation.navigate('Myfavorite');
               }}>
-              <Text style={styles.touchdrawer}>My Favorite</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('MyFavorite')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 props.navigation.navigate('Mylist');
               }}>
-              <Text style={styles.touchdrawer}>My List</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('MyList')}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.liner} />
           <View style={{marginBottom: 20}}>
             <TouchableOpacity>
-              <Text style={styles.touchdrawer}>Terms and Conditions</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('Terms')}</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={styles.touchdrawer}>Satisfaction Survey</Text>
+              <Text style={styles.touchdrawer}>
+                {I18n.t('SatisfactionSurvey')}
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 setsetting(val => !val);
               }}
               style={styles.rowlist}>
-              <Text style={styles.touchdrawer}>{I18n.t('name')}</Text>
+              <Text style={styles.touchdrawer}>{I18n.t('Setting')}</Text>
               <FontAwesome
                 name={setting === true ? 'angle-down' : 'angle-right'}
                 size={20}
@@ -198,17 +210,21 @@ const CustomDrawerContent = props => {
                       {cancelable: false},
                     );
                   }}>
-                  <Text style={styles.touchindrawer}>Change Language</Text>
+                  <Text style={styles.touchindrawer}>
+                    {I18n.t('ChangeLanguage')}
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                  <Text style={styles.touchindrawer}>Change Password</Text>
+                  <Text style={styles.touchindrawer}>
+                    {I18n.t('ChangePassword')}
+                  </Text>
                 </TouchableOpacity>
               </View>
             )}
           </View>
           <View style={styles.liner} />
           <TouchableOpacity>
-            <Text style={styles.logout}>Log out</Text>
+            <Text style={styles.logout}>{I18n.t('Logout')}</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>

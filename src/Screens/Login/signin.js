@@ -5,8 +5,9 @@ import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const signin = ({navigation, onPress}) => {
+import {loginUser} from 'actions/auth.action';
+import {connect} from 'react-redux';
+const signin = ({navigation, onPress, dispatch, authData}) => {
   const [modal, setmodal] = useState(false);
   const [modalfalse, setmodalfalse] = useState(false);
   const [modalemail, setmodalemail] = useState(false);
@@ -21,6 +22,30 @@ const signin = ({navigation, onPress}) => {
       securePassword: !body.securePassword,
     });
   };
+
+  const _loginUser = async values => {
+    try {
+      var request =
+        'email=' +
+        'pronthep.d@ibusiness.co.th' +
+        '&password=' +
+        '123456789' +
+        '&type=' +
+        '1' +
+        '&version=' +
+        '11' +
+        '&token=' +
+        '11';
+      const response = await dispatch(loginUser(request));
+      console.log(response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
   return (
     <View style={styles.containersignup}>
       <Modal
@@ -167,6 +192,7 @@ const signin = ({navigation, onPress}) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Home');
+          // _loginUser();
         }}
         style={styles.buttonsignup}>
         <Text style={styles.textsigeup}>LOG - IN</Text>
@@ -189,4 +215,14 @@ const signin = ({navigation, onPress}) => {
   );
 };
 
-export default signin;
+// export default signin;
+
+const mapStateToProps = state => ({
+  LoadingCounters: state.dataReducer.LoadingCounters,
+  authData: state.authReducer.authData,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(signin);

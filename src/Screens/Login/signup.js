@@ -4,8 +4,11 @@ import Input from './input';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {registerUser} from 'actions/auth.action';
+import {connect} from 'react-redux';
+import Loader from '../../Components/Loader';
 
-const signup = ({navigation, onPress, loginUser}) => {
+const signup = ({navigation, onPress, dispatch, authData, LoadingCounters}) => {
   const [modal, setmodal] = useState(false);
   const [body, setbody] = useState({
     Email: 'drive.bkkgems2022@gmail.com',
@@ -29,8 +32,34 @@ const signup = ({navigation, onPress, loginUser}) => {
       secureRepassword: !body.secureRepassword,
     });
   };
+
+  const _registerUser = async values => {
+    try {
+      var request =
+        'reg_email=' +
+        'bhuri.sap@gmail.com' +
+        '&reg_password=' +
+        '123456789' +
+        '&reg_password_re=' +
+        '123456789' +
+        '&reg_company=' +
+        '11' +
+        '&reg_name=' +
+        '่jame' +
+        '&reg_country=' +
+        '22';
+      const response = await dispatch(registerUser(request));
+      console.log(response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
   return (
     <View style={styles.containersignup}>
+      {LoadingCounters > 0 && <Loader />}
       <Modal
         animationType="none"
         transparent={true}
@@ -167,7 +196,7 @@ const signup = ({navigation, onPress, loginUser}) => {
       <TouchableOpacity
         onPress={() => {
           // setmodal(true);
-          loginUser();
+          _registerUser();
         }}
         style={styles.buttonsignup}>
         <Text style={styles.textsigeup}>CREATE ACCOUNT</Text>
@@ -176,4 +205,13 @@ const signup = ({navigation, onPress, loginUser}) => {
   );
 };
 
-export default signup;
+// export default signup;
+
+const mapStateToProps = state => ({
+  LoadingCounters: state.dataReducer.LoadingCounters,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(signup);
