@@ -1,5 +1,5 @@
 import metrics from 'config/metrics';
-const BASE_API = metrics.BASE_URL + 'api';
+const BASE_API = metrics.BASE_URL;
 
 export const api = async (url, method, body = null, headers = {}) => {
   try {

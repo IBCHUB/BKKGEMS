@@ -10,6 +10,8 @@ const input = ({
   maxLength,
   autoCapitalize,
   secureTextEntry,
+  onBlur,
+  value,
 }) => {
   return (
     <View style={styles.containerinput}>
@@ -21,6 +23,8 @@ const input = ({
         secureTextEntry={secureTextEntry}
         defaultValue={defaultValue}
         maxLength={maxLength}
+        onBlur={onBlur}
+        value={value}
       />
     </View>
   );

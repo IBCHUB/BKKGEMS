@@ -180,6 +180,29 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontFamily: 'Cantoria MT Std',
   },
+  inputEmail: {
+    color: '#555555',
+    // fontSize: metrics.NORMALIZEE(22),
+  },
+  borderRed: {
+    borderColor: 'red',
+    borderBottomWidth: 1,
+  },
+  ContainerEmail: {
+    borderColor: '#000000',
+    borderBottomWidth: 0.8,
+    height: 23,
+    marginTop: 12,
+    padding: 0,
+  },
+  btnNext: {
+    height: 38,
+    width: '60%',
+    backgroundColor: '#faaf40',
+    borderRadius: 10,
+    justifyContent: 'center',
+    marginTop: 20,
+  },
 });
 
 export default styles;

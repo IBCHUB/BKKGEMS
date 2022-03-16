@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Modal} from 'react-native';
+import React, {useState, Fragment} from 'react';
+import {View, Text, TouchableOpacity, Modal, TextInput} from 'react-native';
 import Input from './input';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -7,13 +7,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {loginUser} from 'actions/auth.action';
 import {connect} from 'react-redux';
+import {Formik} from 'formik';
+import * as yup from 'yup';
+
 const signin = ({navigation, onPress, dispatch, authData}) => {
   const [modal, setmodal] = useState(false);
   const [modalfalse, setmodalfalse] = useState(false);
   const [modalemail, setmodalemail] = useState(false);
   const [body, setbody] = useState({
-    Email: '',
-    Password: '',
     securePassword: true,
   });
   const updateSecurePassword = () => {
@@ -25,22 +26,15 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
 
   const _loginUser = async values => {
     try {
-      var request =
-        'email=' +
-        'pronthep.d@ibusiness.co.th' +
-        '&password=' +
-        '123456789' +
-        '&type=' +
-        '1' +
-        '&version=' +
-        '11' +
-        '&token=' +
-        '11';
+      var request = 'username=' + values.email + '&password=' + values.password;
+
       const response = await dispatch(loginUser(request));
-      console.log(response);
+      // console.log(response);
       if (response.res_code == '00') {
+        navigation.navigate('Home');
         console.log('1111');
       } else {
+        setmodalfalse(true);
         console.log('2222');
       }
     } catch (error) {}
@@ -103,7 +97,11 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
             <Text style={styles.texttopicmodal}>
               Sorry, wrong username or password.
             </Text>
-            <TouchableOpacity style={styles.buttonexhi}>
+            <TouchableOpacity
+              onPress={() => {
+                setmodalfalse(false);
+              }}
+              style={styles.buttonexhi}>
               <Text style={styles.textexhi}>TRY AGAIN</Text>
             </TouchableOpacity>
           </View>
@@ -140,63 +138,100 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
         </View>
       </Modal>
       <View style={{marginTop: 50}} />
-      <Input
-        placeholder="Email"
-        autoCapitalize="none"
-        onChangeText={text => {
-          setbody({...body, Email: text});
+      <Formik
+        initialValues={{
+          // email: 'mm@mm.com',
+          // password: '123456789',
+          email: 'Santisook.tee1@gmail.com',
+          password: '11111111',
         }}
-      />
-      <View style={styles.viewrow}>
-        <Input
-          placeholder="Password"
-          autoCapitalize="none"
-          secureTextEntry={body.securePassword ? true : false}
-          onChangeText={text => {
-            setbody({...body, Password: text});
-          }}
-        />
-        <TouchableOpacity
-          onPress={updateSecurePassword}
-          style={{alignSelf: 'center'}}>
-          {body.securePassword ? (
-            <FontAwesome5
-              name="eye-slash"
-              size={20}
-              color="#444444"
-              style={styles.icon}
+        onSubmit={values => {
+          // console.log(values);
+          _loginUser(values);
+        }}
+        validationSchema={yup.object().shape({
+          email: yup.string().email().required(),
+          password: yup.string().required(),
+        })}>
+        {({
+          values,
+          handleChange,
+          errors,
+          setFieldTouched,
+          touched,
+          isValid,
+          handleSubmit,
+        }) => (
+          <Fragment>
+            <Input
+              placeholder="Email"
+              autoCapitalize="none"
+              onChangeText={handleChange('email')}
+              onBlur={() => setFieldTouched('email')}
+              value={values.email}
             />
-          ) : (
-            <FontAwesome5
-              name="eye"
-              size={20}
-              color="#444444"
-              style={styles.icon}
-            />
-          )}
-        </TouchableOpacity>
-      </View>
-      <View style={[styles.row, {marginTop: 25}]}>
-        <Text style={styles.text}>Don’t have an account yet? </Text>
-        <TouchableOpacity onPress={onPress} style={styles.up}>
-          <Text style={styles.textup}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        onPress={() => {
-          setmodal(true);
-        }}
-        style={[styles.up, {marginTop: 10}]}>
-        <Text style={styles.textup}>Forgot your password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Home');
-          // _loginUser();
-        }}
-        style={styles.buttonsignup}>
-        <Text style={styles.textsigeup}>LOG - IN</Text>
-      </TouchableOpacity>
+            {/* {errors.email && touched.email && (
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: 'red',
+                  marginTop: 5,
+                }}>
+                {'รูปแบบผิดพลาด'}
+              </Text>
+            )} */}
+            <View style={styles.viewrow}>
+              <Input
+                placeholder="Password"
+                autoCapitalize="none"
+                secureTextEntry={body.securePassword ? true : false}
+                onChangeText={handleChange('password')}
+                onBlur={() => setFieldTouched('password')}
+                value={values.password}
+              />
+              <TouchableOpacity
+                onPress={updateSecurePassword}
+                style={{alignSelf: 'center'}}>
+                {body.securePassword ? (
+                  <FontAwesome5
+                    name="eye-slash"
+                    size={20}
+                    color="#444444"
+                    style={styles.icon}
+                  />
+                ) : (
+                  <FontAwesome5
+                    name="eye"
+                    size={20}
+                    color="#444444"
+                    style={styles.icon}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
+
+            <View style={[styles.row, {marginTop: 25}]}>
+              <Text style={styles.text}>Don’t have an account yet? </Text>
+              <TouchableOpacity onPress={onPress} style={styles.up}>
+                <Text style={styles.textup}>Sign Up</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                setmodal(true);
+              }}
+              style={[styles.up, {marginTop: 10}]}>
+              <Text style={styles.textup}>Forgot your password?</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleSubmit}
+              style={styles.buttonsignup}>
+              <Text style={styles.textsigeup}>LOG - IN</Text>
+            </TouchableOpacity>
+          </Fragment>
+        )}
+      </Formik>
+
       <View style={styles.viewor}>
         <View style={styles.lineror} />
         <Text style={styles.textor}>or</Text>

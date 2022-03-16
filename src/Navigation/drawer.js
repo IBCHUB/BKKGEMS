@@ -223,7 +223,7 @@ const CustomDrawerContent = props => {
             )}
           </View>
           <View style={styles.liner} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
             <Text style={styles.logout}>{I18n.t('Logout')}</Text>
           </TouchableOpacity>
         </ScrollView>

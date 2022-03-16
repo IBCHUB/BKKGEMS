@@ -6,7 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import {connect} from 'react-redux';
 import {View, Text, SafeAreaView, Dimensions, StyleSheet} from 'react-native';
 import {
   Home,
@@ -31,6 +31,7 @@ import {
   Myfavorite,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
+import Loader from '../Components/Loader';
 
 const {width, height} = Dimensions.get('window');
 
@@ -39,7 +40,7 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator
       initialRouteName="Home"
-      screenListeners={'Home'}
+      // screenListeners={'Home'}
       screenOptions={{headerShown: false}}>
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="About" component={About} />
@@ -50,7 +51,9 @@ function HomeStackScreen() {
 const ExhibitorsStack = createNativeStackNavigator();
 function ExhibitorsStackScreen() {
   return (
-    <ExhibitorsStack.Navigator screenOptions={{headerShown: false}}>
+    <ExhibitorsStack.Navigator
+      initialRouteName="Exhibitors"
+      screenOptions={{headerShown: false}}>
       <ExhibitorsStack.Screen name="Exhibitors" component={Exhibitors} />
       <ExhibitorsStack.Screen
         name="ExhibitorsDetail"
@@ -64,7 +67,9 @@ function ExhibitorsStackScreen() {
 const HightligthStack = createNativeStackNavigator();
 function HightligthStackScreen() {
   return (
-    <HightligthStack.Navigator screenOptions={{headerShown: false}}>
+    <HightligthStack.Navigator
+      initialRouteName="Hightligth"
+      screenOptions={{headerShown: false}}>
       <HightligthStack.Screen name="Hightligth" component={Hightligth} />
     </HightligthStack.Navigator>
   );
@@ -73,7 +78,9 @@ function HightligthStackScreen() {
 const EventStack = createNativeStackNavigator();
 function EventStackScreen() {
   return (
-    <EventStack.Navigator screenOptions={{headerShown: false}}>
+    <EventStack.Navigator
+      initialRouteName="Event"
+      screenOptions={{headerShown: false}}>
       <EventStack.Screen name="Event" component={Event} />
     </EventStack.Navigator>
   );
@@ -82,10 +89,24 @@ function EventStackScreen() {
 const NewsStack = createNativeStackNavigator();
 function NewsStackScreen() {
   return (
-    <NewsStack.Navigator screenOptions={{headerShown: false}}>
+    <NewsStack.Navigator
+      initialRouteName="News"
+      screenOptions={{headerShown: false}}>
       <NewsStack.Screen name="News" component={News} />
       <NewsStack.Screen name="NewDetail" component={NewDetail} />
     </NewsStack.Navigator>
+  );
+}
+
+const LoginStack = createNativeStackNavigator();
+function LoginStackScreen() {
+  return (
+    <LoginStack.Navigator
+      initialRouteName="Splash"
+      screenOptions={{headerShown: false}}>
+      <LoginStack.Screen name="Splash" component={Splash} />
+      <LoginStack.Screen name="Login" component={Login} />
+    </LoginStack.Navigator>
   );
 }
 
@@ -265,8 +286,6 @@ function screenStack() {
       initialRouteName="TabStackScreen"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="TabStackScreen" component={TabStackScreen} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Chat" component={Chat} />
       <Stack.Screen name="Contact" component={Contact} />
       <Stack.Screen name="Faqs" component={Faqs} />
@@ -276,6 +295,13 @@ function screenStack() {
       <Stack.Screen name="Mylist" component={Mylist} />
       <Stack.Screen name="Inmylist" component={Inmylist} />
       <Stack.Screen name="Myfavorite" component={Myfavorite} />
+
+      <Stack.Screen name="News" component={News} />
+      <Stack.Screen name="NewDetail" component={NewDetail} />
+      <Stack.Screen name="Event" component={Event} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
 }
@@ -297,8 +323,23 @@ function DrawerStack() {
     </Drawer.Navigator>
   );
 }
-function Routes() {
-  return <NavigationContainer>{DrawerStack()}</NavigationContainer>;
+function Routes({dispatch, authData, LoadingCounters}) {
+  // console.log(authData.isLoggedIn);
+  return (
+    <NavigationContainer>
+      {LoadingCounters > 0 && <Loader />}
+      {/* {authData.isLoggedIn === true ? LoginStackScreen() : DrawerStack()} */}
+      {DrawerStack()}
+    </NavigationContainer>
+  );
 }
 
-export default Routes;
+const mapStateToProps = state => ({
+  LoadingCounters: state.dataReducer.LoadingCounters,
+  authData: state.authReducer.authData,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+// export default Routes;
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);

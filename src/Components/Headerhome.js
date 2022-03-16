@@ -2,7 +2,11 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styleHeadercomp';
 import Octicons from 'react-native-vector-icons/Octicons';
-const Headerhome = ({navigation}) => {
+
+import {connect} from 'react-redux';
+
+const Headerhome = ({navigation, dispatch, authUser}) => {
+  console.log(authUser);
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -41,4 +45,12 @@ const Headerhome = ({navigation}) => {
   );
 };
 
-export default Headerhome;
+const mapStateToProps = state => ({
+  // LoadingCounters: state.dataReducer.LoadingCounters,
+  authUser: state.authReducer.authUser,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Headerhome);

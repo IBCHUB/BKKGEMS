@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, Fragment} from 'react';
 import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import Input from './input';
 import styles from './styles';
@@ -7,16 +7,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {registerUser} from 'actions/auth.action';
 import {connect} from 'react-redux';
 import Loader from '../../Components/Loader';
+import {Formik} from 'formik';
+import * as yup from 'yup';
 
-const signup = ({navigation, onPress, dispatch, authData, LoadingCounters}) => {
+const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
   const [modal, setmodal] = useState(false);
   const [body, setbody] = useState({
-    Email: 'drive.bkkgems2022@gmail.com',
-    Password: '',
-    Repassword: '',
-    FullName: '',
-    CompanyName: '',
-    Country: '',
     securePassword: true,
     secureRepassword: true,
   });
@@ -37,20 +33,21 @@ const signup = ({navigation, onPress, dispatch, authData, LoadingCounters}) => {
     try {
       var request =
         'reg_email=' +
-        'bhuri.sap@gmail.com' +
+        values.email +
         '&reg_password=' +
-        '123456789' +
+        values.password +
         '&reg_password_re=' +
-        '123456789' +
+        values.repassword +
         '&reg_company=' +
-        '11' +
+        values.company +
         '&reg_name=' +
-        '่jame' +
+        values.fullname +
         '&reg_country=' +
-        '22';
+        values.country;
       const response = await dispatch(registerUser(request));
       console.log(response);
       if (response.res_code == '00') {
+        setmodal(true);
         console.log('1111');
       } else {
         console.log('2222');
@@ -101,106 +98,151 @@ const signup = ({navigation, onPress, dispatch, authData, LoadingCounters}) => {
           </View>
         </View>
       </Modal>
-      <Input
-        placeholder="Email"
-        autoCapitalize="none"
-        onChangeText={text => {
-          setbody({...body, Email: text});
+      <Formik
+        initialValues={{
+          // email: 'Santisook.tee1@gmail.com',
+          // password: '11111111',
+          email: '12',
+          password: 'asf',
+          repassword: 'asf',
+          company: 'asf',
+          fullname: 'asf',
+          country: 'asf',
         }}
-      />
-      <View style={styles.viewrow}>
-        <Input
-          placeholder="Password"
-          autoCapitalize="none"
-          secureTextEntry={body.securePassword ? true : false}
-          onChangeText={text => {
-            setbody({...body, Password: text});
-          }}
-        />
-        <TouchableOpacity
-          onPress={updateSecurePassword}
-          style={{alignSelf: 'center'}}>
-          {body.securePassword ? (
-            <FontAwesome5
-              name="eye-slash"
-              size={20}
-              color="#444444"
-              style={styles.icon}
+        onSubmit={values => {
+          console.log(values);
+          _registerUser(values);
+        }}
+        validationSchema={yup.object().shape({
+          email: yup.string().email().required(),
+          password: yup.string().required(),
+          repassword: yup.string().required(),
+          company: yup.string().required(),
+          fullname: yup.string().required(),
+          country: yup.string().required(),
+        })}>
+        {({
+          values,
+          handleChange,
+          errors,
+          setFieldTouched,
+          touched,
+          isValid,
+          handleSubmit,
+        }) => (
+          <Fragment>
+            <Input
+              placeholder="Email"
+              autoCapitalize="none"
+              onChangeText={handleChange('email')}
+              onBlur={() => setFieldTouched('email')}
+              value={values.email}
             />
-          ) : (
-            <FontAwesome5
-              name="eye"
-              size={20}
-              color="#444444"
-              style={styles.icon}
+            {errors.email && touched.email && (
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: 'red',
+                  marginTop: 5,
+                  marginBottom: -20,
+                  marginLeft: 40,
+                }}>
+                {'*รูปแบบผิดพลาด'}
+              </Text>
+            )}
+            <View style={styles.viewrow}>
+              <Input
+                placeholder="Password"
+                autoCapitalize="none"
+                secureTextEntry={body.securePassword ? true : false}
+                onChangeText={handleChange('password')}
+                onBlur={() => setFieldTouched('password')}
+                value={values.password}
+              />
+              <TouchableOpacity
+                onPress={updateSecurePassword}
+                style={{alignSelf: 'center'}}>
+                {body.securePassword ? (
+                  <FontAwesome5
+                    name="eye-slash"
+                    size={20}
+                    color="#444444"
+                    style={styles.icon}
+                  />
+                ) : (
+                  <FontAwesome5
+                    name="eye"
+                    size={20}
+                    color="#444444"
+                    style={styles.icon}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
+            <View style={styles.viewrow}>
+              <Input
+                placeholder="Re Type Password"
+                autoCapitalize="none"
+                secureTextEntry={body.secureRepassword ? true : false}
+                onChangeText={handleChange('repassword')}
+                onBlur={() => setFieldTouched('repassword')}
+                value={values.repassword}
+              />
+              <TouchableOpacity
+                onPress={updateSecureRepassword}
+                style={{alignSelf: 'center'}}>
+                {body.secureRepassword ? (
+                  <FontAwesome5
+                    name="eye-slash"
+                    size={20}
+                    color="#444444"
+                    style={styles.icon}
+                  />
+                ) : (
+                  <FontAwesome5
+                    name="eye"
+                    size={20}
+                    color="#444444"
+                    style={styles.icon}
+                  />
+                )}
+              </TouchableOpacity>
+            </View>
+            <Input
+              placeholder="Full Name"
+              autoCapitalize="none"
+              onChangeText={handleChange('fullname')}
+              onBlur={() => setFieldTouched('fullname')}
+              value={values.fullname}
             />
-          )}
-        </TouchableOpacity>
-      </View>
-      <View style={styles.viewrow}>
-        <Input
-          placeholder="Re Type Password"
-          autoCapitalize="none"
-          secureTextEntry={body.secureRepassword ? true : false}
-          onChangeText={text => {
-            setbody({...body, Repassword: text});
-          }}
-        />
-        <TouchableOpacity
-          onPress={updateSecureRepassword}
-          style={{alignSelf: 'center'}}>
-          {body.secureRepassword ? (
-            <FontAwesome5
-              name="eye-slash"
-              size={20}
-              color="#444444"
-              style={styles.icon}
+            <Input
+              placeholder="Company Name"
+              autoCapitalize="none"
+              onChangeText={handleChange('company')}
+              onBlur={() => setFieldTouched('company')}
+              value={values.company}
             />
-          ) : (
-            <FontAwesome5
-              name="eye"
-              size={20}
-              color="#444444"
-              style={styles.icon}
+            <Input
+              placeholder="Country"
+              autoCapitalize="none"
+              onChangeText={handleChange('country')}
+              onBlur={() => setFieldTouched('country')}
+              value={values.country}
             />
-          )}
-        </TouchableOpacity>
-      </View>
-      <Input
-        placeholder="Full Name"
-        autoCapitalize="none"
-        onChangeText={text => {
-          setbody({...body, FullName: text});
-        }}
-      />
-      <Input
-        placeholder="Company Name"
-        autoCapitalize="none"
-        onChangeText={text => {
-          setbody({...body, CompanyName: text});
-        }}
-      />
-      <Input
-        placeholder="Country"
-        autoCapitalize="none"
-        onChangeText={text => {
-          setbody({...body, Country: text});
-        }}
-      />
-      <View style={[styles.row, {marginTop: 25}]}>
-        <Text style={styles.text}>Already Have An Account? </Text>
-        <TouchableOpacity onPress={onPress} style={styles.up}>
-          <Text style={styles.textup}>Sign In</Text>
-        </TouchableOpacity>
-      </View>
-      <TouchableOpacity
-        onPress={() => {
-          // setmodal(true);
-          _registerUser();
-        }}
-        style={styles.buttonsignup}>
-        <Text style={styles.textsigeup}>CREATE ACCOUNT</Text>
-      </TouchableOpacity>
+            <View style={[styles.row, {marginTop: 25}]}>
+              <Text style={styles.text}>Already Have An Account? </Text>
+              <TouchableOpacity onPress={onPress} style={styles.up}>
+                <Text style={styles.textup}>Sign In</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={handleSubmit}
+              style={styles.buttonsignup}>
+              <Text style={styles.textsigeup}>CREATE ACCOUNT</Text>
+            </TouchableOpacity>
+          </Fragment>
+        )}
+      </Formik>
     </View>
   );
 };

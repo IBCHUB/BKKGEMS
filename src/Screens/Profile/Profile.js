@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -11,9 +11,34 @@ import styles from './styles';
 import ImgToBase64 from 'react-native-image-base64';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RNPickerSelect from 'react-native-picker-select';
+import {connect} from 'react-redux';
+import {Country} from '../../action/data.action';
 
-const Profile = ({navigation}) => {
-  const [imgbase64, setimgbase64] = useState();
+const Profile = ({navigation, dispatch}) => {
+  const [imgbase64, setimgbase64] = useState([]);
+  const [country, setCountry] = useState();
+
+  const _Country = async values => {
+    try {
+      const response = await dispatch(Country());
+      // console.log(response.res_result);
+      if (response.res_code == '00') {
+        setCountry(
+          response.res_result.map(val => ({
+            label: val.country_name,
+            value: val.country_name,
+          })),
+        );
+        // console.log('1111');
+      } else {
+        setmodalfalse(true);
+        // console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _Country();
+  }, []);
 
   const GenimageToBase64 = (url, type) => {
     ImgToBase64.getBase64String(url)
@@ -82,11 +107,28 @@ const Profile = ({navigation}) => {
           {/* <TextInput placeholder="Thailand" style={styles.textinput} /> */}
           <RNPickerSelect
             onValueChange={value => console.log(value)}
-            items={[
-              {label: 'Football', value: 'football'},
-              {label: 'Baseball', value: 'baseball'},
-              {label: 'Hockey', value: 'hockey'},
-            ]}
+            items={country}
+            // style={{
+            //   placeholder: {
+            //     color: '#1d77b9',
+            //     padding: 0,
+            //   },
+            //   inputIOS: {
+            //     color: '#1d77b9',
+            //     marginTop: -3,
+            //     paddingRight: 30,
+            //   },
+            //   inputAndroid: {
+            //     color: '#1d77b9',
+
+            //     paddingRight: 30,
+            //     padding: 0,
+            //     margin: 0,
+            //   },
+            //   iconContainer: {
+            //     right: 12,
+            //   },
+            // }}
           />
         </View>
         <View style={styles.viewinput1}>
@@ -105,4 +147,13 @@ const Profile = ({navigation}) => {
   );
 };
 
-export default Profile;
+// export default Profile;
+// const mapStateToProps = state => ({
+//   LoadingCounters: state.dataReducer.LoadingCounters,
+//   authData: state.authReducer.authData,
+// });
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapDispatchToProps)(Profile);
