@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import Input from './input';
 import styles from './styles';
@@ -6,12 +6,15 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {registerUser} from 'actions/auth.action';
 import {connect} from 'react-redux';
-import Loader from '../../Components/Loader';
+import {Country} from '../../action/data.action';
+import RNPickerSelect from 'react-native-picker-select';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
 const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
   const [modal, setmodal] = useState(false);
+  const [Countrys, setCountrys] = useState();
+  console.log(Countrys);
   const [body, setbody] = useState({
     securePassword: true,
     secureRepassword: true,
@@ -28,6 +31,28 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
       secureRepassword: !body.secureRepassword,
     });
   };
+
+  const _Country = async values => {
+    try {
+      const response = await dispatch(Country());
+      // console.log(response.res_result);
+      if (response.res_code == '00') {
+        setCountrys(
+          response.res_result.map(val => ({
+            label: val.country_name,
+            value: val.country_name,
+          })),
+        );
+        // console.log('1111');
+      } else {
+        setmodalfalse(true);
+        // console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _Country();
+  }, []);
 
   const _registerUser = async values => {
     try {
@@ -56,7 +81,6 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
   };
   return (
     <View style={styles.containersignup}>
-      {LoadingCounters > 0 && <Loader />}
       <Modal
         animationType="none"
         transparent={true}
@@ -100,14 +124,12 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
       </Modal>
       <Formik
         initialValues={{
-          // email: 'Santisook.tee1@gmail.com',
-          // password: '11111111',
-          email: '12',
-          password: 'asf',
-          repassword: 'asf',
-          company: 'asf',
-          fullname: 'asf',
-          country: 'asf',
+          email: 'bhuri.sap@gmail.com',
+          password: '12345678',
+          repassword: '12345678',
+          company: '',
+          fullname: '',
+          country: '',
         }}
         onSubmit={values => {
           console.log(values);
@@ -229,6 +251,17 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
               onBlur={() => setFieldTouched('country')}
               value={values.country}
             />
+            {/* <RNPickerSelect
+              onValueChange={value => console.log(value)}
+              // value={dataUser.country_name}
+              items={Countrys}
+              style={styles.picker}
+              // Icon={() => {
+              //   return (
+              //     <FontAwesome5 name="chevron-down" size={20} color="#646363" />
+              //   );
+              // }}
+            /> */}
             <View style={[styles.row, {marginTop: 25}]}>
               <Text style={styles.text}>Already Have An Account? </Text>
               <TouchableOpacity onPress={onPress} style={styles.up}>

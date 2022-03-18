@@ -44,4 +44,5 @@ export default {
   LiveChat: 'Live Chat',
   sendmessage: 'send message',
   Events: 'Events',
+  SAVEPROFILE: 'SAVE PROFILE',
 };

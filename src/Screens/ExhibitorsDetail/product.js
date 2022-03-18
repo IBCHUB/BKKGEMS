@@ -197,7 +197,8 @@ const product = ({item, navigation}) => {
               <View>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate('ExhibitorsDetail', {item});
+                    setData(item);
+                    // navigation.navigate('ExhibitorsDetail', {item});
                   }}
                   style={styles.buttonflat}>
                   <Image style={styles.imgflat} source={item.img} />

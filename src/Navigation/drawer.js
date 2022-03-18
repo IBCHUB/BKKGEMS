@@ -15,7 +15,11 @@ import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useIsFocused, CommonActions} from '@react-navigation/native';
 import I18n from '../utils/I18n';
-const CustomDrawerContent = props => {
+import {logoutUser} from '../action/auth.action';
+import {connect} from 'react-redux';
+
+const CustomDrawerContent = ({props, dispatch, authUser}) => {
+  const dataUser = authUser.token;
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
   const [language, setlanguage] = useState('TH');
@@ -33,7 +37,7 @@ const CustomDrawerContent = props => {
               source={require('../../assets/image/profile.png')}
               style={styles.imgprofile}
             />
-            <Text style={styles.texthead}>Gemy Jewall</Text>
+            <Text style={styles.texthead}>{dataUser}</Text>
           </TouchableOpacity>
           <View style={styles.liner} />
           <View style={{marginBottom: 20}}>
@@ -223,7 +227,11 @@ const CustomDrawerContent = props => {
             )}
           </View>
           <View style={styles.liner} />
-          <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(logoutUser());
+              /*props.navigation.navigate('Login');*/
+            }}>
             <Text style={styles.logout}>{I18n.t('Logout')}</Text>
           </TouchableOpacity>
         </ScrollView>
@@ -231,5 +239,14 @@ const CustomDrawerContent = props => {
     </View>
   );
 };
+const mapStateToProps = state => ({
+  authUser: state.authReducer.authUser,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
 
-export default CustomDrawerContent;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CustomDrawerContent);

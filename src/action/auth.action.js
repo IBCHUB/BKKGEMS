@@ -18,12 +18,11 @@ export const loginUser = payload => {
           ' ',
           response.res_result,
         );
-
         await dispatch({
           type: 'AUTH_USER_SUCCESS',
           token: response.res_result,
         });
-        await dispatch({
+        dispatch({
           type: 'GET_USER_SUCCESS',
           token: response2.res_result,
         });
@@ -58,6 +57,46 @@ export const registerUser = payload => {
       } else {
         return response;
       }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+//test
+export const getUser = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/getUserInfo',
+        'POST',
+        dispatch,
+        payload,
+        getState().authReducer.authData.token,
+      );
+      console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+//test
+
+export const logoutUser = payload => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: 'AUTH_USER_FAIL',
+      });
+      dispatch({
+        type: 'GET_USER_FAIL',
+      });
+      return '';
     } catch (e) {
       console.log(e);
     }

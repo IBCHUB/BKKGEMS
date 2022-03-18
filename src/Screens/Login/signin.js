@@ -31,7 +31,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       const response = await dispatch(loginUser(request));
       // console.log(response);
       if (response.res_code == '00') {
-        navigation.navigate('Home');
+        /*navigation.navigate('Home');*/
         console.log('1111');
       } else {
         setmodalfalse(true);

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -15,10 +15,28 @@ import styles from './styles';
 import TopicHome from './TopicHome';
 import RBSheetHome from './RBSheetHome';
 import AboutHome from './AboutHome';
+import {getUser} from '../../action/auth.action';
+import {connect} from 'react-redux';
 
-const Home = ({navigation}) => {
+const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState(false);
   const refRBSheet = useRef();
+
+  const _loginUser = async values => {
+    try {
+      const response = await dispatch(getUser());
+      console.log('2222222', response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        setmodalfalse(true);
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _loginUser();
+  }, []);
   // const SearchSubmit = e => {
   //   const newData = this.arrayholder.filter(item => {
   //     const itemData = `${item.activity_list_topic_th.toUpperCase()}`;
@@ -132,4 +150,13 @@ const Home = ({navigation}) => {
   );
 };
 
-export default Home;
+// export default Home;
+// const mapStateToProps = state => ({
+//   LoadingCounters: state.dataReducer.LoadingCounters,
+//   authData: state.authReducer.authData,
+// });
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapDispatchToProps)(Home);

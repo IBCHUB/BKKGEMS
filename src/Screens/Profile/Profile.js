@@ -13,8 +13,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RNPickerSelect from 'react-native-picker-select';
 import {connect} from 'react-redux';
 import {Country} from '../../action/data.action';
+import I18n from '../../utils/I18n';
 
-const Profile = ({navigation, dispatch}) => {
+const Profile = ({navigation, dispatch, authUser}) => {
+  const dataUser = authUser.token;
+
   const [imgbase64, setimgbase64] = useState([]);
   const [country, setCountry] = useState();
 
@@ -85,55 +88,47 @@ const Profile = ({navigation, dispatch}) => {
           </View>
         </TouchableOpacity>
         <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>Email</Text>
+          <Text style={styles.texttopic}>{I18n.t('email')}</Text>
           <TextInput
+            defaultValue={dataUser.email}
             placeholder="drive.bkkgems2022@gmail.com"
             style={styles.textinput}
           />
         </View>
         <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>Full Name</Text>
-          <TextInput placeholder="Gemy Jewell" style={styles.textinput} />
+          <Text style={styles.texttopic}>{I18n.t('FullName')}</Text>
+          <TextInput
+            defaultValue={dataUser.fullname}
+            placeholder="Gemy Jewell"
+            style={styles.textinput}
+          />
         </View>
         <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>Company</Text>
+          <Text style={styles.texttopic}>{I18n.t('Company')}</Text>
           <TextInput
+            defaultValue={dataUser.company_name}
             placeholder="Bkkgems company limited"
             style={styles.textinput}
           />
         </View>
         <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>Country</Text>
-          {/* <TextInput placeholder="Thailand" style={styles.textinput} /> */}
+          <Text style={styles.texttopic}>{I18n.t('Country')}</Text>
           <RNPickerSelect
             onValueChange={value => console.log(value)}
+            value={dataUser.country_name}
             items={country}
-            // style={{
-            //   placeholder: {
-            //     color: '#1d77b9',
-            //     padding: 0,
-            //   },
-            //   inputIOS: {
-            //     color: '#1d77b9',
-            //     marginTop: -3,
-            //     paddingRight: 30,
-            //   },
-            //   inputAndroid: {
-            //     color: '#1d77b9',
-
-            //     paddingRight: 30,
-            //     padding: 0,
-            //     margin: 0,
-            //   },
-            //   iconContainer: {
-            //     right: 12,
-            //   },
-            // }}
+            style={styles.picker}
+            Icon={() => {
+              return (
+                <FontAwesome5 name="chevron-down" size={20} color="#646363" />
+              );
+            }}
           />
         </View>
         <View style={styles.viewinput1}>
-          <Text style={styles.texttopic}>Address</Text>
+          <Text style={styles.texttopic}>{I18n.t('Address')}</Text>
           <TextInput
+            defaultValue={dataUser.address}
             multiline
             placeholder="Bangkok, Thailand."
             style={styles.textinput}
@@ -146,14 +141,11 @@ const Profile = ({navigation, dispatch}) => {
     </View>
   );
 };
-
-// export default Profile;
-// const mapStateToProps = state => ({
-//   LoadingCounters: state.dataReducer.LoadingCounters,
-//   authData: state.authReducer.authData,
-// });
+const mapStateToProps = state => ({
+  authUser: state.authReducer.authUser,
+});
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

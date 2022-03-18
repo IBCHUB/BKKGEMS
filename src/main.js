@@ -9,20 +9,21 @@ import {
   Image,
   Linking,
 } from 'react-native';
-import Routes from './navigation/Routes';
+import Routes from './Navigation/Routes';
 import {connect} from 'react-redux';
-import ErrorBoundary from 'react-native-error-boundary';
+
 import Loader from './Components/Loader';
 
-const main = ({dispatch, LoadingCounters, authData}) => {
+const main = ({dispatch, LoadingCounters}) => {
   return (
-    <View>
-      <Text>main</Text>
+    <View style={{flex: 1}}>
+      <Routes />
+      {LoadingCounters > 0 && <Loader />}
     </View>
   );
 };
 const mapStateToProps = state => ({
-  LoadingCounters: state.globalReducer.LoadingCounters,
+  LoadingCounters: state.dataReducer.LoadingCounters,
   authData: state.authReducer.authData,
 });
 const mapDispatchToProps = dispatch => ({

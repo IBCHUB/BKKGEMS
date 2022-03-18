@@ -280,7 +280,7 @@ function TabStackScreen(navigation) {
 }
 
 const Stack = createNativeStackNavigator();
-function screenStack() {
+function ScreenStack() {
   return (
     <Stack.Navigator
       initialRouteName="TabStackScreen"
@@ -296,11 +296,11 @@ function screenStack() {
       <Stack.Screen name="Inmylist" component={Inmylist} />
       <Stack.Screen name="Myfavorite" component={Myfavorite} />
 
-      <Stack.Screen name="News" component={News} />
-      <Stack.Screen name="NewDetail" component={NewDetail} />
-      <Stack.Screen name="Event" component={Event} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Home" component={Home} />
+      {/* <Stack.Screen name="News" component={News} />
+      <Stack.Screen name="NewDetail" component={NewDetail} /> */}
+      {/* <Stack.Screen name="Event" component={Event} /> */}
+      {/* <Stack.Screen name="Login" component={Login} /> */}
+      {/* <Stack.Screen name="Home" component={Home} /> */}
       <Stack.Screen name="About" component={About} />
     </Stack.Navigator>
   );
@@ -319,20 +319,27 @@ function DrawerStack() {
       initialRouteName={'Home'}
       screenOptions={{headerShown: false}}
       drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={screenStack} />
+      <Drawer.Screen name="Home" component={ScreenStack} />
     </Drawer.Navigator>
   );
 }
-function Routes({dispatch, authData, LoadingCounters}) {
-  // console.log(authData.isLoggedIn);
+
+const AllScreen = createDrawerNavigator();
+function AllStack() {
+  <AllScreen.Navigator>
+    <AllScreen.Screen />
+  </AllScreen.Navigator>;
+}
+const Routes = ({dispatch, authData, LoadingCounters}) => {
+  console.log(authData.isLoggedIn);
   return (
     <NavigationContainer>
       {LoadingCounters > 0 && <Loader />}
       {/* {authData.isLoggedIn === true ? LoginStackScreen() : DrawerStack()} */}
-      {DrawerStack()}
+      {authData.isLoggedIn === true ? <DrawerStack /> : <LoginStackScreen />}
     </NavigationContainer>
   );
-}
+};
 
 const mapStateToProps = state => ({
   LoadingCounters: state.dataReducer.LoadingCounters,
