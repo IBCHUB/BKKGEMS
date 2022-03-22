@@ -5,7 +5,7 @@ import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {loginUser} from 'actions/auth.action';
+import {loginUser, forgotPassword} from 'actions/auth.action';
 import {connect} from 'react-redux';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -39,7 +39,20 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       }
     } catch (error) {}
   };
+  const _forgotPassword = async values => {
+    try {
+      var request = 'email=' + values.email;
 
+      const response = await dispatch(forgotPassword(request));
+      console.log(response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        setmodalfalse(true);
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
   return (
     <View style={styles.containersignup}>
       <Modal
@@ -63,10 +76,41 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
             <Text style={[styles.textdetailmodal, {fontSize: 16}]}>
               We’ll send the account details to your email.
             </Text>
-            <Input placeholder="Email" autoCapitalize="none" />
-            <TouchableOpacity style={styles.buttonexhi}>
-              <Text style={styles.textexhi}>SEND</Text>
-            </TouchableOpacity>
+            <Formik
+              initialValues={{
+                email: 'bhuri.sap@gmail.com',
+              }}
+              onSubmit={values => {
+                _forgotPassword(values);
+              }}
+              validationSchema={yup.object().shape({
+                email: yup.string().email().required(),
+              })}>
+              {({
+                values,
+                handleChange,
+                errors,
+                setFieldTouched,
+                touched,
+                isValid,
+                handleSubmit,
+              }) => (
+                <Fragment>
+                  <Input
+                    placeholder="Email"
+                    autoCapitalize="none"
+                    onChangeText={handleChange('email')}
+                    onBlur={() => setFieldTouched('email')}
+                    value={values.email}
+                  />
+                  <TouchableOpacity
+                    onPress={handleSubmit}
+                    style={styles.buttonexhi}>
+                    <Text style={styles.textexhi}>SEND</Text>
+                  </TouchableOpacity>
+                </Fragment>
+              )}
+            </Formik>
           </View>
         </View>
       </Modal>
@@ -140,10 +184,8 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       <View style={{marginTop: 50}} />
       <Formik
         initialValues={{
-          // email: 'mm@mm.com',
-          // password: '123456789',
-          email: 'Santisook.tee1@gmail.com',
-          password: '11111111',
+          email: 'bhuri.sap@gmail.com',
+          password: '12345678',
         }}
         onSubmit={values => {
           // console.log(values);

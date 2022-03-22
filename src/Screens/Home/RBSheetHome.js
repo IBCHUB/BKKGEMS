@@ -236,6 +236,7 @@ const RBSheetHome = ({onPress, navigation}) => {
             <Text style={styles.textouch}>CLEAR</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => navigation.navigate('Search')}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>
           </TouchableOpacity>

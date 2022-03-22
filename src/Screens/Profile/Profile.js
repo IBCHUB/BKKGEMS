@@ -17,9 +17,9 @@ import I18n from '../../utils/I18n';
 
 const Profile = ({navigation, dispatch, authUser}) => {
   const dataUser = authUser.token;
-
+  // console.log(dataUser);
   const [imgbase64, setimgbase64] = useState([]);
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState([]);
 
   const _Country = async values => {
     try {
@@ -115,6 +115,7 @@ const Profile = ({navigation, dispatch, authUser}) => {
           <Text style={styles.texttopic}>{I18n.t('Country')}</Text>
           <RNPickerSelect
             onValueChange={value => console.log(value)}
+            placeholder={''}
             value={dataUser.country_name}
             items={country}
             style={styles.picker}

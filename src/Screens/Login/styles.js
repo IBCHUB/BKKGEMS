@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     backgroundColor: '#fff',
     borderRadius: 4,
-    marginTop: 15,
+    marginTop: 10,
     alignSelf: 'center',
     fontSize: 18,
     fontFamily: 'Cantoria MT Std',
@@ -202,6 +202,30 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: 'center',
     marginTop: 20,
+  },
+  picker: {
+    placeholder: {
+      color: '#646363',
+      padding: 0,
+      marginTop: 5,
+      fontSize: 18,
+    },
+    inputIOS: {
+      color: '#646363',
+
+      paddingRight: 30,
+      fontSize: 18,
+    },
+    inputAndroid: {
+      color: '#646363',
+      padding: 0,
+      margin: 0,
+      fontSize: 18,
+      paddingRight: 30,
+    },
+    iconContainer: {
+      right: 0,
+    },
   },
 });
 

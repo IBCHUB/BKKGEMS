@@ -4,17 +4,17 @@ import Input from './input';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {registerUser} from 'actions/auth.action';
+import {registerUser, resendEmail} from 'actions/auth.action';
 import {connect} from 'react-redux';
 import {Country} from '../../action/data.action';
 import RNPickerSelect from 'react-native-picker-select';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 
-const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
+const signup = ({navigation, onPress, dispatch}) => {
   const [modal, setmodal] = useState(false);
-  const [Countrys, setCountrys] = useState();
-  console.log(Countrys);
+  const [city, setcity] = useState([]);
+  console.log(city);
   const [body, setbody] = useState({
     securePassword: true,
     secureRepassword: true,
@@ -37,7 +37,7 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
       const response = await dispatch(Country());
       // console.log(response.res_result);
       if (response.res_code == '00') {
-        setCountrys(
+        setcity(
           response.res_result.map(val => ({
             label: val.country_name,
             value: val.country_name,
@@ -79,6 +79,18 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
       }
     } catch (error) {}
   };
+  const _resendemail = async values => {
+    try {
+      var request = 'reg_email=' + values.email;
+      const response = await dispatch(resendEmail(request));
+      console.log(response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
   return (
     <View style={styles.containersignup}>
       <Modal
@@ -112,7 +124,9 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
               <Text style={styles.textdetailmodal}>
                 If you do not get any e-mail,
               </Text>
-              <TouchableOpacity style={styles.up}>
+              <TouchableOpacity
+                onPress={() => _resendemail()}
+                style={styles.up}>
                 <Text style={styles.textup}>click here</Text>
               </TouchableOpacity>
             </View>
@@ -127,8 +141,8 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
           email: 'bhuri.sap@gmail.com',
           password: '12345678',
           repassword: '12345678',
-          company: '',
-          fullname: '',
+          company: '123',
+          fullname: 'jame',
           country: '',
         }}
         onSubmit={values => {
@@ -148,6 +162,7 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
           handleChange,
           errors,
           setFieldTouched,
+          setFieldValue,
           touched,
           isValid,
           handleSubmit,
@@ -244,24 +259,27 @@ const signup = ({navigation, onPress, dispatch, LoadingCounters}) => {
               onBlur={() => setFieldTouched('company')}
               value={values.company}
             />
-            <Input
-              placeholder="Country"
-              autoCapitalize="none"
-              onChangeText={handleChange('country')}
-              onBlur={() => setFieldTouched('country')}
-              value={values.country}
-            />
-            {/* <RNPickerSelect
-              onValueChange={value => console.log(value)}
-              // value={dataUser.country_name}
-              items={Countrys}
-              style={styles.picker}
-              // Icon={() => {
-              //   return (
-              //     <FontAwesome5 name="chevron-down" size={20} color="#646363" />
-              //   );
-              // }}
-            /> */}
+            <View
+              style={[styles.input, {marginTop: 30, justifyContent: 'center'}]}>
+              <RNPickerSelect
+                onValueChange={value => setFieldValue('country', value)}
+                onBlur={() => setFieldTouched('fullname')}
+                placeholder={''}
+                items={city}
+                style={styles.picker}
+                Icon={() => {
+                  return (
+                    <FontAwesome5
+                      name="chevron-down"
+                      size={20}
+                      color="#646363"
+                      style={{marginRight: 15, marginTop: 5}}
+                    />
+                  );
+                }}
+              />
+            </View>
+
             <View style={[styles.row, {marginTop: 25}]}>
               <Text style={styles.text}>Already Have An Account? </Text>
               <TouchableOpacity onPress={onPress} style={styles.up}>

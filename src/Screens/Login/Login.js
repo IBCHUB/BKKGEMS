@@ -70,7 +70,9 @@ const Login = ({navigation}) => {
               </Text>
             </TouchableOpacity>
           </Animated.View>
-          {page === 0 && <Signup onPress={() => setpage(1)} />}
+          {page === 0 && (
+            <Signup onPress={() => setpage(1)} navigation={navigation} />
+          )}
           {page === 1 && (
             <Signin onPress={() => setpage(0)} navigation={navigation} />
           )}

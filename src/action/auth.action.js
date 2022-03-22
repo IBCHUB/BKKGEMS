@@ -87,6 +87,41 @@ export const getUser = payload => {
 };
 //test
 
+export const resendEmail = payload => {
+  return async dispatch => {
+    try {
+      const response = await fetchApi(
+        'api/resend_confirmation',
+        'POST',
+        dispatch,
+        payload,
+      );
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const forgotPassword = payload => {
+  return async dispatch => {
+    try {
+      const response = await fetchApi('api/forgot', 'POST', dispatch, payload);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 export const logoutUser = payload => {
   return async (dispatch, getState) => {
     try {

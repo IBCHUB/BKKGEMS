@@ -18,8 +18,7 @@ import I18n from '../utils/I18n';
 import {logoutUser} from '../action/auth.action';
 import {connect} from 'react-redux';
 
-const CustomDrawerContent = ({props, dispatch, authUser}) => {
-  const dataUser = authUser.token;
+const CustomDrawerContent = ({props, dispatch, navigation}) => {
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
   const [language, setlanguage] = useState('TH');
@@ -30,26 +29,26 @@ const CustomDrawerContent = ({props, dispatch, authUser}) => {
         <ScrollView style={{marginBottom: 80}}>
           <TouchableOpacity
             onPress={() => {
-              props.navigation.navigate('Profile');
+              navigation.navigate('Profile');
             }}
             style={styles.row}>
             <Image
               source={require('../../assets/image/profile.png')}
               style={styles.imgprofile}
             />
-            <Text style={styles.texthead}>{dataUser}</Text>
+            <Text style={styles.texthead}>dataUser</Text>
           </TouchableOpacity>
           <View style={styles.liner} />
           <View style={{marginBottom: 20}}>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('About');
+                navigation.navigate('About');
               }}>
               <Text style={styles.touchdrawer}>{I18n.t('AboutFair')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('Suppliers');
+                navigation.navigate('Suppliers');
               }}>
               <Text style={styles.touchdrawer}>
                 Suppliers and Manufacturers
@@ -57,19 +56,19 @@ const CustomDrawerContent = ({props, dispatch, authUser}) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('Exhibitors');
+                navigation.navigate('Exhibitors');
               }}>
               <Text style={styles.touchdrawer}>{I18n.t('ExhibitorsList')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('Hightligth');
+                navigation.navigate('Hightligth');
               }}>
               <Text style={styles.touchdrawer}>Highlight</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('News');
+                navigation.navigate('News');
               }}>
               <Text style={styles.touchdrawer}>{I18n.t('News')}</Text>
             </TouchableOpacity>
@@ -121,13 +120,13 @@ const CustomDrawerContent = ({props, dispatch, authUser}) => {
             )}
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('Contact');
+                navigation.navigate('Contact');
               }}>
               <Text style={styles.touchdrawer}>{I18n.t('ContactUs')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('Faqs');
+                navigation.navigate('Faqs');
               }}>
               <Text style={styles.touchdrawer}>{I18n.t('FAQs')}</Text>
             </TouchableOpacity>
@@ -136,13 +135,13 @@ const CustomDrawerContent = ({props, dispatch, authUser}) => {
           <View style={{marginBottom: 20}}>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('Myfavorite');
+                navigation.navigate('Myfavorite');
               }}>
               <Text style={styles.touchdrawer}>{I18n.t('MyFavorite')}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                props.navigation.navigate('Mylist');
+                navigation.navigate('Mylist');
               }}>
               <Text style={styles.touchdrawer}>{I18n.t('MyList')}</Text>
             </TouchableOpacity>
@@ -183,7 +182,7 @@ const CustomDrawerContent = ({props, dispatch, authUser}) => {
                           onPress: () => {
                             I18n.locale = 'th';
                             setlanguage();
-                            props.navigation.dispatch(
+                            navigation.dispatch(
                               CommonActions.navigate({
                                 name: 'Home',
                               }),
@@ -195,7 +194,7 @@ const CustomDrawerContent = ({props, dispatch, authUser}) => {
                           onPress: () => {
                             I18n.locale = 'en';
                             setlanguage();
-                            props.navigation.dispatch(
+                            navigation.dispatch(
                               CommonActions.navigate({
                                 name: 'Home',
                               }),
@@ -230,7 +229,6 @@ const CustomDrawerContent = ({props, dispatch, authUser}) => {
           <TouchableOpacity
             onPress={() => {
               dispatch(logoutUser());
-              /*props.navigation.navigate('Login');*/
             }}>
             <Text style={styles.logout}>{I18n.t('Logout')}</Text>
           </TouchableOpacity>
