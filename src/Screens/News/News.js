@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -15,33 +15,28 @@ import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const News = ({navigation}) => {
-  const [data, setData] = useState([
-    {
-      img: require('../../../assets/image/new/1.png'),
-      text: 'Bangkok Gems & Jewelry Fair’s Highest Covid-19 Preventive Measures',
-    },
-    {
-      img: require('../../../assets/image/new/2.png'),
-      text: 'The Trading Arena of Global Gems & Jewelry Industry',
-    },
-    {
-      img: require('../../../assets/image/new/3.png'),
-      text: 'DITP collaborates with French branding guru to unveil the most influential …',
-    },
-    {
-      img: require('../../../assets/image/new/4.png'),
-      text: 'The Bangkok Gems & Jewelry Fair is ready to celebrate its 60th edition with…',
-    },
-    {
-      img: require('../../../assets/image/new/5.png'),
-      text: 'Reminder for BGJF Exhibitors Hurry Up!',
-    },
-    {
-      img: require('../../../assets/image/new/3.png'),
-      text: 'DITP Gears up for Buyers Recruit to join 59th BGJF',
-    },
-  ]);
+import {connect} from 'react-redux';
+import {New} from '../../action/data.action';
+const News = ({navigation, dispatch}) => {
+  const [data, setData] = useState([]);
+  console.log(data);
+  const _News = async values => {
+    try {
+      var request = 'page=' + '' + '&limits=' + '10' + '&order=' + '';
+      const response = await dispatch(New(request));
+      console.log(response);
+      if (response.res_code == '00') {
+        setData(response.res_result);
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _News();
+  }, []);
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -70,18 +65,21 @@ const News = ({navigation}) => {
                     }}>
                     <ImageBackground
                       style={styles.buttonflat}
-                      source={item.img}>
+                      source={{
+                        uri: item.blog_img,
+                      }}>
                       <LinearGradient
                         colors={['#00000000', '#1D0F0FF7']}
                         style={styles.linear}>
-                        <Text style={styles.text}>{item.text}</Text>
+                        <Text style={styles.text}>{item.blog_title}</Text>
                       </LinearGradient>
                     </ImageBackground>
                   </TouchableOpacity>
                 );
               }}
             />
-            <TouchableOpacity style={styles.dimon}>
+
+            {/* <TouchableOpacity style={styles.dimon}>
               <Feather
                 size={25}
                 name="arrow-up-left"
@@ -96,7 +94,8 @@ const News = ({navigation}) => {
               <TouchableOpacity style={styles.button}>
                 <Text style={styles.textbotton}>NEXT</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
+            <View style={{marginBottom: 50}} />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -104,4 +103,8 @@ const News = ({navigation}) => {
   );
 };
 
-export default News;
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(null, mapDispatchToProps)(News);

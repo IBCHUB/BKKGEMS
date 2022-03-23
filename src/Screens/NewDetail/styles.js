@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     marginVertical: 20,
   },
+  auto: {
+    width: Dimensions.get('window').width - 15,
+    marginTop: 35,
+  },
 });
 
 export default styles;

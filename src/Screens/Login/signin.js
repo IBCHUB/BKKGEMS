@@ -184,8 +184,8 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       <View style={{marginTop: 50}} />
       <Formik
         initialValues={{
-          email: 'bhuri.sap@gmail.com',
-          password: '12345678',
+          email: 'Santisook.tee1@gmail.com',
+          password: '11111111',
         }}
         onSubmit={values => {
           // console.log(values);
@@ -295,7 +295,6 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
 // export default signin;
 
 const mapStateToProps = state => ({
-  LoadingCounters: state.dataReducer.LoadingCounters,
   authData: state.authReducer.authData,
 });
 const mapDispatchToProps = dispatch => ({

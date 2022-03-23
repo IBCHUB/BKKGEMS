@@ -14,7 +14,12 @@ import * as yup from 'yup';
 const signup = ({navigation, onPress, dispatch}) => {
   const [modal, setmodal] = useState(false);
   const [city, setcity] = useState([]);
-  console.log(city);
+  // console.log(city);
+  const placeholder = {
+    label: 'Country',
+    value: null,
+    color: '#AFAFAF20',
+  };
   const [body, setbody] = useState({
     securePassword: true,
     secureRepassword: true,
@@ -138,11 +143,11 @@ const signup = ({navigation, onPress, dispatch}) => {
       </Modal>
       <Formik
         initialValues={{
-          email: 'bhuri.sap@gmail.com',
-          password: '12345678',
-          repassword: '12345678',
-          company: '123',
-          fullname: 'jame',
+          email: '',
+          password: '',
+          repassword: '',
+          company: '',
+          fullname: '',
           country: '',
         }}
         onSubmit={values => {
@@ -264,7 +269,7 @@ const signup = ({navigation, onPress, dispatch}) => {
               <RNPickerSelect
                 onValueChange={value => setFieldValue('country', value)}
                 onBlur={() => setFieldTouched('fullname')}
-                placeholder={''}
+                placeholder={placeholder}
                 items={city}
                 style={styles.picker}
                 Icon={() => {
@@ -297,8 +302,6 @@ const signup = ({navigation, onPress, dispatch}) => {
     </View>
   );
 };
-
-// export default signup;
 
 const mapStateToProps = state => ({
   LoadingCounters: state.dataReducer.LoadingCounters,

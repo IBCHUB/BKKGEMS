@@ -301,7 +301,7 @@ function ScreenStack() {
       {/* <Stack.Screen name="Event" component={Event} /> */}
       {/* <Stack.Screen name="Login" component={Login} /> */}
       {/* <Stack.Screen name="Home" component={Home} /> */}
-      <Stack.Screen name="About" component={About} />
+      {/* <Stack.Screen name="About" component={About} /> */}
     </Stack.Navigator>
   );
 }
@@ -324,14 +324,8 @@ function DrawerStack() {
   );
 }
 
-const AllScreen = createDrawerNavigator();
-function AllStack() {
-  <AllScreen.Navigator>
-    <AllScreen.Screen />
-  </AllScreen.Navigator>;
-}
 const Routes = ({dispatch, authData, LoadingCounters}) => {
-  console.log(authData.isLoggedIn);
+  // console.log(authData.isLoggedIn);
   return (
     <NavigationContainer>
       {LoadingCounters > 0 && <Loader />}

@@ -122,6 +122,26 @@ export const forgotPassword = payload => {
   };
 };
 
+export const contactUs = payload => {
+  return async dispatch => {
+    try {
+      const response = await fetchApi(
+        'api/contact_add',
+        'POST',
+        dispatch,
+        payload,
+      );
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 export const logoutUser = payload => {
   return async (dispatch, getState) => {
     try {

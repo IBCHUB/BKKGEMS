@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
   },
   picker: {
     placeholder: {
-      color: '#646363',
+      color: '#AFAFAF',
       padding: 0,
       marginTop: 5,
       fontSize: 18,
