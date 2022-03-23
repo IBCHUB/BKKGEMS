@@ -16,25 +16,25 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   textheader: {
-    fontSize: 24,
+    fontSize: 20,
     color: '#646363',
     marginVertical: 20,
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
-    width: width * 0.8,
+    width: width * 0.9,
   },
   textdetail: {
     color: '#646363',
     alignSelf: 'center',
     fontSize: 16,
-    width: width * 0.8,
+    width: width * 0.9,
     fontFamily: 'Cantoria MT Std',
     marginVertical: 20,
   },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: width * 0.8,
+    width: width * 0.9,
     alignSelf: 'center',
     height: 50,
     borderBottomColor: '#DAA560',
@@ -68,8 +68,9 @@ const styles = StyleSheet.create({
   rowtags: {
     flexDirection: 'row',
     paddingBottom: 30,
-    width: width * 0.8,
+    width: width * 0.9,
     alignSelf: 'center',
+    marginBottom: 50,
   },
   viewtag: {
     height: 22,
@@ -94,8 +95,11 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   auto: {
-    width: Dimensions.get('window').width - 15,
-    marginTop: 35,
+    width: '90%',
+    marginTop: 10,
+    alignSelf: 'center',
+    fontSize: 18,
+    fontFamily: 'Cantoria MT Std',
   },
 });
 

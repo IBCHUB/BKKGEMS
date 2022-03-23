@@ -19,12 +19,21 @@ import {connect} from 'react-redux';
 import {New} from '../../action/data.action';
 const News = ({navigation, dispatch}) => {
   const [data, setData] = useState([]);
-  console.log(data);
+  // const [search, setsearch] = useState('');
+  // console.log(search);
+
+  // function onSearch() {
+  //   data.filter(item => {
+  //     return item.blog_title.toLowerCase().includes(search.toLowerCase());
+  //   });
+  // }
+  // const search = data.filter(item => console.log(item.blog_title));
+
   const _News = async values => {
     try {
       var request = 'page=' + '' + '&limits=' + '10' + '&order=' + '';
       const response = await dispatch(New(request));
-      console.log(response);
+      // console.log(response);
       if (response.res_code == '00') {
         setData(response.res_result);
         console.log('1111');
@@ -53,6 +62,7 @@ const News = ({navigation, dispatch}) => {
               <TextInput
                 placeholder="Search news or articles"
                 style={styles.input}
+                // onChangeText={setsearch}
               />
             </View>
             <FlatList

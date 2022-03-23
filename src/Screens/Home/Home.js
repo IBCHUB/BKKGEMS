@@ -17,10 +17,14 @@ import RBSheetHome from './RBSheetHome';
 import AboutHome from './AboutHome';
 import {getUser} from '../../action/auth.action';
 import {connect} from 'react-redux';
+import Autocomplete from 'react-native-autocomplete-input';
 
 const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState(false);
   const refRBSheet = useRef();
+  const [data, setdata] = useState([]);
+  const [state, setstate] = useState([]);
+  const {query} = state;
 
   const _loginUser = async values => {
     try {
@@ -110,7 +114,17 @@ const Home = ({navigation, dispatch, authData}) => {
                   //   SearchSubmit(e);
                   // }}
                 />
+                {/* <Autocomplete
+                  data={data}
+                  value={query}
+                  onChangeText={text => setstate({query: text})}
+                  flatListProps={{
+                    keyExtractor: (_, idx) => idx,
+                    renderItem: ({item}) => <Text>{item}</Text>,
+                  }}
+                /> */}
               </View>
+
               <TouchableOpacity
                 onPress={() => refRBSheet.current.open()}
                 style={{alignSelf: 'center'}}>

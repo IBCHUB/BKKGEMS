@@ -13,7 +13,7 @@ target 'BKKGEMS' do
   )
 
   pod 'react-native-image-base64', :path => '../node_modules/react-native-image-base64'
-
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
   target 'BKKGEMSTests' do
     inherit! :complete
     # Pods for testing

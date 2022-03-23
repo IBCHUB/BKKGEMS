@@ -12,10 +12,14 @@ import {
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headerback from '../../Components/Headerback';
-const Search = () => {
+import styles from './styles';
+
+const Search = ({navigation}) => {
   return (
-    <View>
-      <Text>Search</Text>
+    <View style={styles.container}>
+      <SafeAreaView>
+        <Headerback navigation={navigation} item="SEARCH" />
+      </SafeAreaView>
     </View>
   );
 };

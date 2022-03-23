@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -12,11 +12,16 @@ import {
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {MyLists, RemoveLists} from '../../action/data.action';
+import {connect} from 'react-redux';
 
-const Mylist = ({navigation}) => {
+const Mylist = ({navigation, dispatch}) => {
   const [modal, setmodal] = useState(false);
 
   const [selectedId, setselectedId] = useState([]);
+  console.log(selectedId);
+  const [list, setList] = useState([]);
+
   const [checked, setChecked] = useState(false);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -31,36 +36,38 @@ const Mylist = ({navigation}) => {
       console.log('เอาเข้า');
       setselectedId(ids);
     }
-    setChecked(selectedId.length + 1 == data.length);
+    setChecked(selectedId.length + 1 == list.length);
   };
-  const [data, setData] = useState([
-    {
-      id: 1,
-      text: 'Gemstone',
+  const _MyList = async values => {
+    try {
+      const response = await dispatch(MyLists());
+      // console.log(response);
+      if (response.res_code == '00') {
+        setList(response.res_result);
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
 
-      detail: [
-        {
-          id: 1,
-          img: require('../../../assets/image/exhi/1.png'),
-          text: 'GUANGXI WUZHOU STARSGEM CO., LTD',
-          icon: require('../../../assets/image/iocn/1.png'),
-          name: '7 Days Birthstone',
-        },
-        {
-          id: 2,
-          img: require('../../../assets/image/exhi/2.png'),
-          text: 'GUANGXI WUZHOU STARSGEM CO., LTD',
-          icon: require('../../../assets/image/iocn/1.png'),
-          name: 'Ruby Rosegold Ring',
-        },
-      ],
-    },
-    {
-      id: 2,
-      text: 'Beautiful Pearl',
-      detail: [],
-    },
-  ]);
+  const _RemoveLists = async values => {
+    try {
+      var request = 'item=' + selectedId;
+      const response = await dispatch(RemoveLists(request));
+      console.log(response);
+      if (response.res_code == '00') {
+        setList(response.res_result);
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _MyList();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Modal
@@ -126,7 +133,9 @@ const Mylist = ({navigation}) => {
                 />
                 <Text style={styles.texthead}>Download list</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.row}>
+              <TouchableOpacity
+                onPress={() => _RemoveLists()}
+                style={styles.row}>
                 <Text style={styles.textdelete}>Delete List</Text>
               </TouchableOpacity>
             </View>
@@ -138,8 +147,8 @@ const Mylist = ({navigation}) => {
               setselectedId([]);
             } else {
               let ids2 = [];
-              data.map((value, item) => {
-                ids2.push(value.id);
+              list.map((value, item) => {
+                ids2.push(value.my_list_id);
               });
               setselectedId(ids2);
             }
@@ -161,19 +170,24 @@ const Mylist = ({navigation}) => {
         </TouchableOpacity>
         <View style={styles.liner} />
         <FlatList
-          data={data}
+          data={list}
           renderItem={({index, item}) => {
+            console.log(item);
             return (
               <View style={styles.row2}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleCheckBox(item.id);
+                    handleCheckBox(item.my_list_id);
                   }}
                   style={[
                     styles.viewlist,
                     {
-                      backgroundColor: isChecked(item.id) ? '#DAA560' : '#fff',
-                      borderColor: isChecked(item.id) ? '#DAA560' : '#888888',
+                      backgroundColor: isChecked(item.my_list_id)
+                        ? '#DAA560'
+                        : '#fff',
+                      borderColor: isChecked(item.my_list_id)
+                        ? '#DAA560'
+                        : '#888888',
                     },
                   ]}
                 />
@@ -184,9 +198,9 @@ const Mylist = ({navigation}) => {
                   }}
                   style={styles.row3}>
                   <View style={{alignSelf: 'center'}}>
-                    <Text style={styles.textlist}>{item.text}</Text>
+                    <Text style={styles.textlist}>{item.my_list_name}</Text>
                   </View>
-                  <Text style={styles.texthead}>{item.detail.length} item</Text>
+                  <Text style={styles.texthead}>{item.length} item</Text>
                 </TouchableOpacity>
               </View>
             );
@@ -197,4 +211,8 @@ const Mylist = ({navigation}) => {
   );
 };
 
-export default Mylist;
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(null, mapDispatchToProps)(Mylist);

@@ -83,7 +83,10 @@ const Exhibitors = ({navigation}) => {
               height: '60%',
             },
           }}>
-          <RBSheetHome onPress={() => refRBSheet.current.close()} />
+          <RBSheetHome
+            onPress={() => refRBSheet.current.close()}
+            navigation={navigation}
+          />
         </RBSheet>
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <View style={styles.viewsearch}>

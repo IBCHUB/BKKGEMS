@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-
+import {StyleSheet, Dimensions} from 'react-native';
+const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     alignSelf: 'center',
     marginTop: 5,
+    width: width * 0.5,
   },
   texthead1: {
     fontSize: 22,

@@ -278,6 +278,8 @@ PODS:
     - React
   - react-native-safe-area-context (3.4.0):
     - React-Core
+  - react-native-webview (11.17.2):
+    - React-Core
   - React-perflogger (0.67.2)
   - React-RCTActionSheet (0.67.2):
     - React-Core/RCTActionSheetHeaders (= 0.67.2)
@@ -358,6 +360,8 @@ PODS:
   - RNScreens (3.12.0):
     - React-Core
     - React-RCTImage
+  - RNShare (7.3.7):
+    - React-Core
   - RNVectorIcons (9.1.0):
     - React-Core
   - Yoga (1.14.0)
@@ -409,6 +413,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-image-base64 (from `../node_modules/react-native-image-base64`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -428,6 +433,7 @@ DEPENDENCIES:
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNShare (from `../node_modules/react-native-share`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -489,6 +495,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-base64"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -527,6 +535,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNShare:
+    :path: "../node_modules/react-native-share"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -566,6 +576,7 @@ SPEC CHECKSUMS:
   React-logger: 23de8ea0f44fa00ee77e96060273225607fd4d78
   react-native-image-base64: 2ff9ac788639c87a91361ab6652cc95e871b1e54
   react-native-safe-area-context: f4f7cc09d81ae2d39dfd13e764d718969af07080
+  react-native-webview: 380c1a03ec94b7ed764dac8db1e7c9952d08c93a
   React-perflogger: 3c9bb7372493e49036f07a82c44c8cf65cbe88db
   React-RCTActionSheet: 052606483045a408693aa7e864410b4a052f541a
   React-RCTAnimation: 08d4cac13222bb1348c687a0158dfd3b577cdb63
@@ -585,10 +596,11 @@ SPEC CHECKSUMS:
   RNLocalize: 6571ea792a7dcb6d217c98c14d9147e9417cef62
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7
+  RNShare: f116bbb04f310c665ca483d0bd1e88cf59b3b334
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: d682ded942805287424b79602a7644f054105f17
+PODFILE CHECKSUM: 331d4ac2e10dcb56813be3c95ee063478fb8bde0
 
 COCOAPODS: 1.11.2

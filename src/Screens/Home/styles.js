@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: 'center',
-    marginLeft: 10,
+    marginLeft: 5,
     zIndex: 99,
   },
   input: {
     width: 270,
     height: 35,
     marginLeft: 10,
-    borderRadius: 8,
+    borderRadius: 10,
     fontSize: 14,
     color: '#888888',
     fontFamily: 'Cantoria MT Std',
