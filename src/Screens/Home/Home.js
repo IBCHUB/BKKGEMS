@@ -29,7 +29,7 @@ const Home = ({navigation, dispatch, authData}) => {
   const _loginUser = async values => {
     try {
       const response = await dispatch(getUser());
-      console.log('2222222', response);
+      // console.log('2222222', response);
       if (response.res_code == '00') {
         console.log('1111');
       } else {

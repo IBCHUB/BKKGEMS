@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
     marginTop: -3,
   },
   textlist: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Cantoria MT Std',
     color: '#646363',
+    width: width * 0.6,
   },
   texthead: {
     fontSize: 15,

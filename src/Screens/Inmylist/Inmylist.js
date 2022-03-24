@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -11,10 +11,14 @@ import {
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
-const Inmylist = ({navigation, route}) => {
+import {ItemList} from '../../action/data.action';
+import {connect} from 'react-redux';
+
+const Inmylist = ({navigation, route, dispatch}) => {
   const {item} = route.params;
 
   const [selectedId, setselectedId] = useState([]);
+  const [list, setlist] = useState([]);
   const [checked, setChecked] = useState(false);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -29,9 +33,25 @@ const Inmylist = ({navigation, route}) => {
       console.log('เอาเข้า');
       setselectedId(ids);
     }
-    setChecked(selectedId.length + 1 == item.detail.length);
+    setChecked(selectedId.length + 1 == item.sum);
   };
 
+  const _ItemList = async values => {
+    try {
+      var request = 'my_list_id=' + item.my_list_id;
+      const response = await dispatch(ItemList(request));
+      if (response.res_code == '00') {
+        setlist(response.res_result);
+        // console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    _ItemList();
+  }, []);
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -69,8 +89,8 @@ const Inmylist = ({navigation, route}) => {
               setselectedId([]);
             } else {
               let ids2 = [];
-              item.detail.map((value, item) => {
-                ids2.push(value.id);
+              list.map((value, item) => {
+                ids2.push(value.my_list_product_id);
               });
               setselectedId(ids2);
             }
@@ -91,33 +111,38 @@ const Inmylist = ({navigation, route}) => {
             />
             <Text style={styles.textlist}>Select all</Text>
           </View>
-          <Text style={styles.texthead}>{item.detail.length} item</Text>
+          <Text style={styles.texthead}>{item.sum} item</Text>
         </TouchableOpacity>
         <View style={styles.liner} />
         <FlatList
-          data={item.detail}
+          data={list}
           renderItem={({index, item}) => {
+            console.log(list);
             return (
               <View style={styles.row2}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleCheckBox(item.id);
+                    handleCheckBox(item.my_list_product_id);
                   }}
                   style={[
                     styles.viewlist,
                     {
-                      backgroundColor: isChecked(item.id) ? '#DAA560' : '#fff',
-                      borderColor: isChecked(item.id) ? '#DAA560' : '#888888',
+                      backgroundColor: isChecked(item.my_list_product_id)
+                        ? '#DAA560'
+                        : '#fff',
+                      borderColor: isChecked(item.my_list_product_id)
+                        ? '#DAA560'
+                        : '#888888',
                     },
                   ]}
                 />
                 <Image source={item.img} style={styles.img} />
                 <View style={styles.list}>
-                  <Text style={styles.textlist}>{item.name}</Text>
+                  <Text style={styles.textlist}>{item.tag}</Text>
                   <View style={styles.row}>
                     <Image source={item.icon} style={styles.icon} />
                     <Text numberOfLines={1} style={styles.text}>
-                      {item.text}
+                      {item.company_name}
                     </Text>
                   </View>
                 </View>
@@ -130,4 +155,8 @@ const Inmylist = ({navigation, route}) => {
   );
 };
 
-export default Inmylist;
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(null, mapDispatchToProps)(Inmylist);

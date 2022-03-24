@@ -14,7 +14,7 @@ import Headercomp from '../../Components/Headercomp';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
-import RBSheetHome from '../Home/RBSheetHome';
+import RBSheetExhi from './RBSheetExhi';
 
 const Exhibitors = ({navigation}) => {
   const [data, setData] = useState([
@@ -83,10 +83,7 @@ const Exhibitors = ({navigation}) => {
               height: '60%',
             },
           }}>
-          <RBSheetHome
-            onPress={() => refRBSheet.current.close()}
-            navigation={navigation}
-          />
+          <RBSheetExhi refRBSheet={refRBSheet} navigation={navigation} />
         </RBSheet>
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <View style={styles.viewsearch}>

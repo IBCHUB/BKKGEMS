@@ -19,9 +19,9 @@ const Mylist = ({navigation, dispatch}) => {
   const [modal, setmodal] = useState(false);
 
   const [selectedId, setselectedId] = useState([]);
-  console.log(selectedId);
-  const [list, setList] = useState([]);
 
+  const [list, setList] = useState([]);
+  console.log(list);
   const [checked, setChecked] = useState(false);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -200,7 +200,7 @@ const Mylist = ({navigation, dispatch}) => {
                   <View style={{alignSelf: 'center'}}>
                     <Text style={styles.textlist}>{item.my_list_name}</Text>
                   </View>
-                  <Text style={styles.texthead}>{item.length} item</Text>
+                  <Text style={styles.texthead}>{item.sum} item</Text>
                 </TouchableOpacity>
               </View>
             );

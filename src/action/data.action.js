@@ -106,3 +106,46 @@ export const RemoveLists = payload => {
     }
   };
 };
+
+export const ItemList = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/mylistitem',
+        'POST',
+        dispatch,
+        payload,
+        getState().authReducer.authData.token,
+      );
+      console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const Exhibitor_List = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/exhibitor_list_search',
+        'POST',
+        dispatch,
+        payload,
+        getState().authReducer.authData.token,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

@@ -74,7 +74,7 @@ export const getUser = payload => {
         payload,
         getState().authReducer.authData.token,
       );
-      console.log(response);
+      // console.log(response);
       if (response.res_code === '00') {
         return response;
       } else {
