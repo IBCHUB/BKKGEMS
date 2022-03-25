@@ -16,6 +16,7 @@ import styles from './styles';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {connect} from 'react-redux';
 import {Faq} from '../../action/data.action';
+import AutoHeightWebView from 'react-native-autoheight-webview';
 const Faqs = ({navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
   const [faqs, setFaqs] = useState([]);
@@ -62,6 +63,7 @@ const Faqs = ({navigation, dispatch}) => {
             <FlatList
               data={faqs}
               renderItem={({index, item}) => {
+                console.log(item);
                 return (
                   <View>
                     <TouchableOpacity
@@ -79,7 +81,25 @@ const Faqs = ({navigation, dispatch}) => {
                     </TouchableOpacity>
                     {isChecked(item.faq_id) && (
                       <View style={styles.containertags}>
-                        <Text style={styles.tags}>{item.faq_detail}</Text>
+                        <AutoHeightWebView
+                          style={styles.auto}
+                          source={{
+                            html: item.faq_detail,
+                          }}
+                          // onLoad={x => {
+                          //   setloadhtml(false);
+                          // }}
+                          viewportContent={
+                            'width=device-width, user-scalable=no'
+                          }
+                          scrollEnabled={false}
+                          customStyle={`
+                           * {
+                             color:#646363 !important;
+                             font-size: 16px !important;
+                           }
+                         `}
+                        />
                       </View>
                     )}
                   </View>

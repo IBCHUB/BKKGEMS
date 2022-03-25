@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -12,16 +12,18 @@ import {
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {MyLists, RemoveLists} from '../../action/data.action';
+import {MyLists, RemoveLists, AddnameList} from '../../action/data.action';
 import {connect} from 'react-redux';
+import {Formik} from 'formik';
+import * as yup from 'yup';
 
-const Mylist = ({navigation, dispatch}) => {
+const Mylist = ({navigation, dispatch, LoadingCounters}) => {
   const [modal, setmodal] = useState(false);
 
   const [selectedId, setselectedId] = useState([]);
 
   const [list, setList] = useState([]);
-  console.log(list);
+
   const [checked, setChecked] = useState(false);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -44,7 +46,25 @@ const Mylist = ({navigation, dispatch}) => {
       // console.log(response);
       if (response.res_code == '00') {
         setList(response.res_result);
-        console.log('1111');
+        // console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
+  const _AddnameList = async values => {
+    try {
+      var request = 'listname=' + values.listname;
+      const response = await dispatch(AddnameList(request));
+
+      if (response.res_code == '00') {
+        const response1 = await dispatch(MyLists());
+        if (response1.res_code == '00') {
+          setmodal(false);
+          setList(response1.res_result);
+        }
+        // console.log('1111');
       } else {
         console.log('2222');
       }
@@ -55,10 +75,11 @@ const Mylist = ({navigation, dispatch}) => {
     try {
       var request = 'item=' + selectedId;
       const response = await dispatch(RemoveLists(request));
-      console.log(response);
+
       if (response.res_code == '00') {
-        setList(response.res_result);
-        console.log('1111');
+        const response1 = await dispatch(MyLists());
+        setList(response1.res_result);
+        // console.log('1111');
       } else {
         console.log('2222');
       }
@@ -88,12 +109,43 @@ const Mylist = ({navigation, dispatch}) => {
               <AntDesign name="close" size={20} color="#444444" />
             </TouchableOpacity>
             <Text style={styles.textopmodal}>Create new List</Text>
-            <View style={styles.viewinput}>
-              <TextInput placeholder="List Name" style={styles.input} />
-            </View>
-            <TouchableOpacity style={styles.touchedit}>
-              <Text style={styles.textedit}>CREACT</Text>
-            </TouchableOpacity>
+            <Formik
+              initialValues={{
+                listname: '',
+              }}
+              onSubmit={values => {
+                _AddnameList(values);
+              }}
+              validationSchema={yup.object().shape({
+                listname: yup.string().required(),
+              })}>
+              {({
+                values,
+                handleChange,
+                errors,
+                setFieldTouched,
+                touched,
+                isValid,
+                handleSubmit,
+              }) => (
+                <Fragment>
+                  <View style={styles.viewinput}>
+                    <TextInput
+                      placeholder="List Name"
+                      style={styles.input}
+                      onChangeText={handleChange('listname')}
+                      onBlur={() => setFieldTouched('listname')}
+                      value={values.listname}
+                    />
+                  </View>
+                  <TouchableOpacity
+                    onPress={handleSubmit}
+                    style={styles.touchedit}>
+                    <Text style={styles.textedit}>CREATE</Text>
+                  </TouchableOpacity>
+                </Fragment>
+              )}
+            </Formik>
           </View>
         </View>
       </Modal>
@@ -172,7 +224,6 @@ const Mylist = ({navigation, dispatch}) => {
         <FlatList
           data={list}
           renderItem={({index, item}) => {
-            console.log(item);
             return (
               <View style={styles.row2}>
                 <TouchableOpacity
@@ -210,9 +261,11 @@ const Mylist = ({navigation, dispatch}) => {
     </View>
   );
 };
-
+const mapStateToProps = state => ({
+  LoadingCounters: state.dataReducer.LoadingCounters,
+});
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(null, mapDispatchToProps)(Mylist);
+export default connect(mapStateToProps, mapDispatchToProps)(Mylist);

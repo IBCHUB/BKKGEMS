@@ -41,7 +41,7 @@ const Splash = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Modal
+      {/* <Modal
         animationType="none"
         transparent={true}
         visible={modal}
@@ -71,8 +71,8 @@ const Splash = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
-      <Modal
+      </Modal> */}
+      {/* <Modal
         animationType="none"
         transparent={true}
         visible={modalre}
@@ -154,7 +154,7 @@ const Splash = ({navigation}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </Modal> */}
       <SafeAreaView>
         <View>
           <Image

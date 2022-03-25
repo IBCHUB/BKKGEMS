@@ -97,6 +97,7 @@ const Exhibitors = ({navigation}) => {
               <TextInput
                 clearButtonMode="always"
                 placeholder="What are you looking for?"
+                placeholderTextColor={'#44444480'}
                 style={styles.input}
               />
             </View>
@@ -131,7 +132,7 @@ const Exhibitors = ({navigation}) => {
                 );
               }}
             />
-            <TouchableOpacity style={styles.dimon}>
+            {/* <TouchableOpacity style={styles.dimon}>
               <Feather
                 size={25}
                 name="arrow-up-left"
@@ -146,7 +147,8 @@ const Exhibitors = ({navigation}) => {
               <TouchableOpacity style={styles.button}>
                 <Text style={styles.textbotton}>NEXT</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
+            <View style={{height: 80}} />
           </View>
         </ScrollView>
       </SafeAreaView>

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     top: 100,
   },
   imssplash: {
-    width: width * 0.6,
+    width: width * 0.7,
     height: 250,
     alignSelf: 'center',
     top: 150,

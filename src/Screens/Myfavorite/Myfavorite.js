@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -13,10 +13,13 @@ import {
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-const Myfavorite = ({navigation}) => {
+import {MyFav} from '../../action/data.action';
+import {connect} from 'react-redux';
+const Myfavorite = ({navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
   const [checked, setChecked] = useState(false);
-
+  const [myfev, setmyfev] = useState([]);
+  console.log(myfev);
   const [list, setlist] = useState(false);
   const [selectedlist, setselectedlist] = useState([]);
 
@@ -33,7 +36,7 @@ const Myfavorite = ({navigation}) => {
       console.log('เอาเข้า');
       setselectedId(ids);
     }
-    setChecked(selectedId.length + 1 == data.length);
+    setChecked(selectedId.length + 1 == myfev.length);
   };
 
   const isList = id => {
@@ -50,30 +53,24 @@ const Myfavorite = ({navigation}) => {
       console.log('เอาเข้า');
       setselectedlist(ids);
     }
-    setlist(selectedlist.length + 1 == data.length);
+    setlist(selectedlist.length + 1 == myfev.length);
   };
-  const [data, setData] = useState([
-    {
-      id: 1,
-      img: require('../../../assets/image/exhi/1.png'),
-      name: '7 Days Birthstone',
-    },
-    {
-      id: 2,
-      img: require('../../../assets/image/exhi/2.png'),
-      name: 'Ruby Rosegold Ring',
-    },
-    {
-      id: 3,
-      img: require('../../../assets/image/exhi/5.png'),
-      name: 'Ruby Rosegold Ring',
-    },
-    {
-      id: 4,
-      img: require('../../../assets/image/exhi/4.png'),
-      name: 'High quality Silver & Pearl Necklace ',
-    },
-  ]);
+
+  const _MyFav = async values => {
+    try {
+      const response = await dispatch(MyFav());
+      console.log(response);
+      if (response.res_code == '00') {
+        setmyfev(response.res_result);
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _MyFav();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -86,8 +83,8 @@ const Myfavorite = ({navigation}) => {
                 setselectedId([]);
               } else {
                 let ids2 = [];
-                data.map((value, item) => {
-                  ids2.push(value.id);
+                myfev.map((value, item) => {
+                  ids2.push(value.my_favorite_id);
                 });
                 setselectedId(ids2);
               }
@@ -137,24 +134,26 @@ const Myfavorite = ({navigation}) => {
           )}
         </View>
         <FlatList
-          data={data}
+          data={myfev}
           numColumns={2}
           renderItem={({index, item}) => {
             return (
               <View style={styles.viewflat}>
-                <ImageBackground style={styles.img} source={item.img}>
+                <ImageBackground
+                  style={styles.img}
+                  source={{uri: item.product_img_name}}>
                   <View style={styles.rowflat}>
                     <TouchableOpacity
                       onPress={() => {
-                        handleCheckBox(item.id);
+                        handleCheckBox(item.my_favorite_id);
                       }}
                       style={[
                         styles.viewlist,
                         {
-                          backgroundColor: isChecked(item.id)
+                          backgroundColor: isChecked(item.my_favorite_id)
                             ? '#DAA560'
                             : '#fff',
-                          borderColor: isChecked(item.id)
+                          borderColor: isChecked(item.my_favorite_id)
                             ? '#DAA560'
                             : '#888888',
                         },
@@ -165,26 +164,34 @@ const Myfavorite = ({navigation}) => {
                         styles.buttonlist,
                         {
                           borderColor:
-                            isList(item.id) === false ? '#999' : '#DAA560',
+                            isList(item.my_favorite_id) === false
+                              ? '#999'
+                              : '#DAA560',
                           backgroundColor:
-                            isList(item.id) === false ? '#fff' : '#DAA560',
+                            isList(item.my_favorite_id) === false
+                              ? '#fff'
+                              : '#DAA560',
                         },
                       ]}
                       onPress={() => {
                         setlist(val => !val);
-                        handleChecklist(item.id);
+                        handleChecklist(item.my_favorite_id);
                       }}>
                       <AntDesign
                         name="star"
                         size={20}
-                        color={isList(item.id) === false ? '#999' : '#fff'}
+                        color={
+                          isList(item.my_favorite_id) === false
+                            ? '#999'
+                            : '#fff'
+                        }
                         style={{alignSelf: 'center'}}
                       />
                     </TouchableOpacity>
                   </View>
                 </ImageBackground>
                 <View style={styles.texttt}>
-                  <Text style={styles.textflat}>{item.name}</Text>
+                  <Text style={styles.textflat}>{item.tag}</Text>
                 </View>
               </View>
             );
@@ -195,4 +202,8 @@ const Myfavorite = ({navigation}) => {
   );
 };
 
-export default Myfavorite;
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(null, mapDispatchToProps)(Myfavorite);

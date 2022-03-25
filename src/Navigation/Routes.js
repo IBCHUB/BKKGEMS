@@ -211,7 +211,7 @@ function TabStackScreen(navigation) {
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
                 }}>
-                HIGHTLIGTH
+                HIGHLIGHT
               </Text>
             </View>
           ),

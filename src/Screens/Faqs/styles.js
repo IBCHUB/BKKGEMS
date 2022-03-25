@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#EEECE2',
     alignSelf: 'center',
     marginTop: -10,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
+
+    paddingVertical: 10,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
   },
@@ -46,6 +46,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
     width: width * 0.7,
+  },
+  auto: {
+    width: '90%',
+    alignSelf: 'center',
+    fontSize: 18,
+    fontFamily: 'Cantoria MT Std',
   },
 });
 

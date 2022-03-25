@@ -1,5 +1,5 @@
 import {fetchApi} from '../service/api';
-
+// Country
 export const Country = payload => {
   return async dispatch => {
     try {
@@ -20,7 +20,9 @@ export const Country = payload => {
     }
   };
 };
+// Country
 
+// Faq
 export const Faq = payload => {
   return async dispatch => {
     try {
@@ -41,7 +43,9 @@ export const Faq = payload => {
     }
   };
 };
+// Faq
 
+// New
 export const New = payload => {
   return async dispatch => {
     try {
@@ -62,7 +66,9 @@ export const New = payload => {
     }
   };
 };
+// New
 
+// mylist
 export const MyLists = payload => {
   return async (dispatch, getState) => {
     try {
@@ -84,7 +90,26 @@ export const MyLists = payload => {
     }
   };
 };
-
+export const AddnameList = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/add_listname',
+        'POST',
+        dispatch,
+        payload,
+        getState().authReducer.authData.token,
+      );
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 export const RemoveLists = payload => {
   return async (dispatch, getState) => {
     try {
@@ -106,7 +131,6 @@ export const RemoveLists = payload => {
     }
   };
 };
-
 export const ItemList = payload => {
   return async (dispatch, getState) => {
     try {
@@ -117,7 +141,7 @@ export const ItemList = payload => {
         payload,
         getState().authReducer.authData.token,
       );
-      console.log(response);
+      // console.log(response);
       if (response.res_code === '00') {
         return response;
       } else {
@@ -128,6 +152,29 @@ export const ItemList = payload => {
     }
   };
 };
+export const RemoveformList = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/remove_list_product',
+        'POST',
+        dispatch,
+        payload,
+        getState().authReducer.authData.token,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+// mylist
+
 export const Exhibitor_List = payload => {
   return async (dispatch, getState) => {
     try {
@@ -149,3 +196,73 @@ export const Exhibitor_List = payload => {
     }
   };
 };
+
+// Highlight
+export const Product_Highlight = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/product_highlight',
+        'POST',
+        dispatch,
+        payload,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+// Highlight
+
+// myfev
+export const MyFav = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/myFavorite',
+        'GET',
+        dispatch,
+        payload,
+        getState().authReducer.authData.token,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+// myfev
+
+// tags
+export const Tags = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/tags',
+        'POST',
+        dispatch,
+        payload,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+// tags

@@ -35,7 +35,7 @@ const TopicHome = () => {
         </Text>
         <CountDown
           // moment().add(6, "hours").valueOf()
-          until={5000000000}
+          until={800000}
           size={30}
           // onFinish={() => alert('Finished')}
           digitStyle={{height: 25}}

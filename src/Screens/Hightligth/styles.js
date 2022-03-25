@@ -8,9 +8,7 @@ const styles = StyleSheet.create({
   },
   viewhead: {
     width: width,
-
     borderBottomWidth: 0.5,
-
     borderBottomColor: '#EEECE2',
   },
 
@@ -41,7 +39,7 @@ const styles = StyleSheet.create({
     width: width * 0.5,
     paddingHorizontal: 10,
     alignSelf: 'center',
-    height: 30,
+    height: 40,
   },
   imglogo: {
     width: 20,
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text: {
-    fontSize: 10,
+    fontSize: 12,
     color: '#FFECAC',
     marginLeft: 10,
     alignSelf: 'center',

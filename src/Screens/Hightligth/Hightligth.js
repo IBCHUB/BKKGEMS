@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -11,8 +11,29 @@ import {
 } from 'react-native';
 import Headercomp from '../../Components/Headercomp';
 import Feather from 'react-native-vector-icons/Feather';
+import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
-const Hightligth = ({navigation}) => {
+import {Product_Highlight} from '../../action/data.action';
+import {connect} from 'react-redux';
+const Hightligth = ({navigation, dispatch}) => {
+  const [highlight, setHighlight] = useState([]);
+
+  const _Highlight = async values => {
+    try {
+      const response = await dispatch(Product_Highlight());
+      console.log(response);
+      if (response.res_code == '00') {
+        setHighlight(response.res_result);
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    _Highlight();
+  }, []);
   const [data, setData] = useState([
     {
       img: require('../../../assets/image/exhi/11.png'),
@@ -69,36 +90,44 @@ const Hightligth = ({navigation}) => {
     <View style={styles.container}>
       <SafeAreaView>
         <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
-        <ScrollView style={{backgroundColor: '#010302'}}>
+        <ScrollView style={{backgroundColor: '#010302', height: '100%'}}>
           <View style={{marginBottom: 90}}>
             <FlatList
-              data={data}
+              data={highlight}
               numColumns={2}
               renderItem={({index, item}) => {
+                console.log(item);
                 return (
                   <View>
                     <TouchableOpacity style={styles.buttonflat}>
-                      <ImageBackground style={styles.imgflat} source={item.img}>
-                        <View style={styles.row}>
-                          <Image style={styles.imglogo} source={item.icon} />
+                      <ImageBackground
+                        style={styles.imgflat}
+                        source={{uri: item.product_img_name}}>
+                        <LinearGradient
+                          colors={['#00000000', '#1D0F0FF7']}
+                          style={styles.row}>
+                          <Image
+                            style={styles.imglogo}
+                            source={{uri: item.company_logo}}
+                          />
                           <Text numberOfLines={1} style={styles.text}>
-                            {item.text}
+                            {item.company_name}
                           </Text>
-                        </View>
+                        </LinearGradient>
                       </ImageBackground>
                     </TouchableOpacity>
                   </View>
                 );
               }}
             />
-            <TouchableOpacity style={styles.dimon}>
+            {/* <TouchableOpacity style={styles.dimon}>
               <Feather
                 size={25}
                 name="arrow-up-left"
                 color={'#DAA560'}
                 style={styles.icon}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -106,4 +135,8 @@ const Hightligth = ({navigation}) => {
   );
 };
 
-export default Hightligth;
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(null, mapDispatchToProps)(Hightligth);
