@@ -45,7 +45,9 @@ const Allchat = ({navigation}) => {
       renderItem={({index, item}) => {
         return (
           <View>
-            <TouchableOpacity style={styles.buttonflat}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Pagechat')}
+              style={styles.buttonflat}>
               <Image style={styles.imgflat} source={item.icon} />
               <View style={styles.roww}>
                 <View style={styles.row}>

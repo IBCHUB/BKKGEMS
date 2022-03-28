@@ -8,6 +8,7 @@ export const Country = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       //   console.log(response);
       if (response.res_code === '00') {
@@ -31,6 +32,7 @@ export const Faq = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       // console.log(response);
       if (response.res_code === '00') {
@@ -54,6 +56,7 @@ export const New = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       // console.log(response);
       if (response.res_code === '00') {
@@ -77,6 +80,7 @@ export const MyLists = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       // console.log(response);
@@ -98,6 +102,7 @@ export const AddnameList = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       if (response.res_code === '00') {
@@ -118,6 +123,7 @@ export const RemoveLists = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       // console.log(response);
@@ -139,6 +145,7 @@ export const ItemList = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       // console.log(response);
@@ -160,6 +167,7 @@ export const RemoveformList = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       // console.log(response);
@@ -183,6 +191,7 @@ export const Exhibitor_List = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       // console.log(response);
@@ -206,6 +215,7 @@ export const Product_Highlight = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       // console.log(response);
       if (response.res_code === '00') {
@@ -229,6 +239,7 @@ export const MyFav = payload => {
         'GET',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       // console.log(response);
@@ -253,6 +264,7 @@ export const Tags = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       // console.log(response);
       if (response.res_code === '00') {

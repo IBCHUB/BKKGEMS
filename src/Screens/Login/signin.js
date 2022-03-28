@@ -1,14 +1,26 @@
 import React, {useState, Fragment} from 'react';
-import {View, Text, TouchableOpacity, Modal, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Modal,
+  TextInput,
+  Linking,
+  StatusBar,
+  Alert,
+} from 'react-native';
 import Input from './input';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {loginUser, forgotPassword} from 'actions/auth.action';
+import {loginUser, forgotPassword, Exhibitorslogin} from 'actions/auth.action';
 import {connect} from 'react-redux';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
+import {getDeepLink} from '../../config/utilities';
+import {fetchApi} from '../../service/api';
 
 const signin = ({navigation, onPress, dispatch, authData}) => {
   const [modal, setmodal] = useState(false);
@@ -23,6 +35,61 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       securePassword: !body.securePassword,
     });
   };
+
+  const Codeurl = async values => {
+    // console.log('::' + values);
+    let regex = /[?&]([^=#]+)=([^&#]*)/g,
+      params = {},
+      match;
+    while ((match = regex.exec(values))) {
+      params[match[1]] = match[2];
+    }
+    const {code} = params;
+    return code;
+  };
+
+  const loginurl = async values => {
+    const deepLink = getDeepLink('callback');
+    // https://sso.ditp.go.th/sso/auth?response_type=token&client_id=ssonticlient&redirect_uri=https://bkkgem2022.ibusiness.co.th/EXHIBITOR_LOGIN.php
+    const url = `https://sso.ditp.go.th/sso/index.php/auth?response_type=token&client_id=SS0047423&redirect_uri=${deepLink}&state=appditp`;
+    // console.log(await InAppBrowser.isAvailable());
+    try {
+      // await InAppBrowser.close();
+      if (await InAppBrowser.isAvailable()) {
+        const result = await InAppBrowser.openAuth(url, deepLink, {
+          // iOS Properties
+          ephemeralWebSession: false,
+          // Android Properties
+          showTitle: false,
+          enableUrlBarHiding: true,
+          enableDefaultShare: false,
+        }).then(response => {
+          if (response.type === 'success' && response.url) {
+            console.log(getCode(response.url));
+            // console.log(Codeurl(response.url));
+            dispatch(Exhibitorslogin(getCode(response.url)));
+          }
+        });
+        // Alert.alert('Response', JSON.stringify(result));
+      } else {
+        Alert.alert('InAppBrowser is not supported :/');
+      }
+    } catch (error) {
+      console.error(error);
+      // Linking.openURL(url);
+    }
+  };
+  function getCode(url) {
+    let regex = /[?&]([^=#]+)=([^&#]*)/g,
+      params = {},
+      match;
+    while ((match = regex.exec(url))) {
+      params[match[1]] = match[2];
+    }
+    const {code} = params;
+    console.log(code);
+    return code;
+  }
 
   const _loginUser = async values => {
     try {
@@ -279,14 +346,18 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
         <Text style={styles.textor}>or</Text>
         <View style={styles.lineror} />
       </View>
-      <TouchableOpacity style={styles.buttonexhi}>
+      <TouchableOpacity
+        onPress={() => {
+          loginurl();
+        }}
+        style={styles.buttonexhi}>
         <Ionicons
           name="log-in"
           size={25}
           color={'#DAA560'}
           style={{alignSelf: 'center', marginRight: 10}}
         />
-        <Text style={styles.textexhi}>EXHIBITORLOGIN</Text>
+        <Text style={styles.textexhi}>EXHIBITOR - LOGIN</Text>
       </TouchableOpacity>
     </View>
   );

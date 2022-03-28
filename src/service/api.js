@@ -1,9 +1,21 @@
 import metrics from 'config/metrics';
 const BASE_API = metrics.BASE_URL;
-
-export const api = async (url, method, body = null, headers = {}) => {
+const SSO_API = 'https://sso.ditp.go.th/sso/api';
+let URLLode = '';
+export const api = async (
+  url,
+  method,
+  body = null,
+  headers = {},
+  typeurl = '',
+) => {
   try {
-    const endPoint = BASE_API.concat(url);
+    if (typeurl === 'BASE') {
+      URLLode = BASE_API;
+    } else if (typeurl === 'SSO') {
+      URLLode = SSO_API;
+    }
+    const endPoint = URLLode.concat(url);
     const reqBody = body ? JSON.stringify(body) : null;
     const fetchParams = {method, headers};
 
@@ -35,6 +47,7 @@ export const fetchApi = async (
   method,
   dispatch,
   body,
+  typeurl,
   token = null,
   loader = true,
 ) => {
@@ -47,7 +60,16 @@ export const fetchApi = async (
     };
     // console.log(token);
     if (token) {
-      headers['Authorization'] = token;
+      console.log(token);
+      headers['token'] = token;
+      headers['code'] = 'Bearer ' + token;
+      if (typeurl === 'BASE') {
+        headers['Authorization'] = token;
+      } else {
+        // headers['code'] = 'Bearer ' + token;
+        headers['Authorization'] = 'Bearer ' + token;
+      }
+      headers['client_id'] = 'SS0047423';
     }
     if (loader) {
       dispatch({
@@ -57,7 +79,7 @@ export const fetchApi = async (
     }
     // console.log(headers);
 
-    const response = await api(url, method, body, headers);
+    const response = await api(url, method, body, headers, typeurl);
     if (loader) {
       setTimeout(() => {
         dispatch({

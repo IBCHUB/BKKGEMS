@@ -10,6 +10,7 @@ import {Country} from '../../action/data.action';
 import RNPickerSelect from 'react-native-picker-select';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import {Exhibitorslogin} from '../../action/auth.action';
 
 const signup = ({navigation, onPress, dispatch}) => {
   const [modal, setmodal] = useState(false);

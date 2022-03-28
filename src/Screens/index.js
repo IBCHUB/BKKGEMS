@@ -18,3 +18,4 @@ export {default as Profile} from './Profile/Profile';
 export {default as Mylist} from './Mylist/Mylist';
 export {default as Inmylist} from './Inmylist/Inmylist';
 export {default as Myfavorite} from './Myfavorite/Myfavorite';
+export {default as Pagechat} from './Pagechat/Pagechat';

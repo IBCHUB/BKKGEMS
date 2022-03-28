@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Headerchat from '../../Components/Headerchat';
 import Allchat from './Allchat';
+import Chatbot from './Chatbot';
 
 import styles from './styles';
 const Chat = ({navigation}) => {
@@ -58,8 +59,8 @@ const Chat = ({navigation}) => {
             </Text>
           </TouchableOpacity>
         </View>
-        {page === 0 && <View />}
-        {page === 1 && <Allchat />}
+        {page === 0 && <Chatbot />}
+        {page === 1 && <Allchat navigation={navigation} />}
       </SafeAreaView>
     </View>
   );

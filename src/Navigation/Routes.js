@@ -29,6 +29,7 @@ import {
   Mylist,
   Inmylist,
   Myfavorite,
+  Pagechat,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
@@ -295,6 +296,7 @@ function ScreenStack() {
       <Stack.Screen name="Mylist" component={Mylist} />
       <Stack.Screen name="Inmylist" component={Inmylist} />
       <Stack.Screen name="Myfavorite" component={Myfavorite} />
+      <Stack.Screen name="Pagechat" component={Pagechat} />
 
       {/* <Stack.Screen name="News" component={News} />
       <Stack.Screen name="NewDetail" component={NewDetail} /> */}

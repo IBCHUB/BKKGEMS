@@ -8,6 +8,7 @@ export const loginUser = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
 
       if (response.res_code === '00') {
@@ -16,6 +17,7 @@ export const loginUser = payload => {
           'POST',
           dispatch,
           ' ',
+          'BASE',
           response.res_result,
         );
         await dispatch({
@@ -29,9 +31,6 @@ export const loginUser = payload => {
 
         return response2;
       } else {
-        // dispatch({
-        //   type: 'AUTH_USER_FAIL',
-        // });
         dispatch({
           type: 'GET_USER_FAIL',
         });
@@ -51,6 +50,7 @@ export const registerUser = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       if (response.res_code === '00') {
         return response;
@@ -72,6 +72,7 @@ export const getUser = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
         getState().authReducer.authData.token,
       );
       // console.log(response);
@@ -95,6 +96,7 @@ export const resendEmail = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       if (response.res_code === '00') {
         return response;
@@ -110,7 +112,13 @@ export const resendEmail = payload => {
 export const forgotPassword = payload => {
   return async dispatch => {
     try {
-      const response = await fetchApi('api/forgot', 'POST', dispatch, payload);
+      const response = await fetchApi(
+        'api/forgot',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
       if (response.res_code === '00') {
         return response;
       } else {
@@ -130,6 +138,7 @@ export const contactUs = payload => {
         'POST',
         dispatch,
         payload,
+        'BASE',
       );
       if (response.res_code === '00') {
         return response;
@@ -152,6 +161,40 @@ export const logoutUser = payload => {
         type: 'GET_USER_FAIL',
       });
       return '';
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+//
+export const Exhibitorslogin = payload => {
+  console.log('payload=>>', payload);
+  return async dispatch => {
+    try {
+      const response = await fetchApi(
+        '/getinfo',
+        'get',
+        dispatch,
+        '',
+        'SSO',
+        payload,
+      );
+      console.log('<<<<<', response);
+      if (response.res_code === '00') {
+        // await dispatch({
+        //   type: 'AUTH_USER_SUCCESS',
+        //   token: response.res_result,
+        // });
+      } else {
+        // dispatch({
+        //   type: 'AUTH_USER_FAIL',
+        // });
+        // dispatch({
+        //   type: 'GET_USER_FAIL',
+        // });
+        return response;
+      }
     } catch (e) {
       console.log(e);
     }

@@ -14,6 +14,7 @@ target 'BKKGEMS' do
 
   pod 'react-native-image-base64', :path => '../node_modules/react-native-image-base64'
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+  pod 'RNInAppBrowser', :path => '../node_modules/react-native-inappbrowser-reborn'
   target 'BKKGEMSTests' do
     inherit! :complete
     # Pods for testing
@@ -23,7 +24,7 @@ target 'BKKGEMS' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!()
+  # use_flipper!()
 
   post_install do |installer|
     react_native_post_install(installer)
