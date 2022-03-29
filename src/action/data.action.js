@@ -278,3 +278,27 @@ export const Tags = payload => {
   };
 };
 // tags
+
+//chat
+export const GetallChat = payload => {
+  console.log(payload);
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v2_app/get_chat_room',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

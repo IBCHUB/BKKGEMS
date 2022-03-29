@@ -94,7 +94,6 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
   const _loginUser = async values => {
     try {
       var request = 'username=' + values.email + '&password=' + values.password;
-
       const response = await dispatch(loginUser(request));
       // console.log(response);
       if (response.res_code == '00') {

@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     width: width,
     height: height,
   },
+  chat: {
+    height: height * 0.85,
+  },
 });
 
 export default styles;

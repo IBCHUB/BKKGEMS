@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,52 +7,48 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+
 import styles from './styles';
-const Allchat = ({navigation}) => {
-  const [data, setData] = useState([
-    {
-      chat: 'GOLDEN STONE CO., LTD.',
-      icon: require('../../../assets/image/iocn/1.png'),
-      text: 'Greeting from Bangko…',
-      read: false,
-      time: 'Today 09:34',
-    },
-    {
-      chat: 'OPALS MINE FACTORY',
-      icon: require('../../../assets/image/iocn/2.png'),
-      text: 'Dear Sir, We apologize for…',
-      read: true,
-      time: 'Dec 9,2021 21:48',
-    },
-    {
-      chat: 'ABC STONE CO.,LTD.',
-      icon: require('../../../assets/image/iocn/3.png'),
-      text: 'We have a New year promo...',
-      read: true,
-      time: 'Dec 7,2021 20:14',
-    },
-    {
-      chat: 'ALPER TUNCOKU JEWELRY',
-      icon: require('../../../assets/image/iocn/4.png'),
-      text: 'Thank you …',
-      read: true,
-      time: 'Dec 7,2021 20:09',
-    },
-  ]);
+import database from '@react-native-firebase/database';
+
+import {connect} from 'react-redux';
+import {GetallChat} from '../../action/data.action';
+const Allchat = ({navigation, dispatch, authUser}) => {
+  const UserId = authUser.token.user_id;
+  const [data, setData] = useState([]);
+
+  const _GetallChat = async values => {
+    try {
+      var request = 'user_id=' + UserId;
+      const response = await dispatch(GetallChat(request));
+      if (response.res_code == '00') {
+        setData(response.res_result);
+      } else {
+        setmodalfalse(true);
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    _GetallChat();
+  }, []);
+
   return (
     <FlatList
       data={data}
       renderItem={({index, item}) => {
+        console.log(item);
         return (
           <View>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Pagechat')}
+              onPress={() => navigation.navigate('Pagechat', {item})}
               style={styles.buttonflat}>
-              <Image style={styles.imgflat} source={item.icon} />
+              <Image style={styles.imgflat} source={{uri: item.company_logo}} />
               <View style={styles.roww}>
                 <View style={styles.row}>
                   <Text numberOfLines={1} style={styles.topchat}>
-                    {item.chat}
+                    {item.company_name}
                   </Text>
                   <Text style={styles.detail}>{item.text}</Text>
                 </View>
@@ -75,4 +71,11 @@ const Allchat = ({navigation}) => {
   );
 };
 
-export default Allchat;
+const mapStateToProps = state => ({
+  authUser: state.authReducer.authUser,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Allchat);

@@ -88,6 +88,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     width: width * 0.15,
   },
+  chat: {
+    height: height * 0.78,
+  },
 });
 
 export default styles;
