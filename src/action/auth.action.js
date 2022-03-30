@@ -169,7 +169,6 @@ export const logoutUser = payload => {
 
 //
 export const Exhibitorslogin = payload => {
-  console.log('payload=>>', payload);
   return async dispatch => {
     try {
       const response = await fetchApi(
@@ -180,12 +179,16 @@ export const Exhibitorslogin = payload => {
         'SSO',
         payload,
       );
-      console.log('<<<<<', response);
+
       if (response.res_code === '00') {
-        // await dispatch({
-        //   type: 'AUTH_USER_SUCCESS',
-        //   token: response.res_result,
-        // });
+        await dispatch({
+          type: 'AUTH_USER_SUCCESS',
+          token: payload,
+        });
+        await dispatch({
+          type: 'GET_USER_SUCCESS',
+          token: response.res_result,
+        });
       } else {
         // dispatch({
         //   type: 'AUTH_USER_FAIL',

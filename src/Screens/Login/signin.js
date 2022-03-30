@@ -65,8 +65,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
           enableDefaultShare: false,
         }).then(response => {
           if (response.type === 'success' && response.url) {
-            console.log(getCode(response.url));
-            // console.log(Codeurl(response.url));
+            // console.log(getCode(response.url));
             dispatch(Exhibitorslogin(getCode(response.url)));
           }
         });
@@ -87,7 +86,6 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       params[match[1]] = match[2];
     }
     const {code} = params;
-    console.log(code);
     return code;
   }
 

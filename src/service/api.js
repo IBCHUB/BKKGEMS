@@ -60,7 +60,7 @@ export const fetchApi = async (
     };
     // console.log(token);
     if (token) {
-      console.log(token);
+      // console.log(token);
       headers['token'] = token;
       headers['code'] = 'Bearer ' + token;
       if (typeurl === 'BASE') {

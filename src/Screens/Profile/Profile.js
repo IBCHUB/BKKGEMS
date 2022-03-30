@@ -17,7 +17,8 @@ import I18n from '../../utils/I18n';
 
 const Profile = ({navigation, dispatch, authUser}) => {
   const dataUser = authUser.token;
-  // console.log(dataUser);
+  const ExhiUser = authUser.token;
+  console.log(authUser);
   const [imgbase64, setimgbase64] = useState([]);
   const [country, setCountry] = useState([]);
 
@@ -90,7 +91,9 @@ const Profile = ({navigation, dispatch, authUser}) => {
         <View style={styles.viewinput}>
           <Text style={styles.texttopic}>{I18n.t('email')}</Text>
           <TextInput
-            defaultValue={dataUser.email}
+            defaultValue={
+              ExhiUser === undefined ? dataUser.email : ExhiUser.member.email
+            }
             placeholder="drive.bkkgems2022@gmail.com"
             style={styles.textinput}
           />
@@ -98,7 +101,11 @@ const Profile = ({navigation, dispatch, authUser}) => {
         <View style={styles.viewinput}>
           <Text style={styles.texttopic}>{I18n.t('FullName')}</Text>
           <TextInput
-            defaultValue={dataUser.fullname}
+            defaultValue={
+              ExhiUser === undefined
+                ? dataUser.fullname
+                : ExhiUser.member.nameEn + ' ' + ExhiUser.member.lastnameEn
+            }
             placeholder="Gemy Jewell"
             style={styles.textinput}
           />
@@ -106,7 +113,7 @@ const Profile = ({navigation, dispatch, authUser}) => {
         <View style={styles.viewinput}>
           <Text style={styles.texttopic}>{I18n.t('Company')}</Text>
           <TextInput
-            defaultValue={dataUser.company_name}
+            defaultValue={ExhiUser === undefined ? dataUser.company_name : '-'}
             placeholder="Bkkgems company limited"
             style={styles.textinput}
           />
@@ -116,7 +123,7 @@ const Profile = ({navigation, dispatch, authUser}) => {
           <RNPickerSelect
             onValueChange={value => console.log(value)}
             placeholder={''}
-            value={dataUser.country_name}
+            value={ExhiUser === undefined ? dataUser.country_name : 'Thailand'}
             items={country}
             style={styles.picker}
             Icon={() => {
@@ -129,7 +136,19 @@ const Profile = ({navigation, dispatch, authUser}) => {
         <View style={styles.viewinput1}>
           <Text style={styles.texttopic}>{I18n.t('Address')}</Text>
           <TextInput
-            defaultValue={dataUser.address}
+            defaultValue={
+              ExhiUser === undefined
+                ? dataUser.address
+                : ExhiUser.addressEn.address +
+                  ' ' +
+                  ExhiUser.addressEn.subdistrict +
+                  ' ' +
+                  ExhiUser.addressEn.district +
+                  ' ' +
+                  ExhiUser.addressEn.province +
+                  ' ' +
+                  ExhiUser.addressEn.postcode
+            }
             multiline
             placeholder="Bangkok, Thailand."
             style={styles.textinput}

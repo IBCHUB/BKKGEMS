@@ -41,14 +41,7 @@ const Home = ({navigation, dispatch, authData}) => {
   useEffect(() => {
     _loginUser();
   }, []);
-  // const SearchSubmit = e => {
-  //   const newData = this.arrayholder.filter(item => {
-  //     const itemData = `${item.activity_list_topic_th.toUpperCase()}`;
-  //     const textData = e.toUpperCase();
-  //     return itemData.indexOf(textData) > -1;
-  //   });
-  //   this.setState({Recommend: newData});
-  // };
+
   return (
     <View style={styles.container}>
       <SafeAreaView>

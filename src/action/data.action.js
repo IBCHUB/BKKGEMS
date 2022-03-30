@@ -302,3 +302,25 @@ export const GetallChat = payload => {
     }
   };
 };
+
+export const SeadChat = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/send_message',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

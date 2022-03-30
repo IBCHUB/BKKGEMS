@@ -25,24 +25,26 @@ import styles from './styles';
 import database from '@react-native-firebase/database';
 
 import {connect} from 'react-redux';
-import Headerback from '../../Components/Headerback';
+import Headerpage from '../../Components/Headerpage';
+import {SeadChat} from '../../action/data.action';
 const {width, height} = Dimensions.get('window');
 const Pagechat = ({authUser, dispatch, route, navigation}) => {
   const UserId = authUser.token.user_id;
+  const Company = authUser.token.company_name;
+  const Fullname = authUser.token.fullname;
+  const Country = authUser.token.country_name;
+  const Email = authUser.token.email;
   const {item} = route.params;
   const room_key = item.room_key;
-  console.log(room_key);
-
+  const User_ditpone = item.company_tax_id;
   const [messages, setMessages] = useState([]);
-  console.log(messages);
-
   useEffect(() => {
     database()
       .ref('chatroom/' + room_key + '/chat')
       // .orderByChild('time')
       .on('value', snapshot => {
         const data = snapshot.val();
-        console.log(data);
+
         let newArr = Object.keys(data).map((key, index) => {
           let newData = {
             _id: 1,
@@ -68,13 +70,42 @@ const Pagechat = ({authUser, dispatch, route, navigation}) => {
         const sortAscending = newArr.sort((a, b) =>
           new Date(a.createdAt) < new Date(b.createdAt) ? 1 : -1,
         );
-        console.log(sortAscending);
+
         setMessages(sortAscending);
       });
   }, []);
 
+  const _SeadChat = async values => {
+    try {
+      var request =
+        'room_key=' +
+        room_key +
+        '&user_id=' +
+        UserId +
+        '&company=' +
+        Company +
+        '&fullname=' +
+        Fullname +
+        '&country=' +
+        Country +
+        '&email=' +
+        Email +
+        '&user_ditpone=' +
+        User_ditpone +
+        '&message=' +
+        messages[0].text +
+        '&type_chat=' +
+        'text';
+      const response = await dispatch(SeadChat(request));
+      console.log('103>>>', response);
+      if (response.res_code == '00') {
+        // console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
   const onSend = useCallback((messages = []) => {
-    console.log(messages);
     let postChat = database().ref('/chatroom/' + room_key + '/chat');
     postChat
       .push({
@@ -89,7 +120,6 @@ const Pagechat = ({authUser, dispatch, route, navigation}) => {
       .then(res => {
         console.log(postChat);
       });
-
     const payload = {
       _id: UserId,
       text: messages[0].text,
@@ -100,19 +130,11 @@ const Pagechat = ({authUser, dispatch, route, navigation}) => {
       },
       BBuser: 'UserBB',
     };
-    // this.setState(previousState => ({
-    //   messages: GiftedChat.append(previousState.messages, payload),
-    // }));
+
     setMessages(previousMessages =>
       GiftedChat.append(previousMessages, payload),
     );
-    // instance._messageContainerRef.current.scrollToIndex({
-    //   index: 0,
-    //   viewOffset: 0,
-    //   viewPosition: 1,
-    // });
   }, []);
-
   const renderTime = props => {
     return (
       <Time
@@ -132,17 +154,20 @@ const Pagechat = ({authUser, dispatch, route, navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <Headerback navigation={navigation} />
+        <Headerpage navigation={navigation} item={item.company_name} />
         <View style={styles.chat}>
           <GiftedChat
-            ref={c => {
-              console.log(c);
-            }}
+            // ref={c => {
+            //   console.log(c);
+            // }}
             scrollToBottom={false}
             style={{borderWidth: 1, flex: 1}}
             renderAvatarOnTop={true}
             messages={messages}
-            onSend={messages => onSend(messages)}
+            onSend={messages => {
+              _SeadChat();
+              onSend(messages);
+            }}
             user={{
               _id: UserId,
             }}

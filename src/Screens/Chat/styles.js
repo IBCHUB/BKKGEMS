@@ -46,6 +46,8 @@ const styles = StyleSheet.create({
     elevation: 15,
     borderRadius: 30,
     marginVertical: 10,
+    borderWidth: 1,
+    borderColor: '#DAA560',
   },
   topchat: {
     fontSize: 14,
