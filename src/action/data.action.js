@@ -183,29 +183,6 @@ export const RemoveformList = payload => {
 };
 // mylist
 
-export const Exhibitor_List = payload => {
-  return async (dispatch, getState) => {
-    try {
-      const response = await fetchApi(
-        'backoffice/API/v1_app/exhibitor_list_search',
-        'POST',
-        dispatch,
-        payload,
-        'BASE',
-        getState().authReducer.authData.token,
-      );
-      // console.log(response);
-      if (response.res_code === '00') {
-        return response;
-      } else {
-        return response;
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
-};
-
 // Highlight
 export const Product_Highlight = payload => {
   return async (dispatch, getState) => {
@@ -308,6 +285,75 @@ export const SeadChat = payload => {
     try {
       const response = await fetchApi(
         'backoffice/API/v1_app/send_message',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+//chat
+
+// Exhibitor
+export const Exhibitor_List = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/exhibitor_list_search',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+        getState().authReducer.authData.token,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const Search = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/exhibitor_search',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const Exhibitor = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/exhibitor_list',
         'POST',
         dispatch,
         payload,

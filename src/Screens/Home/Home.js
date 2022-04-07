@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
+  Text,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headerhome from '../../Components/Headerhome';
@@ -16,30 +17,60 @@ import TopicHome from './TopicHome';
 import RBSheetHome from './RBSheetHome';
 import AboutHome from './AboutHome';
 import {getUser} from '../../action/auth.action';
+
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
+import {Search} from '../../action/data.action';
 
 const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState(false);
   const refRBSheet = useRef();
-  const [data, setdata] = useState([]);
-  const [state, setstate] = useState([]);
-  const {query} = state;
-
+  const [state, setstate] = useState();
+  const [query, setQuery] = useState('');
+  console.log(query);
   const _loginUser = async values => {
     try {
       const response = await dispatch(getUser());
       // console.log('2222222', response);
       if (response.res_code == '00') {
-        console.log('1111');
+        // console.log('1111');
       } else {
         setmodalfalse(true);
         console.log('2222');
       }
     } catch (error) {}
   };
+
+  const test = text => {
+    setQuery(text);
+    let i = 3;
+    let interval = setInterval(() => {
+      if (i > 1) {
+        _Search(text);
+        clearInterval(interval);
+        return i;
+      }
+      i += 1;
+    }, 1000);
+  };
+
+  const _Search = async values => {
+    console.log('xxxx');
+    try {
+      var request = 'text=' + values + '&type=' + '1';
+      const response = await dispatch(Search(request));
+      console.log('2222222>>>>>>', response);
+      if (response.res_code == '00') {
+        setstate(response.res_result);
+        // console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
   useEffect(() => {
     _loginUser();
+    _Search();
   }, []);
 
   return (
@@ -93,29 +124,58 @@ const Home = ({navigation, dispatch, authData}) => {
           <View style={styles.viewon}>
             <View style={styles.viewsearch}>
               <View style={styles.viewinsearch}>
-                <FontAwesome5
-                  name="search"
-                  size={18}
-                  color={'#44444480'}
-                  style={styles.icon}
-                />
-                <TextInput
+                {/* <TextInput
                   clearButtonMode="always"
                   placeholder="What are you looking for?"
                   style={styles.input}
                   // onChangeText={e => {
                   //   SearchSubmit(e);
                   // }}
+                /> */}
+                <FontAwesome5
+                  name="search"
+                  size={18}
+                  color={'#44444480'}
+                  style={styles.icon}
                 />
-                {/* <Autocomplete
-                  data={data}
+                <Autocomplete
+                  data={state}
                   value={query}
-                  onChangeText={text => setstate({query: text})}
+                  hideResults={query.length == 0 ? true : false}
+                  autoCorrect={false}
+                  placeholder="What are you looking for?"
+                  onChangeText={text => {
+                    test(text);
+                  }}
                   flatListProps={{
                     keyExtractor: (_, idx) => idx,
-                    renderItem: ({item}) => <Text>{item}</Text>,
+                    renderItem: ({item}) => {
+                      return (
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('Search', {text: item})
+                          }>
+                          <Text
+                            style={{
+                              fontSize: 16,
+                              padding: 3,
+                              fontFamily: 'Cantoria MT Std',
+                            }}>
+                            {item}
+                          </Text>
+                        </TouchableOpacity>
+                      );
+                    },
                   }}
-                /> */}
+                  style={styles.input}
+                  listContainerStyle={{
+                    width: 280,
+                    marginTop: 35,
+                    zIndex: 99,
+                    position: 'absolute',
+                    borderRadius: 5,
+                  }}
+                />
               </View>
 
               <TouchableOpacity
@@ -127,6 +187,7 @@ const Home = ({navigation, dispatch, authData}) => {
                 />
               </TouchableOpacity>
             </View>
+
             <TopicHome />
 
             {online === false && (
@@ -149,6 +210,7 @@ const Home = ({navigation, dispatch, authData}) => {
                 </View>
               </ImageBackground>
             )}
+
             <AboutHome navigation={navigation} />
           </View>
         </ScrollView>

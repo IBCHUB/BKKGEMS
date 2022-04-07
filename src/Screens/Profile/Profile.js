@@ -18,7 +18,8 @@ import I18n from '../../utils/I18n';
 const Profile = ({navigation, dispatch, authUser}) => {
   const dataUser = authUser.token;
   const ExhiUser = authUser.token;
-  console.log(authUser);
+
+  console.log(dataUser.email);
   const [imgbase64, setimgbase64] = useState([]);
   const [country, setCountry] = useState([]);
 
@@ -92,7 +93,9 @@ const Profile = ({navigation, dispatch, authUser}) => {
           <Text style={styles.texttopic}>{I18n.t('email')}</Text>
           <TextInput
             defaultValue={
-              ExhiUser === undefined ? dataUser.email : ExhiUser.member.email
+              ExhiUser
+                ? dataUser.email
+                : ExhiUser.member != undefined && ExhiUser.member.email
             }
             placeholder="drive.bkkgems2022@gmail.com"
             style={styles.textinput}
@@ -102,9 +105,11 @@ const Profile = ({navigation, dispatch, authUser}) => {
           <Text style={styles.texttopic}>{I18n.t('FullName')}</Text>
           <TextInput
             defaultValue={
-              ExhiUser === undefined
+              ExhiUser
                 ? dataUser.fullname
-                : ExhiUser.member.nameEn + ' ' + ExhiUser.member.lastnameEn
+                : ExhiUser.member != undefined &&
+                  ExhiUser.member.nameEn + ' ' + ExhiUser.member != undefined &&
+                  ExhiUser.member.lastnameEn
             }
             placeholder="Gemy Jewell"
             style={styles.textinput}
@@ -113,7 +118,7 @@ const Profile = ({navigation, dispatch, authUser}) => {
         <View style={styles.viewinput}>
           <Text style={styles.texttopic}>{I18n.t('Company')}</Text>
           <TextInput
-            defaultValue={ExhiUser === undefined ? dataUser.company_name : '-'}
+            defaultValue={ExhiUser ? dataUser.company_name : '-'}
             placeholder="Bkkgems company limited"
             style={styles.textinput}
           />
@@ -123,7 +128,7 @@ const Profile = ({navigation, dispatch, authUser}) => {
           <RNPickerSelect
             onValueChange={value => console.log(value)}
             placeholder={''}
-            value={ExhiUser === undefined ? dataUser.country_name : 'Thailand'}
+            value={ExhiUser ? dataUser.country_name : 'Thailand'}
             items={country}
             style={styles.picker}
             Icon={() => {
@@ -137,16 +142,17 @@ const Profile = ({navigation, dispatch, authUser}) => {
           <Text style={styles.texttopic}>{I18n.t('Address')}</Text>
           <TextInput
             defaultValue={
-              ExhiUser === undefined
+              ExhiUser
                 ? dataUser.address
-                : ExhiUser.addressEn.address +
-                  ' ' +
-                  ExhiUser.addressEn.subdistrict +
-                  ' ' +
-                  ExhiUser.addressEn.district +
-                  ' ' +
-                  ExhiUser.addressEn.province +
-                  ' ' +
+                : ExhiUser.member != undefined &&
+                  ExhiUser.addressEn.address + ' ' + ExhiUser.member !=
+                    undefined &&
+                  ExhiUser.addressEn.subdistrict + ' ' + ExhiUser.member !=
+                    undefined &&
+                  ExhiUser.addressEn.district + ' ' + ExhiUser.member !=
+                    undefined &&
+                  ExhiUser.addressEn.province + ' ' + ExhiUser.member !=
+                    undefined &&
                   ExhiUser.addressEn.postcode
             }
             multiline

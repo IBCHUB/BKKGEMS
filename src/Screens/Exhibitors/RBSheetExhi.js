@@ -136,9 +136,7 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet}) => {
       <View style={styles.viewsort}>
         <View />
         <Text style={styles.textsort}>Filters</Text>
-        <TouchableOpacity
-          onPress={() => refRBSheet.current.close()}
-          style={{alignSelf: 'center'}}>
+        <TouchableOpacity onPress={onPress} style={{alignSelf: 'center'}}>
           <EvilIcons name="close" size={25} color={'#000'} />
         </TouchableOpacity>
       </View>
@@ -239,8 +237,8 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              refRBSheet.current.close();
-              navigation.navigate('Search');
+              onPress();
+              navigation.navigate('Search', {item: {selectedId, selectedtags}});
             }}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>

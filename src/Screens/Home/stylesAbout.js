@@ -48,7 +48,13 @@ const styles = StyleSheet.create({
     width: width * 0.5,
     height: 200,
     alignSelf: 'center',
-    marginTop: -40,
+    marginTop: -20,
+  },
+  imgsa: {
+    width: width * 0.75,
+    height: 100,
+    alignSelf: 'center',
+    marginTop: -20,
   },
   textHeader: {
     fontSize: 22,

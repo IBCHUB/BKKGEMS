@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -15,7 +15,36 @@ import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RBSheetHome from '../Home/RBSheetHome';
-const Suppliers = ({navigation}) => {
+import {connect} from 'react-redux';
+import Autocomplete from 'react-native-autocomplete-input';
+import {Search} from '../../action/data.action';
+const Suppliers = ({navigation, dispatch}) => {
+  const [state, setstate] = useState();
+  const [query, setQuery] = useState('');
+  console.log(query);
+  const test = text => {
+    setQuery(text);
+
+    _Search(text);
+  };
+
+  const _Search = async values => {
+    console.log('xxxx');
+    try {
+      var request = 'text=' + values + '&type=' + '1';
+      const response = await dispatch(Search(request));
+      console.log('2222222>>>>>>', response);
+      if (response.res_code == '00') {
+        setstate(response.res_result);
+        // console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _Search();
+  }, []);
   const refRBSheet = useRef();
   return (
     <View style={styles.container}>
@@ -39,7 +68,12 @@ const Suppliers = ({navigation}) => {
               height: '60%',
             },
           }}>
-          <RBSheetHome onPress={() => refRBSheet.current.close()} />
+          <RBSheetHome
+            onPress={() => {
+              refRBSheet.current.close();
+            }}
+            navigation={navigation}
+          />
         </RBSheet>
         <ScrollView style={{backgroundColor: '#EEECE2', paddingBottom: 50}}>
           <ImageBackground
@@ -55,19 +89,52 @@ const Suppliers = ({navigation}) => {
                     name="search"
                     size={18}
                     color={'#44444480'}
-                    style={styles.icon}
+                    style={[styles.icon, {marginRight: 3}]}
                   />
-                  <TextInput
-                    clearButtonMode="always"
+                  <Autocomplete
+                    data={state}
+                    value={query}
+                    hideResults={query.length == 0 ? true : false}
+                    autoCorrect={false}
                     placeholder="What are you looking for?"
+                    onChangeText={text => {
+                      test(text);
+                    }}
+                    flatListProps={{
+                      keyExtractor: (_, idx) => idx,
+                      renderItem: ({item}) => {
+                        return (
+                          <TouchableOpacity
+                            onPress={() =>
+                              navigation.navigate('Search', {item})
+                            }>
+                            <Text
+                              style={{
+                                fontSize: 16,
+                                padding: 3,
+                                fontFamily: 'Cantoria MT Std',
+                              }}>
+                              {item}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      },
+                    }}
                     style={styles.input}
-                    // onChangeText={e => {
-                    //   SearchSubmit(e);
-                    // }}
+                    listContainerStyle={{
+                      width: 280,
+                      marginTop: 38,
+                      zIndex: 999,
+                      position: 'absolute',
+                      borderRadius: 5,
+                      backgroundColor: '#fff',
+                    }}
                   />
                 </View>
                 <TouchableOpacity
-                  onPress={() => refRBSheet.current.open()}
+                  onPress={() => {
+                    refRBSheet.current.open();
+                  }}
                   style={{alignSelf: 'center'}}>
                   <Image
                     source={require('../../../assets/image/icontouch.png')}
@@ -142,4 +209,8 @@ const Suppliers = ({navigation}) => {
   );
 };
 
-export default Suppliers;
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapDispatchToProps)(Suppliers);

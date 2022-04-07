@@ -116,13 +116,60 @@ const styles = StyleSheet.create({
     width: width,
     borderBottomWidth: 1,
     borderBottomColor: '#DAA560',
-    paddingHorizontal: 20,
+    paddingLeft: 20,
     paddingVertical: 20,
   },
   texttags: {
     fontSize: 14,
     color: '#646363',
     fontFamily: 'Cantoria MT Std',
+  },
+  roww: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: width * 0.9,
+    marginBottom: 10,
+  },
+  line: {
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#DAA560',
+  },
+  buttonflat: {
+    width: width * 0.45,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.5,
+    elevation: 2,
+    height: 180,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+  },
+  imgflat: {
+    width: width * 0.4,
+    height: 150,
+    alignSelf: 'center',
+  },
+  text: {
+    fontSize: 14,
+    fontFamily: 'Cantoria MT Std',
+    color: '#646363',
+    alignSelf: 'center',
+  },
+  imgflat1: {
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+  },
+  text1: {
+    fontSize: 14,
+    fontFamily: 'Cantoria MT Std',
+    color: '#646363',
+    alignSelf: 'center',
+    width: width * 0.25,
   },
 });
 

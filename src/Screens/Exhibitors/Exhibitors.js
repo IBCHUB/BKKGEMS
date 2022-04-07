@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  ActivityIndicator,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headercomp from '../../Components/Headercomp';
@@ -15,51 +16,31 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
 import RBSheetExhi from './RBSheetExhi';
+import {connect} from 'react-redux';
+import {Exhibitor} from '../../action/data.action';
 
-const Exhibitors = ({navigation}) => {
-  const [data, setData] = useState([
-    {
-      img: require('../../../assets/image/exhi/1.png'),
-      text: 'GUANGXI WUZHOU STARSGEM CO., LTD',
-      icon: require('../../../assets/image/iocn/1.png'),
-    },
-    {
-      img: require('../../../assets/image/exhi/2.png'),
-      text: 'GUANGXI WUZHOU STARSGEM CO., LTD',
-      icon: require('../../../assets/image/iocn/2.png'),
-    },
-    {
-      img: require('../../../assets/image/exhi/3.png'),
-      text: 'A AND D PACKAGE CARD CO.,LTD.',
-      icon: require('../../../assets/image/iocn/3.png'),
-    },
-    {
-      img: require('../../../assets/image/exhi/4.png'),
-      text: '3 J JEWELRY CO., LTD.',
-      icon: require('../../../assets/image/iocn/4.png'),
-    },
-    {
-      img: require('../../../assets/image/exhi/5.png'),
-      text: 'A ROYAL CO.',
-      icon: require('../../../assets/image/iocn/5.png'),
-    },
-    {
-      img: require('../../../assets/image/exhi/1.png'),
-      text: 'A B IMPEX CO.,LTD.',
-      icon: require('../../../assets/image/iocn/6.png'),
-    },
-    {
-      img: require('../../../assets/image/exhi/2.png'),
-      text: 'A.M.G.JEWELRY (THAILAND) CO.,LTD.',
-      icon: require('../../../assets/image/iocn/7.png'),
-    },
-    {
-      img: require('../../../assets/image/exhi/4.png'),
-      text: 'A.J. THAI GEMS CO., LTD',
-      icon: require('../../../assets/image/iocn/8.png'),
-    },
-  ]);
+const Exhibitors = ({navigation, dispatch, authUser}) => {
   const refRBSheet = useRef();
+  const [data, setData] = useState([]);
+
+  const [offset, setOffset] = useState(1);
+  const _Exhibitor = async values => {
+    try {
+      var request = 'pageNumber=' + offset + '&pageSize=' + '10';
+      const response = await dispatch(Exhibitor(request));
+      console.log(response);
+      if (response.res_code == '00') {
+        setData(response.res_result);
+        setOffset(offset + 1);
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _Exhibitor();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -83,7 +64,12 @@ const Exhibitors = ({navigation}) => {
               height: '60%',
             },
           }}>
-          <RBSheetExhi refRBSheet={refRBSheet} navigation={navigation} />
+          <RBSheetExhi
+            onPress={() => {
+              refRBSheet.current.close();
+            }}
+            navigation={navigation}
+          />
         </RBSheet>
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <View style={styles.viewsearch}>
@@ -115,6 +101,7 @@ const Exhibitors = ({navigation}) => {
               data={data}
               numColumns={2}
               renderItem={({index, item}) => {
+                console.log(item);
                 return (
                   <View>
                     <TouchableOpacity
@@ -122,10 +109,18 @@ const Exhibitors = ({navigation}) => {
                         navigation.navigate('ExhibitorsDetail', {item});
                       }}
                       style={styles.buttonflat}>
-                      <Image style={styles.imgflat} source={item.img} />
+                      <Image
+                        style={styles.imgflat}
+                        source={{uri: item.company_cover}}
+                      />
                       <View style={styles.row}>
-                        <Image style={styles.imglogo} source={item.icon} />
-                        <Text style={styles.text}>{item.text}</Text>
+                        <Image
+                          style={styles.imglogo}
+                          source={{uri: item.company_logo}}
+                        />
+                        <Text numberOfLines={2} style={styles.text}>
+                          {item.company_name}
+                        </Text>
                       </View>
                     </TouchableOpacity>
                   </View>
@@ -156,4 +151,11 @@ const Exhibitors = ({navigation}) => {
   );
 };
 
-export default Exhibitors;
+const mapStateToProps = state => ({
+  authUser: state.authReducer.authUser,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Exhibitors);

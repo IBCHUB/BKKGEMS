@@ -20,6 +20,7 @@ const Headercomp = ({navigation, item}) => {
       </View>
       <View style={styles.row}>
         <TouchableOpacity
+          disabled
           onPress={() => navigation.navigate('Chat')}
           style={{marginRight: 20}}>
           <Image

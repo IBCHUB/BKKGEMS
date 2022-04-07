@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   viewback: {
     backgroundColor: '#000',
-    position: 'relative',
+    // position: 'relative',
   },
   imgtop: {
     width: width,
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     marginLeft: -60,
   },
   viewon: {
-    zIndex: 99,
     position: 'absolute',
     width: width,
     justifyContent: 'center',
@@ -44,6 +43,8 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     alignSelf: 'center',
     marginLeft: 10,
+    // position: 'absolute',
+    zIndex: 999,
   },
   viewinsearch: {
     flexDirection: 'row',
@@ -54,13 +55,14 @@ const styles = StyleSheet.create({
   icon: {
     alignSelf: 'center',
     marginLeft: 5,
+    marginRight: 7,
     zIndex: 99,
   },
   input: {
     width: 270,
-    height: 35,
+    height: 30,
     marginLeft: 10,
-    borderRadius: 10,
+    borderRadius: 20,
     fontSize: 14,
     color: '#888888',
     fontFamily: 'Cantoria MT Std',
@@ -76,6 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 70,
     paddingVertical: 10,
     backgroundColor: 'rgba(47,47,47,0.7),rgba(16,16,16,1)',
+    position: 'relative',
   },
 
   imgpre: {

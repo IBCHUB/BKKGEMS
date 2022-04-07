@@ -297,7 +297,7 @@ function ScreenStack() {
       <Stack.Screen name="Inmylist" component={Inmylist} />
       <Stack.Screen name="Myfavorite" component={Myfavorite} />
       <Stack.Screen name="Pagechat" component={Pagechat} />
-
+      <Stack.Screen name="Search" component={Search} />
       {/* <Stack.Screen name="News" component={News} />
       <Stack.Screen name="NewDetail" component={NewDetail} /> */}
       {/* <Stack.Screen name="Event" component={Event} /> */}

@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignSelf: 'center',
     fontFamily: 'Cantoria MT Std',
+    width: width * 0.3,
   },
   row1: {
     flexDirection: 'row',

@@ -276,6 +276,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
               onBlur={() => setFieldTouched('email')}
               value={values.email}
             />
+
             {/* {errors.email && touched.email && (
               <Text
                 style={{
@@ -315,13 +316,14 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
                 )}
               </TouchableOpacity>
             </View>
-
+            <View style={{marginTop: 30}} />
             <View style={[styles.row, {marginTop: 25}]}>
               <Text style={styles.text}>Don’t have an account yet? </Text>
               <TouchableOpacity onPress={onPress} style={styles.up}>
                 <Text style={styles.textup}>Sign Up</Text>
               </TouchableOpacity>
             </View>
+
             <TouchableOpacity
               onPress={() => {
                 setmodal(true);
@@ -329,6 +331,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
               style={[styles.up, {marginTop: 10}]}>
               <Text style={styles.textup}>Forgot your password?</Text>
             </TouchableOpacity>
+            <View style={{marginTop: 30}} />
             <TouchableOpacity
               onPress={handleSubmit}
               style={styles.buttonsignup}>
@@ -338,7 +341,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
         )}
       </Formik>
 
-      <View style={styles.viewor}>
+      {/* <View style={styles.viewor}>
         <View style={styles.lineror} />
         <Text style={styles.textor}>or</Text>
         <View style={styles.lineror} />
@@ -355,7 +358,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
           style={{alignSelf: 'center', marginRight: 10}}
         />
         <Text style={styles.textexhi}>EXHIBITOR - LOGIN</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

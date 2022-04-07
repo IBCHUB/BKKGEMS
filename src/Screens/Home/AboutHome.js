@@ -4,7 +4,11 @@ import styles from './stylesAbout';
 
 const AboutHome = ({navigation}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {position: 'relative'}]}>
+      <Image
+        source={require('../../../assets/image/sa.png')}
+        style={styles.imgsa}
+      />
       <Image
         source={require('../../../assets/image/imgjewelry.png')}
         style={styles.imgjew}

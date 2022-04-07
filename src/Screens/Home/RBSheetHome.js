@@ -16,6 +16,7 @@ import {connect} from 'react-redux';
 const {width, height} = Dimensions.get('window');
 const RBSheetHome = ({onPress, navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
+  console.log(selectedId);
   const [checked, setChecked] = useState(false);
   const [tags, settags] = useState([]);
   const isChecked = id => {
@@ -48,6 +49,7 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
     },
   ];
   const [selectedtags, setselectedtags] = useState([]);
+  console.log(selectedtags);
   const [checkedtags, setCheckedtags] = useState(false);
   const isCheckedtags = id => {
     const isChecktags = selectedtags.includes(id);
@@ -212,7 +214,10 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
             <Text style={styles.textouch}>CLEAR</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Search')}
+            onPress={() => {
+              onPress();
+              navigation.navigate('Search', {item: {selectedId, selectedtags}});
+            }}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>
           </TouchableOpacity>
