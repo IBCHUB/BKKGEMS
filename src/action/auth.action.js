@@ -150,6 +150,26 @@ export const contactUs = payload => {
     }
   };
 };
+export const contactadd = payload => {
+  return async dispatch => {
+    try {
+      const response = await fetchApi(
+        'api/contact_send',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 
 export const logoutUser = payload => {
   return async (dispatch, getState) => {

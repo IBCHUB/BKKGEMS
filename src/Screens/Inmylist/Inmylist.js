@@ -74,7 +74,7 @@ const Inmylist = ({navigation, route, dispatch}) => {
   }, []);
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback item={item.my_list_name} navigation={navigation} />
         {selectedId.length === 0 ? (
           <View style={[styles.viewrow, {opacity: 0.5}]}>

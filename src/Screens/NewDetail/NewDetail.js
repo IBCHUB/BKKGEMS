@@ -42,27 +42,10 @@ const NewDetail = ({navigation, route}) => {
     }
   };
 
-  const [data, setData] = useState([
-    {
-      text: 'COVID',
-    },
-    {
-      text: 'EVENT',
-    },
-    {
-      text: 'FAIR',
-    },
-    {
-      text: 'NEWS',
-    },
-    {
-      text: 'VISITOR',
-    },
-  ]);
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <Headerback navigation={navigation} />
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
+        <Headerback navigation={navigation} item={item.blog_title} />
         <ScrollView style={{backgroundColor: '#EEECE2', marginBottom: 20}}>
           <Image source={{uri: item.blog_img}} style={styles.imgHeader} />
           <Text style={styles.textheader}>{item.blog_title}</Text>

@@ -48,7 +48,7 @@ const Suppliers = ({navigation, dispatch}) => {
   const refRBSheet = useRef();
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback navigation={navigation} />
         <RBSheet
           ref={refRBSheet}

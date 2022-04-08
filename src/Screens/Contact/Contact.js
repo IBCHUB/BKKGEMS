@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Modal,
+  Dimensions,
 } from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import Headerback from '../../Components/Headerback';
@@ -18,7 +19,7 @@ import * as yup from 'yup';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {contactUs} from '../../action/auth.action';
-
+import AutoHeightWebView from 'react-native-autoheight-webview';
 const Contact = ({navigation, dispatch}) => {
   const [modal, setmodal] = useState(false);
   const _contactUs = async values => {
@@ -85,7 +86,7 @@ const Contact = ({navigation, dispatch}) => {
           </View>
         </View>
       </Modal>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback navigation={navigation} item={'CONTACT US'} />
         <ScrollView style={{backgroundColor: '#000', marginBottom: 10}}>
           <Formik
@@ -120,6 +121,7 @@ const Contact = ({navigation, dispatch}) => {
                 <View style={styles.viewinput}>
                   <TextInput
                     style={styles.input}
+                    placeholderTextColor="#646363"
                     placeholder="Name"
                     onChangeText={handleChange('name')}
                     onBlur={() => setFieldTouched('name')}
@@ -127,6 +129,7 @@ const Contact = ({navigation, dispatch}) => {
                   />
                   <TextInput
                     style={styles.input}
+                    placeholderTextColor="#646363"
                     placeholder="Company"
                     onChangeText={handleChange('company')}
                     onBlur={() => setFieldTouched('company')}
@@ -134,6 +137,7 @@ const Contact = ({navigation, dispatch}) => {
                   />
                   <TextInput
                     style={styles.input}
+                    placeholderTextColor="#646363"
                     placeholder="Email"
                     autoCapitalize="none"
                     onChangeText={handleChange('email')}
@@ -142,6 +146,7 @@ const Contact = ({navigation, dispatch}) => {
                   />
                   <TextInput
                     style={styles.input}
+                    placeholderTextColor="#646363"
                     placeholder="Subject"
                     onChangeText={handleChange('subject')}
                     onBlur={() => setFieldTouched('subject')}
@@ -149,6 +154,7 @@ const Contact = ({navigation, dispatch}) => {
                   />
                   <TextInput
                     style={styles.input1}
+                    placeholderTextColor="#646363"
                     placeholder="Type message..."
                     multiline
                     onChangeText={handleChange('message')}
@@ -206,6 +212,38 @@ const Contact = ({navigation, dispatch}) => {
               />
               <Text style={styles.textags1}>official@bkkgems.com</Text>
             </View>
+            <AutoHeightWebView
+              style={{
+                width: Dimensions.get('window').width - 15,
+                marginTop: 40,
+                height: 200,
+              }}
+              customScript={`document.body.style.background = 'lightyellow';`}
+              customStyle={`
+      * {
+        font-family: 'Times New Roman';
+      }
+      p {
+        font-size: 16px;
+      }
+    `}
+              onSizeUpdated={size => console.log(size.height)}
+              files={[
+                {
+                  href: 'cssfileaddress',
+                  type: 'text/css',
+                  rel: 'stylesheet',
+                },
+              ]}
+              source={{
+                html: `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.1391824422294!2d100.53843411483462!3d13.770479000570441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29eaff36c43ff%3A0xfa7be2811d3a6387!2sPhyathai%202%20Hospital!5e0!3m2!1sen!2sth!4v1572329537952!5m2!1sen!2sth" width="96%" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>`,
+              }}
+              scalesPageToFit={true}
+              viewportContent={'width=device-width, user-scalable=no'}
+              /*
+    other react-native-webview props
+    */
+            />
           </View>
         </ScrollView>
       </SafeAreaView>

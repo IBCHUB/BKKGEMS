@@ -44,7 +44,7 @@ const Exhibitors = ({navigation, dispatch, authUser}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headercomp item={'EXHIBITORS LIST'} navigation={navigation} />
         <RBSheet
           ref={refRBSheet}

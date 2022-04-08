@@ -52,7 +52,7 @@ const Profile = ({navigation, dispatch, authUser}) => {
   };
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <View style={styles.rowhead}>
           <TouchableOpacity
             style={styles.icon}

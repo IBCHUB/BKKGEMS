@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   },
   textsige: {
     alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
   },
   containerinput: {
     flexDirection: 'row',

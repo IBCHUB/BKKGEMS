@@ -153,7 +153,7 @@ const Pagechat = ({authUser, dispatch, route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerpage navigation={navigation} item={item.company_name} />
         <View style={styles.chat}>
           <GiftedChat

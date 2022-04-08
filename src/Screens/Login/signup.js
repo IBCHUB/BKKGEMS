@@ -19,7 +19,7 @@ const signup = ({navigation, onPress, dispatch}) => {
   const placeholder = {
     label: 'Country',
     value: null,
-    color: '#AFAFAF20',
+    color: '#646363',
   };
   const [body, setbody] = useState({
     securePassword: true,
@@ -176,6 +176,7 @@ const signup = ({navigation, onPress, dispatch}) => {
           <Fragment>
             <Input
               placeholder="Email"
+              placeholderTextColor="#646363"
               autoCapitalize="none"
               onChangeText={handleChange('email')}
               onBlur={() => setFieldTouched('email')}
@@ -196,6 +197,7 @@ const signup = ({navigation, onPress, dispatch}) => {
             <View style={styles.viewrow}>
               <Input
                 placeholder="Password"
+                placeholderTextColor="#646363"
                 autoCapitalize="none"
                 secureTextEntry={body.securePassword ? true : false}
                 onChangeText={handleChange('password')}
@@ -225,6 +227,7 @@ const signup = ({navigation, onPress, dispatch}) => {
             <View style={styles.viewrow}>
               <Input
                 placeholder="Re Type Password"
+                placeholderTextColor="#646363"
                 autoCapitalize="none"
                 secureTextEntry={body.secureRepassword ? true : false}
                 onChangeText={handleChange('repassword')}
@@ -253,6 +256,7 @@ const signup = ({navigation, onPress, dispatch}) => {
             </View>
             <Input
               placeholder="Full Name"
+              placeholderTextColor="#646363"
               autoCapitalize="none"
               onChangeText={handleChange('fullname')}
               onBlur={() => setFieldTouched('fullname')}
@@ -260,6 +264,7 @@ const signup = ({navigation, onPress, dispatch}) => {
             />
             <Input
               placeholder="Company Name"
+              placeholderTextColor="#646363"
               autoCapitalize="none"
               onChangeText={handleChange('company')}
               onBlur={() => setFieldTouched('company')}

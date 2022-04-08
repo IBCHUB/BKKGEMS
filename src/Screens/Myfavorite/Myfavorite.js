@@ -74,7 +74,7 @@ const Myfavorite = ({navigation, dispatch}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback item={'MY FAVORITE'} navigation={navigation} />
         <View style={styles.viewrow}>
           <TouchableOpacity

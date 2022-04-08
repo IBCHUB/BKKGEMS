@@ -56,7 +56,7 @@ const Faqs = ({navigation, dispatch}) => {
   }, []);
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback navigation={navigation} item={'FAQs'} />
         <ScrollView style={{backgroundColor: '#000'}}>
           <View style={styles.containerview}>

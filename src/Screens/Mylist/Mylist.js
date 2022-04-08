@@ -149,7 +149,7 @@ const Mylist = ({navigation, dispatch, LoadingCounters}) => {
           </View>
         </View>
       </Modal>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback item={'MY LIST'} navigation={navigation} />
         <View style={styles.viewrow}>
           <TouchableOpacity

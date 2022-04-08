@@ -75,7 +75,7 @@ const Home = ({navigation, dispatch, authData}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerhome navigation={navigation} />
         <RBSheet
           ref={refRBSheet}

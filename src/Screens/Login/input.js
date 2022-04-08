@@ -12,11 +12,13 @@ const input = ({
   secureTextEntry,
   onBlur,
   value,
+  placeholderTextColor,
 }) => {
   return (
     <View style={styles.containerinput}>
       <TextInput
-        placeholder={({color: '#AFAFAF'}, placeholder)}
+        placeholder={placeholder}
+        placeholderTextColor={placeholderTextColor}
         onChangeText={onChangeText}
         style={styles.input}
         autoCapitalize={autoCapitalize}

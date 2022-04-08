@@ -88,7 +88,7 @@ const Hightligth = ({navigation, dispatch}) => {
   ]);
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
         <ScrollView style={{backgroundColor: '#010302', height: '100%'}}>
           <View style={{marginBottom: 90}}>

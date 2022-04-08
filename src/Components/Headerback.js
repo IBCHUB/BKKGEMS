@@ -18,7 +18,9 @@ const Headerback = ({navigation, item}) => {
         />
       </TouchableOpacity>
       <View style={styles.row}>
-        <Text style={styles.texthead}>{item}</Text>
+        <Text numberOfLines={1} style={styles.texthead}>
+          {item}
+        </Text>
       </View>
       <View style={styles.row}>
         <TouchableOpacity

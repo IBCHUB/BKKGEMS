@@ -12,7 +12,7 @@ import Signup from './signup';
 import styles from './styles';
 
 const Login = ({navigation}) => {
-  const [page, setpage] = useState(0);
+  const [page, setpage] = useState(1);
 
   return (
     <View style={styles.container}>

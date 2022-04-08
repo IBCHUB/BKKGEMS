@@ -370,3 +370,27 @@ export const Exhibitor = payload => {
     }
   };
 };
+
+// Home
+export const Topic = payload => {
+  return async dispatch => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/get_bkkgem_info',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+// Home

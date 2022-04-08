@@ -4,7 +4,7 @@ export default {
   Supplier: '',
   ExhibitorsList: 'Exhibitor List',
   Highlight: '',
-  News: 'News',
+  News: 'News & Trends ',
   Visitor: 'For Visitor',
   PreRegistration: 'Pre-Registration',
   Admission: 'Admission',

@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   auto: {
-    width: '90%',
+    width: Dimensions.get('window').width * 0.9,
     marginTop: 10,
     alignSelf: 'center',
     fontSize: 18,

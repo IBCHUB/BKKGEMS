@@ -15,7 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 const About = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback navigation={navigation} item={'ABOUT FAIR'} />
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <Image

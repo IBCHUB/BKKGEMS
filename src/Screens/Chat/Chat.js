@@ -17,7 +17,7 @@ const Chat = ({navigation}) => {
   const [page, setpage] = useState(0);
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerchat item={'CHAT'} navigation={navigation} />
         <View style={styles.viewrow}>
           <TouchableOpacity

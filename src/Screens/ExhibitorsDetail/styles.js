@@ -314,6 +314,31 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 5,
   },
+  picker: {
+    placeholder: {
+      color: '#AFAFAF',
+      padding: 0,
+      marginTop: 5,
+      fontSize: 18,
+      paddingLeft: 15,
+    },
+    inputIOS: {
+      color: '#646363',
+
+      paddingRight: 30,
+      fontSize: 18,
+    },
+    inputAndroid: {
+      color: '#646363',
+      padding: 0,
+      margin: 0,
+      fontSize: 18,
+      paddingRight: 30,
+    },
+    iconContainer: {
+      right: 0,
+    },
+  },
 });
 
 export default styles;

@@ -142,7 +142,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
             </Text>
             <Formik
               initialValues={{
-                email: 'bhuri.sap@gmail.com',
+                email: '',
               }}
               onSubmit={values => {
                 _forgotPassword(values);
@@ -166,6 +166,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
                     onChangeText={handleChange('email')}
                     onBlur={() => setFieldTouched('email')}
                     value={values.email}
+                    placeholderTextColor="#646363"
                   />
                   <TouchableOpacity
                     onPress={handleSubmit}
@@ -248,8 +249,10 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       <View style={{marginTop: 50}} />
       <Formik
         initialValues={{
-          email: 'Santisook.tee@gmail.com',
-          password: '11111111',
+          email: '',
+          password: '',
+          // email: 'Santisook.tee@gmail.com',
+          // password: '11111111',
         }}
         onSubmit={values => {
           // console.log(values);
@@ -271,6 +274,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
           <Fragment>
             <Input
               placeholder="Email"
+              placeholderTextColor="#646363"
               autoCapitalize="none"
               onChangeText={handleChange('email')}
               onBlur={() => setFieldTouched('email')}
@@ -290,6 +294,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
             <View style={styles.viewrow}>
               <Input
                 placeholder="Password"
+                placeholderTextColor="#646363"
                 autoCapitalize="none"
                 secureTextEntry={body.securePassword ? true : false}
                 onChangeText={handleChange('password')}

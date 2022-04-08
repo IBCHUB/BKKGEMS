@@ -29,7 +29,7 @@ const Event = ({navigation}) => {
   ]);
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headercomp item={'EVENTS'} navigation={navigation} />
         <View style={styles.containerview}>
           <FlatList

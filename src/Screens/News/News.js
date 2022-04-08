@@ -48,8 +48,8 @@ const News = ({navigation, dispatch}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <Headercomp item={'NEWS'} navigation={navigation} />
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
+        <Headercomp item={'NEWS & TRENDS'} navigation={navigation} />
         <ScrollView style={styles.containerview}>
           <View style={{paddingBottom: 50}}>
             <View style={styles.viewsearch}>
@@ -61,6 +61,7 @@ const News = ({navigation, dispatch}) => {
               />
               <TextInput
                 placeholder="Search news or articles"
+                placeholderTextColor="#646363"
                 style={styles.input}
                 // onChangeText={setsearch}
               />

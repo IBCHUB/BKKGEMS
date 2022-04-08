@@ -17,7 +17,7 @@ import styles from './styles';
 const Meeting = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback navigation={navigation} item={'REQUEST MEETING'} />
       </SafeAreaView>
     </View>
