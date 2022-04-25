@@ -17,6 +17,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {connect} from 'react-redux';
 import {Faq} from '../../action/data.action';
 import AutoHeightWebView from 'react-native-autoheight-webview';
+import Animated from 'react-native-reanimated';
 const Faqs = ({navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
   const [faqs, setFaqs] = useState([]);
@@ -65,7 +66,7 @@ const Faqs = ({navigation, dispatch}) => {
               renderItem={({index, item}) => {
                 console.log(item);
                 return (
-                  <View>
+                  <Animated.View>
                     <TouchableOpacity
                       onPress={() => {
                         handleCheckBox(item.faq_id);
@@ -80,7 +81,7 @@ const Faqs = ({navigation, dispatch}) => {
                       />
                     </TouchableOpacity>
                     {isChecked(item.faq_id) && (
-                      <View style={styles.containertags}>
+                      <Animated.View style={styles.containertags}>
                         <AutoHeightWebView
                           style={styles.auto}
                           source={{
@@ -99,10 +100,11 @@ const Faqs = ({navigation, dispatch}) => {
                              font-size: 16px !important;
                            }
                          `}
+                        
                         />
-                      </View>
+                      </Animated.View>
                     )}
-                  </View>
+                  </Animated.View>
                 );
               }}
             />

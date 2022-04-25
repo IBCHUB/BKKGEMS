@@ -10,6 +10,7 @@ import {
   FlatList,
   ScrollView,
   Alert,
+  Linking,
 } from 'react-native';
 import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -17,27 +18,40 @@ import {useIsFocused, CommonActions} from '@react-navigation/native';
 import I18n from '../utils/I18n';
 import {logoutUser} from '../action/auth.action';
 import {connect} from 'react-redux';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 
-const CustomDrawerContent = ({props, dispatch, navigation}) => {
+const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
   const [language, setlanguage] = useState('TH');
+  console.log(authUser.isSkip);
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <View style={{backgroundColor: '#232323', height: '100%'}}>
         <ScrollView style={{marginBottom: 80}}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Profile');
-            }}
-            style={styles.row}>
-            <Image
-              source={require('../../assets/image/profile.png')}
-              style={styles.imgprofile}
-            />
-            <Text style={styles.texthead}>dataUser</Text>
-          </TouchableOpacity>
+          {authUser.token === null ? (
+            <View style={styles.row}>
+              <Image
+                source={require('../../assets/image/profile.png')}
+                style={styles.imgprofile}
+              />
+              <Text style={styles.texthead}></Text>
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Profile');
+              }}
+              style={styles.row}>
+              <Image
+                source={require('../../assets/image/profile.png')}
+                style={styles.imgprofile}
+              />
+              <Text style={styles.texthead}>dataUser</Text>
+            </TouchableOpacity>
+          )}
+
           <View style={styles.liner} />
           <View style={{marginBottom: 20}}>
             <TouchableOpacity
@@ -87,31 +101,55 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             </TouchableOpacity>
             {visitor === true && (
               <View>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    Linking.openURL(
+                      'https://pre.eventthai.com/home/register/visitor',
+                    );
+                  }}>
                   <Text style={styles.touchindrawer}>
                     {I18n.t('PreRegistration')}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Adminsion');
+                  }}>
                   <Text style={styles.touchindrawer}>
                     {I18n.t('Admission')}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    Linking.openURL(
+                      'https://bkkgem2022.ibusiness.co.th/data/file/visitor/visitor_seminar.pdf',
+                    );
+                  }}>
                   <Text style={styles.touchindrawer}>{I18n.t('Seminar')}</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    Linking.openURL(
+                      'https://about.thaitrade.com/business-matching/guest',
+                    );
+                  }}>
                   <Text style={styles.touchindrawer}>
                     {I18n.t('BusinessMatching')}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Plan');
+                  }}>
                   <Text style={styles.touchindrawer}>
                     {I18n.t('FloorPlan')}
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Guide');
+                  }}>
                   <Text style={styles.touchindrawer}>
                     {I18n.t('VisitorGuide')}
                   </Text>
@@ -148,10 +186,16 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </View>
           <View style={styles.liner} />
           <View style={{marginBottom: 20}}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Term');
+              }}>
               <Text style={styles.touchdrawer}>{I18n.t('Terms')}</Text>
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Survey');
+              }}>
               <Text style={styles.touchdrawer}>
                 {I18n.t('SatisfactionSurvey')}
               </Text>
@@ -226,19 +270,28 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             )}
           </View>
           <View style={styles.liner} />
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(logoutUser());
-            }}>
-            <Text style={styles.logout}>{I18n.t('Logout')}</Text>
-          </TouchableOpacity>
+          {authUser.token === null ? (
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(logoutUser());
+              }}>
+              <Text style={styles.logout}>Sign in</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(logoutUser());
+              }}>
+              <Text style={styles.logout}>{I18n.t('Logout')}</Text>
+            </TouchableOpacity>
+          )}
         </ScrollView>
       </View>
     </View>
   );
 };
 const mapStateToProps = state => ({
-  authUser: state.authReducer.authUser,
+  authUser: state.authReducer.authData,
 });
 const mapDispatchToProps = dispatch => ({
   dispatch,

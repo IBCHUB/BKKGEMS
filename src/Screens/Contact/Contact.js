@@ -9,8 +9,8 @@ import {
   ImageBackground,
   Modal,
   Dimensions,
+  TextInput,
 } from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import {connect} from 'react-redux';

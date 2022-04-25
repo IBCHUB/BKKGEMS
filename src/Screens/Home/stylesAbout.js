@@ -37,12 +37,20 @@ const styles = StyleSheet.create({
     borderRightColor: 'transparent',
     borderTopWidth: width * 0.225,
     borderTopColor: '#1D1D1D',
+    alignSelf: 'center',
   },
   logob: {
     width: 30,
     height: 10,
     alignSelf: 'center',
     marginTop: 20,
+  },
+  logob1: {
+    width: 10,
+    height: 10,
+    alignSelf: 'center',
+    position: 'absolute',
+    marginTop: -50,
   },
   imgjew: {
     width: width * 0.5,

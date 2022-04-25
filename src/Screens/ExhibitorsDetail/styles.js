@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   logo: {
-    width: 70,
-    height: 70,
+    width: 80,
+    height: 80,
     alignSelf: 'center',
     marginTop: -20,
     shadowColor: '#000',
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.5,
     elevation: 2,
+    borderRadius: 45,
   },
   textTopic: {
     fontSize: 18,

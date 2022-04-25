@@ -30,6 +30,11 @@ import {
   Inmylist,
   Myfavorite,
   Pagechat,
+  Adminsion,
+  Plan,
+  Guide,
+  Term,
+  Survey,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
@@ -269,8 +274,9 @@ function TabStackScreen(navigation) {
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
+                  width: focused ? 40 : 35,
                 }}>
-                NEWS
+                NEWS & TRENDS
               </Text>
             </View>
           ),
@@ -298,12 +304,12 @@ function ScreenStack() {
       <Stack.Screen name="Myfavorite" component={Myfavorite} />
       <Stack.Screen name="Pagechat" component={Pagechat} />
       <Stack.Screen name="Search" component={Search} />
-      {/* <Stack.Screen name="News" component={News} />
-      <Stack.Screen name="NewDetail" component={NewDetail} /> */}
-      {/* <Stack.Screen name="Event" component={Event} /> */}
-      {/* <Stack.Screen name="Login" component={Login} /> */}
+      <Stack.Screen name="Adminsion" component={Adminsion} />
+      <Stack.Screen name="Plan" component={Plan} />
+      <Stack.Screen name="Guide" component={Guide} />
+      <Stack.Screen name="Term" component={Term} />
+      <Stack.Screen name="Survey" component={Survey} />
       {/* <Stack.Screen name="Home" component={Home} /> */}
-      {/* <Stack.Screen name="About" component={About} /> */}
     </Stack.Navigator>
   );
 }
@@ -327,12 +333,16 @@ function DrawerStack() {
 }
 
 const Routes = ({dispatch, authData, LoadingCounters}) => {
-  // console.log(authData.isLoggedIn);
+  // console.log(authData);
   return (
     <NavigationContainer>
       {LoadingCounters > 0 && <Loader />}
       {/* {authData.isLoggedIn === true ? LoginStackScreen() : DrawerStack()} */}
-      {authData.isLoggedIn === true ? <DrawerStack /> : <LoginStackScreen />}
+      {authData.isLoggedIn || authData.isSkip === true ? (
+        <DrawerStack />
+      ) : (
+        <LoginStackScreen />
+      )}
     </NavigationContainer>
   );
 };

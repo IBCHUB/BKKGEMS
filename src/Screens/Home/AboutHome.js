@@ -29,14 +29,14 @@ const AboutHome = ({navigation}) => {
           <Text style={styles.textbutton}>Read More</Text>
         </TouchableOpacity>
         <View style={styles.row}>
-          <Image
+          {/* <Image
             source={require('../../../assets/image/logoDITP.png')}
             style={styles.logoditp}
           />
           <Image
             source={require('../../../assets/image/logo100.png')}
             style={styles.logo100}
-          />
+          /> */}
         </View>
       </View>
       <Text style={styles.textalin}>
@@ -73,7 +73,12 @@ const AboutHome = ({navigation}) => {
           style={styles.logob}
         />
       </View>
-      <View style={styles.bar} />
+      <View style={styles.bar}>
+        <Image
+          source={require('../../../assets/image/123.png')}
+          style={styles.logob1}
+        />
+      </View>
     </View>
   );
 };

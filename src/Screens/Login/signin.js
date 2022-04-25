@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,12 @@ import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {loginUser, forgotPassword, Exhibitorslogin} from 'actions/auth.action';
+import {
+  loginUser,
+  forgotPassword,
+  Exhibitorslogin,
+  loginSkip,
+} from 'actions/auth.action';
 import {connect} from 'react-redux';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -36,58 +41,67 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
     });
   };
 
-  const Codeurl = async values => {
-    // console.log('::' + values);
-    let regex = /[?&]([^=#]+)=([^&#]*)/g,
-      params = {},
-      match;
-    while ((match = regex.exec(values))) {
-      params[match[1]] = match[2];
-    }
-    const {code} = params;
-    return code;
-  };
+  // const Codeurl = async values => {
+  //   // console.log('::' + values);
+  //   let regex = /[?&]([^=#]+)=([^&#]*)/g,
+  //     params = {},
+  //     match;
+  //   while ((match = regex.exec(values))) {
+  //     params[match[1]] = match[2];
+  //   }
+  //   const {code} = params;
+  //   return code;
+  // };
 
-  const loginurl = async values => {
-    const deepLink = getDeepLink('callback');
-    // https://sso.ditp.go.th/sso/auth?response_type=token&client_id=ssonticlient&redirect_uri=https://bkkgem2022.ibusiness.co.th/EXHIBITOR_LOGIN.php
-    const url = `https://sso.ditp.go.th/sso/index.php/auth?response_type=token&client_id=SS0047423&redirect_uri=${deepLink}&state=appditp`;
-    // console.log(await InAppBrowser.isAvailable());
+  // const loginurl = async values => {
+  //   const deepLink = getDeepLink('callback');
+  //   // https://sso.ditp.go.th/sso/auth?response_type=token&client_id=ssonticlient&redirect_uri=https://bkkgem2022.ibusiness.co.th/EXHIBITOR_LOGIN.php
+  //   const url = `https://sso.ditp.go.th/sso/index.php/auth?response_type=token&client_id=SS0047423&redirect_uri=${deepLink}&state=appditp`;
+  //   // console.log(await InAppBrowser.isAvailable());
+  //   try {
+  //     // await InAppBrowser.close();
+  //     if (await InAppBrowser.isAvailable()) {
+  //       const result = await InAppBrowser.openAuth(url, deepLink, {
+  //         // iOS Properties
+  //         ephemeralWebSession: false,
+  //         // Android Properties
+  //         showTitle: false,
+  //         enableUrlBarHiding: true,
+  //         enableDefaultShare: false,
+  //       }).then(response => {
+  //         if (response.type === 'success' && response.url) {
+  //           // console.log(getCode(response.url));
+  //           dispatch(Exhibitorslogin(getCode(response.url)));
+  //         }
+  //       });
+  //       // Alert.alert('Response', JSON.stringify(result));
+  //     } else {
+  //       Alert.alert('InAppBrowser is not supported :/');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     // Linking.openURL(url);
+  //   }
+  // };
+  // function getCode(url) {
+  //   let regex = /[?&]([^=#]+)=([^&#]*)/g,
+  //     params = {},
+  //     match;
+  //   while ((match = regex.exec(url))) {
+  //     params[match[1]] = match[2];
+  //   }
+  //   const {code} = params;
+  //   return code;
+  // }
+  const _loginSkip = async values => {
     try {
-      // await InAppBrowser.close();
-      if (await InAppBrowser.isAvailable()) {
-        const result = await InAppBrowser.openAuth(url, deepLink, {
-          // iOS Properties
-          ephemeralWebSession: false,
-          // Android Properties
-          showTitle: false,
-          enableUrlBarHiding: true,
-          enableDefaultShare: false,
-        }).then(response => {
-          if (response.type === 'success' && response.url) {
-            // console.log(getCode(response.url));
-            dispatch(Exhibitorslogin(getCode(response.url)));
-          }
-        });
-        // Alert.alert('Response', JSON.stringify(result));
-      } else {
-        Alert.alert('InAppBrowser is not supported :/');
-      }
-    } catch (error) {
-      console.error(error);
-      // Linking.openURL(url);
-    }
+      const response = await dispatch(loginSkip({}));
+      console.log('>>>>', response);
+    } catch (error) {}
   };
-  function getCode(url) {
-    let regex = /[?&]([^=#]+)=([^&#]*)/g,
-      params = {},
-      match;
-    while ((match = regex.exec(url))) {
-      params[match[1]] = match[2];
-    }
-    const {code} = params;
-    return code;
-  }
+  // useEffect(() => {
+  //   _loginSkip();
+  // }, []);
 
   const _loginUser = async values => {
     try {
@@ -249,10 +263,10 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       <View style={{marginTop: 50}} />
       <Formik
         initialValues={{
-          email: '',
-          password: '',
-          // email: 'Santisook.tee@gmail.com',
-          // password: '11111111',
+          // email: '',
+          // password: '',
+          email: 'Santisook.tee@gmail.com',
+          password: '11111111',
         }}
         onSubmit={values => {
           // console.log(values);
@@ -345,7 +359,11 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
           </Fragment>
         )}
       </Formik>
-
+      <TouchableOpacity
+        onPress={() => _loginSkip()}
+        style={styles.buttonsignup1}>
+        <Text style={styles.textsigeup1}>SKIP LOG - IN</Text>
+      </TouchableOpacity>
       {/* <View style={styles.viewor}>
         <View style={styles.lineror} />
         <Text style={styles.textor}>or</Text>

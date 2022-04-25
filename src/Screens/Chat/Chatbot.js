@@ -16,11 +16,28 @@ import SocketIOClient from 'socket.io-client';
 import {GiftedChat, InputToolbar, Send} from 'react-native-gifted-chat';
 import {connect} from 'react-redux';
 import styles from './styles';
+import {createTokenChat} from '../../action/data.action';
+
 const {width, height} = Dimensions.get('window');
-const Chatbot = dispatch => {
+function Chatbot({dispatch}) {
   const [messages, setMessages] = useState([]);
 
+  const _CreatechatToken = async value => {
+    try {
+      const response = await dispatch(createTokenChat());
+      // console.log('KKKKKKKKK', response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    _CreatechatToken();
     setMessages([
       {
         _id: 1,
@@ -34,6 +51,7 @@ const Chatbot = dispatch => {
       },
     ]);
   }, []);
+
   const onSend = useCallback((messages = []) => {
     setMessages(previousMessages =>
       GiftedChat.append(previousMessages, messages),
@@ -114,7 +132,7 @@ const Chatbot = dispatch => {
       />
     </View>
   );
-};
+}
 
 // const mapStateToProps = state => ({
 

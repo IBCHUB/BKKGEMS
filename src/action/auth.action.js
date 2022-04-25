@@ -42,6 +42,28 @@ export const loginUser = payload => {
   };
 };
 
+export const loginSkip = payload => {
+  return async dispatch => {
+    try {
+      const response = {res_code: '00'};
+      console.log(response);
+      if (response.res_code === '00') {
+        dispatch({
+          type: 'AUTH_USER_SKIP',
+        });
+        return response;
+      } else {
+        dispatch({
+          type: 'AUTH_USER_FAIL',
+        });
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 export const registerUser = payload => {
   return async dispatch => {
     try {

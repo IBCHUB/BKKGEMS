@@ -27,7 +27,7 @@ const Home = ({navigation, dispatch, authData}) => {
   const refRBSheet = useRef();
   const [state, setstate] = useState();
   const [query, setQuery] = useState('');
-  console.log(query);
+  // console.log(query);
   const _loginUser = async values => {
     try {
       const response = await dispatch(getUser());
@@ -55,16 +55,16 @@ const Home = ({navigation, dispatch, authData}) => {
   };
 
   const _Search = async values => {
-    console.log('xxxx');
+    // console.log('xxxx');
     try {
       var request = 'text=' + values + '&type=' + '1';
       const response = await dispatch(Search(request));
-      console.log('2222222>>>>>>', response);
+      // console.log('2222222>>>>>>', response);
       if (response.res_code == '00') {
         setstate(response.res_result);
         // console.log('1111');
       } else {
-        console.log('2222');
+        // console.log('2222');
       }
     } catch (error) {}
   };

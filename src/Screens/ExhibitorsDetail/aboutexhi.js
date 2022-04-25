@@ -1,53 +1,54 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, Linking} from 'react-native';
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const aboutexhi = () => {
+const aboutexhi = ({detail}) => {
+  console.log(detail);
   return (
     <View style={styles.containerabout}>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>BRAND</Text>
-        <Text style={styles.textconten}>Gold Stone</Text>
+        <Text style={styles.textconten}>{detail.brand}</Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>CATEGORY</Text>
-        <Text style={styles.textconten}>Gemstones</Text>
+        <Text style={styles.textconten}>{detail.product_category_name_en}</Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>BOOTH</Text>
-        <Text style={styles.textconten}>1234</Text>
+        <Text style={styles.textconten}>
+          {detail.booth_no === '' ? '-' : detail.booth_no}
+        </Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>CONTACT NAME</Text>
         <Text style={styles.textconten}>
-          Mr. Gopal Madhu 1249 Gems Tower, 10Th Floor , Suite 117 A, Charoen
-          Krung , Bang Rak, Bangkok 10500 Thailand
+          {detail.contact} {detail.company_address}
         </Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>ADDRESS</Text>
-        <Text style={styles.textconten}>669 5958 5490</Text>
+        <Text style={styles.textconten}>{detail.company_phone}</Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>TELEPHONE</Text>
-        <Text style={styles.textconten}>669 5958 5490</Text>
+        <Text style={styles.textconten}>
+          {detail.contact_phone === null ? '-' : detail.contact_phone}
+        </Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>MOBILE FAX</Text>
-        <Text style={styles.textconten}>66 2595 8549</Text>
+        <Text style={styles.textconten}>
+          {detail.company_fax === '' ? '-' : detail.company_fax}
+        </Text>
       </View>
       <View style={styles.liner} />
       {/* ABOUT */}
       <Text style={styles.textsupabout}>ABOUT</Text>
-      <Text style={styles.textdetailabout}>
-        For over 20 years, Golden Stone is recognized as a major influence that
-        continues to shape the jewelry industry in Historic Jewelry District of
-        Downtown Los Angeles with its meticulously handcrafted one-of-a-kind
-        creations that redefine luxury in Fine Jewelry.
-      </Text>
+      <Text style={styles.textdetailabout}>{detail.about}</Text>
       <Text style={styles.textsupabout}>SOCIAL MEDIA</Text>
       <View style={styles.rowsocial}>
         <TouchableOpacity style={styles.listsocial}>
@@ -76,16 +77,22 @@ const aboutexhi = () => {
         </TouchableOpacity>
       </View>
       <Text style={[styles.textsupabout, {marginTop: 20}]}>VIDEO</Text>
-      <TouchableOpacity style={styles.rowsocial}>
+      <TouchableOpacity
+        onPress={() => {
+          Linking.openURL(detail.video_full_url);
+        }}
+        style={styles.rowsocial}>
         <Image
           source={require('../../../assets/image/Iconvedio.png')}
           style={styles.vedio}
         />
-        <Text style={styles.textconten}>Company Presentation 2021</Text>
+        <Text style={styles.textconten}>
+          Company Presentation {detail.year}
+        </Text>
       </TouchableOpacity>
       <Text style={[styles.textsupabout, {marginTop: 20}]}>DOWNLOAD</Text>
       <TouchableOpacity style={styles.buttondowload}>
-        <Text style={styles.textpage}>Catalog 2021</Text>
+        <Text style={styles.textpage}>Catalog {detail.year}</Text>
         <Ionicons
           name="download-outline"
           size={20}

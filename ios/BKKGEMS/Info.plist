@@ -23,20 +23,25 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.11</string>
+	<string>1.13</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
-	</dict>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <true/>
+  </dict>
+<!--	<key>NSAppTransportSecurity</key>-->
+<!--	<dict>-->
+<!--		<key>NSExceptionDomains</key>-->
+<!--		<dict>-->
+<!--			<key>localhost</key>-->
+<!--			<dict>-->
+<!--				<key>NSExceptionAllowsInsecureHTTPLoads</key>-->
+<!--				<true/>-->
+<!--			</dict>-->
+<!--		</dict>-->
+<!--	</dict>-->
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location will be displayed on the Map and used for directions, finding nearby ATM location search, and estimated travel time.</string>
 	<key>UIAppFonts</key>

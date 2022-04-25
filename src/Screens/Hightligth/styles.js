@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     alignSelf: 'center',
+    borderRadius: 10,
   },
   text: {
     fontSize: 12,
@@ -76,6 +77,26 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: 'center',
+  },
+  FloatingActionButtonStyle: {
+    position: 'absolute',
+    width: 40,
+    height: 40,
+    backgroundColor: '#DAA560',
+    transform: [{rotate: '45deg'}],
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 100,
+    borderColor: '#000000',
+    shadowColor: '#00000029',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
   },
 });
 

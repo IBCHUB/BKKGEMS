@@ -359,7 +359,28 @@ export const Exhibitor = payload => {
         payload,
         'BASE',
       );
-      console.log(response);
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+export const Exprofile = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/exprofile',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      // console.log(response);
       if (response.res_code === '00') {
         return response;
       } else {
@@ -382,7 +403,6 @@ export const Topic = payload => {
         payload,
         'BASE',
       );
-      console.log(response);
       if (response.res_code === '00') {
         return response;
       } else {
@@ -394,3 +414,26 @@ export const Topic = payload => {
   };
 };
 // Home
+
+export const createTokenChat = payload => {
+  //console.log(payload);
+  return async dispatch => {
+    try {
+      const response = await fetchApi(
+        '/uat/getAccessToken',
+        'POST',
+        dispatch,
+        '',
+        'SSO',
+      );
+      console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

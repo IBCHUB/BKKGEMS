@@ -22,10 +22,13 @@ import {connect} from 'react-redux';
 import {contactadd, Country} from '../../action/auth.action';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RNPickerSelect from 'react-native-picker-select';
+import {Exprofile} from '../../action/data.action';
 
 const ExhibitorsDetail = ({navigation, route, dispatch}) => {
   const {item} = route.params;
-
+  const [data, setdata] = useState([]);
+  const [detail, setdetail] = useState({});
+  console.log(detail);
   const [modal, setmodal] = useState(false);
   const [page, setpage] = useState(0);
   const [city, setcity] = useState([]);
@@ -78,12 +81,28 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
             value: val.country_name,
           })),
         );
-        console.log('1111');
+        // console.log('1111');
       } else {
       }
     } catch (error) {}
   };
+  const _Exprofile = async values => {
+    try {
+      var request = 'exid=' + item.company_id;
+      const response = await dispatch(Exprofile(request));
+      // console.log(response);
+      if (response.res_code == '00') {
+        setdetail(response.res_result);
+        setdata(response.res_result.product_list);
+
+        // console.log('1111');
+      } else {
+        // console.log('2222');
+      }
+    } catch (error) {}
+  };
   useEffect(() => {
+    _Exprofile();
     _Country();
   }, []);
   return (
@@ -207,12 +226,14 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
       <ScrollView>
         <Headerback navigation={navigation} />
         <View style={styles.viewHeader}>
-          <Image source={item.icon} style={styles.logo} />
-          <Text style={styles.textTopic}>{item.text}</Text>
-          <Text style={styles.texthead}>GEMSTONES</Text>
+          <Image source={{uri: detail.company_logo}} style={styles.logo} />
+          <Text style={styles.textTopic}>{detail.company_name}</Text>
+          <Text style={styles.texthead}>{detail.product_category_name_en}</Text>
           <View style={styles.row}>
             <MaterialIcons name="location-pin" color="#D7A360" size={15} />
-            <Text style={styles.textloca}>Bangkok, Thailand</Text>
+            <Text style={styles.textloca}>
+              {detail.city}, {detail.country}
+            </Text>
           </View>
           <View style={[styles.row, {marginTop: 10}]}>
             <TouchableOpacity
@@ -282,8 +303,8 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
             </TouchableOpacity>
           </Animated.View>
 
-          {page === 0 && <Product item={item} />}
-          {page === 1 && <Aboutexhi />}
+          {page === 0 && <Product detail={detail} data={data} />}
+          {page === 1 && <Aboutexhi detail={detail} />}
           <View style={{marginBottom: 80}} />
         </View>
       </ScrollView>

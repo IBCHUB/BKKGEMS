@@ -19,3 +19,8 @@ export {default as Mylist} from './Mylist/Mylist';
 export {default as Inmylist} from './Inmylist/Inmylist';
 export {default as Myfavorite} from './Myfavorite/Myfavorite';
 export {default as Pagechat} from './Pagechat/Pagechat';
+export {default as Adminsion} from './Admissionn/Adminsion';
+export {default as Plan} from './Plan/Plan';
+export {default as Guide} from './Guide/Guide';
+export {default as Term} from './Term/Term';
+export {default as Survey} from './Survey/Survey';
