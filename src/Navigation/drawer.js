@@ -24,7 +24,8 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
   const [language, setlanguage] = useState('TH');
-  console.log(authUser.isSkip);
+  console.log(authUser);
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
@@ -45,10 +46,10 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
               }}
               style={styles.row}>
               <Image
-                source={require('../../assets/image/profile.png')}
+                source={{uri: authUser.token.profile_img}}
                 style={styles.imgprofile}
               />
-              <Text style={styles.texthead}>dataUser</Text>
+              <Text style={styles.texthead}>{authUser.token.company_name}</Text>
             </TouchableOpacity>
           )}
 
@@ -291,7 +292,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
   );
 };
 const mapStateToProps = state => ({
-  authUser: state.authReducer.authData,
+  authUser: state.authReducer.authUser,
 });
 const mapDispatchToProps = dispatch => ({
   dispatch,

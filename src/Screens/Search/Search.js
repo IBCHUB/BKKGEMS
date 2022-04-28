@@ -19,17 +19,12 @@ import {Exhibitor_List} from '../../action/data.action';
 import {connect} from 'react-redux';
 
 const Search = ({navigation, dispatch, authUser, route}) => {
-  const ID = authUser.token.user_id;
-  console.log(ID);
   const refRBSheet = useRef();
-  const item = route.params.item;
-
+  const item = route.params != undefined && route.params.item;
   const tag = item != undefined && item.selectedtags;
   const type = item != undefined && item.selectedId;
   const text = route.params.text == undefined ? ' ' : route.params.text;
-
   const [product, setproduct] = useState([]);
-  console.log(product);
   const [company, setcompany] = useState([]);
   const [brand, setbrand] = useState([]);
   const [categorys, setcategorys] = useState([]);
@@ -37,16 +32,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
   const _Exhibitor_List = async values => {
     try {
       var request =
-        'meet=' +
-        '1' +
-        '&tags=' +
-        tag +
-        '&type=' +
-        type +
-        '&text=' +
-        text +
-        '&user_id=' +
-        ID;
+        'meet=' + '1' + '&tags=' + tag + '&type=' + type + '&text=' + text;
       const response = await dispatch(Exhibitor_List(request));
       console.log(response);
       if (response.res_code == '00') {
@@ -85,9 +71,14 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               height: '60%',
             },
           }}>
-          <RBSheetsearch refRBSheet={refRBSheet} navigation={navigation} />
+          <RBSheetsearch
+            onPress={() => {
+              refRBSheet.current.close();
+            }}
+            navigation={navigation}
+          />
         </RBSheet>
-        <ScrollView>
+        <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <View style={styles.viewsearch}>
             <View style={styles.viewinsearch}>
               <FontAwesome5
@@ -272,7 +263,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               data={categorys.data}
               horizontal={true}
               renderItem={({index, item}) => {
-                console.log(item);
+                // console.log(item);
                 return (
                   <View style={{marginRight: 20}}>
                     <View>
@@ -290,7 +281,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               }}
             />
           </View>
-          <View style={{marginBottom: 50}} />
+          <View style={{height: 100}} />
         </ScrollView>
       </SafeAreaView>
     </View>

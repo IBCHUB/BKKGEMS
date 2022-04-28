@@ -56,7 +56,7 @@ const Headercomp = ({navigation, item, dispatch, authUser}) => {
         ) : (
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
             <Image
-              source={require('../../assets/image/iconprofile.png')}
+              source={{uri: authUser.token.profile_img}}
               style={styles.iconprofile}
             />
           </TouchableOpacity>
@@ -68,7 +68,7 @@ const Headercomp = ({navigation, item, dispatch, authUser}) => {
 
 const mapStateToProps = state => ({
   // LoadingCounters: state.dataReducer.LoadingCounters,
-  authUser: state.authReducer.authData,
+  authUser: state.authReducer.authUser,
 });
 const mapDispatchToProps = dispatch => ({
   dispatch,

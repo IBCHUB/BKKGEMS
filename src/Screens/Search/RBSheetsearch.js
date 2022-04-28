@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -11,11 +11,13 @@ import {
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {Tags} from '../../action/data.action';
+import {connect} from 'react-redux';
 const {width, height} = Dimensions.get('window');
-const RBSheetsearch = ({onPress, navigation, refRBSheet}) => {
+const RBSheetsearch = ({onPress, navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
   const [checked, setChecked] = useState(false);
-
+  const [tags, settags] = useState([]);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
     return isCheck;
@@ -63,52 +65,22 @@ const RBSheetsearch = ({onPress, navigation, refRBSheet}) => {
     }
     setCheckedtags(selectedtags.length + 1 == tags.length);
   };
-  const tags = [
-    {
-      id: 1,
-      text: 'Creative Jewely',
-    },
-    {
-      id: 2,
-      text: 'Decorative Items',
-    },
-    {
-      id: 3,
-      text: 'Everyday Jewely',
-    },
-    {
-      id: 4,
-      text: 'Fashion Jewely',
-    },
-    {
-      id: 5,
-      text: 'Craft & Heritage',
-    },
-    {
-      id: 6,
-      text: 'High Jewely',
-    },
-    {
-      id: 7,
-      text: 'Jewely For Men',
-    },
-    {
-      id: 8,
-      text: 'Jewely For Pet',
-    },
-    {
-      id: 9,
-      text: 'Jewely For Seniors',
-    },
-    {
-      id: 10,
-      text: 'Specaial Occasions',
-    },
-    {
-      id: 11,
-      text: 'Spiritual Power',
-    },
-  ];
+  const _Tags = async values => {
+    try {
+      const response = await dispatch(Tags());
+      console.log(response);
+      if (response.res_code == '00') {
+        settags(response.res_result);
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  useEffect(() => {
+    _Tags();
+  }, []);
+
   const renderItem = ({item}) => {
     return (
       <View style={{flex: 1}}>
@@ -136,9 +108,7 @@ const RBSheetsearch = ({onPress, navigation, refRBSheet}) => {
       <View style={styles.viewsort}>
         <View />
         <Text style={styles.textsort}>Filters</Text>
-        <TouchableOpacity
-          onPress={() => refRBSheet.current.close()}
-          style={{alignSelf: 'center'}}>
+        <TouchableOpacity onPress={onPress} style={{alignSelf: 'center'}}>
           <EvilIcons name="close" size={25} color={'#000'} />
         </TouchableOpacity>
       </View>
@@ -191,23 +161,25 @@ const RBSheetsearch = ({onPress, navigation, refRBSheet}) => {
               <View style={{flex: 1}}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleCheckBoxtags(item.id);
+                    handleCheckBoxtags(item.tags_id);
                   }}
                   style={[
                     styles.bottontags,
                     {
-                      backgroundColor: isCheckedtags(item.id)
+                      backgroundColor: isCheckedtags(item.tags_id)
                         ? '#DAA560'
                         : '#fff',
-                      borderColor: isCheckedtags(item.id) ? '#fff' : '#DAA560',
+                      borderColor: isCheckedtags(item.tags_id)
+                        ? '#fff'
+                        : '#DAA560',
                     },
                   ]}>
                   <Text
                     style={[
                       styles.textsortdetail,
-                      {color: isCheckedtags(item.id) ? '#fff' : '#000'},
+                      {color: isCheckedtags(item.itags_id) ? '#fff' : '#000'},
                     ]}>
-                    {item.text}
+                    {item.tags_name}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -239,8 +211,8 @@ const RBSheetsearch = ({onPress, navigation, refRBSheet}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              refRBSheet.current.close();
-              navigation.navigate('Search');
+              onPress();
+              navigation.navigate('Search', {item: {selectedId, selectedtags}});
             }}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>
@@ -250,4 +222,9 @@ const RBSheetsearch = ({onPress, navigation, refRBSheet}) => {
     </View>
   );
 };
-export default RBSheetsearch;
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(null, mapDispatchToProps)(RBSheetsearch);

@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     height: 22,
     width: 22,
     alignSelf: 'center',
+    borderRadius: 11,
   },
   icon: {
     alignSelf: 'center',

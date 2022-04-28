@@ -320,3 +320,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExhibitorsDetail);
+//product_img_name  รูป

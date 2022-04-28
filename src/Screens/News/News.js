@@ -45,7 +45,8 @@ const News = ({navigation, dispatch}) => {
   useEffect(() => {
     _News();
   }, []);
-
+  // 1 new
+  // 2 trends
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}}>

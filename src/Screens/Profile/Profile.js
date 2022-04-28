@@ -52,118 +52,117 @@ const Profile = ({navigation, dispatch, authUser}) => {
   };
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <View style={styles.rowhead}>
-          <TouchableOpacity
-            style={styles.icon}
-            onPress={() => {
-              navigation.goBack('');
-            }}>
-            <FontAwesome5
-              name="arrow-left"
-              size={20}
-              color={'#DAA560'}
-              style={styles.icon}
-            />
-          </TouchableOpacity>
-
-          <View style={styles.row}>
-            <Text style={styles.texthead}>MY PROFILE</Text>
-          </View>
-          <View style={styles.row} />
-        </View>
+      <SafeAreaView style={{backgroundColor: '#23232390'}} />
+      <View style={styles.rowhead}>
         <TouchableOpacity
-          // onPress={GenimageToBase64}
+          style={styles.icon}
+          onPress={() => {
+            navigation.goBack('');
+          }}>
+          <FontAwesome5
+            name="arrow-left"
+            size={20}
+            color={'#DAA560'}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
 
-          style={styles.viewpicimg}>
-          <Image
-            source={require('../../../assets/image/profile.png')}
-            style={styles.imgprofile}
-          />
-          <View style={styles.icon1}>
-            <FontAwesome5
-              name="camera"
-              size={15}
-              color={'#44444450'}
-              style={{alignSelf: 'center'}}
-            />
-          </View>
-        </TouchableOpacity>
-        <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>{I18n.t('email')}</Text>
-          <TextInput
-            defaultValue={
-              ExhiUser
-                ? dataUser.email
-                : ExhiUser.member != undefined && ExhiUser.member.email
-            }
-            placeholder="drive.bkkgems2022@gmail.com"
-            style={styles.textinput}
+        <View style={styles.row}>
+          <Text style={styles.texthead}>MY PROFILE</Text>
+        </View>
+        <View style={styles.row} />
+      </View>
+      <TouchableOpacity
+        // onPress={GenimageToBase64}
+
+        style={styles.viewpicimg}>
+        <Image
+          source={require('../../../assets/image/profile.png')}
+          style={styles.imgprofile}
+        />
+        <View style={styles.icon1}>
+          <FontAwesome5
+            name="camera"
+            size={15}
+            color={'#44444450'}
+            style={{alignSelf: 'center'}}
           />
         </View>
-        <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>{I18n.t('FullName')}</Text>
-          <TextInput
-            defaultValue={
-              ExhiUser
-                ? dataUser.fullname
-                : ExhiUser.member != undefined &&
-                  ExhiUser.member.nameEn + ' ' + ExhiUser.member != undefined &&
-                  ExhiUser.member.lastnameEn
-            }
-            placeholder="Gemy Jewell"
-            style={styles.textinput}
-          />
-        </View>
-        <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>{I18n.t('Company')}</Text>
-          <TextInput
-            defaultValue={ExhiUser ? dataUser.company_name : '-'}
-            placeholder="Bkkgems company limited"
-            style={styles.textinput}
-          />
-        </View>
-        <View style={styles.viewinput}>
-          <Text style={styles.texttopic}>{I18n.t('Country')}</Text>
-          <RNPickerSelect
-            onValueChange={value => console.log(value)}
-            placeholder={''}
-            value={ExhiUser ? dataUser.country_name : 'Thailand'}
-            items={country}
-            style={styles.picker}
-            Icon={() => {
-              return (
-                <FontAwesome5 name="chevron-down" size={20} color="#646363" />
-              );
-            }}
-          />
-        </View>
-        <View style={styles.viewinput1}>
-          <Text style={styles.texttopic}>{I18n.t('Address')}</Text>
-          <TextInput
-            defaultValue={
-              ExhiUser
-                ? dataUser.address
-                : ExhiUser.member != undefined &&
-                  ExhiUser.addressEn.address + ' ' + ExhiUser.member !=
-                    undefined &&
-                  ExhiUser.addressEn.subdistrict + ' ' + ExhiUser.member !=
-                    undefined &&
-                  ExhiUser.addressEn.district + ' ' + ExhiUser.member !=
-                    undefined &&
-                  ExhiUser.addressEn.province + ' ' + ExhiUser.member !=
-                    undefined &&
-                  ExhiUser.addressEn.postcode
-            }
-            multiline
-            placeholder="Bangkok, Thailand."
-            style={styles.textinput}
-          />
-        </View>
-        <TouchableOpacity style={styles.touchedit}>
-          <Text style={styles.textedit}>SAVE PROFILE</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
+      </TouchableOpacity>
+      <View style={styles.viewinput}>
+        <Text style={styles.texttopic}>{I18n.t('email')}</Text>
+        <TextInput
+          defaultValue={
+            ExhiUser
+              ? dataUser.email
+              : ExhiUser.member != undefined && ExhiUser.member.email
+          }
+          placeholder="drive.bkkgems2022@gmail.com"
+          style={styles.textinput}
+        />
+      </View>
+      <View style={styles.viewinput}>
+        <Text style={styles.texttopic}>{I18n.t('FullName')}</Text>
+        <TextInput
+          defaultValue={
+            ExhiUser
+              ? dataUser.fullname
+              : ExhiUser.member != undefined &&
+                ExhiUser.member.nameEn + ' ' + ExhiUser.member != undefined &&
+                ExhiUser.member.lastnameEn
+          }
+          placeholder="Gemy Jewell"
+          style={styles.textinput}
+        />
+      </View>
+      <View style={styles.viewinput}>
+        <Text style={styles.texttopic}>{I18n.t('Company')}</Text>
+        <TextInput
+          defaultValue={ExhiUser ? dataUser.company_name : '-'}
+          placeholder="Bkkgems company limited"
+          style={styles.textinput}
+        />
+      </View>
+      <View style={styles.viewinput}>
+        <Text style={styles.texttopic}>{I18n.t('Country')}</Text>
+        <RNPickerSelect
+          onValueChange={value => console.log(value)}
+          placeholder={''}
+          value={ExhiUser ? dataUser.country_name : 'Thailand'}
+          items={country}
+          style={styles.picker}
+          Icon={() => {
+            return (
+              <FontAwesome5 name="chevron-down" size={20} color="#646363" />
+            );
+          }}
+        />
+      </View>
+      <View style={styles.viewinput1}>
+        <Text style={styles.texttopic}>{I18n.t('Address')}</Text>
+        <TextInput
+          defaultValue={
+            ExhiUser
+              ? dataUser.address
+              : ExhiUser.member != undefined &&
+                ExhiUser.addressEn.address + ' ' + ExhiUser.member !=
+                  undefined &&
+                ExhiUser.addressEn.subdistrict + ' ' + ExhiUser.member !=
+                  undefined &&
+                ExhiUser.addressEn.district + ' ' + ExhiUser.member !=
+                  undefined &&
+                ExhiUser.addressEn.province + ' ' + ExhiUser.member !=
+                  undefined &&
+                ExhiUser.addressEn.postcode
+          }
+          multiline
+          placeholder="Bangkok, Thailand."
+          style={styles.textinput}
+        />
+      </View>
+      <TouchableOpacity style={styles.touchedit}>
+        <Text style={styles.textedit}>SAVE PROFILE</Text>
+      </TouchableOpacity>
     </View>
   );
 };
