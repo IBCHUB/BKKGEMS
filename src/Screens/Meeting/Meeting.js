@@ -17,9 +17,11 @@ import styles from './styles';
 const Meeting = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback navigation={navigation} item={'REQUEST MEETING'} />
-      </SafeAreaView>
+      <SafeAreaView style={{backgroundColor: '#23232390'}} />
+      <Headerback navigation={navigation} item={'REQUEST MEETING'} />
+      <View>
+        <Text style={styles.text}>Add appointment Option</Text>
+      </View>
     </View>
   );
 };

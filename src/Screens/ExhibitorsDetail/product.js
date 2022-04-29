@@ -13,7 +13,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 const {width, height} = Dimensions.get('window');
-const product = ({item, navigation, data}) => {
+const product = ({item, navigation}) => {
   const carouselRef = useRef();
   // console.log(data);
   const [index, setIndex] = useState(0);
@@ -57,28 +57,28 @@ const product = ({item, navigation, data}) => {
     setlist(selectedlist.length + 1 == data.length);
   };
 
-  // const [data, setData] = useState([
-  //   {
-  //     id: 1,
-  //     img: require('../../../assets/image/exhi/1.png'),
-  //     text: 'Sapphire Earring',
-  //   },
-  //   {
-  //     id: 2,
-  //     img: require('../../../assets/image/exhi/2.png'),
-  //     text: '7 Days Birthstone',
-  //   },
-  //   {
-  //     id: 3,
-  //     img: require('../../../assets/image/exhi/3.png'),
-  //     text: 'Ruby Rosegold Ring',
-  //   },
-  //   {
-  //     id: 4,
-  //     img: require('../../../assets/image/exhi/4.png'),
-  //     text: 'Sapphire Topaz Bracelet',
-  //   },
-  // ]);
+  const [data, setData] = useState([
+    {
+      id: 1,
+      img: require('../../../assets/image/exhi/1.png'),
+      text: 'Sapphire Earring',
+    },
+    {
+      id: 2,
+      img: require('../../../assets/image/exhi/2.png'),
+      text: '7 Days Birthstone',
+    },
+    {
+      id: 3,
+      img: require('../../../assets/image/exhi/3.png'),
+      text: 'Ruby Rosegold Ring',
+    },
+    {
+      id: 4,
+      img: require('../../../assets/image/exhi/4.png'),
+      text: 'Sapphire Topaz Bracelet',
+    },
+  ]);
   return (
     <View style={styles.containerproduct}>
       <View>
@@ -203,10 +203,7 @@ const product = ({item, navigation, data}) => {
                       // navigation.navigate('ExhibitorsDetail', {item});
                     }}
                     style={styles.buttonflat}>
-                    <Image
-                      style={styles.imgflat}
-                      source={{uri: item.product_img_name}}
-                    />
+                    <Image style={styles.imgflat} source={{uri: item.img}} />
 
                     <Text style={styles.textflat}>{item.text}</Text>
                   </TouchableOpacity>

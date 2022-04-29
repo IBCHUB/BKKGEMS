@@ -38,6 +38,7 @@ const Headerback = ({navigation, item, dispatch, authUser}) => {
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
+            disabled
             onPress={() => navigation.navigate('Chat')}
             style={{marginRight: 20}}>
             <Image

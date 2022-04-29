@@ -26,7 +26,7 @@ import {Exprofile} from '../../action/data.action';
 
 const ExhibitorsDetail = ({navigation, route, dispatch}) => {
   const {item} = route.params;
-  const [data, setdata] = useState([]);
+
   const [detail, setdetail] = useState({});
   console.log(detail);
   const [modal, setmodal] = useState(false);
@@ -90,10 +90,9 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
     try {
       var request = 'exid=' + item.company_id;
       const response = await dispatch(Exprofile(request));
-      // console.log(response);
+      console.log(response);
       if (response.res_code == '00') {
         setdetail(response.res_result);
-        setdata(response.res_result.product_list);
 
         // console.log('1111');
       } else {
@@ -303,7 +302,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
             </TouchableOpacity>
           </Animated.View>
 
-          {page === 0 && <Product detail={detail} data={data} />}
+          {page === 0 && <Product detail={detail} />}
           {page === 1 && <Aboutexhi detail={detail} />}
           <View style={{marginBottom: 80}} />
         </View>

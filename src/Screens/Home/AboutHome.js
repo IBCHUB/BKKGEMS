@@ -5,10 +5,15 @@ import styles from './stylesAbout';
 const AboutHome = ({navigation}) => {
   return (
     <View style={[styles.container, {position: 'relative'}]}>
-      <Image
-        source={require('../../../assets/image/sa.png')}
-        style={styles.imgsa}
-      />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Suppliers');
+        }}>
+        <Image
+          source={require('../../../assets/image/sa.png')}
+          style={styles.imgsa}
+        />
+      </TouchableOpacity>
       <Image
         source={require('../../../assets/image/imgjewelry.png')}
         style={styles.imgjew}
@@ -28,16 +33,7 @@ const AboutHome = ({navigation}) => {
           style={styles.button}>
           <Text style={styles.textbutton}>Read More</Text>
         </TouchableOpacity>
-        <View style={styles.row}>
-          {/* <Image
-            source={require('../../../assets/image/logoDITP.png')}
-            style={styles.logoditp}
-          />
-          <Image
-            source={require('../../../assets/image/logo100.png')}
-            style={styles.logo100}
-          /> */}
-        </View>
+        <View style={styles.row}></View>
       </View>
       <Text style={styles.textalin}>
         Discover Gems & Jewelry Suppliers, Brands And Manufacturers.

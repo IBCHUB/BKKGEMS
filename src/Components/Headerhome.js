@@ -40,6 +40,7 @@ const Headerhome = ({navigation, dispatch, authUser}) => {
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
+            disabled
             onPress={() => navigation.navigate('Chat')}
             style={{marginRight: 20}}>
             <Image

@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     alignSelf: 'center',
+    borderRadius: 50,
   },
   viewinput: {
     width: width * 0.9,

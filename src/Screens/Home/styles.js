@@ -117,14 +117,11 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     alignSelf: 'center',
     height: 100,
-    marginTop: 30,
-    paddingHorizontal: 50,
-    flexDirection: 'row',
+    marginVertical: 30,
   },
   imgS: {
-    width: 100,
+    width: width * 0.8,
     height: 100,
-    marginTop: -15,
   },
   logob: {
     width: 90,

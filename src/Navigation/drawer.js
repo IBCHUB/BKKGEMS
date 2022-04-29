@@ -24,7 +24,6 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
   const [language, setlanguage] = useState('TH');
-  console.log(authUser);
 
   return (
     <View style={styles.container}>

@@ -17,16 +17,15 @@ import I18n from '../../utils/I18n';
 
 const Profile = ({navigation, dispatch, authUser}) => {
   const dataUser = authUser.token;
-  const ExhiUser = authUser.token;
+  console.log(dataUser);
 
-  console.log(dataUser.email);
   const [imgbase64, setimgbase64] = useState([]);
   const [country, setCountry] = useState([]);
 
   const _Country = async values => {
     try {
       const response = await dispatch(Country());
-      // console.log(response.res_result);
+
       if (response.res_code == '00') {
         setCountry(
           response.res_result.map(val => ({
@@ -76,10 +75,18 @@ const Profile = ({navigation, dispatch, authUser}) => {
         // onPress={GenimageToBase64}
 
         style={styles.viewpicimg}>
-        <Image
-          source={require('../../../assets/image/profile.png')}
-          style={styles.imgprofile}
-        />
+        {dataUser.profile_img === '' ? (
+          <Image
+            source={require('../../../assets/image/profile.png')}
+            style={styles.imgprofile}
+          />
+        ) : (
+          <Image
+            source={{uri: dataUser.profile_img}}
+            style={styles.imgprofile}
+          />
+        )}
+
         <View style={styles.icon1}>
           <FontAwesome5
             name="camera"
@@ -91,35 +98,16 @@ const Profile = ({navigation, dispatch, authUser}) => {
       </TouchableOpacity>
       <View style={styles.viewinput}>
         <Text style={styles.texttopic}>{I18n.t('email')}</Text>
-        <TextInput
-          defaultValue={
-            ExhiUser
-              ? dataUser.email
-              : ExhiUser.member != undefined && ExhiUser.member.email
-          }
-          placeholder="drive.bkkgems2022@gmail.com"
-          style={styles.textinput}
-        />
+        <TextInput defaultValue={dataUser.email} style={styles.textinput} />
       </View>
       <View style={styles.viewinput}>
         <Text style={styles.texttopic}>{I18n.t('FullName')}</Text>
-        <TextInput
-          defaultValue={
-            ExhiUser
-              ? dataUser.fullname
-              : ExhiUser.member != undefined &&
-                ExhiUser.member.nameEn + ' ' + ExhiUser.member != undefined &&
-                ExhiUser.member.lastnameEn
-          }
-          placeholder="Gemy Jewell"
-          style={styles.textinput}
-        />
+        <TextInput defaultValue={dataUser.fullname} style={styles.textinput} />
       </View>
       <View style={styles.viewinput}>
         <Text style={styles.texttopic}>{I18n.t('Company')}</Text>
         <TextInput
-          defaultValue={ExhiUser ? dataUser.company_name : '-'}
-          placeholder="Bkkgems company limited"
+          defaultValue={dataUser.company_name}
           style={styles.textinput}
         />
       </View>
@@ -128,7 +116,7 @@ const Profile = ({navigation, dispatch, authUser}) => {
         <RNPickerSelect
           onValueChange={value => console.log(value)}
           placeholder={''}
-          value={ExhiUser ? dataUser.country_name : 'Thailand'}
+          value={dataUser.country_name}
           items={country}
           style={styles.picker}
           Icon={() => {
@@ -141,22 +129,8 @@ const Profile = ({navigation, dispatch, authUser}) => {
       <View style={styles.viewinput1}>
         <Text style={styles.texttopic}>{I18n.t('Address')}</Text>
         <TextInput
-          defaultValue={
-            ExhiUser
-              ? dataUser.address
-              : ExhiUser.member != undefined &&
-                ExhiUser.addressEn.address + ' ' + ExhiUser.member !=
-                  undefined &&
-                ExhiUser.addressEn.subdistrict + ' ' + ExhiUser.member !=
-                  undefined &&
-                ExhiUser.addressEn.district + ' ' + ExhiUser.member !=
-                  undefined &&
-                ExhiUser.addressEn.province + ' ' + ExhiUser.member !=
-                  undefined &&
-                ExhiUser.addressEn.postcode
-          }
+          defaultValue={dataUser.address}
           multiline
-          placeholder="Bangkok, Thailand."
           style={styles.textinput}
         />
       </View>

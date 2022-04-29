@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: 20,
     alignSelf: 'center',
+    backgroundColor: '#000',
   },
   viewlist: {
     flexDirection: 'row',
@@ -159,9 +160,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 5,
     marginLeft: 20,
+    borderColor: '#333',
+    borderWidth: 1,
   },
   imgflat: {
-    width: width * 0.42,
+    width: width * 0.4,
     height: 120,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,

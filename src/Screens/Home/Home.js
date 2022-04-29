@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Text,
+  Linking,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headerhome from '../../Components/Headerhome';
@@ -190,26 +191,16 @@ const Home = ({navigation, dispatch, authData}) => {
 
             <TopicHome />
 
-            {online === false && (
-              <ImageBackground
-                source={require('../../../assets/image/imglive.png')}
-                style={styles.imglive}>
-                <Image
-                  source={require('../../../assets/image/imss.png')}
-                  style={styles.imgS}
-                />
-                <View style={{marginLeft: 10}}>
-                  <Image
-                    source={require('../../../assets/image/logo-banner.png')}
-                    style={styles.logob}
-                  />
-                  <Image
-                    source={require('../../../assets/image/logoonline.png')}
-                    style={styles.logonline}
-                  />
-                </View>
-              </ImageBackground>
-            )}
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://www.bgjf-vtf.com/');
+              }}
+              style={styles.imglive}>
+              <Image
+                source={require('../../../assets/image/join.png')}
+                style={styles.imgS}
+              />
+            </TouchableOpacity>
 
             <AboutHome navigation={navigation} />
           </View>
