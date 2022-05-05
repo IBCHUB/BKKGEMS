@@ -19,7 +19,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
 import RBSheetExhi from './RBSheetExhi';
 import {connect} from 'react-redux';
-import {Exhibitor} from '../../action/data.action';
+import {Exhibitor, Exprofile} from '../../action/data.action';
 
 const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const refRBSheet = useRef();
@@ -160,8 +160,22 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
               return (
                 <View>
                   <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('ExhibitorsDetail', {item});
+                    onPress={async () => {
+                      try {
+                        var request = 'exid=' + item.company_id;
+                        const response = await dispatch(Exprofile(request));
+                        //console.log(response);
+                        if (response.res_code == '00') {
+                          // setdetail(response.res_result);
+                          navigation.navigate('ExhibitorsDetail', {
+                            item: item,
+                            res: response.res_result,
+                          });
+                          // console.log('1111');
+                        } else {
+                          // console.log('2222');
+                        }
+                      } catch (error) {}
                     }}
                     style={styles.buttonflat}>
                     <Image
@@ -192,27 +206,6 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
               <RefreshControl refreshing={isrefresh} onRefresh={onRefresh} />
             }
           />
-
-          {/* <TouchableOpacity onPress={onPressTouch} style={styles.dimon}>
-              <Feather
-                size={25}
-                name="arrow-up-left"
-                color={'#DAA560'}
-                style={styles.icon}
-              />
-            </TouchableOpacity> */}
-
-          {/* <View style={styles.row1}>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.textbotton}>PREVIOUS</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setOffset(offset + 1);
-                }}
-                style={styles.button}>
-                <Text style={styles.textbotton}>NEXT</Text>
-              </TouchableOpacity>*/}
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={onPressTouch}

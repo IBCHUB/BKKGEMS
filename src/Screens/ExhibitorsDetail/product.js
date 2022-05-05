@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -13,13 +13,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 const {width, height} = Dimensions.get('window');
-const product = ({item, navigation}) => {
+const product = ({item, navigation, detail}) => {
   const carouselRef = useRef();
   // console.log(data);
   const [index, setIndex] = useState(0);
   const [highligth, sethighligth] = useState(false);
   const [selectedtags, setselectedtags] = useState([]);
-
   const [list, setlist] = useState(false);
   const [selectedlist, setselectedlist] = useState([]);
 
@@ -37,7 +36,7 @@ const product = ({item, navigation}) => {
       console.log('เอาเข้า');
       setselectedtags(ids);
     }
-    sethighligth(selectedtags.length + 1 == data.length);
+    sethighligth(selectedtags.length + 1 == detail.length);
   };
 
   const isList = id => {
@@ -54,37 +53,47 @@ const product = ({item, navigation}) => {
       console.log('เอาเข้า');
       setselectedlist(ids);
     }
-    setlist(selectedlist.length + 1 == data.length);
+    setlist(selectedlist.length + 1 == img.length);
   };
-
-  const [data, setData] = useState([
-    {
-      id: 1,
-      img: require('../../../assets/image/exhi/1.png'),
-      text: 'Sapphire Earring',
-    },
-    {
-      id: 2,
-      img: require('../../../assets/image/exhi/2.png'),
-      text: '7 Days Birthstone',
-    },
-    {
-      id: 3,
-      img: require('../../../assets/image/exhi/3.png'),
-      text: 'Ruby Rosegold Ring',
-    },
-    {
-      id: 4,
-      img: require('../../../assets/image/exhi/4.png'),
-      text: 'Sapphire Topaz Bracelet',
-    },
-  ]);
+  console.log(detail);
+  const [img, setimg] = useState([]);
+  const [data, setdata] = useState([]);
+  console.log(img);
+  const _Data2 = () => {
+    setimg([detail.product_list[0]]);
+    setdata(detail.product_list);
+  };
+  useEffect(() => {
+    _Data2();
+  }, []);
+  // const [data, setData] = useState([
+  //   {
+  //     id: 1,
+  //     img: require('../../../assets/image/exhi/1.png'),
+  //     text: 'Sapphire Earring',
+  //   },
+  //   {
+  //     id: 2,
+  //     img: require('../../../assets/image/exhi/2.png'),
+  //     text: '7 Days Birthstone',
+  //   },
+  //   {
+  //     id: 3,
+  //     img: require('../../../assets/image/exhi/3.png'),
+  //     text: 'Ruby Rosegold Ring',
+  //   },
+  //   {
+  //     id: 4,
+  //     img: require('../../../assets/image/exhi/4.png'),
+  //     text: 'Sapphire Topaz Bracelet',
+  //   },
+  // ]);
   return (
     <View style={styles.containerproduct}>
       <View>
         <Carousel
           ref={carouselRef}
-          data={data}
+          data={img}
           sliderWidth={width * 1}
           itemWidth={width * 1}
           layout={'tinder'}
@@ -93,27 +102,38 @@ const product = ({item, navigation}) => {
           onSnapToItem={index => setIndex(index)}
           renderItem={({item, index}) => {
             return (
-              <ImageBackground source={item.img} style={styles.viewproduct}>
+              <ImageBackground
+                source={{uri: item.product_img_name}}
+                style={styles.viewproduct}
+                resizeMode="stretch">
                 <View style={styles.viewlist}>
                   <TouchableOpacity
                     style={[
                       styles.buttonlist,
                       {
                         borderColor:
-                          isHighligth(item.id) === false ? '#999' : '#DAA560',
+                          isHighligth(item.product_img_id) === false
+                            ? '#999'
+                            : '#DAA560',
                         backgroundColor:
-                          isHighligth(item.id) === false ? '#fff' : '#DAA560',
+                          isHighligth(item.product_img_id) === false
+                            ? '#fff'
+                            : '#DAA560',
                         marginRight: 10,
                       },
                     ]}
                     onPress={() => {
                       sethighligth(val => !val);
-                      handleCheckBoxtags(item.id);
+                      handleCheckBoxtags(item.product_img_id);
                     }}>
                     <AntDesign
                       name="star"
                       size={20}
-                      color={isHighligth(item.id) === false ? '#999' : '#fff'}
+                      color={
+                        isHighligth(item.product_img_id) === false
+                          ? '#999'
+                          : '#fff'
+                      }
                       style={{alignSelf: 'center'}}
                     />
                   </TouchableOpacity>
@@ -122,19 +142,25 @@ const product = ({item, navigation}) => {
                       styles.buttonlist,
                       {
                         borderColor:
-                          isList(item.id) === false ? '#999' : '#DAA560',
+                          isList(item.product_img_id) === false
+                            ? '#999'
+                            : '#DAA560',
                         backgroundColor:
-                          isList(item.id) === false ? '#fff' : '#DAA560',
+                          isList(item.product_img_id) === false
+                            ? '#fff'
+                            : '#DAA560',
                       },
                     ]}
                     onPress={() => {
                       setlist(val => !val);
-                      handleChecklist(item.id);
+                      handleChecklist(item.product_img_id);
                     }}>
                     <Feather
                       name="file-text"
                       size={20}
-                      color={isList(item.id) === false ? '#999' : '#fff'}
+                      color={
+                        isList(item.product_img_id) === false ? '#999' : '#fff'
+                      }
                       style={{alignSelf: 'center'}}
                     />
                   </TouchableOpacity>
@@ -144,7 +170,7 @@ const product = ({item, navigation}) => {
           }}
         />
         <Pagination
-          dotsLength={data.length}
+          // dotsLength={img.length}
           activeDotIndex={index}
           carouselRef={carouselRef}
           containerStyle={{marginTop: -15}}
@@ -164,50 +190,49 @@ const product = ({item, navigation}) => {
           inactiveDotScale={0.6}
         />
       </View>
+      {/* 
+      <Text style={styles.texttoproduct}>{img[0].product_img_title}</Text>
+      <Text style={styles.textdetailproduct}>{img[0].product_img_des}</Text> */}
+      <FlatList
+        // data={img}
+        horizontal
+        renderItem={({index, item}) => {
+          console.log(item);
+          return (
+            <TouchableOpacity style={styles.minibutton}>
+              <Text style={styles.minitext}>{item.tags}</Text>
+            </TouchableOpacity>
+          );
+        }}
+      />
 
-      <Text style={styles.texttoproduct}>Amour Pearl Ring</Text>
-      <Text style={styles.textdetailproduct}>
-        For over 20 years, Golden Stone is recognized as a major influence that
-        continues to shape the jewelry industry
-      </Text>
-      <View style={styles.row}>
-        <TouchableOpacity style={styles.minibutton}>
-          <Text style={styles.minitext}>GEMSTONES</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.minibutton}>
-          <Text style={styles.minitext}>GOLD</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.minibutton}>
-          <Text style={styles.minitext}>SILVER</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.minibutton}>
-          <Text style={styles.minitext}>RING</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.minibutton}>
-          <Text style={styles.minitext}>EARRING</Text>
-        </TouchableOpacity>
-      </View>
       <Text style={styles.texthead}>OTHER PRODUCTS</Text>
       <View style={{marginBottom: 100}}>
         <FlatList
-          data={data}
+          data={data.filter(
+            item => item.product_img_id !== img[0].product_img_id,
+          )}
+          // extraData={img}
           numColumns={2}
           renderItem={({index, item}) => {
-            // console.log(item);
+            console.log(item);
             return (
               <View>
-                {index > 1 && (
-                  <TouchableOpacity
-                    onPress={() => {
-                      // setData(item);
-                      // navigation.navigate('ExhibitorsDetail', {item});
-                    }}
-                    style={styles.buttonflat}>
-                    <Image style={styles.imgflat} source={{uri: item.img}} />
+                <TouchableOpacity
+                  onPress={() => {
+                    console.log(data);
+                    setimg([item]);
+                    // navigation.navigate('ExhibitorsDetail', {item});
+                  }}
+                  style={styles.buttonflat}>
+                  <Image
+                    resizeMode="stretch"
+                    style={styles.imgflat}
+                    source={{uri: item.product_img_name}}
+                  />
 
-                    <Text style={styles.textflat}>{item.text}</Text>
-                  </TouchableOpacity>
-                )}
+                  <Text style={styles.textflat}>{item.product_img_title}</Text>
+                </TouchableOpacity>
               </View>
             );
           }}

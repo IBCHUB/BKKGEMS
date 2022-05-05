@@ -19,20 +19,21 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {connect} from 'react-redux';
-import {contactadd, Country} from '../../action/auth.action';
+import {contactadd} from '../../action/auth.action';
+import {Country} from '../../action/data.action';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RNPickerSelect from 'react-native-picker-select';
 import {Exprofile} from '../../action/data.action';
 
 const ExhibitorsDetail = ({navigation, route, dispatch}) => {
-  const {item} = route.params;
+  const {item, res} = route.params;
 
-  const [detail, setdetail] = useState({});
+  const [detail, setdetail] = useState(res);
   console.log(detail);
   const [modal, setmodal] = useState(false);
   const [page, setpage] = useState(0);
   const [city, setcity] = useState([]);
-  // console.log(city);
+  console.log(city);
   const placeholder = {
     label: 'Country',
     value: null,
@@ -50,7 +51,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
         'contact_name=' +
         values.name +
         '&country_id=' +
-        '' +
+        city.id +
         '&businesstype_id=' +
         '' +
         '&contact_phone=' +
@@ -79,6 +80,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
           response.res_result.map(val => ({
             label: val.country_name,
             value: val.country_name,
+            id: val.id,
           })),
         );
         // console.log('1111');
@@ -101,7 +103,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
     } catch (error) {}
   };
   useEffect(() => {
-    _Exprofile();
+    // _Exprofile();
     _Country();
   }, []);
   return (

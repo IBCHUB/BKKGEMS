@@ -29,8 +29,8 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <View style={{backgroundColor: '#232323', height: '100%'}}>
-        <ScrollView style={{marginBottom: 80}}>
-          {authUser.token === null ? (
+        <ScrollView>
+          {authUser != undefined && authUser.token === null ? (
             <View style={styles.row}>
               <Image
                 source={require('../../assets/image/profile.png')}
@@ -270,7 +270,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
             )}
           </View>
           <View style={styles.liner} />
-          {authUser.token === null ? (
+          {authUser != undefined && authUser.token === null ? (
             <TouchableOpacity
               onPress={() => {
                 dispatch(logoutUser());
@@ -285,6 +285,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
               <Text style={styles.logout}>{I18n.t('Logout')}</Text>
             </TouchableOpacity>
           )}
+          <View style={{marginBottom: 80}} />
         </ScrollView>
       </View>
     </View>

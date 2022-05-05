@@ -48,7 +48,7 @@ const Headerback = ({navigation, item, dispatch, authUser}) => {
           </TouchableOpacity>
         )}
 
-        {authUser.token === null ? (
+        {authUser != undefined && authUser.token === null ? (
           <TouchableOpacity
             onPress={() => {
               dispatch(logoutUser());

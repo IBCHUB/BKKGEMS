@@ -27,20 +27,83 @@ const Search = ({navigation, dispatch, authUser, route}) => {
   const [product, setproduct] = useState([]);
   const [company, setcompany] = useState([]);
   const [brand, setbrand] = useState([]);
-  const [categorys, setcategorys] = useState([]);
+  const [data, setdata] = useState([]);
+  const [categorys, setcategorys] = useState([
+    {
+      img: require('../../../assets/image/iocn/014.png'),
+      text: 'GOLD JEWELRY',
+    },
+    {
+      img: require('../../../assets/image/iocn/005.png'),
+      text: 'GEMSTONES',
+    },
+    {
+      img: require('../../../assets/image/iocn/001.png'),
+      text: 'INTERNATIONAL PAVILION',
+    },
+    {
+      img: require('../../../assets/image/iocn/015.png'),
+      text: 'SILVER JEWELRY',
+    },
+    {
+      img: require('../../../assets/image/iocn/002.png'),
+      text: 'DISPLAY & PACKAGING',
+    },
+    {
+      img: require('../../../assets/image/iocn/012.png'),
+      text: 'DIAMONDS',
+    },
+    {
+      img: require('../../../assets/image/iocn/004.png'),
+      text: 'FINE JEWELRY',
+    },
+    {
+      img: require('../../../assets/image/iocn/006.png'),
+      text: 'PEARLS',
+    },
+    {
+      img: require('../../../assets/image/iocn/007.png'),
+      text: 'EQUIPMENT & TOOLS',
+    },
+    {
+      img: require('../../../assets/image/iocn/013.png'),
+      text: 'SYNTHETIC STONES',
+    },
+    {
+      img: require('../../../assets/image/iocn/009.png'),
+      text: 'OTHERS',
+    },
+    {
+      img: require('../../../assets/image/iocn/008.png'),
+      text: 'PRECIOUS METALS',
+    },
+    {
+      img: require('../../../assets/image/iocn/011.png'),
+      text: 'COSTUME & FASHION JEWELRY',
+    },
+    {
+      img: require('../../../assets/image/iocn/003.png'),
+      text: 'JEWELRY PARTS',
+    },
+    {
+      img: require('../../../assets/image/iocn/010.png'),
+      text: 'MACHINERY',
+    },
+  ]);
 
   const _Exhibitor_List = async values => {
     try {
       var request =
         'meet=' + '1' + '&tags=' + tag + '&type=' + type + '&text=' + text;
       const response = await dispatch(Exhibitor_List(request));
-      console.log(response);
+      console.log(
+        response.res_result.categorys.data.map(i => i.product_category_name_en),
+      );
       if (response.res_code == '00') {
         setproduct(response.res_result.product);
         setcompany(response.res_result.company);
         setbrand(response.res_result.brand);
-        setcategorys(response.res_result.categorys);
-        console.log('1111');
+        setdata(response.res_result);
       } else {
         console.log('2222');
       }
@@ -114,7 +177,14 @@ const Search = ({navigation, dispatch, authUser, route}) => {
                   </Text>{' '}
                   Found {product.count} Items
                 </Text>
-                <TouchableOpacity style={styles.line}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Seeall', {
+                      key: 'product',
+                      data: {data},
+                    })
+                  }
+                  style={styles.line}>
                   <Text
                     style={[
                       styles.texttags,
@@ -260,22 +330,24 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               </View>
             </View>
             <FlatList
-              data={categorys.data}
+              data={categorys}
               horizontal={true}
               renderItem={({index, item}) => {
                 // console.log(item);
                 return (
                   <View style={{marginRight: 20}}>
-                    <View>
+                    <ImageBackground
+                      source={require('../../../assets/image/iocn/000.png')}
+                      style={styles.imgflat1}>
                       <Image
-                        style={styles.imgflat1}
-                        source={{uri: item.category_img}}
+                        resizeMode="contain"
+                        style={styles.imgflat2}
+                        source={item.img}
                       />
-
-                      <Text numberOfLines={2} style={styles.text1}>
-                        {item.product_category_name_en}
-                      </Text>
-                    </View>
+                    </ImageBackground>
+                    <Text numberOfLines={2} style={styles.text1}>
+                      {item.text}
+                    </Text>
                   </View>
                 );
               }}

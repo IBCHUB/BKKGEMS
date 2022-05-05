@@ -163,13 +163,21 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  imgflat2: {
+    width: 60,
+    height: 60,
+    alignSelf: 'center',
   },
   text1: {
     fontSize: 14,
     fontFamily: 'Cantoria MT Std',
     color: '#646363',
     alignSelf: 'center',
-    width: width * 0.25,
+    width: width * 0.3,
+    textAlign: 'center',
+    marginTop: 10,
   },
 });
 

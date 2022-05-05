@@ -24,3 +24,4 @@ export {default as Plan} from './Plan/Plan';
 export {default as Guide} from './Guide/Guide';
 export {default as Term} from './Term/Term';
 export {default as Survey} from './Survey/Survey';
+export {default as Seeall} from './Seeall/Seeall';

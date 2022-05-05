@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   viewproduct: {
     width: width * 0.8,
-    height: 250,
+    height: 260,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

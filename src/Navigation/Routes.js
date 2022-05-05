@@ -35,6 +35,7 @@ import {
   Guide,
   Term,
   Survey,
+  Seeall,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
@@ -309,6 +310,7 @@ function ScreenStack() {
       <Stack.Screen name="Guide" component={Guide} />
       <Stack.Screen name="Term" component={Term} />
       <Stack.Screen name="Survey" component={Survey} />
+      <Stack.Screen name="Seeall" component={Seeall} />
       {/* <Stack.Screen name="Home" component={Home} /> */}
     </Stack.Navigator>
   );
