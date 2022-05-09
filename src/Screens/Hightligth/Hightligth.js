@@ -9,6 +9,7 @@ import {
   ImageBackground,
   FlatList,
   RefreshControl,
+  Dimensions,
 } from 'react-native';
 import Headercomp from '../../Components/Headercomp';
 import Feather from 'react-native-vector-icons/Feather';
@@ -16,6 +17,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import {Product_Highlight} from '../../action/data.action';
 import {connect} from 'react-redux';
+const {width, height} = Dimensions.get('window');
 const Hightligth = ({navigation, dispatch}) => {
   const [highlight, setHighlight] = useState([]);
   const scrollRef = useRef();
@@ -51,7 +53,7 @@ const Hightligth = ({navigation, dispatch}) => {
         <FlatList
           data={highlight}
           numColumns={2}
-          style={{height: 665}}
+          style={{height: height * 0.9}}
           ref={scrollRef}
           renderItem={({index, item}) => {
             console.log(item);

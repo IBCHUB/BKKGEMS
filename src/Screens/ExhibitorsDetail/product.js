@@ -55,10 +55,10 @@ const product = ({item, navigation, detail}) => {
     }
     setlist(selectedlist.length + 1 == img.length);
   };
-  console.log(detail);
+  // console.log(detail);
   const [img, setimg] = useState([]);
   const [data, setdata] = useState([]);
-  console.log(img);
+  // console.log(img);
   const _Data2 = () => {
     setimg([detail.product_list[0]]);
     setdata(detail.product_list);
@@ -170,7 +170,7 @@ const product = ({item, navigation, detail}) => {
           }}
         />
         <Pagination
-          // dotsLength={img.length}
+          dotsLength={img.length}
           activeDotIndex={index}
           carouselRef={carouselRef}
           containerStyle={{marginTop: -15}}
@@ -190,14 +190,18 @@ const product = ({item, navigation, detail}) => {
           inactiveDotScale={0.6}
         />
       </View>
-      {/* 
-      <Text style={styles.texttoproduct}>{img[0].product_img_title}</Text>
-      <Text style={styles.textdetailproduct}>{img[0].product_img_des}</Text> */}
+
+      <Text style={styles.texttoproduct}>
+        {img[0] != undefined && img[0].product_img_title}
+      </Text>
+      <Text style={styles.textdetailproduct}>
+        {img[0] != undefined && img[0].product_img_des}
+      </Text>
       <FlatList
         // data={img}
         horizontal
         renderItem={({index, item}) => {
-          console.log(item);
+          console.log(item.tags);
           return (
             <TouchableOpacity style={styles.minibutton}>
               <Text style={styles.minitext}>{item.tags}</Text>
@@ -205,7 +209,6 @@ const product = ({item, navigation, detail}) => {
           );
         }}
       />
-
       <Text style={styles.texthead}>OTHER PRODUCTS</Text>
       <View style={{marginBottom: 100}}>
         <FlatList
@@ -215,12 +218,12 @@ const product = ({item, navigation, detail}) => {
           // extraData={img}
           numColumns={2}
           renderItem={({index, item}) => {
-            console.log(item);
+            // console.log(item);
             return (
               <View>
                 <TouchableOpacity
                   onPress={() => {
-                    console.log(data);
+                    // console.log(data);
                     setimg([item]);
                     // navigation.navigate('ExhibitorsDetail', {item});
                   }}

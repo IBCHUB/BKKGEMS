@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
   Alert,
   RefreshControl,
+  Dimensions,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headercomp from '../../Components/Headercomp';
@@ -20,7 +21,7 @@ import styles from './styles';
 import RBSheetExhi from './RBSheetExhi';
 import {connect} from 'react-redux';
 import {Exhibitor, Exprofile} from '../../action/data.action';
-
+const {width, height} = Dimensions.get('window');
 const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const refRBSheet = useRef();
   const [data, setData] = useState([]);
@@ -155,7 +156,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
             data={data}
             numColumns={2}
             ref={scrollRef}
-            style={{height: 600}}
+            style={{height: height * 0.71}}
             renderItem={({index, item}) => {
               return (
                 <View>

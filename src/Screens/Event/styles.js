@@ -8,11 +8,12 @@ const styles = StyleSheet.create({
   },
   buttonflat: {
     width: width * 0.85,
-    height: 60,
+    height: 70,
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: '#343434',
     marginVertical: 10,
+    borderRadius: 5,
   },
   containerview: {
     marginBottom: 50,
@@ -24,6 +25,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#DAA560',
     fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+  },
+  text1: {
+    fontSize: 18,
+    color: '#DAA560',
+    fontFamily: 'Cantoria MT Std',
+    textAlign: 'center',
+    width: width * 0.65,
     alignSelf: 'center',
   },
 });

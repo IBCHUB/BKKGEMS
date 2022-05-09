@@ -51,7 +51,7 @@ const News = ({navigation, dispatch}) => {
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headercomp item={'NEWS & TRENDS'} navigation={navigation} />
-        <ScrollView style={styles.containerview}>
+        <View style={styles.containerview}>
           <View style={{paddingBottom: 50}}>
             <View style={styles.viewsearch}>
               <FontAwesome5
@@ -109,7 +109,7 @@ const News = ({navigation, dispatch}) => {
             </View> */}
             <View style={{marginBottom: 50}} />
           </View>
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </View>
   );

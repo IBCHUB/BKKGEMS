@@ -36,6 +36,15 @@ import {
   Term,
   Survey,
   Seeall,
+  Thenewfaces,
+  Theniche,
+  Jewellers,
+  Page1,
+  Page2,
+  Page3,
+  Page4,
+  Fashion,
+  Workshops,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
@@ -311,7 +320,15 @@ function ScreenStack() {
       <Stack.Screen name="Term" component={Term} />
       <Stack.Screen name="Survey" component={Survey} />
       <Stack.Screen name="Seeall" component={Seeall} />
-      {/* <Stack.Screen name="Home" component={Home} /> */}
+      <Stack.Screen name="Thenewfaces" component={Thenewfaces} />
+      <Stack.Screen name="Theniche" component={Theniche} />
+      <Stack.Screen name="Jewellers" component={Jewellers} />
+      <Stack.Screen name="Page1" component={Page1} />
+      <Stack.Screen name="Page2" component={Page2} />
+      <Stack.Screen name="Page3" component={Page3} />
+      <Stack.Screen name="Page4" component={Page4} />
+      <Stack.Screen name="Fashion" component={Fashion} />
+      <Stack.Screen name="Workshops" component={Workshops} />
     </Stack.Navigator>
   );
 }

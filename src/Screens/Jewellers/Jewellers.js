@@ -6,36 +6,36 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import Headercomp from '../../Components/Headercomp';
-import styles from './styles';
+import Headerback from '../../Components/Headerback';
 
-const Event = ({navigation}) => {
+import styles from '../Event/styles';
+const Jewellers = ({navigation}) => {
   const [data, setData] = useState([
     {
-      text: 'THE NEW FACES',
-      navigation: 'Thenewfaces',
+      text: '65th The Jewellers',
+      navigation: 'Page1',
     },
     {
-      text: 'THE NICHE SHOWCASE',
-      navigation: 'Theniche',
+      text: '64st The Jeweller and Innovation Design Zone (IDZ)',
+      navigation: 'Page2',
     },
     {
-      text: 'THE JEWELLERS',
-      navigation: 'Jewellers',
+      text: '63rd The Jeweller and Innovation Design Zone (IDZ)',
+      navigation: 'Page3',
     },
     {
-      text: 'FASHION SHOW',
-      navigation: 'Fashion',
+      text: '62nd Thailand Jewelry Brands and Innovation',
+      navigation: 'Page4',
     },
     {
-      text: 'WORKSHOPS AND DEMONSTRATIONS',
-      navigation: 'Workshops',
+      text: '61st Thailand Jewelry Brands and Innovation',
+      navigation: '',
     },
   ]);
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headercomp item={'EVENTS'} navigation={navigation} />
+        <Headerback item={'The Jewellers'} navigation={navigation} />
         <View style={styles.containerview}>
           <FlatList
             data={data}
@@ -47,7 +47,9 @@ const Event = ({navigation}) => {
                       navigation.navigate(item.navigation);
                     }}
                     style={styles.buttonflat}>
-                    <Text style={styles.text}>{item.text}</Text>
+                    <Text numberOfLines={2} style={styles.text1}>
+                      {item.text}
+                    </Text>
                   </TouchableOpacity>
                 </View>
               );
@@ -59,4 +61,4 @@ const Event = ({navigation}) => {
   );
 };
 
-export default Event;
+export default Jewellers;

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   containerview: {
+    height: height,
     width: width,
     backgroundColor: '#000000',
   },

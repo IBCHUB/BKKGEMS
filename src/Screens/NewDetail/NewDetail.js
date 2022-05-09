@@ -25,7 +25,7 @@ const NewDetail = ({navigation, route}) => {
     try {
       const result = await Share.share({
         message: item.blog_title,
-        // url: item.blog_title,
+        url: item.url,
       });
 
       if (result.action === Share.sharedAction) {
