@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 20,
     color: '#fff',
-    marginLeft: 50,
+    marginLeft: 25,
     fontFamily: 'Cantoria MT Std',
   },
   imgprofile: {
@@ -49,6 +49,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginTop: 20,
     color: 'red',
+    marginLeft: 15,
+    fontFamily: 'Cantoria MT Std',
+  },
+  icon: {
+    marginTop: 10,
+    marginLeft: 15,
+  },
+  touchdrawer1: {
+    fontSize: 12,
+    marginTop: 20,
+    color: '#fff',
     marginLeft: 15,
     fontFamily: 'Cantoria MT Std',
   },

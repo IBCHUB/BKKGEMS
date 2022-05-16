@@ -110,6 +110,7 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       // console.log(response);
       if (response.res_code == '00') {
         /*navigation.navigate('Home');*/
+
         console.log('1111');
       } else {
         setmodalfalse(true);

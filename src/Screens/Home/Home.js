@@ -18,7 +18,7 @@ import TopicHome from './TopicHome';
 import RBSheetHome from './RBSheetHome';
 import AboutHome from './AboutHome';
 import {getUser} from '../../action/auth.action';
-
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
 import {Search} from '../../action/data.action';
@@ -193,7 +193,7 @@ const Home = ({navigation, dispatch, authData}) => {
 
             <TouchableOpacity
               onPress={() => {
-                Linking.openURL('https://www.bgjf-vtf.com/');
+                InAppBrowser.open('https://www.bgjf-vtf.com/');
               }}
               style={styles.imglive}>
               <Image

@@ -48,7 +48,7 @@ const Headerback = ({navigation, item, dispatch, authUser}) => {
           </TouchableOpacity>
         )}
 
-        {authUser != undefined && authUser.token === null ? (
+        {authUser.token === null ? (
           <TouchableOpacity
             onPress={() => {
               dispatch(logoutUser());
@@ -61,7 +61,7 @@ const Headerback = ({navigation, item, dispatch, authUser}) => {
         ) : (
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
             <Image
-              source={{uri: authUser.token.profile_img}}
+              source={{uri: authUser?.token?.profile_img}}
               style={styles.iconprofile}
             />
           </TouchableOpacity>

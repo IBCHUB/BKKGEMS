@@ -258,7 +258,7 @@ export const Tags = payload => {
 
 //chat
 export const GetallChat = payload => {
-  console.log(payload);
+  // console.log(payload);
   return async (dispatch, getState) => {
     try {
       const response = await fetchApi(
@@ -415,18 +415,67 @@ export const Topic = payload => {
 };
 // Home
 
+//chatbot
 export const createTokenChat = payload => {
-  //console.log(payload);
+  console.log('LLL', payload.result);
   return async dispatch => {
+    // console.log(dispatch);
     try {
       const response = await fetchApi(
-        '/uat/getAccessToken',
+        '/authorize',
         'POST',
         dispatch,
-        '',
+        payload.result,
         'SSO',
       );
-      console.log(response);
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const createuserChat = payload => {
+  // console.log('>>>>>', payload);
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        '/user',
+        'POST',
+        dispatch,
+        payload.result,
+        'SSO',
+        payload.token,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const generatechattoken = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        '/chat',
+        'POST',
+        dispatch,
+        payload.result,
+        'SSO',
+        payload.token,
+      );
+      // console.log(response);
       if (response.res_code === '00') {
         return response;
       } else {

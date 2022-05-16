@@ -147,8 +147,8 @@ const Suppliers = ({navigation, dispatch}) => {
           <Text style={styles.textdetail}>
             For the past several decades, Thailand has been known among the gems
             and jewelry industry as the country to source the most beautiful
-            gemstones, from ruby to sapphire to other precious stones in a
-            variety of sizes, colors and origins. Famous for its heat treatment
+            gemstones, from ruby, sapphire to other precious stones in a variety
+            of sizes, colors and origins. Famous for its heat treatment
             knowledge that has been passed on through the generations of
             craftsmen in the gems and jewelry industry, the skills and level of
             handicraft of the workforce in Thailand is hard to match anywhere

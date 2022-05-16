@@ -17,7 +17,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import {Picker} from '@react-native-picker/picker';
+// import {Picker} from '@react-native-picker/picker';
 import * as RNLocalize from 'react-native-localize';
 
 const Meeting = ({navigation}) => {
@@ -95,7 +95,7 @@ const Meeting = ({navigation}) => {
               }}
             />
             <Text style={styles.textmodal}>Select Date</Text>
-            <View style={{flexDirection: 'row', height: 200}}>
+            {/* <View style={{flexDirection: 'row', height: 200}}>
               <Picker
                 style={{
                   flex: 1,
@@ -114,7 +114,7 @@ const Meeting = ({navigation}) => {
                 <Picker.Item key={0} label={'01'} value={'01'} />
                 <Picker.Item key={1} label={'02'} value={'02'} />
               </Picker>
-            </View>
+            </View> */}
             {/* {"request_datetime" : "2022-03-08 18:35", "time_zone": "Asia/Bangkok", "GMT" : "7"}, */}
             <TouchableOpacity
               onPress={() => {

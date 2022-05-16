@@ -45,4 +45,13 @@ export default {
   sendmessage: 'send message',
   Events: 'Events',
   SAVEPROFILE: 'SAVE PROFILE',
+  ForExhibitor: 'For Exhibitor',
+  ApplicationForm: 'Application Form',
+  Letter: 'Letter Of Confirmation For Custom',
+  Manual: 'Exhibitor Manual',
+  BGJF: 'BGJF Virtual',
+  AboutBGJF: 'About BGJF Virtual Trade Fair',
+  RegistrationForm: 'Registration Form',
+  ExhibitorMeeting: 'Exhibitor Meeting',
+  ExhibitorManual: 'Exhibitor Manual',
 };

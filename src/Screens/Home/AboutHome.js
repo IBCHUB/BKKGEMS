@@ -36,7 +36,7 @@ const AboutHome = ({navigation}) => {
         <View style={styles.row}></View>
       </View>
       <Text style={styles.textalin}>
-        Discover Gems & Jewelry Suppliers, Brands And Manufacturers.
+        Discover Gems & Jewelry Suppliers, Brands and Manufacturers.
       </Text>
       <View style={styles.view}>
         <View style={styles.review}>
@@ -58,7 +58,7 @@ const AboutHome = ({navigation}) => {
         source={require('../../../assets/image/pet.png')}
         style={styles.imgpat}
       />
-      <Text style={styles.textsuphead}>Exquisiteness of South East Asia</Text>
+      <Text style={styles.textsuphead}>Exquisiteness of SouthEast Asia</Text>
       <Text style={styles.textdetail}>
         Gems and jewelry rank at No.3 of Thailand’s most exported industries,
         creating over a millionjobs and generating more than USD 15,000 million.

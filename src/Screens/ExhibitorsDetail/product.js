@@ -66,28 +66,7 @@ const product = ({item, navigation, detail}) => {
   useEffect(() => {
     _Data2();
   }, []);
-  // const [data, setData] = useState([
-  //   {
-  //     id: 1,
-  //     img: require('../../../assets/image/exhi/1.png'),
-  //     text: 'Sapphire Earring',
-  //   },
-  //   {
-  //     id: 2,
-  //     img: require('../../../assets/image/exhi/2.png'),
-  //     text: '7 Days Birthstone',
-  //   },
-  //   {
-  //     id: 3,
-  //     img: require('../../../assets/image/exhi/3.png'),
-  //     text: 'Ruby Rosegold Ring',
-  //   },
-  //   {
-  //     id: 4,
-  //     img: require('../../../assets/image/exhi/4.png'),
-  //     text: 'Sapphire Topaz Bracelet',
-  //   },
-  // ]);
+
   return (
     <View style={styles.containerproduct}>
       <View>

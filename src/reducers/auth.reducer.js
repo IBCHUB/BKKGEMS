@@ -69,8 +69,26 @@ const authUser = (state = {}, action) => {
       return state;
   }
 };
+const authChat = (state = {}, action) => {
+  switch (action.type) {
+    case 'GET_CHAT_SUCCESS':
+      return {
+        token: action.token,
+        isLoggedIn: true,
+      };
+    case 'GET_CHAT_FAIL':
+      return {
+        token: null,
+        isLoggedIn: false,
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default combineReducers({
   authData,
   authUser,
+  authChat,
 });

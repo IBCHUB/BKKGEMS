@@ -27,30 +27,17 @@ const Headerhome = ({navigation, dispatch, authUser}) => {
         />
       </View>
       <View style={styles.row}>
-        {authUser.token === null ? (
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(logoutUser());
-            }}
-            style={{marginRight: 20}}>
-            <Image
-              source={require('../../assets/image/iconSend.png')}
-              style={styles.iconSend}
-            />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            disabled
-            onPress={() => navigation.navigate('Chat')}
-            style={{marginRight: 20}}>
-            <Image
-              source={require('../../assets/image/iconSend.png')}
-              style={styles.iconSend}
-            />
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          // disabled
+          onPress={() => navigation.navigate('Chat')}
+          style={{marginRight: 20}}>
+          <Image
+            source={require('../../assets/image/iconSend.png')}
+            style={styles.iconSend}
+          />
+        </TouchableOpacity>
 
-        {authUser != undefined && authUser.token === null ? (
+        {authUser.token === null ? (
           <TouchableOpacity
             onPress={() => {
               dispatch(logoutUser());
@@ -63,7 +50,7 @@ const Headerhome = ({navigation, dispatch, authUser}) => {
         ) : (
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
             <Image
-              source={{uri: authUser.token.profile_img}}
+              source={{uri: authUser?.token?.profile_img}}
               style={styles.iconprofile}
             />
           </TouchableOpacity>

@@ -45,4 +45,8 @@ export default {
   sendmessage: 'ส่งข้อความ',
   Events: 'อีเวนต์',
   SAVEPROFILE: '..',
+  ForExhibitor: 'For Exhibitor',
+  ApplicationForm: 'Application Form',
+  Letter: 'Letter Of Confirmation For Custom',
+  Manual: 'Exhibitor Manual',
 };

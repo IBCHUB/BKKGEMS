@@ -21,6 +21,7 @@ const Allchat = ({navigation, dispatch, authUser}) => {
     try {
       var request = 'user_id=' + UserId;
       const response = await dispatch(GetallChat(request));
+      console.log(response);
       if (response.res_code == '00') {
         setData(response.res_result);
       } else {

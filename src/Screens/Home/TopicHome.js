@@ -8,13 +8,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import {connect} from 'react-redux';
 import {Topic} from '../../action/data.action';
 import moment from 'moment';
+import {useIsFocused} from '@react-navigation/native';
 
 const TopicHome = ({dispatch}) => {
   const [data, setdata] = useState({});
-
   console.log(data);
-  const day = moment(data.Fair_start_in).format('DD MM YYYY');
-
+  const focus = useIsFocused();
   const _Topic = async values => {
     try {
       const response = await dispatch(Topic());
@@ -28,7 +27,7 @@ const TopicHome = ({dispatch}) => {
   };
   useEffect(() => {
     _Topic();
-  }, []);
+  }, [focus]);
 
   return (
     <View style={styles.linearGradient}>
@@ -59,11 +58,9 @@ const TopicHome = ({dispatch}) => {
         </Text>
         <CountDown
           // moment().add(6, "hours").valueOf()
-          // until={moment(day).add(24, 'hours').valueOf()}
-          until={13132800}
-          // until={3600 * 24 * 152}
+          // until={moment(1662519600).add(24, 'hours').valueOf()}
+          until={data.Fair_start_in}
           size={30}
-          // onFinish={() => alert('Finished')}
           digitStyle={{height: 25}}
           digitTxtStyle={{
             color: '#000',

@@ -45,6 +45,7 @@ import {
   Page4,
   Fashion,
   Workshops,
+  Searchno,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
@@ -285,6 +286,7 @@ function TabStackScreen(navigation) {
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
                   width: focused ? 40 : 35,
+                  marginBottom: focused ? -5 : 0,
                 }}>
                 NEWS & TRENDS
               </Text>
@@ -329,6 +331,7 @@ function ScreenStack() {
       <Stack.Screen name="Page4" component={Page4} />
       <Stack.Screen name="Fashion" component={Fashion} />
       <Stack.Screen name="Workshops" component={Workshops} />
+      <Stack.Screen name="Searchno" component={Searchno} />
     </Stack.Navigator>
   );
 }

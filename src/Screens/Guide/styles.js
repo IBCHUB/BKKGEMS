@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     color: '#646363',
     fontFamily: 'Cantoria MT Std',
     width: width * 0.85,
-    marginTop: 20,
+    marginTop: 30,
   },
   view: {
     backgroundColor: '#EEECE2',

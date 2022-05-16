@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
   viewflat: {
     width: width * 0.5,
     justifyContent: 'center',
-    marginBottom: 10,
     height: 200,
+    marginBottom: 20,
   },
   rowflat: {
     flexDirection: 'row',
@@ -75,12 +75,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 10,
     borderRadius: 10,
+    borderWidth: 0.2,
   },
   textflat: {
     textAlign: 'center',
     fontSize: 15,
     fontFamily: 'Cantoria MT Std',
     marginTop: 10,
+    width: width * 0.4,
   },
   texttt: {
     height: 60,

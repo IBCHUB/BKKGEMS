@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: width * 1,
     justifyContent: 'space-between',
+    backgroundColor: '#fff',
   },
   touch: {
     width: width * 0.5,
@@ -91,7 +92,8 @@ const styles = StyleSheet.create({
     width: width * 0.15,
   },
   chat: {
-    height: height * 0.78,
+    height: height * 0.82,
+    backgroundColor: '#fff',
   },
 });
 
