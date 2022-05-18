@@ -18,17 +18,17 @@ const Headerchat = ({navigation, item}) => {
         />
       </TouchableOpacity>
       <View style={styles.row}>
-        <Text style={styles.texthead1}>{item}</Text>
+        <Text style={styles.texthead1}>DITP Offlcial Chat</Text>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <FontAwesome5
             name="search"
             size={18}
             color={'#DAA560'}
             style={styles.icon}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

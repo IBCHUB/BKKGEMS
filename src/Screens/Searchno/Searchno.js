@@ -27,6 +27,7 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
   const [company, setcompany] = useState([]);
   const [brand, setbrand] = useState([]);
   const [data, setdata] = useState([]);
+  console.log(data);
   const [categorys, setcategorys] = useState([
     {
       img: require('../../../assets/image/iocn/014.png'),
@@ -163,9 +164,7 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           </TouchableOpacity>
         </View>
 
-        {product.data.filter(i => {
-          return i.booth_no != null;
-        }) ? (
+        {product.data ? (
           <View style={styles.com}>
             <Image
               source={require('../../../assets/image/folder.png')}

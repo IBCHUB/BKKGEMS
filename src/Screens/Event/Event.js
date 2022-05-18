@@ -12,23 +12,23 @@ import styles from './styles';
 const Event = ({navigation}) => {
   const [data, setData] = useState([
     {
-      text: 'THE NEW FACES',
+      text: 'The New Faces',
       navigation: 'Thenewfaces',
     },
     {
-      text: 'THE NICHE SHOWCASE',
+      text: 'The Niche Showcase',
       navigation: 'Theniche',
     },
     {
-      text: 'THE JEWELLERS',
+      text: 'The Jewellers',
       navigation: 'Jewellers',
     },
     {
-      text: 'FASHION SHOW',
+      text: 'Fashion Show',
       navigation: 'Fashion',
     },
     {
-      text: 'WORKSHOPS AND DEMONSTRATIONS',
+      text: 'Workshops And Demonstrations',
       navigation: 'Workshops',
     },
   ]);

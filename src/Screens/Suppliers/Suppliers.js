@@ -14,22 +14,20 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import RBSheetHome from '../Home/RBSheetHome';
+import RBSheetHome from './RBSheet';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
-import {Search} from '../../action/data.action';
+import {Exhibitor_List, Search} from '../../action/data.action';
 const Suppliers = ({navigation, dispatch}) => {
   const [state, setstate] = useState();
   const [query, setQuery] = useState('');
   console.log(query);
   const test = text => {
     setQuery(text);
-
     _Search(text);
   };
 
   const _Search = async values => {
-    console.log('xxxx');
     try {
       var request = 'text=' + values + '&type=' + '1';
       const response = await dispatch(Search(request));
@@ -105,9 +103,28 @@ const Suppliers = ({navigation, dispatch}) => {
                       renderItem: ({item}) => {
                         return (
                           <TouchableOpacity
-                            onPress={() =>
-                              navigation.navigate('Search', {item})
-                            }>
+                            onPress={async () => {
+                              var request =
+                                'meet=' +
+                                '2' +
+                                '&tags=' +
+                                '' +
+                                '&type=' +
+                                '' +
+                                '&text=' +
+                                item;
+                              const response = await dispatch(
+                                Exhibitor_List(request),
+                              );
+                              if (response.res_code == '00') {
+                                navigation.navigate('Search', {
+                                  item: response.res_result,
+                                  text: item,
+                                });
+                              } else {
+                                console.log('2222');
+                              }
+                            }}>
                             <Text
                               style={{
                                 fontSize: 16,

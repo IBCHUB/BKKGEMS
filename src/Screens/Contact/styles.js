@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
     alignSelf: 'center',
-    letterSpacing: 0.1,
+    letterSpacing: 0.2,
   },
   textags1: {
     fontFamily: 'Cantoria MT Std',
@@ -134,6 +134,13 @@ const styles = StyleSheet.create({
     color: '#DAA560',
     alignSelf: 'center',
     fontFamily: 'Cantoria MT Std',
+  },
+  textt: {
+    fontFamily: 'Cantoria MT Std',
+    fontSize: 20,
+    color: '#DAA560',
+    letterSpacing: 0.1,
+    marginBottom: 10,
   },
 });
 

@@ -11,7 +11,7 @@ import {
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Tags} from '../../action/data.action';
+import {Exhibitor_List, Tags} from '../../action/data.action';
 import {connect} from 'react-redux';
 const {width, height} = Dimensions.get('window');
 const RBSheetHome = ({onPress, navigation, dispatch}) => {
@@ -214,8 +214,23 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
             <Text style={styles.textouch}>CLEAR</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => {
+            onPress={async () => {
               onPress();
+              // var request =
+              //   'meet=' +
+              //   '1' +
+              //   '&tags=' +
+              //   selectedtags +
+              //   '&type=' +
+              //   selectedId +
+              //   '&text=' +
+              //   '';
+              // const response = await dispatch(Exhibitor_List(request));
+              // console.log(response);
+              // if (response.res_code == '00') {
+              // } else {
+              //   console.log('2222');
+              // }
               navigation.navigate('Searchno', {
                 item: {selectedId, selectedtags},
               });

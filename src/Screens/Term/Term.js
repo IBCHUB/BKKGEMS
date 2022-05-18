@@ -23,140 +23,162 @@ const Term = ({navigation, dispatch}) => {
         <ScrollView>
           <View style={styles.view}>
             <Text style={styles.textdetail}>
-              "นโยบายความเป็นส่วนตัวของกรมสำหรับการใช้งานแอปพลิเคชันด้านล่าง
-              ซึ่งต่อไปนี้จะเรียกว่า “แอปพลิเคชัน”
-              โปรดอ่านและทำความเข้าใจนโยบายความเป็นส่วนตัวนี้อย่างละเอียด
-              การที่ท่านได้ติดตั้ง และ/หรือเข้าใช้งานแอปพลิเคชันนี้แล้ว
-              ถือว่าท่านตกลงยอมรับข้อกำหนดที่ระบุในนโยบายความเป็นส่วนตัวนี้แล้วทุกประการหากท่านไม่สามารถยอมรับข้อกำหนดนโยบายความเป็นส่วนตัวนี้ได้
-              ขอให้ท่านปฏิเสธการใช้งานแอปพลิเคชันโดยถอนการติดตั้งแอปพลิเคชันจากเครื่องโทรศัพท์เคลื่อนที่/อุปกรณ์ดิจิตอลของท่านทันที
-              {'\n'}1.
-              วัตถุประสงค์ของนโยบายความเป็นส่วนตัวในการใช้งานแอปพลิเคชันนี้
-              กรมมีความประสงค์ที่จะแจ้งให้ท่านทราบอย่างชัดเจนว่ากรมรวบรวมข้อมูลอะไรของท่านบ้าง
-              มีวิธีการใช้และแบ่งปันข้อมูลของท่านอย่างไร
-              นโยบายความเป็นส่วนตัวนี้จะอธิบายถึง{'\n'}-
-              ข้อมูลที่รวบรวมและเหตุผลที่รวบรวม {'\n'}- การใช้ข้อมูลที่รวบรวม
-              กรมจะใช้ข้อมูลที่รวบรวมจากแอปพลิเคชันทั้งหมดของกรม เพื่อให้บริการ
-              บำรุงรักษา ป้องกัน ปรับปรุง พัฒนาบริการใหม่ๆ และปกป้องกรมและท่าน
-              ตลอดจนเพื่อนำเสนอเนื้อหาที่ได้รับการปรับแต่ง (Customize)
-              ให้เหมาะสมกับการใช้งานของท่านโดยเฉพาะ เช่น
-              แสดงผลการค้นหาที่เกี่ยวข้องกับท่าน
-              แสดงโฆษณาประชาสัมพันธ์บริการที่ท่านอาจสนใจและเป็นประโยชน์แก่ท่าน
-              {'\n'}เมื่อท่านติดต่อมายังกรม
-              กรมอาจเก็บบันทึกข้อมูลการสนทนาระหว่างท่าน กับ Call Center
-              ที่กรมจัดหามาไว้สำหรับเป็นช่องทางการรับแจ้ง ให้คำปรึกษา
-              แนะนำวิธีการแก้ปัญหาที่เกี่ยวข้องกับการใช้งานแอปพลิเคชัน
-              และอาจเก็บบันทึกที่อยู่อีเมลล์ที่ท่านแจ้งไว้เพื่อรับคำแนะนำต่างๆ
-              ทั้งนี้ เพื่อนำมาปรับปรุงและพัฒนาการให้บริการของกรม และกรมในเครือ
-              และแจ้งให้ท่านทราบผ่านที่อยู่ที่ท่านแจ้งไว้ได้
+              Department's privacy policy for the use of the application below,
+              hereinafter referred to as "Application".{'\n'}
+              {'\n'}Please read and understand this Privacy Policy carefully. In
+              the case that you have installed and/or have accessed this
+              application, you are deemed to have agreed to all the terms stated
+              in this Privacy Policy. If you are unable to accept the terms of
+              this Privacy Policy, you are requested to deny the use of the
+              application by immediately removing the application from your
+              mobile phone/digital device.{'\n'}
               {'\n'}
+              1. In the purpose of the privacy policy for using this
+              application, the Department wishes to inform you clearly what
+              information the Department collects from you and how the
+              application uses and shares your information. This Privacy Policy
+              describes:{'\n'}
+              {'  '} - Information collected and reasons for collecting {'\n'}
+              {'  '} - Use of collected information{'\n'}
+              {'\n'}The Department will use information collected from all
+              Department applications to provide, maintain, prevent, improve,
+              develop new services, and protect the department and you as well
+              as to offer content that has been customised to suit your
+              particular use, such as showing search results that are relevant
+              to you, displaying advertisements promoting services that may be
+              of interest to you and that are useful to you. {'\n'}
+              {'\n'}When you contact the department, the Department may keep a
+              record of conversations between you and the Call Centre provided
+              by the Department as a channel for receiving notifications, giving
+              advice, and suggesting solutions to problems related to the use of
+              the application, and may keep a record of the e-mail address that
+              you have provided to send various suggestions in order to improve
+              and develop the service of the Department and affiliated
+              departments and notify you through the address you provided.{' '}
               {'\n'}
-              กรมอาจใช้ข้อมูลที่รวบรวมได้จากคุกกี้และเทคโนโลยีอื่นๆ เช่น การใช้
-              Tag เป็นต้น ในการปรับปรุงประสบการณ์การใช้งานของท่าน
-              และคุณภาพโดยรวมของแอปพลิเคชัน {'\n'}
-              {'\n'}ข้อมูลที่แบ่งปัน{'\n'}
-              กรมจะไม่นำข้อมูลของท่านไปแบ่งปันหรือเปิดเผยให้กับกรม
-              และ/หรือองค์กรอื่น และ/หรือบุคคลภายนอก ยกเว้นกรณี ดังต่อไปนี้
-              {'\n'}-เมื่อได้รับความยินยอมจากท่าน
+              {'\n'}The Department may use information collected from cookies
+              and other technologies, such as the use of tags, to improve your
+              user experience. and the overall quality of the application.{'\n'}
+              {'\n'}
+              Shared Information {'\n'}
+              {'\n'}The Department will not share or disclose your information
+              with the department and/or other departments, and/or third
+              parties, except in the following cases:{'\n'}
+              {'\n'} - เมื่อได้รับความยินยอมจากท่าน
               กรมอาจแบ่งปันหรือเปิดเผยข้อมูลส่วนบุคคลของท่านกับกรม
               และ/หรือองค์กรอื่น และ/หรือบุคคลภายนอก
               เมื่อได้รับความยิมยอมจากท่านให้แบ่งปันหรือเปิดเผยข้อมูลส่วนบุคคลที่ละเอียดอ่อนของท่านก่อน
-              เพื่อ
-              “การใช้ข้อมูลที่รวบรวม”กรมอาจแบ่งปันหรือเปิดเผยข้อมูลส่วนบุคคลของท่านกับกรมในเครือ
-              กรมในกลุ่ม
-              ตลอดจนคู่สัญญาที่มีหน้าที่บริหารจัดการแอปพลิเคชันตามสัญญากับกรมโดยตรง
-              หรือกรมอื่นที่มีนโยบายเกี่ยวกับข้อมูลส่วนบุคคลที่น่าเชื่อถือ
-              เพื่อให้บริการ บำรุงรักษา ป้องกัน ปรับปรุง พัฒนาบริการใหม่ๆ
-              และปกป้องกรมและท่าน ตลอดจนเพื่อนำเสนอเนื้อหาที่ได้รับการปรับแต่ง
-              (Customize) ให้เหมาะสมกับการใช้งานของท่านโดยเฉพาะ เช่น
-              แสดงผลการค้นหาที่เกี่ยวข้องกับท่าน
-              แสดงโฆษณาประชาสัมพันธ์บริการที่ท่านอาจสนใจและเป็นประโยชน์แก่ท่าน
-              โดยดำเนินการตามคำแนะนำและตามนโยบายส่วนบุคคลของกรม
-              รวมถึงมาตรการการรักษาข้อมูลที่เป็นความลับและการรักษาความปลอดภัยที่เหมาะสม
-              {'\n'}สำหรับเหตุผลทางกฎหมาย
-              กรมอาจแบ่งปันหรือเปิดเผยข้อมูลของท่านกับกรม และ/หรือองค์กรอื่น
-              และ/หรือบุคคลภายนอก หากกรมเชื่อโดยสุจริตว่าการเข้าถึง การใช้
-              การเก็บรักษา หรือการเปิดเผยข้อมูลนั้น มีเหตุจำป็นอันสมควร (1)
-              เพื่อการปฏิบัติตามกฎหมาย ระเบียบข้อบังคับ หลักเกณฑ์
-              คำสั่งที่เกี่ยวข้องและการร้องขอข้อมูลจากทางราชการ (2)
-              เพื่อบังคับใช้ข้อกำหนดในการให้บริการที่เกี่ยวข้อง
-              รวมถึงการตรวจสอบการละเมิดที่อาจเกิดขึ้น (3) เพื่อตรวจจับ ป้องกัน
-              หรือตรวจสอบการทุจริต ปัญหาด้านความปลอดภัยหรือด้านเทคนิค (4)
-              เพื่อป้องกันอันตรายต่อสิทธิ ทรัพย์สิน
-              หรือความปลอดภัยของกรมและ/หรือของท่าน
-              หรือบุคคลอื่นตามที่กฎหมายกำหนด
-              {'\n'}กรมอาจแบ่งปันข้อมูลที่ไม่สามารถระบุตัวผู้ใช้งานแอปพลิเคชัน
-              เช่น ผลการค้นหา เครื่อข่ายโทรศัพท์เคลื่อนที่ที่ใช้งาน ภาษาที่ใช้
-              เว็บไซต์ที่เข้าชมบ่อย เป็นต้น
-              ต่อสาธารณะหรือให้แก่พันธมิตรทางการค้าของกรม เช่น ผู้เผยแพร่โฆษณา
-              ผู้ลงโฆษณา หรือเว็บไซต์ที่เชื่อมโยงกัน เช่น
-              กรมอาจแบ่งปันข้อมูลที่แสดงแนวโน้มการใช้งานแอปพลิเคชัน สู่สาธารณะ
-              เป็นต้นหากกรมมีการเปลี่ยนแปลงโครงสร้างการบริหารงาน เช่น
-              การควบรวมกิจการ การได้มา หรือการขายสินทรัพย์
-              กรมจะยังคงรักษาข้อมูลส่วนบุคคลใดๆ ให้เป็นความลับ
-              และแจ้งให้ผู้ใช้งานแอปพลิเคชันที่ได้รับผลกระทบทราบก่อนการโอนข้อมูลส่วนบุคคล
-              หรือให้ข้อมูลส่วนบุคคลนั้นอยู่ภายใต้นโยบายความเป็นส่วนตัวอื่นๆ
-              {'\n'} 2. ความปลอดภัยของข้อมูล
-              กรมพยายามอย่างยิ่งที่จะปกป้องข้อมูลของท่านจากการเข้าถึง
-              การแก้ไขเปลี่ยนแปลง การเปิดเผย หรือการทำลายโดยไม่ได้รับอนุญาต
-              อย่างน้อยดังนี้- กรมตรวจสอบการเก็บรวบรวมข้อมูล
-              พื้นที่ในการจัดเก็บข้อมูลและหลักปฏิบัติในการประมวลผล
-              รวมถึงมาตรการความปลอดภัยทางกายภาพ
-              เพื่อป้องกันการเข้าถึงข้อมูลโดยไม่ได้รับอนุญาต
-              กรมจำกัดการเข้าถึงข้อมูลส่วนบุคคลไว้เฉพาะกับพนักงาน ลูกจ้าง
-              และตัวแทนของกรม ที่มีความจำเป็นต้องเข้าถึงข้อมูลนั้นๆ (Need to
-              Know Basis) เพื่อทำการประมวลผลข้อมูล โดยที่บุคคลดังกล่าวนั้น
-              จะต้องปฏิบัติตามข้อกำหนดเกี่ยวกับการรักษาข้อมูลที่เป็นความลับตามสัญญาอย่างเคร่งครัด
-              หากฝ่าฝืนจะมีบทลงโทษขั้นรุนแรง {'\n'}3.
-              ข้อจำกัดการใช้นโยบายความเป็นส่วนตัว นโยบายความเป็นส่วนตัวฉบับนี้
-              มีผลใช้บังคับกับแอปพลิเคชันนี้เท่านั้น
-              ไม่รวมถึงแอปพลิเคชันและ/หรือบริการที่มีนโยบายความเป็นส่วนตัว
-              แยกต่างหาก
-              และ/หรือที่ไม่ได้กำหนดโดยชัดแจ้งให้ใช้ร่วมกันกับนโยบายความเป็นส่วนตัวนี้
-              ตลอดจนไม่มีผลใช้บังคับกับแอปพลิเคชันและบริการ หรือเว็บไซต์อื่นๆ
-              ที่เชื่อมต่อ (link) กับแอปพลิเคชันนี้
-              รวมถึงไม่ครอบคลุมหลักปฏิบัติด้านข้อมูลส่วนบุคคลของกรมอื่นๆ
-              หรือองค์กรอื่นๆ ที่โฆษณาแอปพลิเคชันของกรม ซึ่งอาจใช้คุกกี้
-              พิกเซลแท็ก และเทคโนโลยีอื่นๆ ในการนำเสนอและแสดงโฆษณาที่เกี่ยวข้อง
-              {'\n'}4.
-              การปฏิบัติตามกฎหมายและการให้ความร่วมมือกับหน่วยงานกำกับดูแล
-              กรมดำเนินการตรวจสอบและทบทวนการปฏิบัติตามนโยบายความเป็นส่วนตัว
-              และการปฏิบัติตามกฎหมายที่เกี่ยวข้อง ภายในองค์กรอย่างสม่ำเสมอ
-              (Self-Regulator)
-              หากกรมได้รับหนังสือร้องเรียนเกี่ยวกับการใช้ข้อมูลส่วนบุคคล
-              กรมจะดำเนินการติดตามผล
-              ตลอดจนให้ความร่วมมือกับหน่วยงานของรัฐที่มีอำนาจกำกับดูแลการให้บริการแอปพลิเคชัน
-              และหน่วยงานคุ้มครองผู้บริโภคต่างๆ {'\n'}5.
-              การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว
-              กรมขอสงวนสิทธิ์ในการแก้ไขเปลี่ยนแปลงนโยบายความเป็นส่วนตัวนี้ได้ตลอดเวลา
-              โดยไม่ต้องได้รับความยินยอมจากท่านล่วงหน้า
-              เว้นแต่เป็นการแก้ไขเปลี่ยนแปลงที่เป็นการริดรอนสิทธิของท่านตามนโยบายความเป็นส่วนตัวนี้
-              กรมจะกระทำมิได้หากไม่ได้รับความยินยอมจากท่านก่อน {'\n'}6.
-              การเข้าถึงและอัปเดตข้อมูลส่วนบุคคล กรมมุ่งหวังเป็นอย่างยิ่งว่า
-              ในการใช้แอปพลิเคชัน ท่านสามารถเข้าถึงข้อมูลส่วนบุคคลของท่านได้
-              หากข้อมูลดังกล่าวมีความบกพร่องหรือไม่ถูกต้อง
-              กรมจะพยายามจัดหาวิธีการ
-              และ/หรือช่องทางให้ท่านสามารถอัปเดตและ/หรือลบข้อมูลส่วนบุคคลของท่านได้อย่างเหมาะสม
-              เว้นแต่
-              ในกรณีมีความจำเป็นที่กรมจะต้องจัดเก็บข้อมูลส่วนบุคคลของท่านไว้
-              เพื่อประโยชน์ทางธุรกิจ
-              และ/หรือเพื่อการปฏิบัติตามกฎหมายที่ใช้บังคับ
-              เมื่อท่านดำเนินการอัปเดตข้อมูลส่วนบุคคลของท่าน
-              กรมอาจร้องขอให้ท่านยืนยันตัวตนก่อนที่กรมจะดำเนินการตามคำขอของท่านได้
-              ทั้งนี้
-              กรมขอสงวนสิทธิ์ปฏิเสธการทำคำขออัปเดตและการเข้าถึงข้อมูลส่วนบุคคลของท่าน
-              ในกรณีดังต่อไปนี้ (1) การทำคำขอที่ซับซ้อนและมีจำนวนมากเกินกว่าปกติ
-              (2) การดำเนินการตามคำขออาจทำให้กรมต้องจัดหา
-              และ/หรือพัฒนาเทคโนโลยีจากที่กรมมีอยู่เกินสมควร (3)
-              การดำเนินการตามคำขออาจกระทบข้อมูลส่วนบุคคลของผู้ใช้งานแอปพลิเคชันอื่นๆ
-              หรือ (4) การดำเนินการตามคำขอไม่สามารถปฏิบัติได้จริง เช่น
-              คำขอเกี่ยวกับการเรียกดูข้อมูลส่วนบุคคลที่อยู่ในระบบสำรองข้อมูล
               {'\n'}
+              {'\n'} - With your consent, the Department may share or disclose
+              your personal information with the Department, and/or other
+              departments, and/or third parties. Upon obtaining your consent to
+              share or disclose your sensitive personal information: firstly,
+              for “use of collected information”, the Department may share or
+              disclose your personal information with affiliated departments,
+              departments in the working group, as well as parties which are
+              responsible for managing applications according to contracts with
+              the department directly, or other departments that have a reliable
+              privacy policy, to provide, maintain, prevent, improve, develop
+              new services, and protect the department and you as well as to
+              offer content that has been customised to suit your particular
+              use, such as showing search results that are relevant to you,
+              displaying advertisements promoting services that may be of
+              interest to you and that are useful to you, by following the
+              instructions and in accordance with the Department's privacy
+              policy including appropriate confidentiality and security
+              measures.{'\n'}
+              {'\n'} - For legal reasons, the Department may share or disclose
+              your information within the department, and/or other departments ,
+              and/or third parties, if the Department believes in good faith
+              that the access, use, retention or disclosure of that information,
+              are based on reasonable grounds: (1) for the compliance to the law
+              and regulations, rules, relevant orders, and government requests
+              for information; (2) to enforce the relevant terms of service,
+              which includes an investigation of potential violations; (3) to
+              detect, prevent or investigate fraud, security, or technical
+              issues; (4) to prevent harm to the rights, property, or safety of
+              the Department, and/or you, or other persons as required by law.
               {'\n'}
-              กรมมุ่งหวังที่จะดำเนินการให้บริการแอปพลิเคชันของกรมเป็นไปอย่างปลอดภัย
-              และสามารถป้องกันการทำลายข้อมูลจากอุบัติเหตุหรือการมุ่งร้ายอื่นๆ
-              ด้วยเหตุนี้ ภายหลังจากที่ท่านลบข้อมูลออกจากแอปพลิเคชันของกรมแล้ว
-              กรมอาจยังไม่ดำเนินการลบสำเนาข้อมูลส่วนบุคคลที่มีอยู่ออกจากเซิร์ฟเวอร์ที่ใช้งานอยู่
-              หรือนำข้อมูลออกจากระบบสำรองของกรมในทัน"
+              {'\n'} - The Department may share non-personally identifiable
+              information about users of the Application, such as search
+              results, mobile network used, the language used, frequently
+              visited websites, etc., publicly or to Department's commercial
+              partners, such as advertising publishers, or linked websites, for
+              example, the Department may share information that shows trends in
+              the usage of the application to the public, for example, if the
+              Department has a change in its management structure, such as a
+              merger, acquisition or sale of asset, the department will maintain
+              any personal information, keep secret, and inform users of
+              affected applications before transferring personal data or
+              providing that personal information is subject to other privacy
+              policies.{'\n'}
+              {'\n'}2. Data security {'\n'}
+              {'\n'}The Department makes every effort to protect your
+              information from unauthorised access. Unauthorised alteration,
+              disclosure or destruction, at least as follows: {'\n'}
+              {'\n'}The Department audits the collection of information, storage
+              space, and processing practices including physical safety measures
+              to prevent unauthorised access to information. The Department
+              restricts access to personal information to its officials,
+              employees, and representatives who have the necessity to access
+              that information on the need-to-know basis in order to process the
+              data where such persons must adhere to the contractual
+              confidentiality requirements. Failure to do so will result in
+              severe penalties.
+              {'\n'}
+              {'\n'}3. Privacy policy restrictions {'\n'}
+              {'\n'}This Privacy Policy only applies to this particular
+              application only. It does not include applications and/or services
+              that have a separate privacy policy and/or that are not expressly
+              defined in conjunction with this privacy policy, and does not
+              apply to applications and services or other websites connected
+              (linked) to this application including not covering the privacy
+              practices of other departments or other organisations that
+              advertises the application of the Department, which may use
+              cookies, pixel tags, and other technologies to deliver and display
+              relevant advertisements.{'\n'}
+              {'\n'}4. Compliance with laws and cooperation with regulators
+              {'\n'}
+              {'\n'}The department conducts audits and reviews compliance with
+              the privacy policy and compliance with relevant laws within the
+              organisation on a regular basis (self-regulated). If the
+              Department receives a letter of complaint about the use of
+              personal information, the department will follow up as well as
+              cooperate with government agencies that have the authority to
+              supervise the service of the application and various consumer
+              protection agencies.{'\n'}
+              {'\n'}5. Changes in privacy policy{'\n'}
+              {'\n'}The Department reserves the right to amend this Privacy
+              Policy at any time without your prior consent unless amendments
+              are made that infringe upon your rights under this Privacy Policy.
+              For that matter, the Department will not be able to do this
+              without your prior consent.{'\n'}
+              {'\n'}6. Accessing and updating personal information{'\n'}
+              {'\n'}The Department sincerely hopes that you can access your
+              personal information while using the Application. If such
+              information is incorrect or inaccurate, the Department will try to
+              provide a method and/or channels for you to appropriately update
+              and/or delete your personal data, except in cases where it is
+              necessary that the Department has to store your personal data for
+              business benefit and/or for compliance with applicable law. When
+              you update your personal information, the Department may request
+              that you verify your identity before the Department can process
+              your request. The Department reserves the right to decline
+              requests for updates and access to your personal information in
+              the following cases: (1) making a request that is too complex and
+              excessive; (2) processing the request may require the Department
+              to provide and/or develop technology other than those the
+              Department has; (3) the processing of the request may affect the
+              personal information of other application users; or (4) the
+              processing of the request is not practical, for example, requests
+              for retrieval of personal data stored in the backup system.{'\n'}
+              {'\n'}The department aims to make the application service of the
+              department safe, and can prevent the destruction of data from
+              accidents or other malicious purposes. For this reason, after you
+              delete the data from the Department's application, the Department
+              may not take action to delete the existing copies of personal data
+              from the active servers, or immediately remove the data from the
+              Department's backup system.
             </Text>
             <View style={{marginBottom: 50}} />
           </View>

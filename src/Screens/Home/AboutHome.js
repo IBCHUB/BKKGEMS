@@ -58,7 +58,7 @@ const AboutHome = ({navigation}) => {
         source={require('../../../assets/image/pet.png')}
         style={styles.imgpat}
       />
-      <Text style={styles.textsuphead}>Exquisiteness of SouthEast Asia</Text>
+      <Text style={styles.textsuphead}>Exquisiteness of Southeast Asia</Text>
       <Text style={styles.textdetail}>
         Gems and jewelry rank at No.3 of Thailand’s most exported industries,
         creating over a millionjobs and generating more than USD 15,000 million.

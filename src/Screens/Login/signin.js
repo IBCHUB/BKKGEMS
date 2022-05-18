@@ -264,10 +264,10 @@ const signin = ({navigation, onPress, dispatch, authData}) => {
       <View style={{marginTop: 50}} />
       <Formik
         initialValues={{
-          // email: '',
-          // password: '',
-          email: 'Santisook.tee@gmail.com',
-          password: '11111111',
+          email: '',
+          password: '',
+          // email: 'Santisook.tee@gmail.com',
+          // password: '11111111',
         }}
         onSubmit={values => {
           // console.log(values);

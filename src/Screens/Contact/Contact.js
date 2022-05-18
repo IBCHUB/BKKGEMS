@@ -78,7 +78,7 @@ const Contact = ({navigation, dispatch}) => {
                 setmodal(false);
                 setTimeout(() => {
                   navigation.goBack('');
-                }, 300);
+                }, 100);
               }}
               style={styles.buttonsec}>
               <Text style={styles.textsec}>OK</Text>
@@ -185,6 +185,7 @@ const Contact = ({navigation, dispatch}) => {
             </TouchableOpacity>
           </View> */}
           <View style={styles.viewtags}>
+            <Text style={styles.textt}>SHOW ORGANIZER</Text>
             <Text style={styles.textags}>
               Office of Lifestyle Trade Promotion Department of International
               Trade Promotion Ministry of Commerce, Thailand
@@ -192,58 +193,50 @@ const Contact = ({navigation, dispatch}) => {
             <View style={styles.rowtags}>
               <Image
                 style={styles.icon}
-                source={require('../../../assets/image/gps.png')}
+                source={require('../../../assets/image/ban.png')}
               />
-              <Text style={styles.textags1}>
-                563 Nonthaburi Road, Muang, Nonthaburi 11000 Thailand
-              </Text>
+              <Text style={styles.textags1}>+66 2507 8392 to 3</Text>
             </View>
             <View style={styles.rowtags}>
               <Image
                 style={styles.icon}
-                source={require('../../../assets/image/phone.png')}
+                source={require('../../../assets/image/ban2.png')}
               />
-              <Text style={styles.textags1}>+66 2507 8392, 8393</Text>
+              <Text style={styles.textags1}>+66 2547 4292</Text>
             </View>
             <View style={styles.rowtags}>
               <Image
                 style={styles.icon}
-                source={require('../../../assets/image/Message.png')}
+                source={require('../../../assets/image/ban1.png')}
               />
               <Text style={styles.textags1}>official@bkkgems.com</Text>
             </View>
-            <AutoHeightWebView
-              style={{
-                width: Dimensions.get('window').width - 15,
-                marginTop: 40,
-                height: 200,
-              }}
-              customScript={`document.body.style.background = 'lightyellow';`}
-              customStyle={`
-      * {
-        font-family: 'Times New Roman';
-      }
-      p {
-        font-size: 16px;
-      }
-    `}
-              onSizeUpdated={size => console.log(size.height)}
-              files={[
-                {
-                  href: 'cssfileaddress',
-                  type: 'text/css',
-                  rel: 'stylesheet',
-                },
-              ]}
-              source={{
-                html: `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.1391824422294!2d100.53843411483462!3d13.770479000570441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29eaff36c43ff%3A0xfa7be2811d3a6387!2sPhyathai%202%20Hospital!5e0!3m2!1sen!2sth!4v1572329537952!5m2!1sen!2sth" width="96%" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>`,
-              }}
-              scalesPageToFit={true}
-              viewportContent={'width=device-width, user-scalable=no'}
-              /*
-    other react-native-webview props
-    */
-            />
+            <View style={{marginTop: 30}} />
+            <Text style={styles.textt}>EXHIBITOR APPLICATION</Text>
+            <Text style={styles.textags}>
+              The Gem and Jewelry Institute of Thailand (Public Organization)
+            </Text>
+            <View style={styles.rowtags}>
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/ban.png')}
+              />
+              <Text style={styles.textags1}>+66 2634 4999 ext. 635-642</Text>
+            </View>
+            <View style={styles.rowtags}>
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/ban2.png')}
+              />
+              <Text style={styles.textags1}>+66 2634 4970</Text>
+            </View>
+            <View style={styles.rowtags}>
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/ban1.png')}
+              />
+              <Text style={styles.textags1}>bd@git.or.th</Text>
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>

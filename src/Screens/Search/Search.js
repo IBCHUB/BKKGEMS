@@ -20,14 +20,22 @@ import {connect} from 'react-redux';
 
 const Search = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
-  const item = route.params != undefined && route.params.item;
-  const tag = item != undefined && item.selectedtags;
-  const type = item != undefined && item.selectedId;
-  const text = route.params.text == undefined ? ' ' : route.params.text;
+  const item = route.params.item;
+  const text = route.params.text;
+  console.log('>>>>>>>>>', item);
+  console.log(text);
+
+  const _Dataset = () => {
+    setproduct(item.product);
+    setbrand(item.brand);
+    setcompany(item.company);
+    setdatatext(text);
+  };
   const [product, setproduct] = useState([]);
   const [company, setcompany] = useState([]);
   const [brand, setbrand] = useState([]);
-  const [data, setdata] = useState([]);
+  const [datatext, setdatatext] = useState();
+  console.log(datatext);
   const [categorys, setcategorys] = useState([
     {
       img: require('../../../assets/image/iocn/014.png'),
@@ -91,99 +99,84 @@ const Search = ({navigation, dispatch, authUser, route}) => {
     },
   ]);
 
-  const _Exhibitor_List = async values => {
-    try {
-      var request =
-        'meet=' + '1' + '&tags=' + tag + '&type=' + type + '&text=' + text;
-      const response = await dispatch(Exhibitor_List(request));
-      console.log(
-        response.res_result.categorys.data.map(i => i.product_category_name_en),
-      );
-      if (response.res_code == '00') {
-        setproduct(response.res_result.product);
-        setcompany(response.res_result.company);
-        setbrand(response.res_result.brand);
-        setdata(response.res_result);
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
   useEffect(() => {
-    _Exhibitor_List();
+    _Dataset();
   }, []);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback navigation={navigation} item="SEARCH" />
-        <RBSheet
-          ref={refRBSheet}
-          closeOnPressMask={false}
-          customStyles={{
-            wrapper: {
-              backgroundColor: 'transparent',
-            },
-            draggableIcon: {
-              backgroundColor: '#000',
-            },
-            container: {
-              borderTopRightRadius: 10,
-              borderTopLeftRadius: 10,
-              width: '96%',
-              alignSelf: 'center',
-              height: '60%',
-            },
-          }}>
-          <RBSheetsearch
-            onPress={() => {
-              refRBSheet.current.close();
-            }}
-            navigation={navigation}
-          />
-        </RBSheet>
-        <ScrollView style={{backgroundColor: '#EEECE2'}}>
-          <View style={styles.viewsearch}>
-            <View style={styles.viewinsearch}>
-              <FontAwesome5
-                name="search"
-                size={20}
-                color={'#44444480'}
-                style={styles.icon1}
-              />
-              <TextInput
-                clearButtonMode="always"
-                placeholder="What are you looking for?"
-                style={styles.input}
-              />
-            </View>
-            <TouchableOpacity
-              onPress={() => refRBSheet.current.open()}
-              style={{alignSelf: 'center'}}>
-              <Image
-                source={require('../../../assets/image/icontouch.png')}
-                style={styles.iconsea}
-              />
-            </TouchableOpacity>
+      <SafeAreaView style={{backgroundColor: '#23232390'}} />
+      <Headerback navigation={navigation} item="SEARCH" />
+      <RBSheet
+        ref={refRBSheet}
+        closeOnPressMask={false}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+          container: {
+            borderTopRightRadius: 10,
+            borderTopLeftRadius: 10,
+            width: '96%',
+            alignSelf: 'center',
+            height: '60%',
+          },
+        }}>
+        <RBSheetsearch
+          onPress={() => {
+            refRBSheet.current.close();
+          }}
+          navigation={navigation}
+        />
+      </RBSheet>
+      <ScrollView style={{backgroundColor: '#EEECE2'}}>
+        <View style={styles.viewsearch}>
+          <View style={styles.viewinsearch}>
+            <FontAwesome5
+              name="search"
+              size={20}
+              color={'#44444480'}
+              style={styles.icon1}
+            />
+            <TextInput
+              clearButtonMode="always"
+              placeholder="What are you looking for?"
+              style={styles.input}
+            />
           </View>
-          {product.count == 0 ? (
-            ' '
-          ) : (
-            <View style={styles.tags}>
-              <View style={styles.roww}>
-                <Text style={styles.texttags}>
-                  Product{' '}
-                  <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                    “{text}”
-                  </Text>{' '}
-                  Found {product.count} Items
-                </Text>
+          <TouchableOpacity
+            onPress={() => refRBSheet.current.open()}
+            style={{alignSelf: 'center'}}>
+            <Image
+              source={require('../../../assets/image/icontouch.png')}
+              style={styles.iconsea}
+            />
+          </TouchableOpacity>
+        </View>
+
+        {product.count == 0 ? (
+          <View />
+        ) : (
+          <View style={styles.tags}>
+            <View style={styles.roww}>
+              <Text style={styles.texttags}>
+                Product{' '}
+                <Text
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                  “{datatext}”
+                </Text>{' '}
+                Found {product.count} Items
+              </Text>
+              {product.count > 3 && (
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('Seeall', {
-                      key: 'product',
-                      data: {data},
-                    })
-                  }
+                  // onPress={() =>
+                  //   navigation.navigate('Seeall', {
+                  //     key: 'product',
+                  //     data: {datatext},
+                  //   })
+                  // }
                   style={styles.line}>
                   <Text
                     style={[
@@ -195,167 +188,194 @@ const Search = ({navigation, dispatch, authUser, route}) => {
                     SEE ALL
                   </Text>
                 </TouchableOpacity>
-              </View>
-              <FlatList
-                data={product.data}
-                horizontal={true}
-                renderItem={({index, item}) => {
-                  return (
-                    <View style={{marginRight: 20}}>
-                      {index <= 2 && (
-                        <TouchableOpacity style={styles.buttonflat}>
-                          <Image
-                            style={styles.imgflat}
-                            source={{uri: item.company_cover}}
-                          />
-
-                          <Text numberOfLines={2} style={styles.text}>
-                            {item.company_name}
-                          </Text>
-                        </TouchableOpacity>
-                      )}
-                    </View>
-                  );
-                }}
-              />
-            </View>
-          )}
-          {company.count == 0 ? (
-            ' '
-          ) : (
-            <View style={styles.tags}>
-              <View style={styles.roww}>
-                <Text style={styles.texttags}>
-                  Company{' '}
-                  <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                    “{text}”
-                  </Text>{' '}
-                  Found {company.count} Items
-                </Text>
-                <TouchableOpacity style={styles.line}>
-                  <Text
-                    style={[
-                      styles.texttags,
-                      {
-                        color: '#DAA560',
-                      },
-                    ]}>
-                    SEE ALL
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                data={company.data}
-                horizontal={true}
-                renderItem={({index, item}) => {
-                  return (
-                    <View style={{marginRight: 20}}>
-                      {index <= 2 && (
-                        <TouchableOpacity style={styles.buttonflat}>
-                          <Image
-                            style={styles.imgflat}
-                            source={{uri: item.company_cover}}
-                          />
-
-                          <Text numberOfLines={2} style={styles.text}>
-                            {item.company_name}
-                          </Text>
-                        </TouchableOpacity>
-                      )}
-                    </View>
-                  );
-                }}
-              />
-            </View>
-          )}
-          {brand.count == 0 ? (
-            ' '
-          ) : (
-            <View style={styles.tags}>
-              <View style={styles.roww}>
-                <Text style={styles.texttags}>
-                  Brand{' '}
-                  <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                    “{text}”
-                  </Text>{' '}
-                  Found {brand.count} Items
-                </Text>
-                <TouchableOpacity style={styles.line}>
-                  <Text
-                    style={[
-                      styles.texttags,
-                      {
-                        color: '#DAA560',
-                      },
-                    ]}>
-                    SEE ALL
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                data={brand.data}
-                horizontal={true}
-                renderItem={({index, item}) => {
-                  return (
-                    <View style={{marginRight: 20}}>
-                      {index <= 2 && (
-                        <TouchableOpacity style={styles.buttonflat}>
-                          <Image
-                            style={styles.imgflat}
-                            source={{uri: item.company_cover}}
-                          />
-
-                          <Text numberOfLines={2} style={styles.text}>
-                            {item.company_name}
-                          </Text>
-                        </TouchableOpacity>
-                      )}
-                    </View>
-                  );
-                }}
-              />
-            </View>
-          )}
-          <View style={styles.tags}>
-            <View style={styles.roww}>
-              <Text style={styles.texttags}>Categorys</Text>
-              <View style={styles.line}>
-                <Text
-                  style={[
-                    styles.texttags,
-                    {
-                      color: '#DAA560',
-                    },
-                  ]}></Text>
-              </View>
+              )}
             </View>
             <FlatList
-              data={categorys}
+              data={product.data}
               horizontal={true}
               renderItem={({index, item}) => {
-                // console.log(item);
                 return (
                   <View style={{marginRight: 20}}>
-                    <ImageBackground
-                      source={require('../../../assets/image/iocn/000.png')}
-                      style={styles.imgflat1}>
-                      <Image
-                        resizeMode="contain"
-                        style={styles.imgflat2}
-                        source={item.img}
-                      />
-                    </ImageBackground>
-                    <Text numberOfLines={2} style={styles.text1}>
-                      {item.text}
-                    </Text>
+                    {index <= 2 && (
+                      <TouchableOpacity style={styles.buttonflat}>
+                        <Image
+                          style={styles.imgflat}
+                          source={{uri: item.product_img_name}}
+                          resizeMode="stretch"
+                        />
+
+                        <View style={styles.row}>
+                          <Image
+                            style={styles.imglogo}
+                            source={{uri: item.company_logo}}
+                          />
+                          <Text numberOfLines={1} style={styles.text}>
+                            {item.product_img_title}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    )}
                   </View>
                 );
               }}
             />
           </View>
-          <View style={{height: 100}} />
-        </ScrollView>
-      </SafeAreaView>
+        )}
+        {company.count == 0 ? (
+          <View />
+        ) : (
+          <View style={styles.tags}>
+            <View style={styles.roww}>
+              <Text style={styles.texttags}>
+                Company{' '}
+                <Text
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                  “{datatext}”
+                </Text>{' '}
+                Found {company.count} Items
+              </Text>
+              {company.count > 3 && (
+                <TouchableOpacity style={styles.line}>
+                  <Text
+                    style={[
+                      styles.texttags,
+                      {
+                        color: '#DAA560',
+                      },
+                    ]}>
+                    SEE ALL
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            <FlatList
+              data={company.data}
+              horizontal={true}
+              renderItem={({index, item}) => {
+                return (
+                  <View style={{marginRight: 20}}>
+                    {index <= 2 && (
+                      <TouchableOpacity style={styles.buttonflat}>
+                        <Image
+                          style={styles.imgflat}
+                          source={{uri: item.company_cover}}
+                          resizeMode="stretch"
+                        />
+
+                        <View style={styles.row}>
+                          <Image
+                            style={styles.imglogo}
+                            source={{uri: item.company_logo}}
+                          />
+                          <Text numberOfLines={1} style={styles.text}>
+                            {item.company_name}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                );
+              }}
+            />
+          </View>
+        )}
+        {brand.count == 0 ? (
+          <View />
+        ) : (
+          <View style={styles.tags}>
+            <View style={styles.roww}>
+              <Text style={styles.texttags}>
+                Brand{' '}
+                <Text
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                  “{datatext}”
+                </Text>{' '}
+                Found {brand.count} Items
+              </Text>
+              {brand.count > 3 && (
+                <TouchableOpacity style={styles.line}>
+                  <Text
+                    style={[
+                      styles.texttags,
+                      {
+                        color: '#DAA560',
+                      },
+                    ]}>
+                    SEE ALL
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            <FlatList
+              data={brand.data}
+              horizontal={true}
+              renderItem={({index, item}) => {
+                return (
+                  <View style={{marginRight: 20}}>
+                    {index <= 2 && (
+                      <TouchableOpacity style={styles.buttonflat}>
+                        <Image
+                          style={styles.imgflat}
+                          source={{uri: item.company_cover}}
+                        />
+
+                        <View style={styles.row}>
+                          <Image
+                            style={styles.imglogo}
+                            source={{uri: item.company_logo}}
+                          />
+                          <Text numberOfLines={1} style={styles.text}>
+                            {item.company_name}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                );
+              }}
+            />
+          </View>
+        )}
+
+        <View style={styles.tags}>
+          <View style={styles.roww}>
+            <Text style={styles.texttags}>Categorys</Text>
+            <View style={styles.line}>
+              <Text
+                style={[
+                  styles.texttags,
+                  {
+                    color: '#DAA560',
+                  },
+                ]}></Text>
+            </View>
+          </View>
+          <FlatList
+            data={categorys}
+            horizontal={true}
+            renderItem={({index, item}) => {
+              // console.log(item);
+              return (
+                <View style={{marginRight: 20}}>
+                  <ImageBackground
+                    source={require('../../../assets/image/iocn/000.png')}
+                    style={styles.imgflat1}>
+                    <Image
+                      resizeMode="contain"
+                      style={styles.imgflat2}
+                      source={item.img}
+                    />
+                  </ImageBackground>
+                  <Text numberOfLines={2} style={styles.text1}>
+                    {item.text}
+                  </Text>
+                </View>
+              );
+            }}
+          />
+        </View>
+        <View style={{height: 100}} />
+      </ScrollView>
     </View>
   );
 };

@@ -158,6 +158,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     color: '#646363',
     alignSelf: 'center',
+    marginTop: 5,
+    width: width * 0.35,
   },
   imgflat1: {
     width: 150,
@@ -178,6 +180,29 @@ const styles = StyleSheet.create({
     width: width * 0.3,
     textAlign: 'center',
     marginTop: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    width: width * 0.42,
+    alignSelf: 'center',
+    height: 30,
+  },
+  imglogo: {
+    width: 20,
+    height: 20,
+    alignSelf: 'center',
+    borderRadius: 10,
+    borderColor: '#444',
+    borderWidth: 0.1,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 15,
+    marginRight: 5,
   },
 });
 

@@ -313,7 +313,6 @@ export const Exhibitor_List = payload => {
         dispatch,
         payload,
         'BASE',
-        getState().authReducer.authData.token,
       );
       // console.log(response);
       if (response.res_code === '00') {

@@ -92,8 +92,7 @@ const styles = StyleSheet.create({
     width: width * 0.15,
   },
   chat: {
-    height: height * 0.82,
-    backgroundColor: '#fff',
+    height: height * 0.9,
   },
 });
 

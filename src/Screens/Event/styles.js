@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     height: height,
   },
   text: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#DAA560',
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',

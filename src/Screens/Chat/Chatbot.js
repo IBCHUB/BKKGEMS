@@ -136,7 +136,10 @@ class Chatbot extends Component {
               console.log(res);
 
               // const uid = this.props.getUser.userDetails.res_result.naturalId;
-              const uid = 'BKK1';
+              const uid =
+                this.props.authUser.token === null
+                  ? 'BKK1'
+                  : this.props.authUser.token.user_id;
               await t.socket.emit('join', uid);
             });
             t.socket.on('join', async res => {
@@ -177,7 +180,10 @@ class Chatbot extends Component {
 
   getstartChat = async value => {
     try {
-      const uid = 'BKK1';
+      const uid =
+        this.props.authUser.token === null
+          ? 'BKK1'
+          : this.props.authUser.token.user_id;
       const payload = {
         sender: {
           id: `${uid}`,
@@ -333,12 +339,9 @@ class Chatbot extends Component {
                     style={{
                       // borderWidth:1,
                       backgroundColor: '#e7e7e7',
-
-                      width: 320,
+                      width: 300,
                       height: 330,
-
                       borderRadius: 8,
-
                       flex: 1,
                       marginHorizontal: 4,
                       marginTop: 5,

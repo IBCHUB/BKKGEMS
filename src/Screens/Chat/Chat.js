@@ -19,7 +19,7 @@ const Chat = ({navigation}) => {
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerchat item={'CHAT'} navigation={navigation} />
-      <View style={styles.viewrow}>
+      {/* <View style={styles.viewrow}>
         <TouchableOpacity
           onPress={() => {
             setpage(0);
@@ -52,9 +52,9 @@ const Chat = ({navigation}) => {
             Live Chat
           </Text>
         </TouchableOpacity>
-      </View>
-      {page === 0 && <Chatbot />}
-      {page === 1 && <Allchat navigation={navigation} />}
+      </View> */}
+      <Chatbot />
+      {/* {page === 1 && <Allchat navigation={navigation} />} */}
     </View>
   );
 };
