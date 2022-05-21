@@ -4,14 +4,16 @@ import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 const aboutexhi = ({detail}) => {
   console.log(detail);
   return (
     <View style={styles.containerabout}>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>BRAND</Text>
-        <Text style={styles.textconten}>{detail.brand}</Text>
+        <Text style={styles.textconten}>
+          {detail.brand === '' ? '-' : detail.brand}
+        </Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>CATEGORY</Text>
@@ -24,62 +26,92 @@ const aboutexhi = ({detail}) => {
         </Text>
       </View>
       <View style={styles.rowsocial}>
-        <Text style={styles.textsupabout}>CONTACT NAME</Text>
-        <Text style={styles.textconten}>
-          {detail.contact} {detail.company_address}
-        </Text>
+        <Text style={styles.textsupabout}>ADDRESS</Text>
+        <Text style={styles.textconten}>{detail.company_address}</Text>
       </View>
       <View style={styles.rowsocial}>
-        <Text style={styles.textsupabout}>ADDRESS</Text>
-        <Text style={styles.textconten}>{detail.company_phone}</Text>
+        <Text style={styles.textsupabout}>CONTACT NAME</Text>
+        <Text style={styles.textconten}>{detail.contact}</Text>
       </View>
       <View style={styles.rowsocial}>
         <Text style={styles.textsupabout}>TELEPHONE</Text>
         <Text style={styles.textconten}>
-          {detail.contact_phone === null ? '-' : detail.contact_phone}
+          {detail.company_phone === null ? '-' : detail.company_phone}
         </Text>
       </View>
       <View style={styles.rowsocial}>
-        <Text style={styles.textsupabout}>MOBILE FAX</Text>
+        <Text style={styles.textsupabout}>MOBILE</Text>
         <Text style={styles.textconten}>
-          {detail.company_fax === '' ? '-' : detail.company_fax}
+          {detail.company_phone === null ? '-' : detail.company_phone}
+        </Text>
+      </View>
+      <View style={styles.rowsocial}>
+        <Text style={styles.textsupabout}>EMAIL</Text>
+        <Text style={styles.textconten}>
+          {detail.company_email === '' ? '-' : detail.company_email}
+        </Text>
+      </View>
+      <View style={styles.rowsocial}>
+        <Text style={styles.textsupabout}>WEBSITE</Text>
+        <Text style={styles.textconten}>
+          {detail.website === '' ? '-' : detail.website}
         </Text>
       </View>
       <View style={styles.liner} />
       {/* ABOUT */}
       <Text style={styles.textsupabout}>ABOUT</Text>
-      <Text style={styles.textdetailabout}>{detail.about}</Text>
+      <Text style={styles.textdetailabout}>
+        {detail.about === '' ? '-' : detail.about}
+      </Text>
       <Text style={styles.textsupabout}>SOCIAL MEDIA</Text>
       <View style={styles.rowsocial}>
-        <TouchableOpacity style={styles.listsocial}>
-          <Fontisto
-            name="facebook"
-            size={20}
-            color={'#DAA560'}
-            style={{alignSelf: 'center'}}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listsocial}>
-          <Fontisto
-            name="instagram"
-            size={20}
-            color={'#DAA560'}
-            style={{alignSelf: 'center'}}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listsocial}>
-          <AntDesign
-            name="youtube"
-            size={20}
-            color={'#DAA560'}
-            style={{alignSelf: 'center'}}
-          />
-        </TouchableOpacity>
+        {detail.company_facebook != '' && (
+          <TouchableOpacity
+            onPress={() => {
+              InAppBrowser.open(detail.company_facebook);
+            }}
+            style={styles.listsocial}>
+            <Fontisto
+              name="facebook"
+              size={20}
+              color={'#DAA560'}
+              style={{alignSelf: 'center'}}
+            />
+          </TouchableOpacity>
+        )}
+        {detail.company_instagram != '' && (
+          <TouchableOpacity
+            onPress={() => {
+              InAppBrowser.open(detail.company_instagram);
+            }}
+            style={styles.listsocial}>
+            <Fontisto
+              name="instagram"
+              size={20}
+              color={'#DAA560'}
+              style={{alignSelf: 'center'}}
+            />
+          </TouchableOpacity>
+        )}
+        {detail.company_youtube != '' && (
+          <TouchableOpacity
+            onPress={() => {
+              InAppBrowser.open(detail.company_youtube);
+            }}
+            style={styles.listsocial}>
+            <AntDesign
+              name="youtube"
+              size={20}
+              color={'#DAA560'}
+              style={{alignSelf: 'center'}}
+            />
+          </TouchableOpacity>
+        )}
       </View>
       <Text style={[styles.textsupabout, {marginTop: 20}]}>VIDEO</Text>
       <TouchableOpacity
         onPress={() => {
-          Linking.openURL(detail.video_full_url);
+          InAppBrowser.open(detail.video_full_url);
         }}
         style={styles.rowsocial}>
         <Image

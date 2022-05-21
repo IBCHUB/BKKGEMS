@@ -232,6 +232,8 @@ const RBSheet = ({onPress, navigation, dispatch}) => {
                 navigation.navigate('Search', {
                   item: response.res_result,
                   text: '',
+                  selectedId: selectedId,
+                  selectedtags: selectedtags,
                 });
               } else {
                 console.log('2222');

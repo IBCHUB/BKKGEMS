@@ -76,56 +76,56 @@ const Home = ({navigation, dispatch, authData}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerhome navigation={navigation} />
-        <RBSheet
-          ref={refRBSheet}
-          closeOnPressMask={false}
-          customStyles={{
-            wrapper: {
-              backgroundColor: 'transparent',
-            },
-            draggableIcon: {
-              backgroundColor: '#000',
-            },
-            container: {
-              borderTopRightRadius: 10,
-              borderTopLeftRadius: 10,
-              width: '96%',
-              alignSelf: 'center',
-              height: '60%',
-            },
-          }}>
-          <RBSheetHome
-            onPress={() => {
-              refRBSheet.current.close();
-            }}
-            navigation={navigation}
+      <SafeAreaView style={{backgroundColor: '#23232390'}} />
+      <Headerhome navigation={navigation} />
+      <RBSheet
+        ref={refRBSheet}
+        closeOnPressMask={false}
+        customStyles={{
+          wrapper: {
+            backgroundColor: 'transparent',
+          },
+          draggableIcon: {
+            backgroundColor: '#000',
+          },
+          container: {
+            borderTopRightRadius: 10,
+            borderTopLeftRadius: 10,
+            width: '96%',
+            alignSelf: 'center',
+            height: '60%',
+          },
+        }}>
+        <RBSheetHome
+          onPress={() => {
+            refRBSheet.current.close();
+          }}
+          navigation={navigation}
+        />
+      </RBSheet>
+      <ScrollView style={{backgroundColor: '#000'}}>
+        <View style={styles.viewback}>
+          <Image
+            source={require('../../../assets/image/imgpre.png')}
+            style={styles.imgtop}
           />
-        </RBSheet>
-        <ScrollView style={{backgroundColor: '#000'}}>
-          <View style={styles.viewback}>
-            <Image
-              source={require('../../../assets/image/imgpre.png')}
-              style={styles.imgtop}
-            />
-            <Image
-              source={require('../../../assets/image/imgdiamond1.png')}
-              style={styles.imgletf}
-            />
-            <Image
-              source={require('../../../assets/image/imgdiamond.png')}
-              style={styles.imgR}
-            />
-            <Image
-              source={require('../../../assets/image/imgdimon.png')}
-              style={styles.imgB}
-            />
-          </View>
-          <View style={styles.viewon}>
-            <View style={styles.viewsearch}>
-              <View style={styles.viewinsearch}>
-                {/* <TextInput
+          <Image
+            source={require('../../../assets/image/imgdiamond1.png')}
+            style={styles.imgletf}
+          />
+          <Image
+            source={require('../../../assets/image/imgdiamond.png')}
+            style={styles.imgR}
+          />
+          <Image
+            source={require('../../../assets/image/imgdimon.png')}
+            style={styles.imgB}
+          />
+        </View>
+        <View style={styles.viewon}>
+          <View style={styles.viewsearch}>
+            <View style={styles.viewinsearch}>
+              {/* <TextInput
                   clearButtonMode="always"
                   placeholder="What are you looking for?"
                   style={styles.input}
@@ -133,79 +133,79 @@ const Home = ({navigation, dispatch, authData}) => {
                   //   SearchSubmit(e);
                   // }}
                 /> */}
-                <FontAwesome5
-                  name="search"
-                  size={18}
-                  color={'#44444480'}
-                  style={styles.icon}
-                />
-                <Autocomplete
-                  data={state}
-                  value={query}
-                  hideResults={query.length == 0 ? true : false}
-                  autoCorrect={false}
-                  placeholder="What are you looking for?"
-                  onChangeText={text => {
-                    test(text);
-                  }}
-                  flatListProps={{
-                    keyExtractor: (_, idx) => idx,
-                    renderItem: ({item}) => {
-                      return (
-                        <TouchableOpacity
-                          onPress={() =>
-                            navigation.navigate('Search', {text: item})
-                          }>
-                          <Text
-                            style={{
-                              fontSize: 16,
-                              padding: 3,
-                              fontFamily: 'Cantoria MT Std',
-                            }}>
-                            {item}
-                          </Text>
-                        </TouchableOpacity>
-                      );
-                    },
-                  }}
-                  style={styles.input}
-                  listContainerStyle={{
-                    width: 280,
-                    marginTop: 35,
-                    zIndex: 99,
-                    position: 'absolute',
-                    borderRadius: 5,
-                  }}
-                />
-              </View>
-
-              <TouchableOpacity
-                onPress={() => refRBSheet.current.open()}
-                style={{alignSelf: 'center'}}>
-                <Image
-                  source={require('../../../assets/image/icontouch.png')}
-                  style={styles.iconsea}
-                />
-              </TouchableOpacity>
+              <FontAwesome5
+                name="search"
+                size={18}
+                color={'#44444480'}
+                style={styles.icon}
+              />
+              <Autocomplete
+                data={state}
+                value={query}
+                hideResults={query.length == 0 ? true : false}
+                autoCorrect={false}
+                placeholder="What are you looking for?"
+                onChangeText={text => {
+                  test(text);
+                }}
+                flatListProps={{
+                  keyExtractor: (_, idx) => idx,
+                  renderItem: ({item}) => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() =>
+                          navigation.navigate('Search', {text: item})
+                        }>
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            padding: 3,
+                            fontFamily: 'Cantoria MT Std',
+                          }}>
+                          {item}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  },
+                }}
+                style={styles.input}
+                listContainerStyle={{
+                  width: 280,
+                  marginTop: 35,
+                  zIndex: 99,
+                  position: 'absolute',
+                  borderRadius: 5,
+                }}
+              />
             </View>
 
-            <TopicHome />
-
             <TouchableOpacity
-              onPress={() => {
-                InAppBrowser.open('https://www.bgjf-vtf.com/');
-              }}
-              style={styles.imglive}>
+              onPress={() => refRBSheet.current.open()}
+              style={{alignSelf: 'center'}}>
               <Image
-                source={require('../../../assets/image/join.png')}
-                style={styles.imgS}
+                source={require('../../../assets/image/icontouch.png')}
+                style={styles.iconsea}
               />
             </TouchableOpacity>
-
-            <AboutHome navigation={navigation} />
           </View>
-        </ScrollView>
-      </SafeAreaView>
+
+          <TopicHome />
+
+          <TouchableOpacity
+            onPress={() => {
+              InAppBrowser.open('https://www.bgjf-vtf.com/');
+            }}
+            style={styles.imglive}>
+            <Image
+              source={require('../../../assets/image/join.png')}
+              style={styles.imgS}
+            />
+          </TouchableOpacity>
+
+          <AboutHome navigation={navigation} />
+        </View>
+        <View style={{marginBottom: 50}} />
+      </ScrollView>
     </View>
   );
 };

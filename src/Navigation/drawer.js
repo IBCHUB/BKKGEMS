@@ -49,9 +49,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
                   source={{uri: authUser?.token?.profile_img}}
                   style={styles.imgprofile}
                 />
-                <Text style={styles.texthead}>
-                  {authUser?.token?.company_name}
-                </Text>
+                <Text style={styles.texthead}>{authUser?.token?.fullname}</Text>
               </TouchableOpacity>
             )}
             <View style={styles.liner} />

@@ -137,14 +137,14 @@ function TabStackScreen(navigation) {
         headerShown: false,
         tabBarStyle: {
           backgroundColor: '#DAA560',
-          bottom: 25,
+          // bottom: 16,
           alignSelf: 'center',
-          left: 16,
-          right: 16,
+          // left: 16,
+          // right: 16,
           position: 'absolute',
-          borderRadius: 16,
-          height: 50,
-          paddingBottom: 5,
+          // borderRadius: 16,
+          height: 70,
+          paddingBottom: 20,
         },
       }}>
       <Tab.Screen
@@ -332,6 +332,10 @@ function ScreenStack() {
       <Stack.Screen name="Fashion" component={Fashion} />
       <Stack.Screen name="Workshops" component={Workshops} />
       <Stack.Screen name="Searchno" component={Searchno} />
+      <ExhibitorsStack.Screen
+        name="ExhibitorsDetail"
+        component={ExhibitorsDetail}
+      />
     </Stack.Navigator>
   );
 }

@@ -147,6 +147,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 5,
   },
+  pen: {
+    width: 50,
+    alignSelf: 'center',
+    height: 50,
+    justifyContent: 'center',
+  },
 });
 
 export default styles;

@@ -47,7 +47,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
       if (response.res_code == '00') {
         setData(response.res_result);
 
-        console.log('1111');
+        // console.log('1111');
         setFetching_from_server(false);
         setOffset(1);
       } else {
@@ -82,21 +82,6 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const onRefresh = async () => {
     _Exhibitor();
   };
-  // const renderFooter = () => {
-  //   return (
-  //     <TouchableOpacity
-  //       activeOpacity={0.7}
-  //       onPress={onPressTouch}
-  //       style={styles.FloatingActionButtonStyle}>
-  //       <Feather
-  //         size={25}
-  //         name="arrow-up-left"
-  //         color={'#fff'}
-  //         style={styles.icon}
-  //       />
-  //     </TouchableOpacity>
-  //   );
-  // };
 
   return (
     <View style={{flex: 1}}>
@@ -156,8 +141,9 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
             data={data}
             numColumns={2}
             ref={scrollRef}
-            style={{height: height * 0.71}}
+            style={{height: height * 0.725}}
             renderItem={({index, item}) => {
+              // console.log(item);
               return (
                 <View>
                   <TouchableOpacity
@@ -169,7 +155,6 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                         if (response.res_code == '00') {
                           // setdetail(response.res_result);
                           navigation.navigate('ExhibitorsDetail', {
-                            item: item,
                             res: response.res_result,
                           });
                           // console.log('1111');

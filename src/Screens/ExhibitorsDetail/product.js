@@ -189,7 +189,7 @@ const product = ({item, navigation, detail}) => {
         }}
       />
       <Text style={styles.texthead}>OTHER PRODUCTS</Text>
-      <View style={{marginBottom: 100}}>
+      <View style={{marginBottom: 20}}>
         <FlatList
           data={data.filter(
             item => item.product_img_id !== img[0].product_img_id,
@@ -199,23 +199,21 @@ const product = ({item, navigation, detail}) => {
           renderItem={({index, item}) => {
             // console.log(item);
             return (
-              <View>
-                <TouchableOpacity
-                  onPress={() => {
-                    // console.log(data);
-                    setimg([item]);
-                    // navigation.navigate('ExhibitorsDetail', {item});
-                  }}
-                  style={styles.buttonflat}>
-                  <Image
-                    resizeMode="stretch"
-                    style={styles.imgflat}
-                    source={{uri: item.product_img_name}}
-                  />
+              <TouchableOpacity
+                onPress={() => {
+                  // console.log(data);
+                  setimg([item]);
+                  // navigation.navigate('ExhibitorsDetail', {item});
+                }}
+                style={styles.buttonflat}>
+                <Image
+                  resizeMode="stretch"
+                  style={styles.imgflat}
+                  source={{uri: item.product_img_name}}
+                />
 
-                  <Text style={styles.textflat}>{item.product_img_title}</Text>
-                </TouchableOpacity>
-              </View>
+                <Text style={styles.textflat}>{item.product_img_title}</Text>
+              </TouchableOpacity>
             );
           }}
         />

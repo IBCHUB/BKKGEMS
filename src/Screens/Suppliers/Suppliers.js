@@ -50,6 +50,8 @@ const Suppliers = ({navigation, dispatch}) => {
         <Headerback navigation={navigation} />
         <RBSheet
           ref={refRBSheet}
+          openDuration={250}
+          animationType="slide"
           closeOnPressMask={false}
           customStyles={{
             wrapper: {
@@ -76,7 +78,7 @@ const Suppliers = ({navigation, dispatch}) => {
         <ScrollView style={{backgroundColor: '#EEECE2', paddingBottom: 50}}>
           <ImageBackground
             source={require('../../../assets/image/sup.png')}
-            style={styles.imgHeader}>
+            style={[styles.imgHeader, {zIndex: 999}]}>
             <View style={styles.header}>
               <Text style={styles.texthead}>
                 Search for Thai Gems & Jewelry Suppliers and Manufacturers

@@ -77,6 +77,8 @@ const NewDetail = ({navigation, route}) => {
                 * {
                   color:#646363 !important;
                   font-size: 16px !important;
+                  font-family: 'Cantoria MT Std';
+                  
                 }
               `}
           />

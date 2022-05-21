@@ -250,6 +250,30 @@ const styles = StyleSheet.create({
     color: '#DAA560',
     alignSelf: 'center',
   },
+  rowcall: {
+    flexDirection: 'row',
+    width: width * 0.65,
+    alignSelf: 'center',
+    justifyContent: 'space-between',
+    marginTop: 3,
+  },
+  count: {
+    fontSize: 30,
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+  },
+  count1: {
+    fontSize: 10,
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+    marginTop: -5,
+  },
+  count2: {
+    fontSize: 30,
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+    marginTop: -10,
+  },
 });
 
 export default styles;

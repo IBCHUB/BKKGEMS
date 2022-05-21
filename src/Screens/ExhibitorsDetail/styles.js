@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     shadowRadius: 1.5,
     elevation: 2,
     borderRadius: 45,
+    borderWidth: 0.5,
+    borderColor: '#fff',
   },
   textTopic: {
     fontSize: 18,
@@ -56,12 +58,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     marginTop: 5,
+
+    justifyContent: 'space-between',
   },
   button: {
     borderWidth: 1,
     borderColor: '#DAA560',
     height: 35,
-    width: width * 0.28,
+    width: width * 0.35,
     marginHorizontal: 3,
     justifyContent: 'center',
     alignSelf: 'center',
@@ -82,7 +86,6 @@ const styles = StyleSheet.create({
   },
   containerproduct: {
     width: width,
-    height: height,
   },
   viewproduct: {
     width: width * 0.8,
@@ -123,9 +126,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#000000',
     marginTop: 20,
-    alignSelf: 'center',
+    textAlign: 'center',
     fontWeight: '600',
     fontFamily: 'Cantoria MT Std',
+    width: width * 0.85,
+    alignSelf: 'center',
   },
   textdetailproduct: {
     fontSize: 16,
@@ -164,10 +169,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   imgflat: {
-    width: width * 0.4,
+    width: width * 0.42,
     height: 120,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
+    alignSelf: 'center',
   },
   textflat: {
     fontSize: 10,
@@ -175,9 +181,9 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     alignSelf: 'center',
     fontFamily: 'Cantoria MT Std',
-
     paddingHorizontal: 10,
-    marginTop: 10,
+    marginTop: 5,
+    textAlign: 'center',
   },
   containerabout: {
     width: width,
@@ -187,7 +193,7 @@ const styles = StyleSheet.create({
   textdetailabout: {
     fontSize: 16,
     color: '#000',
-    alignSelf: 'center',
+
     marginBottom: 20,
     fontFamily: 'Cantoria MT Std',
     marginTop: 10,
@@ -232,11 +238,11 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   textconten: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#000',
     fontFamily: 'Cantoria MT Std',
 
-    width: width * 0.45,
+    width: width * 0.47,
   },
   liner: {
     width: width * 1,

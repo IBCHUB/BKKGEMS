@@ -15,13 +15,16 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
-import RBSheetsearch from '../Search/RBSheetsearch';
+import RBSheetsearch from './RBSheetall';
 import Feather from 'react-native-vector-icons/Feather';
 import {connect} from 'react-redux';
-import {Exhibitor_List} from '../../action/data.action';
+import {Exhibitor_List, Exprofile} from '../../action/data.action';
+
 const Seeall = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
   const scrollRef = useRef();
+  const [textSearch, settextSearch] = useState('');
+  console.log(textSearch);
   const [isrefresh, setIsRefresh] = useState(false);
   const onPressTouch = () => {
     scrollRef?.current?.scrollToIndex({index: 0});
@@ -30,8 +33,38 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
     //   animated: true,
     // });
   };
-  const detail = route.params.data.data;
-  console.log(detail);
+  const key = route.params.key;
+  const [deatilall, setdeatilallall] = useState(route.params.data);
+  console.log(deatilall);
+  const _Search = async value => {
+    try {
+      var request =
+        'meet=' + '2' + '&tags=' + '' + '&type=' + '' + '&text=' + textSearch;
+
+      const response = await dispatch(Exhibitor_List(request));
+      console.log('????????', response.res_result);
+      if (response.res_code == '00') {
+        if (key === 'product') {
+          setdeatilallall(response.res_result.product);
+        } else if (key === 'company') {
+          setdeatilallall(response.res_result.company);
+        } else {
+          setdeatilallall(response.res_result.brand);
+        }
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
+  const searchSubmit = text => {
+    console.log('searchSubmit');
+    _Search();
+  };
+  const searchChange = text => {
+    console.log(text);
+    settextSearch(text);
+  };
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
@@ -74,6 +107,10 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
               clearButtonMode="always"
               placeholder="What are you looking for?"
               style={styles.input}
+              onSubmitEditing={searchSubmit}
+              onChange={event => {
+                searchChange(event.nativeEvent.text);
+              }}
             />
           </View>
           <TouchableOpacity
@@ -89,34 +126,20 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
         <View style={styles.tags}>
           <View style={styles.roww}>
             <Text style={styles.texttags}>
-              Product{' '}
-              <Text style={[styles.texttags, {color: '#DAA560'}]}>“{''}”</Text>{' '}
-              Found Items
+              {key === 'product'
+                ? 'Product'
+                : key === 'company'
+                ? 'Company'
+                : 'Brand'}{' '}
+              <Text style={[styles.texttags, {color: '#DAA560'}]}>
+                “{textSearch != undefined && textSearch}”
+              </Text>{' '}
+              Found {deatilall.count} Items
             </Text>
           </View>
-          {/* <FlatList
-              data={route.params.data.data.product.data}
-              numColumns={2}
-              renderItem={({index, item}) => {
-                console.log(item);
-                return (
-                  <View style={{marginRight: 20}}>
-                    <TouchableOpacity style={styles.buttonflat}>
-                      <Image
-                        style={styles.imgflat}
-                        source={{uri: item.company_cover}}
-                      />
 
-                      <Text numberOfLines={2} style={styles.text}>
-                        {item.company_name}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                );
-              }}
-            /> */}
           <FlatList
-            data={route.params.data.data.product.data}
+            data={deatilall.data}
             numColumns={2}
             ref={scrollRef}
             style={{height: 650}}
@@ -124,8 +147,21 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
               return (
                 <View>
                   <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('ExhibitorsDetail', {item});
+                    onPress={async () => {
+                      try {
+                        var request = 'exid=' + item.company_id;
+                        const response = await dispatch(Exprofile(request));
+                        //console.log(response);
+                        if (response.res_code == '00') {
+                          setTimeout(() => {
+                            navigation.navigate('ExhibitorsDetail', {
+                              res: response.res_result,
+                            });
+                          }, 300); // console.log('1111');
+                        } else {
+                          // console.log('2222');
+                        }
+                      } catch (error) {}
                     }}
                     style={styles.buttonflat}>
                     <Image
@@ -147,17 +183,19 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
             }}
             refreshControl={<RefreshControl refreshing={isrefresh} />}
           />
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={onPressTouch}
-            style={styles.FloatingActionButtonStyle}>
-            <Feather
-              size={25}
-              name="arrow-up-left"
-              color={'#fff'}
-              style={styles.icon}
-            />
-          </TouchableOpacity>
+          {deatilall.data.length > 8 && (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={onPressTouch}
+              style={styles.FloatingActionButtonStyle}>
+              <Feather
+                size={25}
+                name="arrow-up-left"
+                color={'#fff'}
+                style={styles.icon}
+              />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>

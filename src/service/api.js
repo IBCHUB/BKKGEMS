@@ -33,7 +33,7 @@ export const api = async (
         fetchParams.body = reqBody;
       }
     }
-
+    // console.log(fetchParams);
     const fetchPromise = fetch(endPoint, fetchParams);
     const timeOutPromise = new Promise((resolve, reject) => {
       setTimeout(() => {

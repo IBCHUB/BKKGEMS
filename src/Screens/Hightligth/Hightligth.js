@@ -15,7 +15,7 @@ import Headercomp from '../../Components/Headercomp';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
-import {Product_Highlight} from '../../action/data.action';
+import {Exprofile, Product_Highlight} from '../../action/data.action';
 import {connect} from 'react-redux';
 const {width, height} = Dimensions.get('window');
 const Hightligth = ({navigation, dispatch}) => {
@@ -49,17 +49,36 @@ const Hightligth = ({navigation, dispatch}) => {
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
-      <View style={{backgroundColor: '#010302'}}>
+      <View style={{backgroundColor: '#010302', marginBottom: 20}}>
         <FlatList
           data={highlight}
           numColumns={2}
-          style={{height: height * 0.9}}
+          style={{height: height * 0.81}}
           ref={scrollRef}
           renderItem={({index, item}) => {
-            console.log(item);
             return (
               <View>
-                <TouchableOpacity style={styles.buttonflat}>
+                <TouchableOpacity
+                  onPress={async () => {
+                    try {
+                      var request =
+                        'exid=' +
+                        item.company_id +
+                        '&product_id=' +
+                        item.product_img_id;
+                      const response = await dispatch(Exprofile(request));
+
+                      if (response.res_code == '00') {
+                        navigation.navigate('ExhibitorsDetail', {
+                          res: response.res_result,
+                        });
+                        console.log('1111');
+                      } else {
+                        console.log('2222');
+                      }
+                    } catch (error) {}
+                  }}
+                  style={styles.buttonflat}>
                   <ImageBackground
                     style={styles.imgflat}
                     source={{uri: item.product_img_name}}>
@@ -92,6 +111,7 @@ const Hightligth = ({navigation, dispatch}) => {
           style={styles.icon}
         />
       </TouchableOpacity>
+      <View style={{marginBottom: 30}} />
     </View>
   );
 };

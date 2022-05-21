@@ -115,11 +115,56 @@ export const AddnameList = payload => {
     }
   };
 };
+
+export const AddtoList = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/add_mylist',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+        getState().authReducer.authData.token,
+      );
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 export const RemoveLists = payload => {
   return async (dispatch, getState) => {
     try {
       const response = await fetchApi(
         'backoffice/API/v1_app/remove_listname',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+        getState().authReducer.authData.token,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const Removefev = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/remove_favorite',
         'POST',
         dispatch,
         payload,
@@ -169,6 +214,28 @@ export const RemoveformList = payload => {
         payload,
         'BASE',
         getState().authReducer.authData.token,
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const EditnameList = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'api/editlist_app',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
       );
       // console.log(response);
       if (response.res_code === '00') {
@@ -242,6 +309,8 @@ export const Tags = payload => {
         dispatch,
         payload,
         'BASE',
+        '',
+        false,
       );
       // console.log(response);
       if (response.res_code === '00') {

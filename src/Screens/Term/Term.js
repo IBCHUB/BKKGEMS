@@ -64,11 +64,6 @@ const Term = ({navigation, dispatch}) => {
               {'\n'}The Department will not share or disclose your information
               with the department and/or other departments, and/or third
               parties, except in the following cases:{'\n'}
-              {'\n'} - เมื่อได้รับความยินยอมจากท่าน
-              กรมอาจแบ่งปันหรือเปิดเผยข้อมูลส่วนบุคคลของท่านกับกรม
-              และ/หรือองค์กรอื่น และ/หรือบุคคลภายนอก
-              เมื่อได้รับความยิมยอมจากท่านให้แบ่งปันหรือเปิดเผยข้อมูลส่วนบุคคลที่ละเอียดอ่อนของท่านก่อน
-              {'\n'}
               {'\n'} - With your consent, the Department may share or disclose
               your personal information with the Department, and/or other
               departments, and/or third parties. Upon obtaining your consent to

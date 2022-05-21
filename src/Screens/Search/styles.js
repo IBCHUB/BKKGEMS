@@ -204,6 +204,25 @@ const styles = StyleSheet.create({
     elevation: 15,
     marginRight: 5,
   },
+  icon: {
+    alignSelf: 'center',
+    marginLeft: 10,
+    zIndex: 99,
+  },
+  iconsea2: {
+    width: 100,
+    height: 100,
+    alignSelf: 'center',
+  },
+  com: {
+    marginVertical: 30,
+  },
+  textccom: {
+    fontSize: 24,
+    color: '#64636350',
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+  },
 });
 
 export default styles;

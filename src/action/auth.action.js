@@ -97,10 +97,17 @@ export const getUser = payload => {
         'BASE',
         getState().authReducer.authData.token,
       );
-      // console.log(response);
+      console.log(response);
       if (response.res_code === '00') {
+        dispatch({
+          type: 'GET_USER_SUCCESS',
+          token: response.res_result,
+        });
         return response;
       } else {
+        dispatch({
+          type: 'GET_USER_FAIL',
+        });
         return response;
       }
     } catch (e) {
@@ -238,6 +245,29 @@ export const Exhibitorslogin = payload => {
         // dispatch({
         //   type: 'GET_USER_FAIL',
         // });
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const Edit_profile = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/edit_profile',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+        getState().authReducer.authData.token,
+      );
+      console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
         return response;
       }
     } catch (e) {

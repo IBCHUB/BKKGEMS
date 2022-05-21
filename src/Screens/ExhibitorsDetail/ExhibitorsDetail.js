@@ -26,14 +26,14 @@ import RNPickerSelect from 'react-native-picker-select';
 import {Exprofile} from '../../action/data.action';
 
 const ExhibitorsDetail = ({navigation, route, dispatch}) => {
-  const {item, res} = route.params;
-
+  const {res} = route.params;
+  console.log(res);
   const [detail, setdetail] = useState(res);
   console.log(detail);
   const [modal, setmodal] = useState(false);
   const [page, setpage] = useState(0);
   const [city, setcity] = useState([]);
-  console.log(city);
+
   const placeholder = {
     label: 'Country',
     value: null,
@@ -43,7 +43,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
     try {
       var request =
         'company_id=' +
-        item.company_id +
+        'company_id' +
         '&company_email=' +
         '' +
         '&company_name=' +
@@ -90,7 +90,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
   };
   const _Exprofile = async values => {
     try {
-      var request = 'exid=' + item.company_id;
+      var request = 'exid=' + res.company_id;
       const response = await dispatch(Exprofile(request));
       console.log(response);
       if (response.res_code == '00') {
@@ -237,11 +237,11 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
             </Text>
           </View>
           <View style={[styles.row, {marginTop: 10}]}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => navigation.navigate('Chat')}
               style={styles.button}>
               <Text style={styles.textbutton}>LIVE CHAT</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => {
                 setmodal(true);
