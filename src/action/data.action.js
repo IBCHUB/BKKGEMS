@@ -297,6 +297,29 @@ export const MyFav = payload => {
     }
   };
 };
+export const addMyFav = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/add_favorite',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+        getState().authReducer.authData.token,
+      );
+
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 // myfev
 
 // tags

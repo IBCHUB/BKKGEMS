@@ -20,7 +20,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
 import RBSheetExhi from './RBSheetExhi';
 import {connect} from 'react-redux';
-import {Exhibitor, Exprofile} from '../../action/data.action';
+import {Exhibitor, Exhibitor_List, Exprofile} from '../../action/data.action';
 const {width, height} = Dimensions.get('window');
 const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const refRBSheet = useRef();
@@ -29,6 +29,9 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const [fetching_from_server, setFetching_from_server] = useState(false);
   const [isListEnd, setIsListEnd] = useState(false);
   const [isrefresh, setIsRefresh] = useState(false);
+
+  const [datatext, setdatatext] = useState();
+  const [textSearch, settextSearch] = useState('');
   const scrollRef = useRef();
   const onPressTouch = () => {
     scrollRef?.current?.scrollToIndex({index: 0});
@@ -79,6 +82,29 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
       console.log(error);
     }
   };
+  const _Search = async () => {
+    // console.log(values);
+    try {
+      var request = 'tags=' + '1' + '&type=' + '1' + '&text=' + textSearch;
+      const response = await dispatch(Exhibitor(request));
+      console.log('????????', response.res_result);
+      if (response.res_code == '00') {
+        console.log('111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+
+  const searchSubmit = text => {
+    console.log('searchSubmit');
+    _Search();
+  };
+  const searchChange = text => {
+    console.log(text);
+    settextSearch(text);
+  };
+
   const onRefresh = async () => {
     _Exhibitor();
   };
@@ -126,6 +152,10 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                 placeholder="What are you looking for?"
                 placeholderTextColor={'#44444480'}
                 style={styles.input}
+                onSubmitEditing={searchSubmit}
+                onChange={event => {
+                  searchChange(event.nativeEvent.text);
+                }}
               />
             </View>
             <TouchableOpacity

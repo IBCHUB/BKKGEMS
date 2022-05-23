@@ -154,7 +154,7 @@ const Home = ({navigation, dispatch, authData}) => {
                     return (
                       <TouchableOpacity
                         onPress={() =>
-                          navigation.navigate('Search', {text: item})
+                          navigation.navigate('Searchno', {text: item})
                         }>
                         <Text
                           style={{

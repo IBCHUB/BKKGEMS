@@ -22,7 +22,9 @@ const RBSheetsearch = ({
   selectedIdSend,
   Search,
 }) => {
-  const [selectedId, setselectedId] = useState(selectedIdSend);
+  const [selectedId, setselectedId] = useState(
+    selectedIdSend === undefined ? [] : selectedIdSend,
+  );
   const [checked, setChecked] = useState(false);
   const [tags, settags] = useState([]);
   const isChecked = id => {
@@ -54,7 +56,9 @@ const RBSheetsearch = ({
       text: 'by company',
     },
   ];
-  const [selectedtags, setselectedtags] = useState(selectedtagsSend);
+  const [selectedtags, setselectedtags] = useState(
+    selectedtagsSend === undefined ? [] : selectedtagsSend,
+  );
   const [checkedtags, setCheckedtags] = useState(false);
   const isCheckedtags = id => {
     const isChecktags = selectedtags.includes(id);

@@ -238,7 +238,9 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet}) => {
           <TouchableOpacity
             onPress={() => {
               onPress();
-              navigation.navigate('Search', {item: {selectedId, selectedtags}});
+              navigation.navigate('Searchno', {
+                item: {selectedId, selectedtags},
+              });
             }}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>

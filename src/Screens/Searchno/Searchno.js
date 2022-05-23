@@ -332,7 +332,7 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
         <View style={{borderBottomWidth: 0.5, borderBottomColor: '#DAA560'}} />
         <View style={styles.tags}>
           <View style={styles.roww}>
-            <Text style={styles.texttags}>Categorys</Text>
+            <Text style={styles.texttags}>Categories</Text>
             <View style={styles.line}>
               <Text
                 style={[

@@ -21,28 +21,15 @@ const Headercomp = ({navigation, item, dispatch, authUser}) => {
         <Text style={styles.texthead}>{item}</Text>
       </View>
       <View style={styles.row}>
-        {authUser.token === null ? (
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(logoutUser());
-            }}
-            style={{marginRight: 20}}>
-            <Image
-              source={require('../../assets/image/iconSend.png')}
-              style={styles.iconSend}
-            />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            disabled
-            onPress={() => navigation.navigate('Chat')}
-            style={{marginRight: 20}}>
-            <Image
-              source={require('../../assets/image/iconSend.png')}
-              style={styles.iconSend}
-            />
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          // disabled
+          onPress={() => navigation.navigate('Chat')}
+          style={{marginRight: 20}}>
+          <Image
+            source={require('../../assets/image/iconSend.png')}
+            style={styles.iconSend}
+          />
+        </TouchableOpacity>
 
         {authUser.token === null ? (
           <TouchableOpacity

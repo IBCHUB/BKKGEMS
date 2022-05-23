@@ -165,8 +165,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 5,
     marginLeft: 20,
-    borderColor: '#333',
-    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5.46,
+    elevation: 11,
   },
   imgflat: {
     width: width * 0.42,
@@ -348,6 +354,71 @@ const styles = StyleSheet.create({
     iconContainer: {
       right: 0,
     },
+  },
+  containersort: {
+    flex: 1,
+    padding: 20,
+  },
+  viewsort: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: width * 0.9,
+    alignSelf: 'center',
+  },
+  textsort: {
+    fontSize: 20,
+    alignSelf: 'center',
+    marginVertical: 15,
+    fontFamily: 'Cantoria MT Std',
+  },
+  textsorthead: {
+    fontSize: 16,
+    fontFamily: 'Cantoria MT Std',
+    color: '#444444',
+    marginBottom: 25,
+  },
+  bottomsort: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#444',
+    marginRight: 15,
+  },
+  textlist1: {
+    fontSize: 24,
+    fontFamily: 'Cantoria MT Std',
+    color: '#646363',
+  },
+  row3: {
+    flexDirection: 'row',
+    borderBottomColor: '#88888860',
+    paddingRight: 20,
+    justifyContent: 'space-between',
+    width: width * 0.9,
+    marginBottom: 5,
+  },
+  linersort: {
+    width: width * 0.85,
+    alignSelf: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#444',
+    marginVertical: 15,
+  },
+  add: {
+    height: 80,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+  },
+  row5: {
+    flexDirection: 'row',
+  },
+  iconpust: {
+    width: 18,
+    height: 18,
+    alignSelf: 'center',
+    marginRight: 5,
+    marginTop: -3,
   },
 });
 

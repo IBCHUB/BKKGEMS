@@ -212,7 +212,6 @@ const RBSheetsearch = ({onPress, navigation, dispatch}) => {
           <TouchableOpacity
             onPress={() => {
               onPress();
-              navigation.navigate('Search', {item: {selectedId, selectedtags}});
             }}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>
