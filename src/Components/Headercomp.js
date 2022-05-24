@@ -37,7 +37,7 @@ const Headercomp = ({navigation, item, dispatch, authUser}) => {
               dispatch(logoutUser());
             }}>
             <Image
-              source={require('../../assets/image/iconprofile.png')}
+              source={require('../../assets/image/iconProfile.png')}
               style={styles.iconprofile}
             />
           </TouchableOpacity>
