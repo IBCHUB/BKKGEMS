@@ -37,10 +37,10 @@ const product = ({item, navigation, detail, dispatch}) => {
   const [highligth, sethighligth] = useState(false);
 
   const [selectedtags, setselectedtags] = useState([]);
-  console.log(selectedtags);
+  // console.log(selectedtags);
   const [list, setlist] = useState(false);
   const [myfev, setmyfev] = useState([]);
-  console.log(myfev);
+  // console.log(myfev);
   const [list1, setlist1] = useState([]);
   const [data1, setdata1] = useState();
   const [selectedlist, setselectedlist] = useState([]);
@@ -54,7 +54,9 @@ const product = ({item, navigation, detail, dispatch}) => {
     try {
       const response = await dispatch(MyFav());
       if (response.res_code == '00') {
+        // console.log('ssss', response.res_result);
         setmyfev(response.res_result);
+        setselectedtags([1]);
         console.log('1111');
       } else {
         console.log('2222');
@@ -70,9 +72,9 @@ const product = ({item, navigation, detail, dispatch}) => {
       console.log('เอาเข้า', ids);
       setselectedtags(ids);
       var request = 'item=' + ids;
-      console.log(request);
+      // console.log(request);
       const response = await dispatch(addMyFav(request));
-      console.log(response);
+      // console.log(response);
       if (response.res_code == '00') {
         console.log('1111');
       } else {
@@ -100,6 +102,7 @@ const product = ({item, navigation, detail, dispatch}) => {
   };
   // console.log(detail);
   const [img, setimg] = useState([]);
+  // console.log(img);
   const [data, setdata] = useState([]);
 
   const _Data2 = () => {
@@ -110,11 +113,36 @@ const product = ({item, navigation, detail, dispatch}) => {
   const _MyList = async values => {
     try {
       const response = await dispatch(MyLists());
-
+      // console.log("11122",response.res_result);
       if (response.res_code == '00') {
-        setlist1(response.res_result);
+        var test = [];
+        response.res_result.map(async (value, item) => {
+          var request = 'my_list_id=' + value.my_list_id;
+          const response2 = await dispatch(ItemList(request));
+          if (response2.res_code == '00') {
+            response2.res_result.map((value2, item) => {
+              test.push(value2.product_img_id);
+              // console.log();
+            });
+            console.log(test);
+            setselectedlist(test);
+            // test.push({
+            //   created_at: value.created_at,
+            //   my_list_id: value.my_list_id,
+            //   my_list_name: value.my_list_name,
+            //   my_list_status: value.my_list_status,
+            //   sum: value.sum,
+            //   updated_at: value.updated_at,
+            //   user_id: value.user_id,
+            //   listDetail: response2.res_result,
+            // });
+          }
+          // console.log('-----');
+          // console.log(test[1].listDetail);
+        });
 
-        console.log('1111');
+        setlist1(response.res_result);
+        // console.log('1111');
       } else {
         console.log('2222');
       }
@@ -305,7 +333,7 @@ const product = ({item, navigation, detail, dispatch}) => {
           <FlatList
             data={list1}
             renderItem={({index, item}) => {
-              console.log(item);
+              // console.log(item);
               return (
                 <TouchableOpacity
                   onPress={() => {
@@ -455,7 +483,7 @@ const product = ({item, navigation, detail, dispatch}) => {
         // data={img}
         horizontal
         renderItem={({index, item}) => {
-          console.log(item.tags);
+          // console.log(item.tags);
           return (
             <TouchableOpacity style={styles.minibutton}>
               <Text style={styles.minitext}>{item.tags}</Text>

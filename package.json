@@ -29,6 +29,7 @@
     "react-native-countdown-component": "^2.7.1",
     "react-native-elements": "^3.4.2",
     "react-native-error-boundary": "^1.1.12",
+    "react-native-exit-app": "^1.1.0",
     "react-native-floating-action": "^1.22.0",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-gifted-chat": "^0.16.3",

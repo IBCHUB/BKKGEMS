@@ -6,18 +6,48 @@ import {
   Image,
   TouchableOpacity,
   Animated,
+  AppState,
+  BackHandler,
 } from 'react-native';
 import Signin from './signin';
 import Signup from './signup';
 import styles from './styles';
+import RNExitApp from 'react-native-exit-app';
 
 const Login = ({navigation, route}) => {
   const [page, setpage] = useState(1);
   const params = route.params || {};
-  const {personId} = params;
+  const {personId, id, section} = params;
+
+  const appState = useRef(AppState.currentState);
+  const [appStateVisible, setAppStateVisible] = useState(appState.current);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'background'
+      ) {
+        console.log('background *****');
+        // if(){
+
+        // }
+        BackHandler.exitApp();
+        RNExitApp.exitApp();
+      }
+      appState.current = nextAppState;
+      setAppStateVisible(appState.current);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   useEffect(() => {
     console.log('>>', params);
+    console.log(id);
+    console.log(section);
   }, []);
 
   return (
