@@ -7,7 +7,14 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {connect} from 'react-redux';
-import {View, Text, SafeAreaView, Dimensions, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Dimensions,
+  StyleSheet,
+  Linking,
+} from 'react-native';
 import {
   Home,
   Event,
@@ -358,10 +365,28 @@ function DrawerStack() {
   );
 }
 
+const linking = {
+  prefixes: ['BKKGEMS://'],
+  config: {
+    // initialRouteName: 'Login',
+    screens: {
+      Login: {
+        path: 'login/:id/:section',
+        parse: {
+          id: id => `${id}`,
+        },
+        stringify: {
+          id: id => id.replace(/^login-/, ''),
+        },
+      },
+    },
+  },
+};
+
 const Routes = ({dispatch, authData, LoadingCounters}) => {
   // console.log(authData);
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       {LoadingCounters > 0 && <Loader />}
       {/* {authData.isLoggedIn === true ? LoginStackScreen() : DrawerStack()} */}
       {authData.isLoggedIn || authData.isSkip === true ? (
