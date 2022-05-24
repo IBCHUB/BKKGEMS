@@ -337,8 +337,6 @@ PODS:
     - React-Core
   - RNLocalize (2.2.0):
     - React-Core
-  - RNPermissions (3.3.1):
-    - React-Core
   - RNReanimated (1.13.2):
     - React-Core
   - RNScreens (3.12.0):
@@ -396,7 +394,6 @@ DEPENDENCIES:
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNInAppBrowser (from `../node_modules/react-native-inappbrowser-reborn`)
   - RNLocalize (from `../node_modules/react-native-localize`)
-  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
@@ -503,8 +500,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-inappbrowser-reborn"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
-  RNPermissions:
-    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -570,7 +565,6 @@ SPEC CHECKSUMS:
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNInAppBrowser: 3ff3a3b8f458aaf25aaee879d057352862edf357
   RNLocalize: 6571ea792a7dcb6d217c98c14d9147e9417cef62
-  RNPermissions: 34d678157c800b25b22a488e4d8babb57456e796
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7
   RNShare: f116bbb04f310c665ca483d0bd1e88cf59b3b334
@@ -579,4 +573,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 174439f2579d565c5c7632d3211b2bc47711abf4
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

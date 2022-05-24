@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -11,8 +11,14 @@ import Signin from './signin';
 import Signup from './signup';
 import styles from './styles';
 
-const Login = ({navigation}) => {
+const Login = ({navigation, route}) => {
   const [page, setpage] = useState(1);
+  const params = route.params || {};
+  const {personId} = params;
+
+  useEffect(() => {
+    console.log('>>', params);
+  }, []);
 
   return (
     <View style={styles.container}>

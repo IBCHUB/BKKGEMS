@@ -358,10 +358,31 @@ function DrawerStack() {
   );
 }
 
+const linking = {
+  prefixes: ['BKKGEMS://'],
+  config: {
+    initialRouteName: 'Login',
+    screens: {
+      // Login: {
+      //   path: 'login/:personId',
+      // },
+      Login: {
+        path: 'login/:id/:section',
+        parse: {
+          id: id => `${id}`,
+        },
+        stringify: {
+          id: id => id.replace(/^login-/, ''),
+        },
+      },
+    },
+  },
+};
+
 const Routes = ({dispatch, authData, LoadingCounters}) => {
   // console.log(authData);
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       {LoadingCounters > 0 && <Loader />}
       {/* {authData.isLoggedIn === true ? LoginStackScreen() : DrawerStack()} */}
       {authData.isLoggedIn || authData.isSkip === true ? (
