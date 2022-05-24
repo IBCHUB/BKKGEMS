@@ -32,65 +32,79 @@ const Search = ({navigation, dispatch, authUser, route}) => {
   const [textSearch, settextSearch] = useState('');
   console.log(datatext);
   const [categorys, setcategorys] = useState([
-    {
-      img: require('../../../assets/image/iocn/014.png'),
-      text: 'GOLD JEWELRY',
-    },
+    // {
+    //   img: require('../../../assets/image/iocn/014.png'),
+    //   text: 'GOLD JEWELRY',
+    // },
     {
       img: require('../../../assets/image/iocn/005.png'),
       text: 'GEMSTONES',
+      product_category_id: 2,
     },
     {
       img: require('../../../assets/image/iocn/001.png'),
       text: 'INTERNATIONAL PAVILION',
+      product_category_id: 3,
     },
     {
       img: require('../../../assets/image/iocn/015.png'),
       text: 'SILVER JEWELRY',
+      product_category_id: 4,
     },
     {
       img: require('../../../assets/image/iocn/002.png'),
       text: 'DISPLAY & PACKAGING',
+      product_category_id: 5,
     },
     {
       img: require('../../../assets/image/iocn/012.png'),
       text: 'DIAMONDS',
+      product_category_id: 6,
     },
     {
       img: require('../../../assets/image/iocn/004.png'),
       text: 'FINE JEWELRY',
+      product_category_id: 7,
     },
     {
       img: require('../../../assets/image/iocn/006.png'),
       text: 'PEARLS',
+      product_category_id: 8,
     },
     {
       img: require('../../../assets/image/iocn/007.png'),
       text: 'EQUIPMENT & TOOLS',
+      product_category_id: 9,
     },
     {
       img: require('../../../assets/image/iocn/013.png'),
       text: 'SYNTHETIC STONES',
+      product_category_id: 10,
     },
     {
       img: require('../../../assets/image/iocn/009.png'),
       text: 'OTHERS',
+      product_category_id: 11,
     },
     {
       img: require('../../../assets/image/iocn/008.png'),
       text: 'PRECIOUS METALS',
+      product_category_id: 12,
     },
     {
       img: require('../../../assets/image/iocn/011.png'),
       text: 'COSTUME & FASHION JEWELRY',
+      product_category_id: 13,
     },
     {
       img: require('../../../assets/image/iocn/003.png'),
       text: 'JEWELRY PARTS',
+      product_category_id: 14,
     },
     {
       img: require('../../../assets/image/iocn/010.png'),
       text: 'MACHINERY',
+      product_category_id: 15,
     },
   ]);
 
@@ -456,7 +470,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
 
         <View style={styles.tags}>
           <View style={styles.roww}>
-            <Text style={styles.texttags}>Categorys</Text>
+            <Text style={styles.texttags}>Categories</Text>
             <View style={styles.line}>
               <Text
                 style={[
@@ -473,7 +487,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             renderItem={({index, item}) => {
               // console.log(item);
               return (
-                <View style={{marginRight: 20}}>
+                <TouchableOpacity style={{marginRight: 20}}>
                   <ImageBackground
                     source={require('../../../assets/image/iocn/000.png')}
                     style={styles.imgflat1}>
@@ -486,7 +500,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
                   <Text numberOfLines={2} style={styles.text1}>
                     {item.text}
                   </Text>
-                </View>
+                </TouchableOpacity>
               );
             }}
           />

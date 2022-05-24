@@ -263,7 +263,10 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
             />
           </TouchableOpacity>
           <Text style={styles.touchdrawer1}>{I18n.t('ForExhibitor')}</Text>
-          <TouchableOpacity onPress={() => Alert.alert('COMING SOON')}>
+          <TouchableOpacity
+            onPress={() => {
+              InAppBrowser.open('https://bgjf.git.or.th/th-th/');
+            }}>
             <Text style={styles.touchindrawer}>
               {I18n.t('ApplicationForm')}
             </Text>

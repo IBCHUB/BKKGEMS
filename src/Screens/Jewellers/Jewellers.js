@@ -7,7 +7,7 @@ import {
   FlatList,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
-
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 import styles from '../Event/styles';
 const Jewellers = ({navigation}) => {
   const [data, setData] = useState([
@@ -44,7 +44,13 @@ const Jewellers = ({navigation}) => {
                 <View>
                   <TouchableOpacity
                     onPress={() => {
-                      navigation.navigate(item.navigation);
+                      if (item.navigation === '') {
+                        InAppBrowser.open(
+                          'https://www.bkkgems.com/data/file/special_activity/file11.pdf',
+                        );
+                      } else {
+                        navigation.navigate(item.navigation);
+                      }
                     }}
                     style={styles.buttonflat}>
                     <Text numberOfLines={2} style={styles.text1}>

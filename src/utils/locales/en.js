@@ -16,7 +16,7 @@ export default {
   FAQs: 'FAQs',
   MyFavorite: 'My Favorite',
   MyList: 'My List',
-  Terms: 'Terms of Use',
+  Terms: 'Terms of  Use',
   SatisfactionSurvey: 'Satisfaction Survey',
   ChangeLanguage: 'Change Language',
   ChangePassword: 'Change Password',

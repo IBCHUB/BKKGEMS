@@ -29,7 +29,8 @@ import {connect} from 'react-redux';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-const product = ({item, navigation, detail, dispatch}) => {
+import {logoutUser} from '../../action/auth.action';
+const product = ({item, navigation, detail, dispatch, authUser}) => {
   const carouselRef = useRef();
   // console.log(data);
   const refRBSheet = useRef();
@@ -95,10 +96,15 @@ const product = ({item, navigation, detail, dispatch}) => {
     } else {
       console.log('เอาเข้า');
       setselectedlist(ids);
+      if (authUser.token === null) {
+        dispatch(logoutUser());
+      } else {
+        refRBSheet.current.open();
+      }
     }
     setlist(selectedlist.length + 1 == img.length);
   };
-  // console.log(detail);
+
   const [img, setimg] = useState([]);
   const [data, setdata] = useState([]);
 
@@ -120,6 +126,7 @@ const product = ({item, navigation, detail, dispatch}) => {
       }
     } catch (error) {}
   };
+
   const _AddnameList = async values => {
     try {
       var request = 'listname=' + values.listname;
@@ -129,15 +136,13 @@ const product = ({item, navigation, detail, dispatch}) => {
         const response1 = await dispatch(MyLists());
         if (response1.res_code == '00') {
           setmodal(false);
-
-          // setList(response1.res_result);
         }
-        // console.log('1111');
       } else {
         console.log('2222');
       }
     } catch (error) {}
   };
+
   const _AddtoList = async values => {
     try {
       var list = selectedlist != undefined && selectedlist;
@@ -148,8 +153,6 @@ const product = ({item, navigation, detail, dispatch}) => {
         const response1 = await dispatch(MyLists());
         if (response1.res_code == '00') {
           setmodalre(false);
-
-          // setList(response1.res_result);
         }
         console.log('1111');
       } else {
@@ -292,7 +295,7 @@ const product = ({item, navigation, detail, dispatch}) => {
         <View style={styles.containersort}>
           <View style={styles.viewsort}>
             <View />
-            <Text style={styles.textsort}>add to My list</Text>
+            <Text style={styles.textsort}>Add to My list</Text>
             <TouchableOpacity
               onPress={() => {
                 refRBSheet.current.close();
@@ -349,6 +352,7 @@ const product = ({item, navigation, detail, dispatch}) => {
           data={img}
           sliderWidth={width * 1}
           itemWidth={width * 1}
+          itemHeight={height * 1}
           layout={'tinder'}
           loop
           layoutCardOffset={`18`}
@@ -407,7 +411,6 @@ const product = ({item, navigation, detail, dispatch}) => {
                     onPress={() => {
                       setlist(val => !val);
                       handleChecklist(item.product_img_id);
-                      refRBSheet.current.open();
                     }}>
                     <Feather
                       name="file-text"
@@ -464,13 +467,14 @@ const product = ({item, navigation, detail, dispatch}) => {
         }}
       />
       <Text style={styles.texthead}>OTHER PRODUCTS</Text>
-      <View style={{marginBottom: 20}}>
+      <View style={{paddingBottom: 20}}>
         <FlatList
           data={data.filter(
             item => item.product_img_id !== img[0].product_img_id,
           )}
           // extraData={img}
-
+          scrollEnabled={true}
+          style={{height: 200}}
           horizontal={true}
           renderItem={({index, item}) => {
             // console.log(item);
@@ -498,8 +502,11 @@ const product = ({item, navigation, detail, dispatch}) => {
   );
 };
 
+const mapStateToProps = state => ({
+  authUser: state.authReducer.authUser,
+});
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(null, mapDispatchToProps)(product);
+export default connect(mapStateToProps, mapDispatchToProps)(product);

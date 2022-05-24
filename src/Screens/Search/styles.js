@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     color: '#646363',
     alignSelf: 'center',
-    width: width * 0.3,
+    width: width * 0.32,
     textAlign: 'center',
     marginTop: 10,
   },
