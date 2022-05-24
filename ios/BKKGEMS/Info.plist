@@ -31,12 +31,12 @@
 			<string>com.ditp.all</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>DITPONE</string>
+				<string>BKKGEMS</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.21</string>
+	<string>1.22</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

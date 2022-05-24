@@ -1,10 +1,11 @@
 import {Platform} from 'react-native';
 export const getDeepLink = (path = '') => {
-  const scheme = 'DITPONE';
+  const scheme = 'BKKGEMS';
   const prefix =
     Platform.OS == 'android' ? `${scheme}://my-host/` : `${scheme}://`;
   return prefix + path;
 };
+
 // export const getDeepLink = (path = '') => {
 //   const scheme = 'my-demo';
 //   const prefix =
