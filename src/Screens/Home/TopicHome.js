@@ -39,9 +39,40 @@ const TopicHome = ({dispatch}) => {
     _Topic();
   }, [focus]);
 
+  // var countDownDate = new Date('2022-09-07 10:00:00').getTime();
+  // var x = setInterval(function () {
+  //   var now = new Date().getTime();
+  //   var distance = countDownDate - now;
+  //   console.log(distance);
+  //   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  //   var hours = Math.floor(
+  //     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+  //   );
+  //   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  //   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  //   if (distance > 0) {
+  //     setday(days);
+  //     sethours(hours);
+  //     setminutes(minutes);
+  //     setseconds(seconds);
+  //   } else {
+  //     clearInterval(x);
+  //   }
+  // }, 1000);
   const runTime = dateAPI => {
     const time = dateAPI != undefined && dateAPI.Fair_start_in;
-    var countDownDate = new Date(time).getTime();
+    var day = time.split(' ');
+
+    var y = day[0].split('-')[0];
+    var m = day[0].split('-')[1];
+    var d = day[0].split('-')[2];
+    var h = day[1].split(':')[0];
+    var mm = day[1].split(':')[1];
+    var ss = day[1].split(':')[2];
+    var countDownDate = new Date(2022, 9, 7, 10, 0, 0).getTime();
+    // console.log('123456', new Date());
+    // console.log(time);
     var x = setInterval(function () {
       var now = new Date().getTime();
       var distance = countDownDate - now;
@@ -118,13 +149,14 @@ const TopicHome = ({dispatch}) => {
         {/* {data != undefined && (
           <CountDown
             // moment().add(6, "hours").valueOf()
-            until={moment(data.Fair_start_in).add(24, 'hours').valueOf()}
+            until={9069792529}
             size={30}
             digitStyle={{height: 25}}
             digitTxtStyle={{
               color: '#000',
-              fontSize: 25,
+              fontSize: 30,
               fontWeight: '600',
+              fontFamily: 'Cantoria MT Std',
             }}
             // timeToShow={['M', 'S']}
             // timeLabels={{m: 'MM', s: 'SS'}}
