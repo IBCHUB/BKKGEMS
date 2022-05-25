@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {Fragment, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,8 @@ import {
   FlatList,
   TextInput,
   Modal,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -18,35 +20,102 @@ import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 // import {Picker} from '@react-native-picker/picker';
+// import {Picker} from '@react-native-community/picker';
 import * as RNLocalize from 'react-native-localize';
+import DatePicker from 'react-native-date-picker';
+import moment from 'moment';
+import {connect} from 'react-redux';
+import {Formik} from 'formik';
+import * as yup from 'yup';
+const Meeting = ({navigation, route, authUser, dispatch}) => {
+  const {detail} = route.params;
 
-const Meeting = ({navigation}) => {
   const [modal, setmodal] = useState(false);
-  const [day, setday] = useState([]);
-  const [timeH, settimeH] = useState(0);
-  console.log(day);
-  console.log(RNLocalize.getLocales());
-  console.log(RNLocalize.getCurrencies());
-  console.log(RNLocalize.getTimeZone());
-  var date = new Date();
-  var offsetInHours = date.getTimezoneOffset() / 60;
-  console.log(offsetInHours);
-  console.log(date.getTimezoneOffset());
-  console.log(
-    new Date()
-      .toString()
-      .match(/([A-Z]+[\+-][0-9]+)/)[1]
-      .split('+')[0],
-  );
-  console.log(
-    new Date()
-      .toString()
-      .match(/([A-Z]+[\+-][0-9]+)/)[1]
-      .split('+')[1],
-  );
-  console.log(new Date().toString());
+  const [viewNumber, setviewNumber] = useState(0);
+  const [day, setday] = useState(new Date());
+  const [time, settime] = useState(new Date());
+  const [dateSelect1, setdateSelect1] = useState();
+  const [dateSelect2, setdateSelect2] = useState();
+  const [dateSelect3, setdateSelect3] = useState();
+  const [timeSelect1, settimeSelect1] = useState();
+  const [timeSelect2, settimeSelect2] = useState();
+  const [timeSelect3, settimeSelect3] = useState();
+  // console.log(day);
+  // console.log(RNLocalize.getLocales());
+  // console.log(RNLocalize.getCurrencies());
+  // console.log(RNLocalize.getTimeZone());
+  // var date = new Date();
+  // var offsetInHours = date.getTimezoneOffset() / 60;
+  // console.log(offsetInHours);
+  // console.log(date.getTimezoneOffset());
+  // console.log(
+  //   new Date()
+  //     .toString()
+  //     .match(/([A-Z]+[\+-][0-9]+)/)[1]
+  //     .split('+')[0],
+  // );
+  // console.log(
+  //   new Date()
+  //     .toString()
+  //     .match(/([A-Z]+[\+-][0-9]+)/)[1]
+  //     .split('+')[1],
+  // );
+  // console.log(new Date().toString());
+
+  const btnSelectDeteTime = () => {
+    if (viewNumber == 1) {
+      console.log(
+        dateSelect1 +
+          ' ' +
+          timeSelect1.getHours() +
+          ':' +
+          timeSelect1.getMinutes() +
+          ':' +
+          timeSelect1.getSeconds(),
+      );
+      console.log(
+        moment(dateSelect1).format('MMMM D, YYYY') +
+          ' ' +
+          moment(timeSelect1).format('h:mm'),
+      );
+    } else if (viewNumber == 2) {
+      console.log(dateSelect2);
+      console.log(timeSelect2);
+    } else if (viewNumber == 3) {
+      console.log(dateSelect3);
+      console.log(timeSelect3);
+    }
+  };
+
+  const _Meeting = async values => {
+    try {
+      var request =
+        'company_id=' +
+        detail.c_id +
+        '&text_message=' +
+        values.message +
+        '&user_id=' +
+        authUser.token.user_id +
+        '&email=' +
+        authUser.token.email +
+        '&fullname=' +
+        authUser.token.fullname +
+        '&data_meeting=' +
+        [];
+      console.log(request);
+      const response = await dispatch(Meeting(request));
+      console.log('11122', response);
+      if (response.res_code == '00') {
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={{flex: 1}}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Modal
         animationType="none"
         transparent={true}
@@ -67,16 +136,27 @@ const Meeting = ({navigation}) => {
             <Text style={styles.textmodal}>Select Date</Text>
             <Calendar
               style={styles.calendar}
-              onDayPress={day =>
-                setday({
-                  [day.dateString]: {
-                    disabled: true,
-                    startingDay: true,
-                    color: 'green',
-                    endingDay: true,
-                  },
-                })
-              }
+              onDayPress={day => {
+                {
+                  setday({
+                    [day.dateString]: {
+                      disabled: true,
+                      startingDay: true,
+                      color: 'green',
+                      endingDay: true,
+                    },
+                  });
+
+                  if (viewNumber == 1) {
+                    setdateSelect1(day.dateString);
+                  } else if (viewNumber == 2) {
+                    setdateSelect2(day.dateString);
+                  } else if (viewNumber == 3) {
+                    setdateSelect3(day.dateString);
+                  }
+                  // setdate(day.dateString);
+                }
+              }}
               // onDayPress={day => {
               //   setday(day);
               //   console.log(day);
@@ -95,30 +175,33 @@ const Meeting = ({navigation}) => {
               }}
             />
             <Text style={styles.textmodal}>Select Date</Text>
-            {/* <View style={{flexDirection: 'row', height: 200}}>
-              <Picker
-                style={{
-                  flex: 1,
+            <View
+              style={{
+                flexDirection: 'row',
+                height: 200,
+                justifyContent: 'center',
+              }}>
+              <DatePicker
+                date={time}
+                mode="time"
+                onDateChange={date => {
+                  if (viewNumber == 1) {
+                    settimeSelect1(date);
+                  } else if (viewNumber == 2) {
+                    settimeSelect2(date);
+                  } else if (viewNumber == 3) {
+                    settimeSelect3(date);
+                  }
+                  settime(date);
+                  // console.log(date);
                 }}
-                selectedValue={timeH}
-                onValueChange={(itemValue, itemIndex) => settimeH(itemValue)}>
-                <Picker.Item key={0} label={'01'} value={'01'} />
-                <Picker.Item key={1} label={'02'} value={'02'} />
-              </Picker>
-              <Picker
-                style={{
-                  flex: 1,
-                }}
-                selectedValue={timeH}
-                onValueChange={(itemValue, itemIndex) => settimeH(itemValue)}>
-                <Picker.Item key={0} label={'01'} value={'01'} />
-                <Picker.Item key={1} label={'02'} value={'02'} />
-              </Picker>
-            </View> */}
+              />
+            </View>
             {/* {"request_datetime" : "2022-03-08 18:35", "time_zone": "Asia/Bangkok", "GMT" : "7"}, */}
             <TouchableOpacity
               onPress={() => {
                 setmodal(false);
+                btnSelectDeteTime();
               }}
               style={styles.buttonexhi}>
               <Text style={styles.textexhi}>OKAY</Text>
@@ -128,41 +211,154 @@ const Meeting = ({navigation}) => {
       </Modal>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerback navigation={navigation} item={'REQUEST MEETING'} />
-      <View>
+      <ScrollView style={{width: '100%'}}>
         <Text style={styles.text}>Add appointment Option</Text>
         <TouchableOpacity
           onPress={() => {
             setmodal(true);
+            setviewNumber(1);
           }}
           style={styles.dot}>
+          {dateSelect1 != undefined && timeSelect1 != undefined && (
+            <View>
+              <Text>
+                {moment(dateSelect1).format('MMMM D, YYYY') +
+                  ' ' +
+                  moment(timeSelect1).format('h:mm')}
+              </Text>
+              <Text>
+                {'Your Time Zome : '}
+                {RNLocalize.getTimeZone()}
+                {' ('}
+                {
+                  new Date(dateSelect1)
+                    .toString()
+                    .match(/([A-Z]+[\+-][0-9]+)/)[1]
+                    .split('+')[0]
+                }
+                {'+'}
+                {new Date(dateSelect1)
+                  .toString()
+                  .match(/([A-Z]+[\+-][0-9]+)/)[1]
+                  .split('+')[1]
+                  .replace('00', '')
+                  .replace('0', '')}
+                {')'}
+              </Text>
+            </View>
+          )}
           <Image
             style={styles.push}
             source={require('../../../assets/image/push.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('2')} style={styles.dot}>
+        <TouchableOpacity
+          onPress={() => {
+            setmodal(true);
+            setviewNumber(2);
+          }}
+          style={styles.dot}>
+          {dateSelect2 != undefined && timeSelect2 != undefined && (
+            <View>
+              <Text>
+                {moment(dateSelect2).format('MMMM D, YYYY') +
+                  ' ' +
+                  moment(timeSelect2).format('h:mm')}
+              </Text>
+              <Text>
+                {'Your Time Zome : '}
+                {RNLocalize.getTimeZone()}
+                {' ('}
+                {
+                  new Date(dateSelect2)
+                    .toString()
+                    .match(/([A-Z]+[\+-][0-9]+)/)[1]
+                    .split('+')[0]
+                }
+                {'+'}
+                {new Date(dateSelect2)
+                  .toString()
+                  .match(/([A-Z]+[\+-][0-9]+)/)[1]
+                  .split('+')[1]
+                  .replace('00', '')
+                  .replace('0', '')}
+                {')'}
+              </Text>
+            </View>
+          )}
           <Image
             style={styles.push}
             source={require('../../../assets/image/push.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('3')} style={styles.dot}>
+        <TouchableOpacity
+          onPress={() => {
+            setmodal(true);
+            setviewNumber(3);
+          }}
+          style={styles.dot}>
+          <Text>{/* {dateSelect3} - {timeSelect3} */}</Text>
           <Image
             style={styles.push}
             source={require('../../../assets/image/push.png')}
           />
         </TouchableOpacity>
-        <TextInput
+        {/* <TextInput
           style={styles.textinput}
           placeholder="Type message..."
           multiline
-        />
-        <TouchableOpacity style={styles.button}>
+          scrollEnabled={false}
+        /> */}
+        <Formik
+          initialValues={{
+            message: '',
+          }}
+          onSubmit={values => {
+            _Meeting(values);
+            // console.log(values);
+          }}
+          validationSchema={yup.object().shape({
+            message: yup.string().required(),
+          })}>
+          {({
+            values,
+            handleChange,
+            errors,
+            setFieldTouched,
+            touched,
+            isValid,
+            handleSubmit,
+          }) => (
+            <Fragment>
+              <TextInput
+                placeholder="Type message..."
+                style={styles.textinput}
+                onChangeText={handleChange('message')}
+                onBlur={() => setFieldTouched('message')}
+                value={values.message}
+                multiline
+                scrollEnabled={false}
+              />
+
+              <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+                <Text style={styles.textexhi}>MAKE AN APPOINTMENT</Text>
+              </TouchableOpacity>
+            </Fragment>
+          )}
+        </Formik>
+        {/* <TouchableOpacity style={styles.button}>
           <Text style={styles.textexhi}>MAKE AN APPOINTMENT</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        </TouchableOpacity> */}
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
-export default Meeting;
+const mapStateToProps = state => ({
+  authUser: state.authReducer.authUser,
+});
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Meeting);

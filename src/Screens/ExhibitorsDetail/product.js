@@ -13,6 +13,7 @@ import {
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {
   addMyFav,
@@ -36,7 +37,8 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
   const refRBSheet = useRef();
   const [index, setIndex] = useState(0);
   const [highligth, sethighligth] = useState(false);
-
+  const [modalfalse, setmodalfalse] = useState(false);
+  const [modallogin, setmodallogin] = useState(false);
   const [selectedtags, setselectedtags] = useState([]);
   // console.log(selectedtags);
   const [list, setlist] = useState(false);
@@ -55,9 +57,12 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
     try {
       const response = await dispatch(MyFav());
       if (response.res_code == '00') {
-        // console.log('ssss', response.res_result);
+        setselectedtags(
+          response.res_result.map(i => {
+            return i.product_img_id;
+          }),
+        );
         setmyfev(response.res_result);
-        setselectedtags([1]);
         console.log('1111');
       } else {
         console.log('2222');
@@ -72,14 +77,17 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
     } else {
       console.log('เอาเข้า', ids);
       setselectedtags(ids);
-      var request = 'item=' + ids;
-      // console.log(request);
-      const response = await dispatch(addMyFav(request));
-      // console.log(response);
-      if (response.res_code == '00') {
-        console.log('1111');
+      if (authUser.token === null) {
+        setmodallogin(true);
       } else {
-        console.log('2222');
+        var request = 'item=' + ids;
+        const response = await dispatch(addMyFav(request));
+        if (response.res_code == '00') {
+          setmodalfalse(true);
+          console.log('1111');
+        } else {
+          console.log('2222');
+        }
       }
     }
     sethighligth(selectedtags.length + 1 == detail.length);
@@ -99,7 +107,7 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
       console.log('เอาเข้า');
       setselectedlist(ids);
       if (authUser.token === null) {
-        dispatch(logoutUser());
+        setmodallogin(true);
       } else {
         refRBSheet.current.open();
       }
@@ -130,23 +138,10 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
               test.push(value2.product_img_id);
               // console.log();
             });
-            console.log(test);
-            setselectedlist(test);
-            // test.push({
-            //   created_at: value.created_at,
-            //   my_list_id: value.my_list_id,
-            //   my_list_name: value.my_list_name,
-            //   my_list_status: value.my_list_status,
-            //   sum: value.sum,
-            //   updated_at: value.updated_at,
-            //   user_id: value.user_id,
-            //   listDetail: response2.res_result,
-            // });
-          }
-          // console.log('-----');
-          // console.log(test[1].listDetail);
-        });
 
+            setselectedlist(test);
+          }
+        });
         setlist1(response.res_result);
         // console.log('1111');
       } else {
@@ -181,6 +176,9 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
         const response1 = await dispatch(MyLists());
         if (response1.res_code == '00') {
           setmodalre(false);
+          setTimeout(() => {
+            setmodalfalse(true);
+          }, 100);
         }
         console.log('1111');
       } else {
@@ -302,6 +300,63 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
           </View>
         </View>
       </Modal>
+
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalfalse}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setmodalfalse(!modalfalse);
+        }}>
+        <View style={styles.containermodal}>
+          <View style={styles.viewmodal}>
+            <Image
+              style={{
+                width: 30,
+                height: 30,
+                alignSelf: 'center',
+                marginBottom: 15,
+              }}
+              source={require('../../../assets/image/tt.png')}
+            />
+            <Text style={styles.texttopicmodal}>Verification Successful</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setmodalfalse(false);
+              }}
+              style={styles.buttonexhi}>
+              <Text style={styles.textexhi}>OKAY</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modallogin}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setmodalfalse(!modallogin);
+        }}>
+        <View style={styles.containermodal}>
+          <View style={styles.viewmodal}>
+            <Text style={styles.texttopicmodal}>Please login</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setmodalfalse(false);
+                setTimeout(() => {
+                  dispatch(logoutUser());
+                }, 100);
+              }}
+              style={styles.buttonexhi}>
+              <Text style={styles.textexhi}>OKAY</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       <RBSheet
         ref={refRBSheet}
         closeOnPressMask={false}

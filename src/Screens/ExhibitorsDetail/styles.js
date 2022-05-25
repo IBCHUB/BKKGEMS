@@ -420,6 +420,61 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: -3,
   },
+
+  viewmodal: {
+    width: width * 0.96,
+    backgroundColor: '#EEECE2',
+    alignSelf: 'center',
+    borderRadius: 12,
+    paddingHorizontal: 15,
+    paddingTop: 25,
+    paddingBottom: 35,
+  },
+  iconmodal: {
+    alignSelf: 'flex-end',
+  },
+  texttopicmodal: {
+    fontSize: 22,
+    color: '#646363',
+    alignSelf: 'center',
+    marginBottom: 10,
+    textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
+  },
+  textdetailmodal: {
+    fontSize: 18,
+    color: '#646363',
+    alignSelf: 'center',
+    textAlign: 'center',
+    fontFamily: 'Cantoria MT Std',
+  },
+  textemaillmodal: {
+    fontSize: 18,
+    color: '#DAA560',
+    alignSelf: 'center',
+    textAlign: 'center',
+    marginVertical: 5,
+    fontFamily: 'Cantoria MT Std',
+  },
+  buttonexhi: {
+    backgroundColor: '#EEECE2',
+    width: width * 0.8,
+    alignSelf: 'center',
+    marginTop: 20,
+    height: 48,
+    borderRadius: 2,
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#DAA560',
+    flexDirection: 'row',
+    paddingHorizontal: 25,
+  },
+  textexhi: {
+    fontSize: 20,
+    color: '#DAA560',
+    alignSelf: 'center',
+    fontFamily: 'Cantoria MT Std',
+  },
 });
 
 export default styles;

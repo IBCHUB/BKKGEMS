@@ -26,6 +26,7 @@ const TopicHome = ({dispatch}) => {
       const response = await dispatch(Topic());
       if (response.res_code == '00') {
         setdata(response.res_result);
+        runTime(response.res_result);
         console.log('1111');
       } else {
         console.log('2222');
@@ -33,29 +34,33 @@ const TopicHome = ({dispatch}) => {
     } catch (error) {}
   };
   // 166251960
-  const time = data != undefined && data.Fair_start_in;
-  var countDownDate = new Date(time).getTime();
-  var x = setInterval(function () {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-    );
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    if (distance > 0) {
-      setday(days);
-      sethours(hours);
-      setminutes(minutes);
-      setseconds(seconds);
-    } else {
-      clearInterval(x);
-    }
-  }, 1000);
+
   useEffect(() => {
     _Topic();
   }, [focus]);
+
+  const runTime = dateAPI => {
+    const time = dateAPI != undefined && dateAPI.Fair_start_in;
+    var countDownDate = new Date(time).getTime();
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      if (distance > 0) {
+        setday(days);
+        sethours(hours);
+        setminutes(minutes);
+        setseconds(seconds);
+      } else {
+        clearInterval(x);
+      }
+    }, 1000);
+  };
 
   return (
     <View style={styles.linearGradient}>

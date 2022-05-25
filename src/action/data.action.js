@@ -577,3 +577,25 @@ export const generatechattoken = payload => {
     }
   };
 };
+
+export const Meeting = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'api/save_meeting',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

@@ -250,7 +250,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
               <Text style={styles.textbutton}>CONTACT</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Meeting')}
+              onPress={() => navigation.navigate('Meeting', {detail})}
               style={styles.button}>
               <Text style={styles.textbutton}>MEETING</Text>
             </TouchableOpacity>

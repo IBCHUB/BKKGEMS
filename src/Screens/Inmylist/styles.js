@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     height: 5,
     alignSelf: 'center',
     width: 30,
-    marginLeft: 20,
+    marginLeft: 10,
   },
   containersort: {
     flex: 1,
