@@ -195,13 +195,17 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                     }}
                     style={styles.buttonflat}>
                     <Image
+                      resizeMode="cover"
                       style={styles.imgflat}
                       source={{uri: item.company_cover}}
+                      defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                     />
                     <View style={styles.row}>
                       <Image
+                        resizeMode="cover"
                         style={styles.imglogo}
                         source={{uri: item.company_logo}}
+                        defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                       />
                       <Text numberOfLines={2} style={styles.text}>
                         {item.company_name}

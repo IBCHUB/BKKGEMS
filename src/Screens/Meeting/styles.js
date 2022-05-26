@@ -104,6 +104,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingHorizontal: 25,
   },
+  dot1: {
+    width: width * 0.9,
+    height: 100,
+    backgroundColor: '#fff',
+    alignSelf: 'center',
+    borderRadius: 6,
+    marginTop: 20,
+    padding: 10,
+  },
+  op: {
+    fontSize: 12,
+    color: '#646363',
+    fontFamily: 'Cantoria MT Std',
+    marginTop: -10,
+    marginBottom: 3,
+  },
+  op1: {
+    fontSize: 12,
+    color: '#646363',
+    fontFamily: 'Cantoria MT Std',
+
+    marginBottom: 3,
+  },
+  date: {
+    fontSize: 20,
+    color: '#DAA560',
+    fontFamily: 'Cantoria MT Std',
+  },
 });
 
 export default styles;

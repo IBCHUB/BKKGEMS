@@ -389,18 +389,18 @@ const Routes = ({dispatch, authData, LoadingCounters}) => {
     <NavigationContainer linking={linking}>
       {LoadingCounters > 0 && <Loader />}
       {/* {authData.isLoggedIn === true ? LoginStackScreen() : DrawerStack()} */}
-      {authData.isLoggedIn || authData.isSkip === true ? (
-        <DrawerStack />
-      ) : (
+      {/* {authData.isLoggedIn || authData.isSkip === true ? ( */}
+      <DrawerStack />
+      {/* ) : (
         <LoginStackScreen />
-      )}
+      )} */}
     </NavigationContainer>
   );
 };
 
 const mapStateToProps = state => ({
   LoadingCounters: state.dataReducer.LoadingCounters,
-  authData: state.authReducer.authData,
+  // authData: state.authReducer.authData,
 });
 const mapDispatchToProps = dispatch => ({
   dispatch,

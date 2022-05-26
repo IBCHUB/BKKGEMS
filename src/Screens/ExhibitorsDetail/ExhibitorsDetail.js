@@ -27,9 +27,9 @@ import {Exprofile} from '../../action/data.action';
 
 const ExhibitorsDetail = ({navigation, route, dispatch}) => {
   const {res} = route.params;
-  console.log(res);
+
   const [detail, setdetail] = useState(res);
-  console.log(detail);
+
   const [modal, setmodal] = useState(false);
   const [page, setpage] = useState(0);
   const [city, setcity] = useState([]);
@@ -74,7 +74,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
   const _Country = async values => {
     try {
       const response = await dispatch(Country());
-      console.log(response);
+      // console.log(response);
       if (response.res_code == '00') {
         setcity(
           response.res_result.map(val => ({
@@ -88,20 +88,20 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
       }
     } catch (error) {}
   };
-  const _Exprofile = async values => {
-    try {
-      var request = 'exid=' + res.company_id;
-      const response = await dispatch(Exprofile(request));
-      console.log(response);
-      if (response.res_code == '00') {
-        setdetail(response.res_result);
+  // const _Exprofile = async values => {
+  //   try {
+  //     var request = 'exid=' + res.company_id;
+  //     const response = await dispatch(Exprofile(request));
+  //     console.log(response);
+  //     if (response.res_code == '00') {
+  //       setdetail(response.res_result);
 
-        // console.log('1111');
-      } else {
-        // console.log('2222');
-      }
-    } catch (error) {}
-  };
+  //       // console.log('1111');
+  //     } else {
+  //       // console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
   useEffect(() => {
     // _Exprofile();
     _Country();
@@ -227,7 +227,11 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
       <ScrollView>
         <Headerback navigation={navigation} />
         <View style={styles.viewHeader}>
-          <Image source={{uri: detail.company_logo}} style={styles.logo} />
+          <Image
+            source={{uri: detail.company_logo}}
+            defaultSource={require('../../../assets/image/oo.png')}
+            style={styles.logo}
+          />
           <Text style={styles.textTopic}>{detail.company_name}</Text>
           <Text style={styles.texthead}>{detail.product_category_name_en}</Text>
           <View style={styles.row}>
@@ -243,6 +247,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
               <Text style={styles.textbutton}>LIVE CHAT</Text>
             </TouchableOpacity> */}
             <TouchableOpacity
+              disabled
               onPress={() => {
                 setmodal(true);
               }}
@@ -250,6 +255,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
               <Text style={styles.textbutton}>CONTACT</Text>
             </TouchableOpacity>
             <TouchableOpacity
+              disabled
               onPress={() => navigation.navigate('Meeting', {detail})}
               style={styles.button}>
               <Text style={styles.textbutton}>MEETING</Text>

@@ -80,12 +80,14 @@ const Hightligth = ({navigation, dispatch}) => {
                   }}
                   style={styles.buttonflat}>
                   <ImageBackground
+                    resizeMode="cover"
                     style={styles.imgflat}
                     source={{uri: item.product_img_name}}>
                     <LinearGradient
                       colors={['#00000000', '#1D0F0FF7']}
                       style={styles.row}>
                       <Image
+                        resizeMode="cover"
                         style={styles.imglogo}
                         source={{uri: item.company_logo}}
                       />

@@ -6,8 +6,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import {connect} from 'react-redux';
 import {logoutUser} from '../action/auth.action';
 
-const Headerhome = ({navigation, dispatch, authUser}) => {
-  console.log(authUser);
+const Headerhome = ({navigation, dispatch}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -29,15 +28,14 @@ const Headerhome = ({navigation, dispatch, authUser}) => {
       <View style={styles.row}>
         <TouchableOpacity
           // disabled
-          onPress={() => navigation.navigate('Chat')}
-          style={{marginRight: 20}}>
+          onPress={() => navigation.navigate('Chat')}>
           <Image
             source={require('../../assets/image/iconSend.png')}
             style={styles.iconSend}
           />
         </TouchableOpacity>
 
-        {authUser.token === null ? (
+        {/* {authUser.token === null ? (
           <TouchableOpacity
             onPress={() => {
               dispatch(logoutUser());
@@ -54,18 +52,18 @@ const Headerhome = ({navigation, dispatch, authUser}) => {
               style={styles.iconprofile}
             />
           </TouchableOpacity>
-        )}
+        )} */}
       </View>
     </View>
   );
 };
 
-const mapStateToProps = state => ({
-  // LoadingCounters: state.dataReducer.LoadingCounters,
-  authUser: state.authReducer.authUser,
-});
+// const mapStateToProps = state => ({
+//   // LoadingCounters: state.dataReducer.LoadingCounters,
+//   authUser: state.authReducer.authUser,
+// });
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Headerhome);
+export default connect(null, mapDispatchToProps)(Headerhome);

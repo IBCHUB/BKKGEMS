@@ -702,7 +702,7 @@ class Chatbot extends Component {
     return (
       <InputToolbar
         {...props}
-        placeholder="ข้อความ ..."
+        placeholder="message ..."
         textInputStyle={{
           fontSize: 18,
           fontFamily: 'Cantoria MT Std',

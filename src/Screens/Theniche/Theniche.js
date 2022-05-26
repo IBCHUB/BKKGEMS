@@ -14,7 +14,7 @@ const Theniche = ({navigation}) => {
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback navigation={navigation} item={'THE NICHE SHOWCASE'} />
+        <Headerback navigation={navigation} item={'The Niche Showcase'} />
         <ScrollView style={{backgroundColor: '#EEECE2'}}>
           <View style={styles.viewdetail}>
             <Image

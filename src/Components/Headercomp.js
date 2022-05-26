@@ -23,15 +23,14 @@ const Headercomp = ({navigation, item, dispatch, authUser}) => {
       <View style={styles.row}>
         <TouchableOpacity
           // disabled
-          onPress={() => navigation.navigate('Chat')}
-          style={{marginRight: 20}}>
+          onPress={() => navigation.navigate('Chat')}>
           <Image
             source={require('../../assets/image/iconSend.png')}
             style={styles.iconSend}
           />
         </TouchableOpacity>
 
-        {authUser.token === null ? (
+        {/* {authUser.token === null ? (
           <TouchableOpacity
             onPress={() => {
               dispatch(logoutUser());
@@ -48,18 +47,18 @@ const Headercomp = ({navigation, item, dispatch, authUser}) => {
               style={styles.iconprofile}
             />
           </TouchableOpacity>
-        )}
+        )} */}
       </View>
     </View>
   );
 };
 
-const mapStateToProps = state => ({
-  // LoadingCounters: state.dataReducer.LoadingCounters,
-  authUser: state.authReducer.authUser,
-});
+// const mapStateToProps = state => ({
+//   // LoadingCounters: state.dataReducer.LoadingCounters,
+//   // authUser: state.authReducer.authUser,
+// });
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Headercomp);
+export default connect(null, mapDispatchToProps)(Headercomp);

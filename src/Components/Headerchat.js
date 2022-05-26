@@ -18,7 +18,7 @@ const Headerchat = ({navigation, item}) => {
         />
       </TouchableOpacity>
       <View style={styles.row}>
-        <Text style={styles.texthead1}>DITP Offlcial Chat</Text>
+        <Text style={styles.texthead1}>DITP Official Chat</Text>
       </View>
       <View style={styles.row}>
         {/* <TouchableOpacity>

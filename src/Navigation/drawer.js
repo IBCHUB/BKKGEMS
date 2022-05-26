@@ -31,7 +31,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
       {page === 0 && (
         <View style={{backgroundColor: '#232323', height: '100%'}}>
           <ScrollView>
-            {authUser.token === null ? (
+            {/* {authUser.token === null ? (
               <View style={styles.row}>
                 <Image
                   source={require('../../assets/image/profile.png')}
@@ -52,7 +52,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
                 <Text style={styles.texthead}>{authUser?.token?.fullname}</Text>
               </TouchableOpacity>
             )}
-            <View style={styles.liner} />
+            <View style={styles.liner} /> */}
 
             <View style={{marginBottom: 20}}>
               <TouchableOpacity
@@ -158,7 +158,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
               </TouchableOpacity>
             </View>
             <View style={styles.liner} />
-            <View style={{marginBottom: 20}}>
+            {/* <View style={{marginBottom: 20}}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('Myfavorite');
@@ -171,7 +171,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
                 }}>
                 <Text style={styles.touchdrawer}>{I18n.t('MyList')}</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
             <View style={styles.liner} />
             <View style={{marginBottom: 20}}>
               <TouchableOpacity
@@ -203,7 +203,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
               </TouchableOpacity>
             </View>
             <View style={styles.liner} />
-            {authUser != undefined && authUser.token === null ? (
+            {/* {authUser != undefined && authUser.token === null ? (
               <TouchableOpacity
                 onPress={() => {
                   dispatch(logoutUser());
@@ -217,7 +217,7 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
                 }}>
                 <Text style={styles.logout}>{I18n.t('Logout')}</Text>
               </TouchableOpacity>
-            )}
+            )} */}
 
             <View style={{marginBottom: 80}} />
           </ScrollView>

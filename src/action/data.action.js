@@ -566,7 +566,7 @@ export const generatechattoken = payload => {
         'SSO',
         payload.token,
       );
-      // console.log(response);
+
       if (response.res_code === '00') {
         return response;
       } else {
@@ -578,7 +578,7 @@ export const generatechattoken = payload => {
   };
 };
 
-export const Meeting = payload => {
+export const Meetings = payload => {
   return async (dispatch, getState) => {
     try {
       const response = await fetchApi(
@@ -588,7 +588,7 @@ export const Meeting = payload => {
         payload,
         'BASE',
       );
-      // console.log(response);
+
       if (response.res_code === '00') {
         return response;
       } else {

@@ -49,172 +49,171 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
   const [selectedlist, setselectedlist] = useState([]);
   const [modal, setmodal] = useState(false);
   const [modalre, setmodalre] = useState(false);
-  const isHighligth = id => {
-    const isChecktags = selectedtags.includes(id);
-    return isChecktags;
-  };
-  const _MyFav = async values => {
-    try {
-      const response = await dispatch(MyFav());
-      if (response.res_code == '00') {
-        setselectedtags(
-          response.res_result.map(i => {
-            return i.product_img_id;
-          }),
-        );
-        setmyfev(response.res_result);
-        console.log('1111');
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
-  const handleCheckBoxtags = async id => {
-    const ids = [...selectedtags, id];
-    if (isHighligth(id)) {
-      console.log('เอาออก', id);
-      setselectedtags(selectedtags.filter(item => item !== id));
-    } else {
-      console.log('เอาเข้า', ids);
-      setselectedtags(ids);
-      if (authUser.token === null) {
-        setmodallogin(true);
-      } else {
-        var request = 'item=' + ids;
-        const response = await dispatch(addMyFav(request));
-        if (response.res_code == '00') {
-          setmodalfalse(true);
-          console.log('1111');
-        } else {
-          console.log('2222');
-        }
-      }
-    }
-    sethighligth(selectedtags.length + 1 == detail.length);
-  };
+  // const isHighligth = id => {
+  //   const isChecktags = selectedtags.includes(id);
+  //   return isChecktags;
+  // };
+  // const _MyFav = async values => {
+  //   try {
+  //     const response = await dispatch(MyFav());
+  //     if (response.res_code == '00') {
+  //       setselectedtags(
+  //         response.res_result.map(i => {
+  //           return i.product_img_id;
+  //         }),
+  //       );
+  //       setmyfev(response.res_result);
+  //       console.log('1111');
+  //     } else {
+  //       console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
+  // const handleCheckBoxtags = async id => {
+  //   const ids = [...selectedtags, id];
+  //   if (isHighligth(id)) {
+  //     console.log('เอาออก', id);
+  //     setselectedtags(selectedtags.filter(item => item !== id));
+  //   } else {
+  //     console.log('เอาเข้า', ids);
+  //     setselectedtags(ids);
+  //     if (authUser.token === null) {
+  //       setmodallogin(true);
+  //     } else {
+  //       var request = 'item=' + ids;
+  //       const response = await dispatch(addMyFav(request));
+  //       if (response.res_code == '00') {
+  //         setmodalfalse(true);
+  //         console.log('1111');
+  //       } else {
+  //         console.log('2222');
+  //       }
+  //     }
+  //   }
+  //   sethighligth(selectedtags.length + 1 == detail.length);
+  // };
 
-  const isList = id => {
-    const isCheck = selectedlist.includes(id);
-    return isCheck;
-  };
+  // const isList = id => {
+  //   const isCheck = selectedlist.includes(id);
+  //   return isCheck;
+  // };
 
-  const handleChecklist = id => {
-    const ids = [...selectedlist, id];
-    if (isList(id)) {
-      console.log('เอาออก');
-      setselectedlist(selectedlist.filter(item => item !== id));
-    } else {
-      console.log('เอาเข้า');
-      setselectedlist(ids);
-      if (authUser.token === null) {
-        setmodallogin(true);
-      } else {
-        refRBSheet.current.open();
-      }
-    }
-    setlist(selectedlist.length + 1 == img.length);
-  };
+  // const handleChecklist = id => {
+  //   const ids = [...selectedlist, id];
+  //   if (isList(id)) {
+  //     console.log('เอาออก');
+  //     setselectedlist(selectedlist.filter(item => item !== id));
+  //   } else {
+  //     console.log('เอาเข้า');
+  //     setselectedlist(ids);
+  //     if (authUser.token === null) {
+  //       setmodallogin(true);
+  //     } else {
+  //       refRBSheet.current.open();
+  //     }
+  //   }
+  //   setlist(selectedlist.length + 1 == img.length);
+  // };
 
   const [img, setimg] = useState([]);
-  // console.log(img);
+  console.log(img);
   const [data, setdata] = useState([]);
-
   const _Data2 = () => {
-    setimg([detail.product_list[0]]);
+    setimg(detail.product_list[0]);
     setdata(detail.product_list);
   };
 
-  const _MyList = async values => {
-    try {
-      const response = await dispatch(MyLists());
-      // console.log("11122",response.res_result);
-      if (response.res_code == '00') {
-        var test = [];
-        response.res_result.map(async (value, item) => {
-          var request = 'my_list_id=' + value.my_list_id;
-          const response2 = await dispatch(ItemList(request));
-          if (response2.res_code == '00') {
-            response2.res_result.map((value2, item) => {
-              test.push(value2.product_img_id);
-              // console.log();
-            });
+  // const _MyList = async values => {
+  //   try {
+  //     const response = await dispatch(MyLists());
+  //     // console.log("11122",response.res_result);
+  //     if (response.res_code == '00') {
+  //       var test = [];
+  //       response.res_result.map(async (value, item) => {
+  //         var request = 'my_list_id=' + value.my_list_id;
+  //         const response2 = await dispatch(ItemList(request));
+  //         if (response2.res_code == '00') {
+  //           response2.res_result.map((value2, item) => {
+  //             test.push(value2.product_img_id);
+  //             // console.log();
+  //           });
 
-            setselectedlist(test);
-          }
-        });
-        setlist1(response.res_result);
-        // console.log('1111');
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
+  //           setselectedlist(test);
+  //         }
+  //       });
+  //       setlist1(response.res_result);
+  //       // console.log('1111');
+  //     } else {
+  //       console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
 
-  const _AddnameList = async values => {
-    try {
-      var request = 'listname=' + values.listname;
-      const response = await dispatch(AddnameList(request));
+  // const _AddnameList = async values => {
+  //   try {
+  //     var request = 'listname=' + values.listname;
+  //     const response = await dispatch(AddnameList(request));
 
-      if (response.res_code == '00') {
-        const response1 = await dispatch(MyLists());
-        if (response1.res_code == '00') {
-          setmodal(false);
-        }
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
+  //     if (response.res_code == '00') {
+  //       const response1 = await dispatch(MyLists());
+  //       if (response1.res_code == '00') {
+  //         setmodal(false);
+  //       }
+  //     } else {
+  //       console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
 
-  const _AddtoList = async values => {
-    try {
-      var list = selectedlist != undefined && selectedlist;
-      var id = data != undefined && data1.my_list_id;
-      var request = 'item=' + list + '&my_list_id=' + id;
-      const response = await dispatch(AddtoList(request));
-      if (response.res_code == '00') {
-        const response1 = await dispatch(MyLists());
-        if (response1.res_code == '00') {
-          setmodalre(false);
-          setTimeout(() => {
-            setmodalfalse(true);
-          }, 100);
-        }
-        console.log('1111');
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
+  // const _AddtoList = async values => {
+  //   try {
+  //     var list = selectedlist != undefined && selectedlist;
+  //     var id = data != undefined && data1.my_list_id;
+  //     var request = 'item=' + list + '&my_list_id=' + id;
+  //     const response = await dispatch(AddtoList(request));
+  //     if (response.res_code == '00') {
+  //       const response1 = await dispatch(MyLists());
+  //       if (response1.res_code == '00') {
+  //         setmodalre(false);
+  //         setTimeout(() => {
+  //           setmodalfalse(true);
+  //         }, 100);
+  //       }
+  //       console.log('1111');
+  //     } else {
+  //       console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
 
-  const _Removefev = async values => {
-    try {
-      var list = selectedlist != undefined && selectedlist;
-      var request = 'item=' + list;
-      const response = await dispatch(Removefev(request));
-      console.log(response);
-      if (response.res_code == '00') {
-        const response1 = await dispatch(MyFav());
-        console.log(response1);
-        if (response1.res_code == '00') {
-          setmyfev(response.res_result);
-        }
-        console.log('1111');
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
+  // const _Removefev = async values => {
+  //   try {
+  //     var list = selectedlist != undefined && selectedlist;
+  //     var request = 'item=' + list;
+  //     const response = await dispatch(Removefev(request));
+  //     console.log(response);
+  //     if (response.res_code == '00') {
+  //       const response1 = await dispatch(MyFav());
+  //       console.log(response1);
+  //       if (response1.res_code == '00') {
+  //         setmyfev(response.res_result);
+  //       }
+  //       console.log('1111');
+  //     } else {
+  //       console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
 
   useEffect(() => {
     _Data2();
-    _MyList();
-    _MyFav();
+    // _MyList();
+    // _MyFav();
   }, []);
 
   return (
     <View style={styles.containerproduct}>
-      <Modal
+      {/* <Modal
         animationType="none"
         transparent={true}
         visible={modal}
@@ -271,8 +270,9 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
             </Formik>
           </View>
         </View>
-      </Modal>
-      <Modal
+      </Modal> */}
+
+      {/* <Modal
         animationType="none"
         transparent={true}
         visible={modalre}
@@ -290,7 +290,7 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
               <AntDesign name="close" size={20} color="#444444" />
             </TouchableOpacity>
             <Text style={styles.textopmodal}>Confirm Recording</Text>
-            {/* confirm recording */}
+           
             <Text style={styles.textopmodal}>
               My List : {data1 != undefined && data1.my_list_name}
             </Text>
@@ -299,9 +299,9 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </Modal> */}
 
-      <Modal
+      {/* <Modal
         animationType="none"
         transparent={true}
         visible={modalfalse}
@@ -330,9 +330,9 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </Modal> */}
 
-      <Modal
+      {/* <Modal
         animationType="none"
         transparent={true}
         visible={modallogin}
@@ -355,9 +355,9 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </Modal> */}
 
-      <RBSheet
+      {/* <RBSheet
         ref={refRBSheet}
         closeOnPressMask={false}
         customStyles={{
@@ -428,25 +428,29 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
             <Text style={styles.textlist1}>Create new list</Text>
           </TouchableOpacity>
         </View>
-      </RBSheet>
+      </RBSheet> */}
+
       <View>
         <Carousel
           ref={carouselRef}
-          data={img}
+          data={img.imgs}
           sliderWidth={width * 1}
-          itemWidth={width * 1}
+          itemWidth={width * 0.8}
           itemHeight={height * 1}
-          layout={'tinder'}
-          loop
+          // loop
+          layout={'stack'}
           layoutCardOffset={`18`}
           onSnapToItem={index => setIndex(index)}
           renderItem={({item, index}) => {
             return (
-              <ImageBackground
-                source={{uri: item.product_img_name}}
-                style={styles.viewproduct}
-                resizeMode="stretch">
-                <View style={styles.viewlist}>
+              <View>
+                <Image
+                  style={styles.viewproduct}
+                  source={{uri: item.product_img_sub_name}}
+                  defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
+                  resizeMode="cover"
+                />
+                {/* <View style={styles.viewlist}>
                   <TouchableOpacity
                     style={[
                       styles.buttonlist,
@@ -504,13 +508,14 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
                       style={{alignSelf: 'center'}}
                     />
                   </TouchableOpacity>
-                </View>
-              </ImageBackground>
+                </View> */}
+              </View>
             );
           }}
         />
-        <Pagination
-          dotsLength={img.length}
+
+        {/* <Pagination
+          dotsLength={img.imgs}
           activeDotIndex={index}
           carouselRef={carouselRef}
           containerStyle={{marginTop: -15}}
@@ -528,14 +533,14 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
           }}
           inactiveDotOpacity={0.4}
           inactiveDotScale={0.6}
-        />
+        /> */}
       </View>
 
       <Text style={styles.texttoproduct}>
-        {img[0] != undefined && img[0].product_img_title}
+        {img != undefined && img.product_img_title}
       </Text>
       <Text style={styles.textdetailproduct}>
-        {img[0] != undefined && img[0].product_img_des}
+        {img != undefined && img.product_img_des}
       </Text>
       <FlatList
         // data={img}
@@ -553,26 +558,26 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
       <View style={{paddingBottom: 20}}>
         <FlatList
           data={data.filter(
-            item => item.product_img_id !== img[0].product_img_id,
+            item => item.product_img_id != img.imgs.product_img_id,
           )}
           // extraData={img}
           scrollEnabled={true}
           style={{height: 200}}
           horizontal={true}
           renderItem={({index, item}) => {
-            // console.log(item);
             return (
               <TouchableOpacity
                 onPress={() => {
                   // console.log(data);
-                  setimg([item]);
+                  setimg(item);
                   // navigation.navigate('ExhibitorsDetail', {item});
                 }}
                 style={styles.buttonflat}>
                 <Image
-                  resizeMode="stretch"
+                  resizeMode="cover"
                   style={styles.imgflat}
                   source={{uri: item.product_img_name}}
+                  defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                 />
 
                 <Text style={styles.textflat}>{item.product_img_title}</Text>
