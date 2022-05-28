@@ -20,7 +20,7 @@ import {logoutUser} from '../action/auth.action';
 import {connect} from 'react-redux';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
+const CustomDrawerContent = ({props, dispatch, navigation}) => {
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
   const [language, setlanguage] = useState('TH');
@@ -557,14 +557,11 @@ const CustomDrawerContent = ({props, dispatch, navigation, authUser}) => {
     </View>
   );
 };
-const mapStateToProps = state => ({
-  authUser: state.authReducer.authUser,
-});
+// const mapStateToProps = state => ({
+//   authUser: state.authReducer.authUser,
+// });
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CustomDrawerContent);
+export default connect(null, mapDispatchToProps)(CustomDrawerContent);

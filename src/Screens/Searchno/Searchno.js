@@ -386,11 +386,11 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
     </View>
   );
 };
-const mapStateToProps = state => ({
-  authUser: state.authReducer.authUser,
-});
+// const mapStateToProps = state => ({
+//   authUser: state.authReducer.authUser,
+// });
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Searchno);
+export default connect(null, mapDispatchToProps)(Searchno);

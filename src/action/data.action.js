@@ -555,6 +555,27 @@ export const createuserChat = payload => {
   };
 };
 
+export const ativebotChat = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/socialenable',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 export const generatechattoken = payload => {
   return async (dispatch, getState) => {
     try {

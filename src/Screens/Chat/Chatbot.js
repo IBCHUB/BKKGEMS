@@ -25,6 +25,7 @@ import {
 import {connect} from 'react-redux';
 import styles from './styles';
 import {
+  ativebotChat,
   createTokenChat,
   createuserChat,
   generatechattoken,
@@ -32,17 +33,33 @@ import {
 import CustomView from './CustomView';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import IconAndroid from 'react-native-vector-icons/MaterialIcons';
+import {getUniqueId, getManufacturer} from 'react-native-device-info';
 const {width, height} = Dimensions.get('window');
+
 class Chatbot extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
+      getUniqueId1: '',
+      getUniqueId1: '',
     };
   }
 
+  // _GenerateRandomNumber = () => {
+  //   var RandomNumber = Math.floor(Math.random() * 100) + 1;
+  //   console.log('RandomNumber' + RandomNumber);
+
+  //   this.setState({
+  //     getUniqueId1: RandomNumber,
+  //   });
+  // };
+
   componentDidMount() {
     this._CreatechatToken();
+    // this._GenerateRandomNumber();
+    console.log(getUniqueId());
+    this.setState({getUniqueId1: getUniqueId()});
   }
 
   _CreatechatToken = async value => {
@@ -56,23 +73,32 @@ class Chatbot extends Component {
       const response = await this.props.dispatch(createTokenChat(payload));
 
       if ((response?.appToken !== undefined) === true) {
+        // console.log(response?.appToken);
+        var request =
+          'token=' +
+          'Bearer ' +
+          response?.appToken +
+          '&text=' +
+          this.state.getUniqueId1;
+        const response2 = await this.props.dispatch(ativebotChat(request));
+        console.log('>>>>', response2);
         const payload1 = {
           result: {
             uid:
               this.props.authUser.token === null
-                ? 'BKK1'
+                ? this.state.getUniqueId1
                 : this.props.authUser.token.user_id,
             socialUserRefId:
               this.props.authUser.token === null
-                ? 'BKK1'
+                ? this.state.getUniqueId1
                 : this.props.authUser.token.user_id,
             accountName:
               this.props.authUser.token === null
-                ? 'BKK1'
+                ? this.state.getUniqueId1
                 : this.props.authUser.token.fullname,
             firstName:
               this.props.authUser.token === null
-                ? 'BKK1'
+                ? this.state.getUniqueId1
                 : this.props.authUser.token.company_name,
             lastName: '',
             isActivate: 'true',
@@ -83,7 +109,7 @@ class Chatbot extends Component {
                 key: 'uuid',
                 value:
                   this.props.authUser.token === null
-                    ? 'BKK1'
+                    ? this.state.getUniqueId1
                     : this.props.authUser.token.user_id,
                 type: 'string',
               },
@@ -104,7 +130,7 @@ class Chatbot extends Component {
             result: {
               uid:
                 this.props.authUser.token === null
-                  ? 'BKK1'
+                  ? this.state.getUniqueId1
                   : this.props.authUser.token.user_id,
             },
             token: response.appToken,
@@ -138,7 +164,7 @@ class Chatbot extends Component {
               // const uid = this.props.getUser.userDetails.res_result.naturalId;
               const uid =
                 this.props.authUser.token === null
-                  ? 'BKK1'
+                  ? this.state.getUniqueId1
                   : this.props.authUser.token.user_id;
               await t.socket.emit('join', uid);
             });
@@ -156,7 +182,7 @@ class Chatbot extends Component {
             result: {
               uid:
                 this.props.authUser.token === null
-                  ? 'BKK1'
+                  ? this.state.getUniqueId1
                   : this.props.authUser.token.user_id,
             },
             token: response.appToken,
@@ -171,7 +197,7 @@ class Chatbot extends Component {
           }
         }
       } else {
-        console.log('2222');
+        console.log('18');
       }
     } catch (error) {
       console.log(error);
@@ -182,7 +208,7 @@ class Chatbot extends Component {
     try {
       const uid =
         this.props.authUser.token === null
-          ? 'BKK1'
+          ? this.state.getUniqueId1
           : this.props.authUser.token.user_id;
       const payload = {
         sender: {
@@ -250,7 +276,7 @@ class Chatbot extends Component {
               name: 'name',
               avatar:
                 dataChat.sender.type === 'user'
-                  ? '' //img
+                  ? require('../../../assets/image/iconProfile.png')
                   : 'http://one.ditp.go.th/dist/img/icon/iconAdminChat.png',
             },
             iduser: dataChat.recipient.id,
@@ -337,10 +363,10 @@ class Chatbot extends Component {
                 return (
                   <View
                     style={{
-                      // borderWidth:1,
+                      // borderWidth: 1,
                       backgroundColor: '#e7e7e7',
-                      width: 300,
-                      height: 330,
+                      width: 200,
+                      height: 280,
                       borderRadius: 8,
                       flex: 1,
                       marginHorizontal: 4,
@@ -351,27 +377,30 @@ class Chatbot extends Component {
                       <Image
                         resizeMode={'contain'}
                         style={{
-                          width: 320,
+                          width: 190,
                           height: 180,
                           borderRadius: 13,
                           marginHorizontal: 0,
+                          alignSelf: 'center',
+                          marginTop: -20,
                         }}
                         source={{uri: item.image_url}}
                       />
                       <Text
                         style={{
-                          fontSize: 22,
+                          fontSize: 18,
                           fontWeight: 'bold',
                           textAlign: 'center',
                           fontFamily: 'Cantoria MT Std',
                           fontWeight: 'normal',
+                          marginTop: -20,
                         }}>
                         {item.title}
                       </Text>
                       <Text
                         numberOfLines={2}
                         style={{
-                          fontSize: 22,
+                          fontSize: 18,
                           fontWeight: 'bold',
                           textAlign: 'center',
                           marginHorizontal: 20,
@@ -405,12 +434,12 @@ class Chatbot extends Component {
                                 height: 30,
                                 justifyContent: 'center',
                                 borderColor: '#FFF',
-                                backgroundColor: '#FFF',
+                                backgroundColor: '#fff',
                               }}>
                               <Text
                                 numberOfLines={2}
                                 style={{
-                                  fontSize: 22,
+                                  fontSize: 14,
                                   fontWeight: 'bold',
                                   textAlign: 'center',
                                   marginHorizontal: 20,
@@ -444,7 +473,7 @@ class Chatbot extends Component {
                   height: null,
                   justifyContent: 'center',
 
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: 'bold',
                   textAlign: 'left',
                   marginHorizontal: 15,
@@ -483,10 +512,10 @@ class Chatbot extends Component {
                       <Text
                         numberOfLines={2}
                         style={{
-                          fontSize: 22,
+                          fontSize: 18,
                           fontWeight: 'bold',
                           textAlign: 'center',
-                          marginHorizontal: 20,
+                          marginHorizontal: 10,
                           color: '#4d4d4d',
                           fontFamily: 'Cantoria MT Std',
                           fontWeight: 'normal',
@@ -527,7 +556,7 @@ class Chatbot extends Component {
                           <Text
                             numberOfLines={2}
                             style={{
-                              fontSize: 22,
+                              fontSize: 18,
                               fontWeight: 'bold',
                               textAlign: 'center',
                               marginHorizontal: 20,
@@ -582,6 +611,7 @@ class Chatbot extends Component {
     url,
     textinput,
   ) {
+    console.log('text3' + text3);
     if (text3 === 'user') {
       // alert(textinputma);
       // this.setState({clearhomebot: 'clear'});
@@ -615,11 +645,11 @@ class Chatbot extends Component {
       }
     } else {
       // alert("uNPxpBP5afzA4u5NtZxSahtUsKZSX40k")
-      // alert('user')
+      console.log('userssss' + textinputma);
 
       const payload = {
         sender: {
-          id: `${this.state.uiddd}`,
+          id: `${this.state.getUniqueId1}`,
           type: 'user',
           avatar: 'http://one.ditp.go.th/dist/img/icon/iconAdminChat.png',
         },
@@ -628,7 +658,7 @@ class Chatbot extends Component {
           id: `${'uNPxpBP5afzA4u5NtZxSahtUsKZSX40k'}`,
         },
         message: {
-          web_mid: `${this.state.uiddd}` + new Date().getTime(),
+          web_mid: `${this.state.getUniqueId1}` + new Date().getTime(),
           text: textinputma,
           type: 'text',
         },
@@ -682,10 +712,10 @@ class Chatbot extends Component {
         // style={[styless.image, { }]}
         imageStyle={{
           resizeMode: 'contain',
-          borderRadius: 0.1,
+          borderRadius: 10,
           // height: height * 0.2,
           // width: width * 0.9,
-          width: 350,
+          width: 250,
           height: 190,
           backgroundColor: '#e7e7e7',
           borderColor: '#e7e7e7',
@@ -749,7 +779,9 @@ class Chatbot extends Component {
           renderAvatarOnTop={true}
           onSend={(text1, text2, text3, text4, text5, text6, text7, text8) => {
             if (text1 === '') {
-              // alert(text1+text2+text3+text4+text5+text6+text7+text8)
+              console.log(
+                text1 + text2 + text3 + text4 + text5 + text6 + text7 + text8,
+              );
               this.onSend(text1, text2, text3, text4, text5, text6, text7);
             } else {
               // alert(text1[0].text)

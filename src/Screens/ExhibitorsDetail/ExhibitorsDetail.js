@@ -24,205 +24,23 @@ import {Country} from '../../action/data.action';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RNPickerSelect from 'react-native-picker-select';
 import {Exprofile} from '../../action/data.action';
-
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 const ExhibitorsDetail = ({navigation, route, dispatch}) => {
   const {res} = route.params;
 
   const [detail, setdetail] = useState(res);
-
+  console.log(detail.c_id);
   const [modal, setmodal] = useState(false);
   const [page, setpage] = useState(0);
-  const [city, setcity] = useState([]);
 
   const placeholder = {
     label: 'Country',
     value: null,
     color: '#646363',
   };
-  const _contact = async values => {
-    try {
-      var request =
-        'company_id=' +
-        'company_id' +
-        '&company_email=' +
-        '' +
-        '&company_name=' +
-        '' +
-        'contact_name=' +
-        values.name +
-        '&country_id=' +
-        city.id +
-        '&businesstype_id=' +
-        '' +
-        '&contact_phone=' +
-        '' +
-        '&contact_email=' +
-        '' +
-        '&contact_message=' +
-        '';
 
-      const response = await dispatch(contactadd(request));
-      console.log(response);
-      if (response.res_code == '200') {
-        setmodal(true);
-        console.log('1111');
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
-  const _Country = async values => {
-    try {
-      const response = await dispatch(Country());
-      // console.log(response);
-      if (response.res_code == '00') {
-        setcity(
-          response.res_result.map(val => ({
-            label: val.country_name,
-            value: val.country_name,
-            id: val.id,
-          })),
-        );
-        // console.log('1111');
-      } else {
-      }
-    } catch (error) {}
-  };
-  // const _Exprofile = async values => {
-  //   try {
-  //     var request = 'exid=' + res.company_id;
-  //     const response = await dispatch(Exprofile(request));
-  //     console.log(response);
-  //     if (response.res_code == '00') {
-  //       setdetail(response.res_result);
-
-  //       // console.log('1111');
-  //     } else {
-  //       // console.log('2222');
-  //     }
-  //   } catch (error) {}
-  // };
-  useEffect(() => {
-    // _Exprofile();
-    _Country();
-  }, []);
   return (
     <View style={styles.container}>
-      <Modal
-        animationType="none"
-        transparent={true}
-        visible={modal}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setmodal(!modal);
-        }}>
-        <View style={styles.containermodal}>
-          <View style={styles.viewmodal}>
-            <TouchableOpacity
-              onPress={() => {
-                setmodal(false);
-              }}
-              style={styles.iconmodal}>
-              <AntDesign name="close" size={20} color="#444444" />
-            </TouchableOpacity>
-            <Text style={styles.textopmodal}>Contact to company</Text>
-            <Formik
-              initialValues={{
-                name: '',
-                company: '',
-                email: '',
-                subject: '',
-                message: '',
-              }}
-              onSubmit={values => {
-                // console.log(values);
-              }}
-              validationSchema={yup.object().shape({
-                name: yup.string().required(),
-                company: yup.string().required(),
-                email: yup.string().email().required(),
-                subject: yup.string().required(),
-                message: yup.string().required(),
-              })}>
-              {({
-                values,
-                handleChange,
-                errors,
-                setFieldTouched,
-                setFieldValue,
-                touched,
-                isValid,
-                handleSubmit,
-              }) => (
-                <Fragment>
-                  <View>
-                    <View style={styles.viewinput}>
-                      <TextInput
-                        placeholder="Name"
-                        placeholderTextColor="#646363"
-                        style={styles.input}
-                      />
-                    </View>
-                    <View style={styles.viewinput}>
-                      <RNPickerSelect
-                        onValueChange={value => setFieldValue('country', value)}
-                        onBlur={() => setFieldTouched('fullname')}
-                        placeholder={placeholder}
-                        items={city}
-                        style={styles.picker}
-                        Icon={() => {
-                          return (
-                            <FontAwesome5
-                              name="chevron-down"
-                              size={20}
-                              color="#646363"
-                              style={{marginRight: 15, marginTop: 5}}
-                            />
-                          );
-                        }}
-                      />
-                    </View>
-                    <View style={styles.viewinput}>
-                      <TextInput
-                        placeholder="Business Type"
-                        placeholderTextColor="#646363"
-                        style={styles.input}
-                      />
-                    </View>
-                    <View style={styles.viewinput}>
-                      <TextInput
-                        placeholder="Tel."
-                        placeholderTextColor="#646363"
-                        style={styles.input}
-                      />
-                    </View>
-                    <View style={styles.viewinput}>
-                      <TextInput
-                        placeholder="Email"
-                        placeholderTextColor="#646363"
-                        style={styles.input}
-                      />
-                    </View>
-                    <View style={styles.viewinput1}>
-                      <TextInput
-                        placeholder="Message"
-                        placeholderTextColor="#646363"
-                        style={styles.input}
-                        multiline
-                      />
-                    </View>
-                    <TouchableOpacity
-                      onPress={handleSubmit}
-                      style={styles.touchedit}>
-                      <Text style={styles.textedit}>SEND MESSAGE</Text>
-                    </TouchableOpacity>
-                  </View>
-                </Fragment>
-              )}
-            </Formik>
-          </View>
-        </View>
-      </Modal>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <ScrollView>
         <Headerback navigation={navigation} />
@@ -247,16 +65,21 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
               <Text style={styles.textbutton}>LIVE CHAT</Text>
             </TouchableOpacity> */}
             <TouchableOpacity
-              disabled
               onPress={() => {
-                setmodal(true);
+                InAppBrowser.open(
+                  'https://www.bkkgems.com/exprofile/' + detail.c_id,
+                );
               }}
               style={styles.button}>
               <Text style={styles.textbutton}>CONTACT</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              disabled
-              onPress={() => navigation.navigate('Meeting', {detail})}
+              onPress={() => {
+                InAppBrowser.open(
+                  'https://www.bkkgems.com/exprofile/' + detail.c_id,
+                );
+                // navigation.navigate('Meeting', {detail})
+              }}
               style={styles.button}>
               <Text style={styles.textbutton}>MEETING</Text>
             </TouchableOpacity>

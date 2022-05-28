@@ -13,8 +13,9 @@ import Allchat from './Allchat';
 import Chatbot from './Chatbot';
 
 import styles from './styles';
-const Chat = ({navigation}) => {
+const Chat = ({navigation, route}) => {
   const [page, setpage] = useState(0);
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />

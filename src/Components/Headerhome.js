@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styleHeadercomp';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -7,6 +7,17 @@ import {connect} from 'react-redux';
 import {logoutUser} from '../action/auth.action';
 
 const Headerhome = ({navigation, dispatch}) => {
+  // const [id, setid] = useState('');
+  // const _GenerateRandomNumber = () => {
+  //   var RandomNumber = Math.floor(Math.random() * 100) + 1;
+  //   console.log('RandomNumber' + RandomNumber);
+  //   setTimeout(() => {
+  //     setid(RandomNumber);
+  //   }, 1000);
+  // };
+  // useEffect(() => {
+  //   _GenerateRandomNumber();
+  // }, []);
   return (
     <View style={styles.container}>
       <TouchableOpacity

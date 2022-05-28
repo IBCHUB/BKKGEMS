@@ -202,11 +202,11 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
   );
 };
 
-const mapStateToProps = state => ({
-  authUser: state.authReducer.authUser,
-});
+// const mapStateToProps = state => ({
+//   authUser: state.authReducer.authUser,
+// });
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Seeall);
+export default connect(null, mapDispatchToProps)(Seeall);

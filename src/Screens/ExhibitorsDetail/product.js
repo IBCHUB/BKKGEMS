@@ -443,13 +443,17 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
           onSnapToItem={index => setIndex(index)}
           renderItem={({item, index}) => {
             return (
-              <View>
-                <Image
+              <ImageBackground
+                style={styles.viewproduct}
+                source={{uri: item.product_img_sub_name}}
+                defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
+                resizeMode="cover">
+                {/* <Image
                   style={styles.viewproduct}
                   source={{uri: item.product_img_sub_name}}
                   defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                   resizeMode="cover"
-                />
+                /> */}
                 {/* <View style={styles.viewlist}>
                   <TouchableOpacity
                     style={[
@@ -509,7 +513,7 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
                     />
                   </TouchableOpacity>
                 </View> */}
-              </View>
+              </ImageBackground>
             );
           }}
         />
@@ -590,11 +594,11 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
   );
 };
 
-const mapStateToProps = state => ({
-  authUser: state.authReducer.authUser,
-});
+// const mapStateToProps = state => ({
+//   authUser: state.authReducer.authUser,
+// });
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(product);
+export default connect(null, mapDispatchToProps)(product);

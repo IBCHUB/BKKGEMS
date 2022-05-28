@@ -14,7 +14,7 @@ import database from '@react-native-firebase/database';
 import {connect} from 'react-redux';
 import {GetallChat} from '../../action/data.action';
 const Allchat = ({navigation, dispatch, authUser}) => {
-  const UserId = authUser.token.user_id;
+  // const UserId = authUser.token.user_id;
   const [data, setData] = useState([]);
 
   const _GetallChat = async values => {
@@ -72,11 +72,11 @@ const Allchat = ({navigation, dispatch, authUser}) => {
   );
 };
 
-const mapStateToProps = state => ({
-  authUser: state.authReducer.authUser,
-});
+// const mapStateToProps = state => ({
+//   authUser: state.authReducer.authUser,
+// });
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Allchat);
+export default connect(null, mapDispatchToProps)(Allchat);

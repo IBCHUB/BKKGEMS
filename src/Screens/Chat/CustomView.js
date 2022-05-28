@@ -112,7 +112,7 @@ class CustomView extends React.Component {
                     />
                     <Text
                       style={{
-                        fontSize: 22,
+                        fontSize: 18,
 
                         textAlign: 'center',
                         fontFamily: 'Cantoria MT Std',
@@ -124,7 +124,7 @@ class CustomView extends React.Component {
                       style={{
                         fontFamily: 'Cantoria MT Std',
 
-                        fontSize: 22,
+                        fontSize: 18,
 
                         textAlign: 'center',
                         marginHorizontal: 20,
@@ -161,7 +161,7 @@ class CustomView extends React.Component {
                             <Text
                               numberOfLines={2}
                               style={{
-                                fontSize: 22,
+                                fontSize: 18,
 
                                 textAlign: 'center',
                                 marginHorizontal: 20,
@@ -189,7 +189,7 @@ class CustomView extends React.Component {
                 justifyContent: 'center',
                 fontFamily: 'Cantoria MT Std',
 
-                fontSize: 22,
+                fontSize: 18,
 
                 textAlign: 'left',
                 marginHorizontal: 15,
@@ -226,7 +226,7 @@ class CustomView extends React.Component {
                     <Text
                       numberOfLines={2}
                       style={{
-                        fontSize: 22,
+                        fontSize: 18,
 
                         textAlign: 'center',
                         marginHorizontal: 20,
@@ -269,7 +269,7 @@ class CustomView extends React.Component {
                         <Text
                           numberOfLines={2}
                           style={{
-                            fontSize: 22,
+                            fontSize: 18,
 
                             textAlign: 'center',
                             marginHorizontal: 20,
@@ -303,7 +303,7 @@ class CustomView extends React.Component {
             justifyContent: 'center',
             fontFamily: 'Cantoria MT Std',
             fontWeight: 'normal',
-            fontSize: 22,
+            fontSize: 18,
 
             textAlign: 'left',
             marginHorizontal: 15,
@@ -327,7 +327,7 @@ class CustomView extends React.Component {
             fontFamily: 'Cantoria MT Std',
             fontWeight: 'normal',
 
-            fontSize: 22,
+            fontSize: 18,
 
             textAlign: 'right',
             marginHorizontal: 15,
@@ -352,7 +352,7 @@ class CustomView extends React.Component {
             fontFamily: 'Cantoria MT Std',
             fontWeight: 'normal',
 
-            fontSize: 22,
+            fontSize: 18,
 
             textAlign: 'right',
             marginHorizontal: 15,
@@ -378,7 +378,7 @@ class CustomView extends React.Component {
               fontFamily: 'Cantoria MT Std',
               fontWeight: 'normal',
 
-              fontSize: 22,
+              fontSize: 18,
 
               textAlign: 'left',
               marginHorizontal: 15,
@@ -420,7 +420,7 @@ class CustomView extends React.Component {
                       <Text
                         numberOfLines={2}
                         style={{
-                          fontSize: 22,
+                          fontSize: 18,
 
                           textAlign: 'center',
                           marginHorizontal: 20,
@@ -513,10 +513,10 @@ class CustomView extends React.Component {
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
-const mapStateToProps = state => ({
-  authUser: state.authReducer.authUser,
-});
-export default connect(mapStateToProps, mapDispatchToProps)(CustomView);
+// const mapStateToProps = state => ({
+//   authUser: state.authReducer.authUser,
+// });
+export default connect(null, mapDispatchToProps)(CustomView);
 const styles2 = StyleSheet.create({
   container: {},
   mapView: {

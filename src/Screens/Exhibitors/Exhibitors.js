@@ -245,7 +245,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
 
 const mapStateToProps = state => ({
   LoadingCounters: state.dataReducer.LoadingCounters,
-  authUser: state.authReducer.authUser,
+  // authUser: state.authReducer.authUser,
 });
 const mapDispatchToProps = dispatch => ({
   dispatch,
