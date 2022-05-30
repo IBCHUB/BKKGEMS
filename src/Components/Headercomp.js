@@ -4,6 +4,7 @@ import styles from './styleHeadercomp';
 import Octicons from 'react-native-vector-icons/Octicons';
 import {connect} from 'react-redux';
 import {logoutUser} from '../action/auth.action';
+import {ViewScale} from '../config/ViewScale';
 const Headercomp = ({navigation, item, dispatch, authUser}) => {
   return (
     <View style={styles.container}>
@@ -11,7 +12,7 @@ const Headercomp = ({navigation, item, dispatch, authUser}) => {
         onPress={() => navigation.openDrawer()}
         style={styles.row}>
         <Octicons
-          size={20}
+          size={ViewScale(20)}
           name="three-bars"
           color={'#DAA560'}
           style={{alignSelf: 'center'}}

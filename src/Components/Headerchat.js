@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import styles from './styleHeadercomp';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {ViewScale} from '../config/ViewScale';
 const Headerchat = ({navigation, item}) => {
   return (
     <View style={styles.container}>
@@ -12,7 +13,7 @@ const Headerchat = ({navigation, item}) => {
         }}>
         <FontAwesome5
           name="arrow-left"
-          size={20}
+          size={ViewScale(20)}
           color={'#DAA560'}
           style={styles.icon}
         />

@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {ViewScale} from '../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -6,24 +7,24 @@ const styles = StyleSheet.create({
     height: height,
   },
   touchdrawer: {
-    fontSize: 20,
-    marginTop: 20,
+    fontSize: ViewScale(20),
+    marginTop: ViewScale(20),
     color: '#fff',
-    marginLeft: 15,
+    marginLeft: ViewScale(15),
     fontFamily: 'Cantoria MT Std',
   },
   touchindrawer: {
-    fontSize: 18,
-    marginTop: 20,
+    fontSize: ViewScale(18),
+    marginTop: ViewScale(20),
     color: '#fff',
-    marginLeft: 25,
+    marginLeft: ViewScale(25),
     fontFamily: 'Cantoria MT Std',
   },
   imgprofile: {
-    width: 50,
-    height: 50,
-    margin: 15,
-    borderRadius: 25,
+    width: ViewScale(50),
+    height: ViewScale(50),
+    margin: ViewScale(15),
+    borderRadius: ViewScale(25),
   },
   row: {
     flexDirection: 'row',
@@ -32,10 +33,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: width * 0.715,
-    paddingRight: 20,
+    paddingRight: ViewScale(20),
   },
   texthead: {
-    fontSize: 24,
+    fontSize: ViewScale(24),
     color: '#DAA560',
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
@@ -46,21 +47,21 @@ const styles = StyleSheet.create({
     borderBottomColor: '#fff',
   },
   logout: {
-    fontSize: 24,
-    marginTop: 20,
+    fontSize: ViewScale(24),
+    marginTop: ViewScale(20),
     color: 'red',
-    marginLeft: 15,
+    marginLeft: ViewScale(15),
     fontFamily: 'Cantoria MT Std',
   },
   icon: {
-    marginTop: 10,
-    marginLeft: 15,
+    marginTop: ViewScale(10),
+    marginLeft: ViewScale(15),
   },
   touchdrawer1: {
-    fontSize: 12,
-    marginTop: 20,
+    fontSize: ViewScale(12),
+    marginTop: ViewScale(20),
     color: '#fff',
-    marginLeft: 15,
+    marginLeft: ViewScale(15),
     fontFamily: 'Cantoria MT Std',
   },
 });

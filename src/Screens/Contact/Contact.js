@@ -20,6 +20,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {contactUs} from '../../action/auth.action';
 import AutoHeightWebView from 'react-native-autoheight-webview';
+import {ViewScale} from '../../config/ViewScale';
 const Contact = ({navigation, dispatch}) => {
   const [modal, setmodal] = useState(false);
   const _contactUs = async values => {
@@ -63,7 +64,7 @@ const Contact = ({navigation, dispatch}) => {
                 setmodal(false);
               }}
               style={styles.iconmodal}>
-              <AntDesign name="close" size={20} color="#444444" />
+              <AntDesign name="close" size={ViewScale(20)} color="#444444" />
             </TouchableOpacity>
             <FontAwesome5
               name="check-double"
@@ -211,7 +212,7 @@ const Contact = ({navigation, dispatch}) => {
               />
               <Text style={styles.textags1}>official@bkkgems.com</Text>
             </View>
-            <View style={{marginTop: 30}} />
+            <View style={{marginTop: ViewScale(30)}} />
             <Text style={styles.textt}>EXHIBITOR APPLICATION</Text>
             <Text style={styles.textags}>
               The Gem and Jewelry Institute of Thailand (Public Organization)

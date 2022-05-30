@@ -21,6 +21,7 @@ import {connect} from 'react-redux';
 import {New} from '../../action/data.action';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 const News = ({navigation, dispatch}) => {
   const refRBSheet = useRef();
@@ -113,7 +114,7 @@ const News = ({navigation, dispatch}) => {
     },
     {
       id: 2,
-      text: 'Show Trenes',
+      text: 'Show Trends',
     },
   ];
   useEffect(() => {
@@ -137,8 +138,8 @@ const News = ({navigation, dispatch}) => {
             backgroundColor: '#000',
           },
           container: {
-            borderTopRightRadius: 10,
-            borderTopLeftRadius: 10,
+            borderTopRightRadius: ViewScale(10),
+            borderTopLeftRadius: ViewScale(10),
             width: '100%',
             alignSelf: 'center',
             height: '25%',
@@ -153,12 +154,12 @@ const News = ({navigation, dispatch}) => {
                 refRBSheet.current.close();
               }}
               style={{alignSelf: 'center'}}>
-              <EvilIcons name="close" size={25} color={'#000'} />
+              <EvilIcons name="close" size={ViewScale(25)} color={'#000'} />
             </TouchableOpacity>
           </View>
 
           <Text style={styles.textsorthead}>Sort</Text>
-          <View style={{marginTop: 5}}>
+          <View style={{marginTop: ViewScale(5)}}>
             <View style={{width: '100%'}}>
               <FlatList
                 data={sort}
@@ -212,12 +213,12 @@ const News = ({navigation, dispatch}) => {
         </View>
       </RBSheet>
       <View style={styles.containerview}>
-        <View style={{paddingBottom: 50}}>
+        <View style={{paddingBottom: ViewScale(50)}}>
           <View style={styles.viewsearch}>
             <View style={styles.viewinsearch}>
               <FontAwesome5
                 name="search"
-                size={20}
+                size={ViewScale(20)}
                 color={'#44444480'}
                 style={styles.icon1}
               />
@@ -266,7 +267,7 @@ const News = ({navigation, dispatch}) => {
             }}
           />
 
-          <View style={{marginBottom: 50}} />
+          <View style={{marginBottom: ViewScale(50)}} />
         </View>
       </View>
     </View>

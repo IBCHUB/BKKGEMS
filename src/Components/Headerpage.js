@@ -12,7 +12,7 @@ const Headerpage = ({navigation, item}) => {
         }}>
         <FontAwesome5
           name="arrow-left"
-          size={20}
+          size={ViewScale(20)}
           color={'#DAA560'}
           style={styles.icon}
         />
@@ -21,7 +21,7 @@ const Headerpage = ({navigation, item}) => {
         <Text style={styles.texthead}>{item}</Text>
       </View>
       <View style={styles.row}>
-        <View style={{width: 20}} />
+        <View style={{width: ViewScale(20)}} />
       </View>
     </View>
   );

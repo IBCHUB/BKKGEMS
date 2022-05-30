@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
   },
   imgdetail: {
     width: width,
-    height: 280,
+    height: ViewScale(280),
     alignSelf: 'center',
     marginVertical: 5,
   },

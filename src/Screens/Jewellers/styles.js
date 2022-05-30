@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -8,35 +9,35 @@ const styles = StyleSheet.create({
   },
   imgdetail: {
     width: width * 0.88,
-    height: 150,
+    height: ViewScale(150),
     alignSelf: 'center',
-    marginVertical: 20,
+    marginVertical: ViewScale(20),
   },
   icon: {
-    marginTop: 10,
-    marginLeft: 20,
+    marginTop: ViewScale(10),
+    marginLeft: ViewScale(20),
   },
   textheader: {
-    fontSize: 20,
+    fontSize: ViewScale(22),
     color: '#DAA560',
-    marginTop: 20,
+    marginTop: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
-    marginBottom: 10,
+    marginBottom: ViewScale(10),
   },
   textdetail: {
     color: '#646363',
     alignSelf: 'center',
-    fontSize: 16,
+    fontSize: ViewScale(18),
     width: width * 0.88,
     fontFamily: 'Cantoria MT Std',
-    marginBottom: 20,
+    marginBottom: ViewScale(20),
   },
 
   viewdetail: {
     width: width,
     backgroundColor: '#000',
-    paddingBottom: 20,
-    paddingHorizontal: 20,
+    paddingBottom: ViewScale(20),
+    paddingHorizontal: ViewScale(20),
   },
   viewdetail1: {
     width: width,
@@ -49,9 +50,9 @@ const styles = StyleSheet.create({
   },
   imgdetail2: {
     width: width * 0.88,
-    height: 200,
+    height: ViewScale(200),
     alignSelf: 'center',
-    marginVertical: 20,
+    marginVertical: ViewScale(20),
   },
 });
 

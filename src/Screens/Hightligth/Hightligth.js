@@ -17,6 +17,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import {Exprofile, Product_Highlight} from '../../action/data.action';
 import {connect} from 'react-redux';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 const Hightligth = ({navigation, dispatch}) => {
   const [highlight, setHighlight] = useState([]);
@@ -49,7 +50,7 @@ const Hightligth = ({navigation, dispatch}) => {
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
-      <View style={{backgroundColor: '#010302', marginBottom: 20}}>
+      <View style={{backgroundColor: '#010302', marginBottom: ViewScale(20)}}>
         <FlatList
           data={highlight}
           numColumns={2}
@@ -107,7 +108,7 @@ const Hightligth = ({navigation, dispatch}) => {
         onPress={onPressTouch}
         style={styles.FloatingActionButtonStyle}>
         <Feather
-          size={25}
+          size={ViewScale(25)}
           name="arrow-up-left"
           color={'#fff'}
           style={styles.icon}

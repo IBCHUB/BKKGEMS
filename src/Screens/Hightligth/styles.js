@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -14,55 +15,55 @@ const styles = StyleSheet.create({
 
   headtab: {
     width: width * 0.6,
-    height: 43,
+    height: ViewScale(43),
     alignSelf: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    marginTop: ViewScale(10),
+    marginBottom: ViewScale(20),
   },
   buttonflat: {
     backgroundColor: '#fff',
     width: width * 0.5,
-    height: 180,
+    height: ViewScale(180),
     alignSelf: 'center',
     borderWidth: 0.5,
     borderColor: '#EEECE2',
   },
   imgflat: {
     width: width * 0.5,
-    height: 180,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
+    height: ViewScale(180),
+    borderTopLeftRadius: ViewScale(5),
+    borderTopRightRadius: ViewScale(5),
     justifyContent: 'flex-end',
   },
   row: {
     flexDirection: 'row',
     width: width * 0.5,
-    paddingHorizontal: 10,
+    paddingHorizontal: ViewScale(10),
     alignSelf: 'center',
-    height: 40,
+    height: ViewScale(40),
   },
   imglogo: {
-    width: 20,
-    height: 20,
+    width: ViewScale(20),
+    height: ViewScale(20),
     alignSelf: 'center',
-    borderRadius: 10,
+    borderRadius: ViewScale(10),
   },
   text: {
-    fontSize: 12,
+    fontSize: ViewScale(12),
     color: '#FFECAC',
-    marginLeft: 10,
+    marginLeft: ViewScale(10),
     alignSelf: 'center',
     width: width * 0.35,
     fontFamily: 'Cantoria MT Std',
   },
   dimon: {
-    width: 40,
-    height: 40,
+    width: ViewScale(40),
+    height: ViewScale(40),
     backgroundColor: '#fff',
     transform: [{rotate: '45deg'}],
     alignSelf: 'flex-end',
-    marginTop: -20,
-    marginRight: 30,
+    marginTop: -ViewScale(20),
+    marginRight: ViewScale(30),
     justifyContent: 'center',
     shadowColor: '#00000029',
     shadowOffset: {
@@ -73,21 +74,21 @@ const styles = StyleSheet.create({
     shadowRadius: 9.51,
 
     elevation: 15,
-    marginBottom: 20,
+    marginBottom: ViewScale(20),
   },
   icon: {
     alignSelf: 'center',
   },
   FloatingActionButtonStyle: {
     position: 'absolute',
-    width: 40,
-    height: 40,
+    width: ViewScale(40),
+    height: ViewScale(40),
     backgroundColor: '#DAA560',
     transform: [{rotate: '45deg'}],
     alignItems: 'center',
     justifyContent: 'center',
-    right: 30,
-    bottom: 100,
+    right: ViewScale(30),
+    bottom: ViewScale(100),
     borderColor: '#000000',
     shadowColor: '#00000029',
     shadowOffset: {

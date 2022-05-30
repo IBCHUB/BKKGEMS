@@ -31,6 +31,7 @@ import {Formik} from 'formik';
 import * as yup from 'yup';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {logoutUser} from '../../action/auth.action';
+import {ViewScale} from '../../config/ViewScale';
 const product = ({item, navigation, detail, dispatch, authUser}) => {
   const carouselRef = useRef();
   // console.log(data);
@@ -559,14 +560,14 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
         }}
       />
       <Text style={styles.texthead}>OTHER PRODUCTS</Text>
-      <View style={{paddingBottom: 20}}>
+      <View style={{paddingBottom: ViewScale(20)}}>
         <FlatList
           data={data.filter(
             item => item.product_img_id != img.imgs.product_img_id,
           )}
           // extraData={img}
           scrollEnabled={true}
-          style={{height: 200}}
+          style={{height: ViewScale(200)}}
           horizontal={true}
           renderItem={({index, item}) => {
             return (

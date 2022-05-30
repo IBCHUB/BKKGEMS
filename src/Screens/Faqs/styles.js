@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -7,24 +8,24 @@ const styles = StyleSheet.create({
     height: height,
   },
   containerview: {
-    paddingBottom: 50,
+    paddingBottom: ViewScale(50),
     backgroundColor: '#000000',
     width: width,
     height: height,
   },
   buttonflat: {
     width: width * 0.85,
-    height: 70,
+    height: ViewScale(70),
     alignSelf: 'center',
     backgroundColor: '#343434',
-    marginVertical: 10,
-    paddingHorizontal: 10,
+    marginVertical: ViewScale(10),
+    paddingHorizontal: ViewScale(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderRadius: 4,
+    borderRadius: ViewScale(4),
   },
   text: {
-    fontSize: 18,
+    fontSize: ViewScale(20),
     color: '#DAA560',
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
@@ -34,14 +35,14 @@ const styles = StyleSheet.create({
     width: width * 0.82,
     backgroundColor: '#EEECE2',
     alignSelf: 'center',
-    marginTop: -10,
+    marginTop: ViewScale(-10),
 
-    paddingVertical: 10,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
+    paddingVertical: ViewScale(10),
+    borderBottomLeftRadius: ViewScale(5),
+    borderBottomRightRadius: ViewScale(5),
   },
   tags: {
-    fontSize: 16,
+    fontSize: ViewScale(18),
     color: '#646363',
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   auto: {
     width: '90%',
     alignSelf: 'center',
-    fontSize: 18,
+    fontSize: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
   },
 });

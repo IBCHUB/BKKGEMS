@@ -25,6 +25,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import RNPickerSelect from 'react-native-picker-select';
 import {Exprofile} from '../../action/data.action';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
+import {ViewScale} from '../../config/ViewScale';
 const ExhibitorsDetail = ({navigation, route, dispatch}) => {
   const {res} = route.params;
 
@@ -103,7 +104,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
                   styles.textpage,
                   {
                     color: page === 0 ? '#DAA560' : '#000',
-                    fontSize: page === 0 ? 20 : 18,
+                    fontSize: page === 0 ? ViewScale(20) : ViewScale(18),
                   },
                 ]}>
                 PRODUCT
@@ -125,7 +126,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
                   styles.textpage,
                   {
                     color: page === 1 ? '#DAA560' : '#000',
-                    fontSize: page === 1 ? 20 : 17,
+                    fontSize: page === 1 ? ViewScale(20) : ViewScale(17),
                   },
                 ]}>
                 ABOUT

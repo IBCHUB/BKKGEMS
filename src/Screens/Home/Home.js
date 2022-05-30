@@ -22,6 +22,7 @@ import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
 import {Search} from '../../action/data.action';
+import {ViewScale} from '../../config/ViewScale';
 
 const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState(false);
@@ -89,8 +90,8 @@ const Home = ({navigation, dispatch, authData}) => {
             backgroundColor: '#000',
           },
           container: {
-            borderTopRightRadius: 10,
-            borderTopLeftRadius: 10,
+            borderTopRightRadius: ViewScale(10),
+            borderTopLeftRadius: ViewScale(10),
             width: '96%',
             alignSelf: 'center',
             height: '60%',
@@ -135,7 +136,7 @@ const Home = ({navigation, dispatch, authData}) => {
                 /> */}
               <FontAwesome5
                 name="search"
-                size={18}
+                size={ViewScale(18)}
                 color={'#44444480'}
                 style={styles.icon}
               />
@@ -158,8 +159,8 @@ const Home = ({navigation, dispatch, authData}) => {
                         }>
                         <Text
                           style={{
-                            fontSize: 16,
-                            padding: 3,
+                            fontSize: ViewScale(18),
+                            padding: ViewScale(3),
                             fontFamily: 'Cantoria MT Std',
                           }}>
                           {item}
@@ -170,11 +171,11 @@ const Home = ({navigation, dispatch, authData}) => {
                 }}
                 style={styles.input}
                 listContainerStyle={{
-                  width: 280,
-                  marginTop: 35,
+                  width: '100%',
+                  marginTop: ViewScale(35),
                   zIndex: 99,
                   position: 'absolute',
-                  borderRadius: 5,
+                  borderRadius: ViewScale(5),
                 }}
               />
             </View>
@@ -204,7 +205,8 @@ const Home = ({navigation, dispatch, authData}) => {
 
           <AboutHome navigation={navigation} />
         </View>
-        <View style={{marginBottom: 50}} />
+
+        <View style={{marginBottom: ViewScale(50)}} />
       </ScrollView>
     </View>
   );

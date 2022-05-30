@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -8,51 +9,51 @@ const styles = StyleSheet.create({
   },
   imgHeader: {
     width: width,
-    height: 250,
+    height: ViewScale(250),
   },
   imgdetail: {
     width: width * 0.88,
-    height: 300,
+    height: ViewScale(300),
     alignSelf: 'center',
-    marginBottom: 20,
+    marginBottom: ViewScale(20),
   },
   icon: {
-    marginTop: 10,
-    marginLeft: 20,
+    marginTop: ViewScale(10),
+    marginLeft: ViewScale(20),
   },
   textheader: {
-    fontSize: 22,
+    fontSize: ViewScale(24),
     color: '#DAA560',
-    marginVertical: 20,
+    marginVertical: ViewScale(20),
     textAlign: 'center',
     fontFamily: 'Cantoria MT Std',
   },
   textdetail: {
     color: '#646363',
     alignSelf: 'center',
-    fontSize: 16,
+    fontSize: ViewScale(18),
     width: width * 0.88,
     fontFamily: 'Cantoria MT Std',
-    marginBottom: 20,
+    marginBottom: ViewScale(20),
   },
   textsuphead: {
     color: '#DAA560',
     alignSelf: 'center',
-    fontSize: 16,
+    fontSize: ViewScale(18),
     width: width * 0.88,
-    marginBottom: 20,
+    marginBottom: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
   },
   viewdetail: {
     width: width,
     backgroundColor: '#000',
-    paddingBottom: 20,
-    paddingHorizontal: 20,
+    paddingBottom: ViewScale(20),
+    paddingHorizontal: ViewScale(20),
   },
   linearGradient: {
     width: width,
     paddingBottom: height * 0.15,
-    paddingHorizontal: 20,
+    paddingHorizontal: ViewScale(20),
   },
 });
 

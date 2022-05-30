@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -7,21 +8,21 @@ const styles = StyleSheet.create({
     height: height,
   },
   textdetail: {
-    fontSize: 16,
+    fontSize: ViewScale(16),
     color: '#646363',
     fontFamily: 'Cantoria MT Std',
     width: width * 0.85,
   },
   view: {
     backgroundColor: '#EEECE2',
-    paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingHorizontal: ViewScale(20),
+    paddingVertical: ViewScale(30),
     height: height,
   },
   img: {
     width: width * 0.9,
-    height: 250,
-    marginVertical: 20,
+    height: ViewScale(300),
+    marginVertical: ViewScale(20),
   },
 });
 

@@ -20,6 +20,7 @@ import {logoutUser} from '../action/auth.action';
 import {connect} from 'react-redux';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {ViewScale} from '../config/ViewScale';
 const CustomDrawerContent = ({props, dispatch, navigation}) => {
   const [visitor, setvisitor] = useState(false);
   const [setting, setsetting] = useState(false);
@@ -54,7 +55,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             )}
             <View style={styles.liner} /> */}
 
-            <View style={{marginBottom: 20}}>
+            <View style={{marginBottom: ViewScale(20)}}>
               <TouchableOpacity
                 style={styles.rowlist}
                 onPress={() => {
@@ -63,9 +64,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                 <Text style={styles.touchdrawer}>{I18n.t('About')}</Text>
                 <FontAwesome
                   name={'angle-right'}
-                  size={20}
+                  size={ViewScale(20)}
                   color={'#fff'}
-                  style={{alignSelf: 'center', marginTop: 15}}
+                  style={{alignSelf: 'center', marginTop: ViewScale(15)}}
                 />
               </TouchableOpacity>
 
@@ -77,9 +78,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                 <Text style={styles.touchdrawer}>{I18n.t('ForExhibitor')}</Text>
                 <FontAwesome
                   name={'angle-right'}
-                  size={20}
+                  size={ViewScale(20)}
                   color={'#fff'}
-                  style={{alignSelf: 'center', marginTop: 15}}
+                  style={{alignSelf: 'center', marginTop: ViewScale(15)}}
                 />
               </TouchableOpacity>
 
@@ -91,9 +92,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                 <Text style={styles.touchdrawer}>{I18n.t('Visitor')}</Text>
                 <FontAwesome
                   name={'angle-right'}
-                  size={20}
+                  size={ViewScale(20)}
                   color={'#fff'}
-                  style={{alignSelf: 'center', marginTop: 15}}
+                  style={{alignSelf: 'center', marginTop: ViewScale(15)}}
                 />
               </TouchableOpacity>
 
@@ -105,9 +106,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                 <Text style={styles.touchdrawer}>{I18n.t('BGJF')}</Text>
                 <FontAwesome
                   name={'angle-right'}
-                  size={20}
+                  size={ViewScale(20)}
                   color={'#fff'}
-                  style={{alignSelf: 'center', marginTop: 15}}
+                  style={{alignSelf: 'center', marginTop: ViewScale(15)}}
                 />
               </TouchableOpacity>
 
@@ -119,9 +120,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                 <Text style={styles.touchdrawer}>{I18n.t('Events')}</Text>
                 <FontAwesome
                   name={'angle-right'}
-                  size={20}
+                  size={ViewScale(20)}
                   color={'#fff'}
-                  style={{alignSelf: 'center', marginTop: 15}}
+                  style={{alignSelf: 'center', marginTop: ViewScale(15)}}
                 />
               </TouchableOpacity>
               <TouchableOpacity
@@ -132,9 +133,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                 <Text style={styles.touchdrawer}>{I18n.t('News')}</Text>
                 <FontAwesome
                   name={'angle-right'}
-                  size={20}
+                  size={ViewScale(20)}
                   color={'#fff'}
-                  style={{alignSelf: 'center', marginTop: 15}}
+                  style={{alignSelf: 'center', marginTop: ViewScale(15)}}
                 />
               </TouchableOpacity>
               {/* <TouchableOpacity
@@ -158,7 +159,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
               </TouchableOpacity>
             </View>
             <View style={styles.liner} />
-            {/* <View style={{marginBottom: 20}}>
+            {/* <View style={{marginBottom: ViewScale(20)}}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('Myfavorite');
@@ -173,7 +174,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
               </TouchableOpacity>
             </View> */}
             <View style={styles.liner} />
-            <View style={{marginBottom: 20}}>
+            <View style={{marginBottom: ViewScale(20)}}>
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('Term');
@@ -196,9 +197,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                 <Text style={styles.touchdrawer}>{I18n.t('Setting')}</Text>
                 <FontAwesome
                   name={'angle-right'}
-                  size={20}
+                  size={ViewScale(20)}
                   color={'#fff'}
-                  style={{alignSelf: 'center', marginTop: 15}}
+                  style={{alignSelf: 'center', marginTop: ViewScale(15)}}
                 />
               </TouchableOpacity>
             </View>
@@ -229,7 +230,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity onPress={() => setpage(0)}>
             <FontAwesome5
               name="arrow-left"
-              size={18}
+              size={ViewScale(18)}
               color={'#fff'}
               style={styles.icon}
             />
@@ -257,7 +258,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity onPress={() => setpage(0)}>
             <FontAwesome5
               name="arrow-left"
-              size={18}
+              size={ViewScale(18)}
               color={'#fff'}
               style={styles.icon}
             />
@@ -295,7 +296,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity onPress={() => setpage(0)}>
             <FontAwesome5
               name="arrow-left"
-              size={18}
+              size={ViewScale(18)}
               color={'#fff'}
               style={styles.icon}
             />
@@ -361,7 +362,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity onPress={() => setpage(0)}>
             <FontAwesome5
               name="arrow-left"
-              size={18}
+              size={ViewScale(18)}
               color={'#fff'}
               style={styles.icon}
             />
@@ -409,7 +410,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity onPress={() => setpage(0)}>
             <FontAwesome5
               name="arrow-left"
-              size={18}
+              size={ViewScale(18)}
               color={'#fff'}
               style={styles.icon}
             />
@@ -455,7 +456,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity onPress={() => setpage(0)}>
             <FontAwesome5
               name="arrow-left"
-              size={18}
+              size={ViewScale(18)}
               color={'#fff'}
               style={styles.icon}
             />
@@ -499,7 +500,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity onPress={() => setpage(0)}>
             <FontAwesome5
               name="arrow-left"
-              size={18}
+              size={ViewScale(18)}
               color={'#fff'}
               style={styles.icon}
             />

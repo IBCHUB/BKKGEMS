@@ -14,6 +14,7 @@ import {
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import {connect} from 'react-redux';
+import {ViewScale} from '../../config/ViewScale';
 const Guide = ({navigation, dispatch}) => {
   return (
     <View style={styles.container}>
@@ -75,7 +76,7 @@ const Guide = ({navigation, dispatch}) => {
               For the number of exhibitors, it covers 900 companies with over
               2,000 booths from selected domestic and international exhibitors.
             </Text>
-            <View style={{marginBottom: 50}} />
+            <View style={{marginBottom: ViewScale(50)}} />
           </View>
         </ScrollView>
       </SafeAreaView>

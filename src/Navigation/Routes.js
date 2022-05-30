@@ -56,6 +56,7 @@ import {
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
+import {ViewScale} from '../config/ViewScale';
 
 const {width, height} = Dimensions.get('window');
 
@@ -150,8 +151,8 @@ function TabStackScreen(navigation) {
           // right: 16,
           position: 'absolute',
           // borderRadius: 16,
-          height: 70,
-          paddingBottom: 20,
+          height: ViewScale(80),
+          paddingBottom: ViewScale(20),
         },
       }}>
       <Tab.Screen
@@ -161,7 +162,7 @@ function TabStackScreen(navigation) {
           tabBarIcon: ({tintColor, focused}) => (
             <Foundation
               name="home"
-              size={focused ? 30 : 25}
+              size={focused ? ViewScale(30) : ViewScale(25)}
               color={focused ? '#fff' : '#000'}
             />
           ),
@@ -172,7 +173,7 @@ function TabStackScreen(navigation) {
               }}>
               <Text
                 style={{
-                  fontSize: focused ? 9 : 7,
+                  fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
@@ -190,7 +191,7 @@ function TabStackScreen(navigation) {
           tabBarIcon: ({tintColor, focused}) => (
             <Foundation
               name="book"
-              size={focused ? 30 : 25}
+              size={focused ? ViewScale(30) : ViewScale(25)}
               color={focused ? '#fff' : '#000'}
             />
           ),
@@ -201,7 +202,7 @@ function TabStackScreen(navigation) {
               }}>
               <Text
                 style={{
-                  fontSize: focused ? 9 : 7,
+                  fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
@@ -219,7 +220,7 @@ function TabStackScreen(navigation) {
           tabBarIcon: ({tintColor, focused}) => (
             <Foundation
               name="star"
-              size={focused ? 30 : 25}
+              size={focused ? ViewScale(30) : ViewScale(25)}
               color={focused ? '#fff' : '#000'}
             />
           ),
@@ -230,7 +231,7 @@ function TabStackScreen(navigation) {
               }}>
               <Text
                 style={{
-                  fontSize: focused ? 9 : 7,
+                  fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
@@ -248,7 +249,7 @@ function TabStackScreen(navigation) {
           tabBarIcon: ({tintColor, focused}) => (
             <MaterialCommunityIcons
               name="ticket-confirmation"
-              size={focused ? 30 : 25}
+              size={focused ? ViewScale(30) : ViewScale(25)}
               color={focused ? '#fff' : '#000'}
             />
           ),
@@ -259,7 +260,7 @@ function TabStackScreen(navigation) {
               }}>
               <Text
                 style={{
-                  fontSize: focused ? 9 : 7,
+                  fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
@@ -277,7 +278,7 @@ function TabStackScreen(navigation) {
           tabBarIcon: ({tintColor, focused}) => (
             <MaterialCommunityIcons
               name="file-document"
-              size={focused ? 30 : 25}
+              size={focused ? ViewScale(30) : ViewScale(25)}
               color={focused ? '#fff' : '#000'}
             />
           ),
@@ -288,12 +289,12 @@ function TabStackScreen(navigation) {
               }}>
               <Text
                 style={{
-                  fontSize: focused ? 9 : 7,
+                  fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
-                  width: focused ? 40 : 35,
-                  marginBottom: focused ? -5 : 0,
+                  width: focused ? ViewScale(40) : ViewScale(35),
+                  marginBottom: focused ? ViewScale(-5) : 0,
                 }}>
                 NEWS & TRENDS
               </Text>
@@ -354,7 +355,7 @@ function DrawerStack() {
       drawerPosition="right"
       edgeWidth={0}
       drawerStyle={{
-        width: '60%',
+        width: '80%',
       }}
       headerMode="none"
       initialRouteName={'Home'}

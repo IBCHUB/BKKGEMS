@@ -5,6 +5,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
+import {ViewScale} from '../../config/ViewScale';
 const aboutexhi = ({detail}) => {
   console.log(detail);
   return (
@@ -73,7 +74,7 @@ const aboutexhi = ({detail}) => {
             style={styles.listsocial}>
             <Fontisto
               name="facebook"
-              size={20}
+              size={ViewScale(20)}
               color={'#DAA560'}
               style={{alignSelf: 'center'}}
             />
@@ -87,7 +88,7 @@ const aboutexhi = ({detail}) => {
             style={styles.listsocial}>
             <Fontisto
               name="instagram"
-              size={20}
+              size={ViewScale(20)}
               color={'#DAA560'}
               style={{alignSelf: 'center'}}
             />
@@ -101,14 +102,16 @@ const aboutexhi = ({detail}) => {
             style={styles.listsocial}>
             <AntDesign
               name="youtube"
-              size={20}
+              size={ViewScale(20)}
               color={'#DAA560'}
               style={{alignSelf: 'center'}}
             />
           </TouchableOpacity>
         )}
       </View>
-      <Text style={[styles.textsupabout, {marginTop: 20}]}>VIDEO</Text>
+      <Text style={[styles.textsupabout, {marginTop: ViewScale(20)}]}>
+        VIDEO
+      </Text>
       <TouchableOpacity
         onPress={() => {
           InAppBrowser.open(detail.video_full_url);
@@ -122,12 +125,14 @@ const aboutexhi = ({detail}) => {
           Company Presentation {detail.year}
         </Text>
       </TouchableOpacity>
-      <Text style={[styles.textsupabout, {marginTop: 20}]}>DOWNLOAD</Text>
+      <Text style={[styles.textsupabout, {marginTop: ViewScale(20)}]}>
+        DOWNLOAD
+      </Text>
       <TouchableOpacity style={styles.buttondowload}>
         <Text style={styles.textpage}>Catalog {detail.year}</Text>
         <Ionicons
           name="download-outline"
-          size={20}
+          size={ViewScale(20)}
           color={'#000'}
           style={{alignSelf: 'center'}}
         />

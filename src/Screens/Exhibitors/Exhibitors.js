@@ -21,6 +21,7 @@ import styles from './styles';
 import RBSheetExhi from './RBSheetExhi';
 import {connect} from 'react-redux';
 import {Exhibitor, Exhibitor_List, Exprofile} from '../../action/data.action';
+import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const refRBSheet = useRef();
@@ -143,7 +144,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
             <View style={styles.viewinsearch}>
               <FontAwesome5
                 name="search"
-                size={20}
+                size={ViewScale(20)}
                 color={'#44444480'}
                 style={styles.icon1}
               />
@@ -231,7 +232,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
             onPress={onPressTouch}
             style={styles.FloatingActionButtonStyle}>
             <Feather
-              size={25}
+              size={ViewScale(25)}
               name="arrow-up-left"
               color={'#fff'}
               style={styles.icon}

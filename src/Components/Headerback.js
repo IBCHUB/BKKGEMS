@@ -4,6 +4,7 @@ import styles from './styleHeadercomp';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
 import {logoutUser} from '../action/auth.action';
+import {ViewScale} from '../config/ViewScale';
 const Headerback = ({navigation, item, dispatch, authUser}) => {
   return (
     <View style={styles.container}>
@@ -14,7 +15,7 @@ const Headerback = ({navigation, item, dispatch, authUser}) => {
         }}>
         <FontAwesome5
           name="arrow-left"
-          size={20}
+          size={ViewScale(20)}
           color={'#DAA560'}
           style={styles.icon}
         />

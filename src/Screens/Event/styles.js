@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 const {width, height} = Dimensions.get('window');
-
+import {ViewScale} from '../../config/ViewScale';
 const styles = StyleSheet.create({
   container: {
     width: width,
@@ -8,27 +8,27 @@ const styles = StyleSheet.create({
   },
   buttonflat: {
     width: width * 0.85,
-    height: 70,
+    height: ViewScale(70),
     justifyContent: 'center',
     alignSelf: 'center',
     backgroundColor: '#343434',
-    marginVertical: 10,
-    borderRadius: 5,
+    marginVertical: ViewScale(10),
+    borderRadius: ViewScale(5),
   },
   containerview: {
-    marginBottom: 50,
+    marginBottom: ViewScale(50),
     backgroundColor: '#000000',
     width: width,
     height: height,
   },
   text: {
-    fontSize: 20,
+    fontSize: ViewScale(20),
     color: '#DAA560',
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
   },
   text1: {
-    fontSize: 18,
+    fontSize: ViewScale(18),
     color: '#DAA560',
     fontFamily: 'Cantoria MT Std',
     textAlign: 'center',

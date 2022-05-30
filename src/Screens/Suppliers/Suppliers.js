@@ -18,6 +18,7 @@ import RBSheetHome from './RBSheet';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
 import {Exhibitor_List, Search} from '../../action/data.action';
+import {ViewScale} from '../../config/ViewScale';
 const Suppliers = ({navigation, dispatch}) => {
   const [state, setstate] = useState();
   const [query, setQuery] = useState('');
@@ -75,7 +76,8 @@ const Suppliers = ({navigation, dispatch}) => {
             navigation={navigation}
           />
         </RBSheet>
-        <ScrollView style={{backgroundColor: '#EEECE2', paddingBottom: 50}}>
+        <ScrollView
+          style={{backgroundColor: '#EEECE2', paddingBottom: ViewScale(50)}}>
           <ImageBackground
             source={require('../../../assets/image/sup.png')}
             style={[styles.imgHeader, {zIndex: 999}]}>
@@ -89,7 +91,7 @@ const Suppliers = ({navigation, dispatch}) => {
                     name="search"
                     size={18}
                     color={'#44444480'}
-                    style={[styles.icon, {marginRight: 3}]}
+                    style={[styles.icon, {marginRight: ViewScale(3)}]}
                   />
                   <Autocomplete
                     data={state}
@@ -129,8 +131,8 @@ const Suppliers = ({navigation, dispatch}) => {
                             }}>
                             <Text
                               style={{
-                                fontSize: 16,
-                                padding: 3,
+                                fontSize: ViewScale(18),
+                                padding: ViewScale(3),
                                 fontFamily: 'Cantoria MT Std',
                               }}>
                               {item}
@@ -141,8 +143,8 @@ const Suppliers = ({navigation, dispatch}) => {
                     }}
                     style={styles.input}
                     listContainerStyle={{
-                      width: 280,
-                      marginTop: 38,
+                      width: ViewScale(280),
+                      marginTop: ViewScale(38),
                       zIndex: 999,
                       position: 'absolute',
                       borderRadius: 5,

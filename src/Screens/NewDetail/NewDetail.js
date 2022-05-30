@@ -18,6 +18,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import moment from 'moment';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import styles from './styles';
+import {ViewScale} from '../../config/ViewScale';
 const NewDetail = ({navigation, route}) => {
   const {item} = route.params;
   console.log(item);
@@ -46,7 +47,8 @@ const NewDetail = ({navigation, route}) => {
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}}>
         <Headerback navigation={navigation} item={item.blog_title} />
-        <ScrollView style={{backgroundColor: '#EEECE2', marginBottom: 20}}>
+        <ScrollView
+          style={{backgroundColor: '#EEECE2', marginBottom: ViewScale(20)}}>
           <Image source={{uri: item.blog_img}} style={styles.imgHeader} />
           <Text style={styles.textheader}>{item.blog_title}</Text>
           <View style={styles.row}>
@@ -56,7 +58,7 @@ const NewDetail = ({navigation, route}) => {
             <TouchableOpacity onPress={onShare} style={styles.botton}>
               <Octicons
                 name="share-android"
-                size={11}
+                size={ViewScale(11)}
                 color={'#fff'}
                 style={styles.iconshare}
               />

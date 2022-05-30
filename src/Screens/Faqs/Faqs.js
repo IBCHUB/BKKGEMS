@@ -18,6 +18,7 @@ import {connect} from 'react-redux';
 import {Faq} from '../../action/data.action';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import Animated from 'react-native-reanimated';
+import {ViewScale} from '../../config/ViewScale';
 const Faqs = ({navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
   const [faqs, setFaqs] = useState([]);
@@ -75,7 +76,7 @@ const Faqs = ({navigation, dispatch}) => {
                       <Text style={styles.text}>{item.faq_title}</Text>
                       <Entypo
                         name="chevron-thin-down"
-                        size={18}
+                        size={ViewScale(18)}
                         color={'#DAA560'}
                         style={{alignSelf: 'center'}}
                       />
@@ -97,10 +98,9 @@ const Faqs = ({navigation, dispatch}) => {
                           customStyle={`
                            * {
                              color:#646363 !important;
-                             font-size: 16px !important;
+                             font-size: 18px !important;
                            }
                          `}
-                        
                         />
                       </Animated.View>
                     )}
