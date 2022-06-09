@@ -266,7 +266,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <Text style={styles.touchdrawer1}>{I18n.t('ForExhibitor')}</Text>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open('https://bgjf.git.or.th/th-th/');
+              Linking.openURL('https://bgjf.git.or.th/th-th/');
             }}>
             <Text style={styles.touchindrawer}>
               {I18n.t('ApplicationForm')}
@@ -274,7 +274,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(
+              Linking.openURL(
                 'https://www.bkkgems.com/data/file/exhibitors/exhibitor_letter.pdf',
               );
             }}>
@@ -282,7 +282,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(
+              Linking.openURL(
                 'https://www.bkkgems.com/data/file/exhibitors/exhibitor_manual.pdff',
               );
             }}>
@@ -304,7 +304,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <Text style={styles.touchdrawer1}>{I18n.t('Visitor')}</Text>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(
+              Linking.openURL(
                 'https://pre.eventthai.com/home/register/visitor',
               );
             }}>
@@ -320,7 +320,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(
+              Linking.openURL(
                 'https://www.bkkgems.com/data/file/visitor/visitor_seminar.pdf',
               );
             }}>
@@ -334,7 +334,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(
+              Linking.openURL(
                 'https://about.thaitrade.com/business-matching/guest',
               );
             }}>
@@ -370,13 +370,13 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <Text style={styles.touchdrawer1}>{I18n.t('BGJF')}</Text>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open('https://www.bkkgems.com/about-BGJF');
+              Linking.openURL('https://www.bkkgems.com/about-BGJF');
             }}>
             <Text style={styles.touchindrawer}>{I18n.t('AboutBGJF')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(
+              Linking.openURL(
                 'https://exporter-reg.bgjf-vtf.com/registration/create/bgex22',
               );
             }}>
@@ -386,7 +386,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open('https://www.bkkgems.com/exhibitor-meeting');
+              Linking.openURL('https://www.bkkgems.com/exhibitor-meeting');
             }}>
             <Text style={styles.touchindrawer}>
               {I18n.t('ExhibitorMeeting')}
@@ -394,7 +394,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(
+              Linking.openURL(
                 'https://www.bkkgems.com/data/file/BGJF/Exhibitor_Manual.pdf',
               );
             }}>
@@ -476,19 +476,19 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open('https://www.bkkgems.com/for_press/1-8');
+              Linking.openURL('https://www.bkkgems.com/for_press/1-8');
             }}>
             <Text style={styles.touchindrawer}>For Press</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open('https://www.bkkgems.com/photoGallety');
+              Linking.openURL('https://www.bkkgems.com/photoGallety');
             }}>
             <Text style={styles.touchindrawer}>Photo Gallery</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open('https://www.bkkgems.com/videoGallety');
+              Linking.openURL('https://www.bkkgems.com/videoGallety');
             }}>
             <Text style={styles.touchindrawer}>Videos</Text>
           </TouchableOpacity>

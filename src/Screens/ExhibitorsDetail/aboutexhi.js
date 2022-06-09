@@ -69,7 +69,7 @@ const aboutexhi = ({detail}) => {
         {detail.company_facebook != '' && (
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(detail.company_facebook);
+              Linking.openURL(detail.company_facebook);
             }}
             style={styles.listsocial}>
             <Fontisto
@@ -83,7 +83,7 @@ const aboutexhi = ({detail}) => {
         {detail.company_instagram != '' && (
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(detail.company_instagram);
+              Linking.openURL(detail.company_instagram);
             }}
             style={styles.listsocial}>
             <Fontisto
@@ -97,7 +97,7 @@ const aboutexhi = ({detail}) => {
         {detail.company_youtube != '' && (
           <TouchableOpacity
             onPress={() => {
-              InAppBrowser.open(detail.company_youtube);
+              Linking.openURL(detail.company_youtube);
             }}
             style={styles.listsocial}>
             <AntDesign
@@ -114,7 +114,7 @@ const aboutexhi = ({detail}) => {
       </Text>
       <TouchableOpacity
         onPress={() => {
-          InAppBrowser.open(detail.video_full_url);
+          Linking.openURL(detail.video_full_url);
         }}
         style={styles.rowsocial}>
         <Image

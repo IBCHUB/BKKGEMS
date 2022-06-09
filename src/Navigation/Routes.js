@@ -14,6 +14,7 @@ import {
   Dimensions,
   StyleSheet,
   Linking,
+  Platform,
 } from 'react-native';
 import {
   Home,
@@ -151,7 +152,7 @@ function TabStackScreen(navigation) {
           // right: 16,
           position: 'absolute',
           // borderRadius: 16,
-          height: ViewScale(80),
+          height: ViewScale(Platform.isPad ? 70 : 80),
           paddingBottom: ViewScale(20),
         },
       }}>
@@ -159,24 +160,24 @@ function TabStackScreen(navigation) {
         name="Home"
         component={HomeStackScreen}
         options={{
-          tabBarIcon: ({tintColor, focused}) => (
-            <Foundation
-              name="home"
-              size={focused ? ViewScale(30) : ViewScale(25)}
-              color={focused ? '#fff' : '#000'}
-            />
-          ),
+          tabBarIcon: ({tintColor, focused}) => <View></View>,
           tabBarLabel: ({tintColor, focused}) => (
             <View
               style={{
                 alignItems: 'center',
               }}>
+              <Foundation
+                name="home"
+                size={focused ? ViewScale(30) : ViewScale(25)}
+                color={focused ? '#fff' : '#000'}
+              />
               <Text
                 style={{
                   fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
+                  marginTop: 5,
                 }}>
                 HOME
               </Text>
@@ -188,24 +189,24 @@ function TabStackScreen(navigation) {
         name="Exhibitors"
         component={ExhibitorsStackScreen}
         options={{
-          tabBarIcon: ({tintColor, focused}) => (
-            <Foundation
-              name="book"
-              size={focused ? ViewScale(30) : ViewScale(25)}
-              color={focused ? '#fff' : '#000'}
-            />
-          ),
+          tabBarIcon: ({tintColor, focused}) => <View></View>,
           tabBarLabel: ({tintColor, focused}) => (
             <View
               style={{
                 alignItems: 'center',
               }}>
+              <Foundation
+                name="book"
+                size={focused ? ViewScale(30) : ViewScale(25)}
+                color={focused ? '#fff' : '#000'}
+              />
               <Text
                 style={{
                   fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
+                  marginTop: 5,
                 }}>
                 EXHIBITORS
               </Text>
@@ -217,24 +218,24 @@ function TabStackScreen(navigation) {
         name="Hightligth"
         component={HightligthStackScreen}
         options={{
-          tabBarIcon: ({tintColor, focused}) => (
-            <Foundation
-              name="star"
-              size={focused ? ViewScale(30) : ViewScale(25)}
-              color={focused ? '#fff' : '#000'}
-            />
-          ),
+          tabBarIcon: ({tintColor, focused}) => <View></View>,
           tabBarLabel: ({tintColor, focused}) => (
             <View
               style={{
                 alignItems: 'center',
               }}>
+              <Foundation
+                name="star"
+                size={focused ? ViewScale(30) : ViewScale(25)}
+                color={focused ? '#fff' : '#000'}
+              />
               <Text
                 style={{
                   fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
+                  marginTop: 5,
                 }}>
                 HIGHLIGHT
               </Text>
@@ -246,24 +247,24 @@ function TabStackScreen(navigation) {
         name="Event"
         component={EventStackScreen}
         options={{
-          tabBarIcon: ({tintColor, focused}) => (
-            <MaterialCommunityIcons
-              name="ticket-confirmation"
-              size={focused ? ViewScale(30) : ViewScale(25)}
-              color={focused ? '#fff' : '#000'}
-            />
-          ),
+          tabBarIcon: ({tintColor, focused}) => <View></View>,
           tabBarLabel: ({tintColor, focused}) => (
             <View
               style={{
                 alignItems: 'center',
               }}>
+              <MaterialCommunityIcons
+                name="ticket-confirmation"
+                size={focused ? ViewScale(30) : ViewScale(25)}
+                color={focused ? '#fff' : '#000'}
+              />
               <Text
                 style={{
                   fontSize: focused ? ViewScale(9) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
+                  marginTop: 5,
                 }}>
                 EVENTS
               </Text>
@@ -275,18 +276,17 @@ function TabStackScreen(navigation) {
         name="News"
         component={NewsStackScreen}
         options={{
-          tabBarIcon: ({tintColor, focused}) => (
-            <MaterialCommunityIcons
-              name="file-document"
-              size={focused ? ViewScale(30) : ViewScale(25)}
-              color={focused ? '#fff' : '#000'}
-            />
-          ),
+          tabBarIcon: ({tintColor, focused}) => <View></View>,
           tabBarLabel: ({tintColor, focused}) => (
             <View
               style={{
                 alignItems: 'center',
               }}>
+              <MaterialCommunityIcons
+                name="file-document"
+                size={focused ? ViewScale(30) : ViewScale(25)}
+                color={focused ? '#fff' : '#000'}
+              />
               <Text
                 style={{
                   fontSize: focused ? ViewScale(9) : ViewScale(7),
@@ -294,7 +294,8 @@ function TabStackScreen(navigation) {
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
                   width: focused ? ViewScale(40) : ViewScale(35),
-                  marginBottom: focused ? ViewScale(-5) : 0,
+                  marginBottom: focused ? ViewScale(-5) : -3,
+                  marginTop: 5,
                 }}>
                 NEWS & TRENDS
               </Text>

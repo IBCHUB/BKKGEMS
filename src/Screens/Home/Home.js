@@ -21,27 +21,28 @@ import {getUser} from '../../action/auth.action';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
-import {Search} from '../../action/data.action';
+import {Search, Topic} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
 
 const Home = ({navigation, dispatch, authData}) => {
-  const [online, setOnline] = useState(false);
+  const [online, setOnline] = useState();
+  console.log(online);
   const refRBSheet = useRef();
   const [state, setstate] = useState();
   const [query, setQuery] = useState('');
   // console.log(query);
-  const _loginUser = async values => {
-    try {
-      const response = await dispatch(getUser());
-      // console.log('2222222', response);
-      if (response.res_code == '00') {
-        // console.log('1111');
-      } else {
-        setmodalfalse(true);
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
+  // const _loginUser = async values => {
+  //   try {
+  //     const response = await dispatch(getUser());
+  //     // console.log('2222222', response);
+  //     if (response.res_code == '00') {
+  //       // console.log('1111');
+  //     } else {
+  //       setmodalfalse(true);
+  //       console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
 
   const test = text => {
     setQuery(text);
@@ -70,9 +71,28 @@ const Home = ({navigation, dispatch, authData}) => {
       }
     } catch (error) {}
   };
+
+  const _Topic = async values => {
+    try {
+      const response = await dispatch(Topic());
+      if (response.res_code == '00') {
+        var countDownDate = new Date(2022, 9, 7, 10, 0, 0).getTime();
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        setOnline(distance);
+
+        console.log('1111');
+      } else {
+        console.log('2222');
+      }
+    } catch (error) {}
+  };
+  // 166251960.
+
   useEffect(() => {
-    _loginUser();
+    // _loginUser();
     _Search();
+    _Topic();
   }, []);
 
   return (
@@ -192,16 +212,25 @@ const Home = ({navigation, dispatch, authData}) => {
 
           <TopicHome />
 
-          <TouchableOpacity
-            onPress={() => {
-              InAppBrowser.open('https://www.bgjf-vtf.com/');
-            }}
-            style={styles.imglive}>
-            <Image
-              source={require('../../../assets/image/join.png')}
-              style={styles.imgS}
-            />
-          </TouchableOpacity>
+          {online != undefined && online === 0 ? (
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://www.bgjf-vtf.com/');
+              }}
+              style={styles.imglive}>
+              <Image
+                source={require('../../../assets/image/join.png')}
+                style={styles.imgS}
+              />
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.imglive}>
+              <Image
+                source={require('../../../assets/image/join-mobile.png')}
+                style={styles.imgS}
+              />
+            </View>
+          )}
 
           <AboutHome navigation={navigation} />
         </View>

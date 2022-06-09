@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   textalin: {
     textAlign: 'center',
     fontSize: ViewScale(18),
-    color: '#DAA5ViewScale(60)',
+    color: '#DAA560',
     width: width * 0.75,
     alignSelf: 'center',
     marginTop: ViewScale(30),

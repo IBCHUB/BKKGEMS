@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   FlatList,
+  Linking,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
@@ -45,7 +46,7 @@ const Jewellers = ({navigation}) => {
                   <TouchableOpacity
                     onPress={() => {
                       if (item.navigation === '') {
-                        InAppBrowser.open(
+                        Linking.openURL(
                           'https://www.bkkgems.com/data/file/special_activity/file11.pdf',
                         );
                       } else {

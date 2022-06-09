@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, ImageBackground} from 'react-native';
+import {View, Text, Image, ImageBackground, Linking} from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -63,7 +63,6 @@ const TopicHome = ({dispatch}) => {
   const runTime = dateAPI => {
     const time = dateAPI != undefined && dateAPI.Fair_start_in;
     var day = time.split(' ');
-
     var y = day[0].split('-')[0];
     var m = day[0].split('-')[1];
     var d = day[0].split('-')[2];
@@ -111,7 +110,7 @@ const TopicHome = ({dispatch}) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          InAppBrowser.open('https://bgjf.git.or.th/git');
+          Linking.openURL('https://bgjf.git.or.th/git');
         }}>
         <Image
           source={require('../../../assets/image/logopre.png')}

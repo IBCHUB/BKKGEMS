@@ -9,6 +9,7 @@ import {
   Animated,
   Modal,
   TextInput,
+  Linking,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
@@ -67,7 +68,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
             </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => {
-                InAppBrowser.open(
+                Linking.openURL(
                   'https://www.bkkgems.com/exprofile/' + detail.c_id,
                 );
               }}
@@ -76,7 +77,7 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                InAppBrowser.open(
+                Linking.openURL(
                   'https://www.bkkgems.com/exprofile/' + detail.c_id,
                 );
                 // navigation.navigate('Meeting', {detail})

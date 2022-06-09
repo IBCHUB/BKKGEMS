@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   imgS: {
     width: width * 0.8,
-    height: ViewScale(150),
+    height: ViewScale(140),
   },
   logob: {
     width: ViewScale(90),
