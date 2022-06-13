@@ -35,3 +35,4 @@ export {default as Page4} from './Jewellers/page4';
 export {default as Fashion} from './Fashion/Fashion';
 export {default as Workshops} from './Workshops/Workshops';
 export {default as Searchno} from './Searchno/Searchno';
+export {default as Cate} from './Cate/Cate';

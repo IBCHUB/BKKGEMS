@@ -32,7 +32,7 @@ const Suppliers = ({navigation, dispatch}) => {
     try {
       var request = 'text=' + values + '&type=' + '1';
       const response = await dispatch(Search(request));
-      console.log('2222222>>>>>>', response);
+
       if (response.res_code == '00') {
         setstate(response.res_result);
         // console.log('1111');

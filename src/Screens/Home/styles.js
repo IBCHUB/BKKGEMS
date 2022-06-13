@@ -82,14 +82,14 @@ const styles = StyleSheet.create({
   },
 
   imgpre: {
-    width: width * 0.6,
-    height: ViewScale(40),
+    width: width * 0.62,
+    height: ViewScale(48),
     alignSelf: 'center',
     marginVertical: ViewScale(10),
   },
   imgtime: {
     width: width,
-    height: ViewScale(90),
+    height: ViewScale(95),
     alignSelf: 'center',
     paddingVertical: ViewScale(10),
     marginBottom: -ViewScale(10),

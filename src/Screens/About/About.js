@@ -59,7 +59,7 @@ const About = ({navigation}) => {
               international exhibitors.
             </Text>
             <Text style={[styles.textheader, {alignSelf: 'flex-start'}]}>
-              Product Group
+              Product Groups
             </Text>
             <Text style={[styles.textdetail, {color: '#fff'}]}>
               ◆ Gemstones (Precious Stones, Semi- Precious Stones and Rough

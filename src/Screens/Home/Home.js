@@ -21,7 +21,7 @@ import {getUser} from '../../action/auth.action';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
-import {Search, Topic} from '../../action/data.action';
+import {Exhibitor_List, Search, Topic} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
 
 const Home = ({navigation, dispatch, authData}) => {
@@ -30,19 +30,6 @@ const Home = ({navigation, dispatch, authData}) => {
   const refRBSheet = useRef();
   const [state, setstate] = useState();
   const [query, setQuery] = useState('');
-  // console.log(query);
-  // const _loginUser = async values => {
-  //   try {
-  //     const response = await dispatch(getUser());
-  //     // console.log('2222222', response);
-  //     if (response.res_code == '00') {
-  //       // console.log('1111');
-  //     } else {
-  //       setmodalfalse(true);
-  //       console.log('2222');
-  //     }
-  //   } catch (error) {}
-  // };
 
   const test = text => {
     setQuery(text);
@@ -174,8 +161,31 @@ const Home = ({navigation, dispatch, authData}) => {
                   renderItem: ({item}) => {
                     return (
                       <TouchableOpacity
-                        onPress={() =>
-                          navigation.navigate('Searchno', {text: item})
+                        onPress={
+                          async () => {
+                            var request =
+                              'meet=' +
+                              '2' +
+                              '&tags=' +
+                              '' +
+                              '&type=' +
+                              '' +
+                              '&text=' +
+                              item;
+                            const response = await dispatch(
+                              Exhibitor_List(request),
+                            );
+                            console.log(response);
+                            if (response.res_code == '00') {
+                              navigation.navigate('Searchno', {
+                                item: response.res_result,
+                                text: item,
+                              });
+                            } else {
+                              console.log('2222');
+                            }
+                          }
+                          // navigation.navigate('Searchno', {text: item})
                         }>
                         <Text
                           style={{

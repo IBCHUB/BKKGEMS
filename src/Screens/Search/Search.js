@@ -485,9 +485,15 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             data={categorys}
             horizontal={true}
             renderItem={({index, item}) => {
-              // console.log(item);
+              console.log(item);
               return (
-                <TouchableOpacity style={{marginRight: 20}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Cate', {
+                      item: item.product_category_id,
+                    });
+                  }}
+                  style={{marginRight: 20}}>
                   <ImageBackground
                     source={require('../../../assets/image/iocn/000.png')}
                     style={styles.imgflat1}>

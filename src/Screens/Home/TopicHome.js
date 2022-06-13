@@ -11,6 +11,7 @@ import InAppBrowser from 'react-native-inappbrowser-reborn';
 import moment from 'moment';
 import {useIsFocused} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ViewScale} from '../../config/ViewScale';
 
 const TopicHome = ({dispatch}) => {
   const [data, setdata] = useState();
@@ -121,7 +122,11 @@ const TopicHome = ({dispatch}) => {
         source={require('../../../assets/image/imgtime.png')}
         style={styles.imgtime}>
         <Text
-          style={{fontSize: 10, fontFamily: 'Cantoria MT Std', marginLeft: 70}}>
+          style={{
+            fontSize: ViewScale(12),
+            fontFamily: 'Cantoria MT Std',
+            marginLeft: ViewScale(70),
+          }}>
           Fair start in
         </Text>
         <View style={styles.rowcall}>

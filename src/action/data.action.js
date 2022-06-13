@@ -483,6 +483,28 @@ export const Exprofile = payload => {
   };
 };
 
+export const Categories = payload => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await fetchApi(
+        'backoffice/API/v1_app/Searchall_list',
+        'POST',
+        dispatch,
+        payload,
+        'BASE',
+      );
+      // console.log(response);
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
 // Home
 export const Topic = payload => {
   return async dispatch => {

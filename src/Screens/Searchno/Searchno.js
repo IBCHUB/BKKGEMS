@@ -19,15 +19,18 @@ import {Exhibitor_List} from '../../action/data.action';
 import {connect} from 'react-redux';
 const Searchno = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
-  const item = route.params != undefined && route.params.item;
-  const tag = item != undefined && item.selectedtags;
-  const type = item != undefined && item.selectedId;
-  const text = route.params.text == undefined ? ' ' : route.params.text;
-  const [product, setproduct] = useState([]);
-  const [company, setcompany] = useState([]);
-  const [brand, setbrand] = useState([]);
-  const [data, setdata] = useState([]);
-  console.log(data);
+  const item = route.params.item;
+  const text = route.params.text;
+  const {selectedId, selectedtags} = route.params;
+  console.log(item);
+
+  const [product, setproduct] = useState(item.product);
+  console.log(product);
+  const [company, setcompany] = useState(item.brand);
+  const [brand, setbrand] = useState(item.company);
+  const [datatext, setdatatext] = useState();
+  const [textSearch, settextSearch] = useState('');
+  console.log(datatext);
   const [categorys, setcategorys] = useState([
     // {
     //   img: require('../../../assets/image/iocn/014.png'),
@@ -105,25 +108,49 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
     },
   ]);
 
-  const _Exhibitor_List = async values => {
+  const _Search = async (v1, v2) => {
+    // console.log(values);
     try {
+      let tagstem = '';
+      let typetem = '';
+      if (v1 != undefined) {
+        tagstem = v1;
+      } else {
+        tagstem = selectedtags;
+      }
+      if (v2 != undefined) {
+        typetem = v2;
+      } else {
+        typetem = selectedId;
+      }
       var request =
-        'meet=' + '1' + '&tags=' + tag + '&type=' + type + '&text=' + text;
+        'meet=' +
+        '1' +
+        '&tags=' +
+        tagstem +
+        '&type=' +
+        typetem +
+        '&text=' +
+        textSearch;
+      console.log(request);
       const response = await dispatch(Exhibitor_List(request));
-
+      // console.log('????????', response.res_result);
       if (response.res_code == '00') {
         setproduct(response.res_result.product);
-        setcompany(response.res_result.company);
-        setbrand(response.res_result.brand);
-        setdata(response.res_result);
       } else {
         console.log('2222');
       }
     } catch (error) {}
   };
-  useEffect(() => {
-    _Exhibitor_List();
-  }, []);
+
+  const searchSubmit = text => {
+    console.log('searchSubmit');
+    _Search();
+  };
+  const searchChange = text => {
+    console.log(text);
+    settextSearch(text);
+  };
   return (
     <View style={styles.container}>
       <SafeAreaView style={{backgroundColor: '#23232390'}} />
@@ -151,6 +178,9 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
             refRBSheet.current.close();
           }}
           navigation={navigation}
+          selectedtagsSend={selectedtags}
+          selectedIdSend={selectedId}
+          Search={_Search}
         />
       </RBSheet>
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
@@ -166,6 +196,10 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
               clearButtonMode="always"
               placeholder="What are you looking for?"
               style={styles.input}
+              onSubmitEditing={searchSubmit}
+              onChange={event => {
+                searchChange(event.nativeEvent.text);
+              }}
             />
           </View>
           <TouchableOpacity
@@ -178,7 +212,7 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           </TouchableOpacity>
         </View>
 
-        {product.data ? (
+        {product.count === 0 && company.count === 0 && brand.count === 0 && (
           <View style={styles.com}>
             <Image
               source={require('../../../assets/image/folder.png')}
@@ -186,164 +220,257 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
             />
             <Text style={styles.textccom}>No result found</Text>
           </View>
+        )}
+
+        {product.count === 0 ? (
+          <View />
         ) : (
-          <View>
-            {product.count == 0 ? (
-              <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                No result found
+          <View style={styles.tags}>
+            <View style={styles.roww}>
+              <Text style={styles.texttags}>
+                Product{' '}
+                <Text
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                  “{datatext}”
+                </Text>{' '}
+                Found {product.count} Items
               </Text>
-            ) : (
-              <View style={styles.tags}>
-                <View style={styles.roww}>
-                  <Text style={styles.texttags}>
-                    Product{' '}
-                    <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                      “{text}”
-                    </Text>{' '}
-                    Found {product.count} Items
+              {product.count > 3 && (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Seeall', {
+                      key: 'product',
+                      data: product,
+                    })
+                  }
+                  style={styles.line}>
+                  <Text
+                    style={[
+                      styles.texttags,
+                      {
+                        color: '#DAA560',
+                      },
+                    ]}>
+                    SEE ALL
                   </Text>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate('Seeall', {
-                        key: 'product',
-                        data: {data},
-                      })
-                    }
-                    style={styles.line}>
-                    <Text
-                      style={[
-                        styles.texttags,
-                        {
-                          color: '#DAA560',
-                        },
-                      ]}>
-                      SEE ALL
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <FlatList
-                  data={product.data}
-                  horizontal={true}
-                  renderItem={({index, item}) => {
-                    return (
-                      <View style={{marginRight: 20}}>
-                        {index <= 2 && (
-                          <TouchableOpacity style={styles.buttonflat}>
-                            <Image
-                              style={styles.imgflat}
-                              source={{uri: item.company_cover}}
-                            />
+                </TouchableOpacity>
+              )}
+            </View>
+            <FlatList
+              data={product.data}
+              horizontal={true}
+              renderItem={({index, item}) => {
+                return (
+                  <View style={{marginRight: 20}}>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        try {
+                          var request = 'exid=' + item.company_id;
+                          const response = await dispatch(Exprofile(request));
+                          //console.log(response);
+                          if (response.res_code == '00') {
+                            // setdetail(response.res_result);
+                            setTimeout(() => {
+                              navigation.navigate('ExhibitorsDetail', {
+                                res: response.res_result,
+                              });
+                            }, 300);
 
-                            <Text numberOfLines={2} style={styles.text}>
-                              {item.company_name}
-                            </Text>
-                          </TouchableOpacity>
-                        )}
-                      </View>
-                    );
-                  }}
-                />
-              </View>
-            )}
-            {company.count == 0 ? (
-              ' '
-            ) : (
-              <View style={styles.tags}>
-                <View style={styles.roww}>
-                  <Text style={styles.texttags}>
-                    Company{' '}
-                    <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                      “{text}”
-                    </Text>{' '}
-                    Found {company.count} Items
-                  </Text>
-                  <TouchableOpacity style={styles.line}>
-                    <Text
-                      style={[
-                        styles.texttags,
-                        {
-                          color: '#DAA560',
-                        },
-                      ]}>
-                      SEE ALL
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <FlatList
-                  data={company.data}
-                  horizontal={true}
-                  renderItem={({index, item}) => {
-                    return (
-                      <View style={{marginRight: 20}}>
-                        {index <= 2 && (
-                          <TouchableOpacity style={styles.buttonflat}>
-                            <Image
-                              style={styles.imgflat}
-                              source={{uri: item.company_cover}}
-                            />
+                            // console.log('1111');
+                          } else {
+                            // console.log('2222');
+                          }
+                        } catch (error) {}
+                      }}
+                      style={styles.buttonflat}>
+                      <Image
+                        style={styles.imgflat}
+                        source={{uri: item.product_img_name}}
+                        resizeMode="stretch"
+                      />
 
-                            <Text numberOfLines={2} style={styles.text}>
-                              {item.company_name}
-                            </Text>
-                          </TouchableOpacity>
-                        )}
+                      <View style={styles.row}>
+                        <Image
+                          style={styles.imglogo}
+                          source={{uri: item.company_logo}}
+                        />
+                        <Text numberOfLines={1} style={styles.text}>
+                          {item.product_img_title}
+                        </Text>
                       </View>
-                    );
-                  }}
-                />
-              </View>
-            )}
-            {brand.count == 0 ? (
-              ' '
-            ) : (
-              <View style={styles.tags}>
-                <View style={styles.roww}>
-                  <Text style={styles.texttags}>
-                    Brand{' '}
-                    <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                      “{text}”
-                    </Text>{' '}
-                    Found {brand.count} Items
-                  </Text>
-                  <TouchableOpacity style={styles.line}>
-                    <Text
-                      style={[
-                        styles.texttags,
-                        {
-                          color: '#DAA560',
-                        },
-                      ]}>
-                      SEE ALL
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <FlatList
-                  data={brand.data}
-                  horizontal={true}
-                  renderItem={({index, item}) => {
-                    return (
-                      <View style={{marginRight: 20}}>
-                        {index <= 2 && (
-                          <TouchableOpacity style={styles.buttonflat}>
-                            <Image
-                              style={styles.imgflat}
-                              source={{uri: item.company_cover}}
-                            />
-
-                            <Text numberOfLines={2} style={styles.text}>
-                              {item.company_name}
-                            </Text>
-                          </TouchableOpacity>
-                        )}
-                      </View>
-                    );
-                  }}
-                />
-              </View>
-            )}
+                    </TouchableOpacity>
+                  </View>
+                );
+              }}
+            />
           </View>
         )}
-        <View style={{borderBottomWidth: 0.5, borderBottomColor: '#DAA560'}} />
+        {company.count == 0 ? (
+          <View />
+        ) : (
+          <View style={styles.tags}>
+            <View style={styles.roww}>
+              <Text style={styles.texttags}>
+                Company{' '}
+                <Text
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                  “{datatext}”
+                </Text>{' '}
+                Found {company.count} Items
+              </Text>
+              {company.count > 3 && (
+                <TouchableOpacity
+                  style={styles.line}
+                  onPress={() =>
+                    navigation.navigate('Seeall', {
+                      key: 'company',
+                      data: company,
+                    })
+                  }>
+                  <Text
+                    style={[
+                      styles.texttags,
+                      {
+                        color: '#DAA560',
+                      },
+                    ]}>
+                    SEE ALL
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            <FlatList
+              data={company.data}
+              horizontal={true}
+              renderItem={({index, item}) => {
+                return (
+                  <View style={{marginRight: 20}}>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        try {
+                          var request = 'exid=' + item.company_id;
+                          const response = await dispatch(Exprofile(request));
+                          //console.log(response);
+                          if (response.res_code == '00') {
+                            // setdetail(response.res_result);
+                            setTimeout(() => {
+                              navigation.navigate('ExhibitorsDetail', {
+                                res: response.res_result,
+                              });
+                            }, 300);
+
+                            // console.log('1111');
+                          } else {
+                            // console.log('2222');
+                          }
+                        } catch (error) {}
+                      }}
+                      style={styles.buttonflat}>
+                      <Image
+                        style={styles.imgflat}
+                        source={{uri: item.company_cover}}
+                        resizeMode="stretch"
+                      />
+
+                      <View style={styles.row}>
+                        <Image
+                          style={styles.imglogo}
+                          source={{uri: item.company_logo}}
+                        />
+                        <Text numberOfLines={1} style={styles.text}>
+                          {item.company_name}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                );
+              }}
+            />
+          </View>
+        )}
+        {brand.count == 0 ? (
+          <View />
+        ) : (
+          <View style={styles.tags}>
+            <View style={styles.roww}>
+              <Text style={styles.texttags}>
+                Brand{' '}
+                <Text
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                  “{datatext}”
+                </Text>{' '}
+                Found {brand.count} Items
+              </Text>
+              {brand.count > 3 && (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Seeall', {
+                      key: 'brand',
+                      data: brand,
+                    })
+                  }
+                  style={styles.line}>
+                  <Text
+                    style={[
+                      styles.texttags,
+                      {
+                        color: '#DAA560',
+                      },
+                    ]}>
+                    SEE ALL
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+            <FlatList
+              data={brand.data}
+              horizontal={true}
+              renderItem={({index, item}) => {
+                return (
+                  <View style={{marginRight: 20}}>
+                    <TouchableOpacity
+                      onPress={async () => {
+                        try {
+                          var request = 'exid=' + item.company_id;
+                          const response = await dispatch(Exprofile(request));
+                          //console.log(response);
+                          if (response.res_code == '00') {
+                            // setdetail(response.res_result);
+                            setTimeout(() => {
+                              navigation.navigate('ExhibitorsDetail', {
+                                res: response.res_result,
+                              });
+                            }, 300);
+
+                            // console.log('1111');
+                          } else {
+                            // console.log('2222');
+                          }
+                        } catch (error) {}
+                      }}
+                      style={styles.buttonflat}>
+                      <Image
+                        style={styles.imgflat}
+                        source={{uri: item.company_cover}}
+                      />
+
+                      <View style={styles.row}>
+                        <Image
+                          style={styles.imglogo}
+                          source={{uri: item.company_logo}}
+                        />
+                        <Text numberOfLines={1} style={styles.text}>
+                          {item.company_name}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
+                );
+              }}
+            />
+          </View>
+        )}
+
         <View style={styles.tags}>
           <View style={styles.roww}>
             <Text style={styles.texttags}>Categories</Text>
@@ -361,9 +488,15 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
             data={categorys}
             horizontal={true}
             renderItem={({index, item}) => {
-              // console.log(item);
+              console.log(item);
               return (
-                <TouchableOpacity style={{marginRight: 20}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('Cate', {
+                      item: item.product_category_id,
+                    });
+                  }}
+                  style={{marginRight: 20}}>
                   <ImageBackground
                     source={require('../../../assets/image/iocn/000.png')}
                     style={styles.imgflat1}>

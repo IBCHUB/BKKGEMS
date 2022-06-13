@@ -199,7 +199,6 @@ const styles = StyleSheet.create({
   textdetailabout: {
     fontSize: ViewScale(16),
     color: '#000',
-
     marginBottom: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
     marginTop: ViewScale(10),

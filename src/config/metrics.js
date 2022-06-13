@@ -6,7 +6,7 @@ const {height, width} = Dimensions.get('window');
 const scale = width / 414;
 
 export default {
-  BASE_URL: 'https://bkkgem2022.ibusiness.co.th/', // production
+  BASE_URL: 'https://bkkgems.com/', // production
   VERSION: 20211209,
   VERSION_NUM: 14,
   // ANDROID_STATUSBAR: 24,

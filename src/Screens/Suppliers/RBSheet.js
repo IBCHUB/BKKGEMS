@@ -226,9 +226,7 @@ const RBSheet = ({onPress, navigation, dispatch}) => {
                 '&text=' +
                 '';
               const response = await dispatch(Exhibitor_List(request));
-              console.log('????????', response.res_result);
               if (response.res_code == '00') {
-                console.log('1111');
                 navigation.navigate('Search', {
                   item: response.res_result,
                   text: '',

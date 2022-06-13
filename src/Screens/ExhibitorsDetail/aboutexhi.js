@@ -65,66 +65,76 @@ const aboutexhi = ({detail}) => {
         {detail.about === '' ? '-' : detail.about}
       </Text>
       <Text style={styles.textsupabout}>SOCIAL MEDIA</Text>
-      <View style={styles.rowsocial}>
-        {detail.company_facebook != '' && (
-          <TouchableOpacity
-            onPress={() => {
-              Linking.openURL(detail.company_facebook);
-            }}
-            style={styles.listsocial}>
-            <Fontisto
-              name="facebook"
-              size={ViewScale(20)}
-              color={'#DAA560'}
-              style={{alignSelf: 'center'}}
-            />
-          </TouchableOpacity>
-        )}
-        {detail.company_instagram != '' && (
-          <TouchableOpacity
-            onPress={() => {
-              Linking.openURL(detail.company_instagram);
-            }}
-            style={styles.listsocial}>
-            <Fontisto
-              name="instagram"
-              size={ViewScale(20)}
-              color={'#DAA560'}
-              style={{alignSelf: 'center'}}
-            />
-          </TouchableOpacity>
-        )}
-        {detail.company_youtube != '' && (
-          <TouchableOpacity
-            onPress={() => {
-              Linking.openURL(detail.company_youtube);
-            }}
-            style={styles.listsocial}>
-            <AntDesign
-              name="youtube"
-              size={ViewScale(20)}
-              color={'#DAA560'}
-              style={{alignSelf: 'center'}}
-            />
-          </TouchableOpacity>
-        )}
-      </View>
+      {detail.company_facebook &&
+      detail.company_instagram &&
+      detail.company_youtube === '' ? (
+        <View style={styles.rowsocial}>
+          {detail.company_facebook != '' && (
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL(detail.company_facebook);
+              }}
+              style={styles.listsocial}>
+              <Fontisto
+                name="facebook"
+                size={ViewScale(20)}
+                color={'#DAA560'}
+                style={{alignSelf: 'center'}}
+              />
+            </TouchableOpacity>
+          )}
+          {detail.company_instagram != '' && (
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL(detail.company_instagram);
+              }}
+              style={styles.listsocial}>
+              <Fontisto
+                name="instagram"
+                size={ViewScale(20)}
+                color={'#DAA560'}
+                style={{alignSelf: 'center'}}
+              />
+            </TouchableOpacity>
+          )}
+          {detail.company_youtube != '' && (
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL(detail.company_youtube);
+              }}
+              style={styles.listsocial}>
+              <AntDesign
+                name="youtube"
+                size={ViewScale(20)}
+                color={'#DAA560'}
+                style={{alignSelf: 'center'}}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
+      ) : (
+        <Text style={[styles.textdetailabout, {marginBottom: 0}]}>-</Text>
+      )}
       <Text style={[styles.textsupabout, {marginTop: ViewScale(20)}]}>
         VIDEO
       </Text>
-      <TouchableOpacity
-        onPress={() => {
-          Linking.openURL(detail.video_full_url);
-        }}
-        style={styles.rowsocial}>
-        <Image
-          source={require('../../../assets/image/Iconvedio.png')}
-          style={styles.vedio}
-        />
-        <Text style={styles.textconten}>
-          Company Presentation {detail.year}
-        </Text>
-      </TouchableOpacity>
+      {detail.company_video != '' ? (
+        <TouchableOpacity
+          onPress={() => {
+            Linking.openURL(detail.company_video);
+          }}
+          style={styles.rowsocial}>
+          <Image
+            source={require('../../../assets/image/Iconvedio.png')}
+            style={styles.vedio}
+          />
+          <Text style={styles.textconten}>
+            Company Presentation {detail.year}
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <Text style={[styles.textdetailabout, {marginBottom: 0}]}>-</Text>
+      )}
       <Text style={[styles.textsupabout, {marginTop: ViewScale(20)}]}>
         DOWNLOAD
       </Text>

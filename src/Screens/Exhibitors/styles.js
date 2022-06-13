@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   input: {
-    width: ViewScale(270),
+    width: ViewScale(315),
     height: ViewScale(35),
     marginLeft: ViewScale(10),
     borderRadius: ViewScale(8),

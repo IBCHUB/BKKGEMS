@@ -216,24 +216,29 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
           <TouchableOpacity
             onPress={async () => {
               onPress();
-              // var request =
-              //   'meet=' +
-              //   '1' +
-              //   '&tags=' +
-              //   selectedtags +
-              //   '&type=' +
-              //   selectedId +
-              //   '&text=' +
-              //   '';
-              // const response = await dispatch(Exhibitor_List(request));
-              // console.log(response);
-              // if (response.res_code == '00') {
-              // } else {
-              //   console.log('2222');
-              // }
-              navigation.navigate('Searchno', {
-                item: {selectedId, selectedtags},
-              });
+              var request =
+                'meet=' +
+                '1' +
+                '&tags=' +
+                selectedtags +
+                '&type=' +
+                selectedId +
+                '&text=' +
+                '';
+              const response = await dispatch(Exhibitor_List(request));
+              if (response.res_code == '00') {
+                navigation.navigate('Searchno', {
+                  item: response.res_result,
+                  text: '',
+                  selectedId: selectedId,
+                  selectedtags: selectedtags,
+                });
+              } else {
+                console.log('2222');
+              }
+              // navigation.navigate('Searchno', {
+              //   item: {selectedId, selectedtags},
+              // });
             }}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>

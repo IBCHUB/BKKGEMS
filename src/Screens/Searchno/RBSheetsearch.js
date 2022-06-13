@@ -14,8 +14,17 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {Tags} from '../../action/data.action';
 import {connect} from 'react-redux';
 const {width, height} = Dimensions.get('window');
-const RBSheetsearch = ({onPress, navigation, dispatch}) => {
-  const [selectedId, setselectedId] = useState([]);
+const RBSheetsearch = ({
+  onPress,
+  navigation,
+  dispatch,
+  selectedtagsSend,
+  selectedIdSend,
+  Search,
+}) => {
+  const [selectedId, setselectedId] = useState(
+    selectedIdSend === undefined ? [] : selectedIdSend,
+  );
   const [checked, setChecked] = useState(false);
   const [tags, settags] = useState([]);
   const isChecked = id => {
@@ -47,7 +56,9 @@ const RBSheetsearch = ({onPress, navigation, dispatch}) => {
       text: 'by company',
     },
   ];
-  const [selectedtags, setselectedtags] = useState([]);
+  const [selectedtags, setselectedtags] = useState(
+    selectedtagsSend === undefined ? [] : selectedtagsSend,
+  );
   const [checkedtags, setCheckedtags] = useState(false);
   const isCheckedtags = id => {
     const isChecktags = selectedtags.includes(id);
@@ -212,6 +223,8 @@ const RBSheetsearch = ({onPress, navigation, dispatch}) => {
           <TouchableOpacity
             onPress={() => {
               onPress();
+              Search(selectedId, selectedtags);
+              // navigation.navigate('Search', {item: {selectedId, selectedtags}});
             }}
             style={[styles.touch, {backgroundColor: '#DAA560'}]}>
             <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>

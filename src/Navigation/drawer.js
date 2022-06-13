@@ -283,7 +283,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity
             onPress={() => {
               Linking.openURL(
-                'https://www.bkkgems.com/data/file/exhibitors/exhibitor_manual.pdff',
+                'https://www.bkkgems.com/data/file/exhibitors/exhibitor_manual.pdf',
               );
             }}>
             <Text style={styles.touchindrawer}>{I18n.t('Manual')}</Text>

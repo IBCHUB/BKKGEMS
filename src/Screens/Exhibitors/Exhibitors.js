@@ -20,13 +20,20 @@ import Feather from 'react-native-vector-icons/Feather';
 import styles from './styles';
 import RBSheetExhi from './RBSheetExhi';
 import {connect} from 'react-redux';
-import {Exhibitor, Exhibitor_List, Exprofile} from '../../action/data.action';
+import {
+  Exhibitor,
+  Exhibitor_List,
+  Exprofile,
+  Search,
+} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
+import Autocomplete from 'react-native-autocomplete-input';
+
 const {width, height} = Dimensions.get('window');
 const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const refRBSheet = useRef();
   const [data, setData] = useState([]);
-  const [offset, setOffset] = useState(1);
+  const [offset, setOffset] = useState(0);
   const [fetching_from_server, setFetching_from_server] = useState(false);
   const [isListEnd, setIsListEnd] = useState(false);
   const [isrefresh, setIsRefresh] = useState(false);
@@ -61,9 +68,6 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
       }
     } catch (error) {}
   };
-  useEffect(() => {
-    _Exhibitor();
-  }, []);
 
   const LoadMore = async () => {
     try {
@@ -83,33 +87,36 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
       console.log(error);
     }
   };
-  const _Search = async () => {
-    // console.log(values);
+
+  const onRefresh = async () => {
+    _Exhibitor();
+  };
+  const [state, setstate] = useState();
+  const [query, setQuery] = useState('');
+  console.log(query);
+  const test = text => {
+    setQuery(text);
+    _Search(text);
+  };
+
+  const _Search = async values => {
     try {
-      var request = 'tags=' + '1' + '&type=' + '1' + '&text=' + textSearch;
-      const response = await dispatch(Exhibitor(request));
-      console.log('????????', response.res_result);
+      var request = 'text=' + values + '&type=' + '1';
+      const response = await dispatch(Search(request));
+
       if (response.res_code == '00') {
-        console.log('111');
+        setstate(response.res_result);
+        // console.log('1111');
       } else {
         console.log('2222');
       }
     } catch (error) {}
   };
 
-  const searchSubmit = text => {
-    console.log('searchSubmit');
-    _Search();
-  };
-  const searchChange = text => {
-    console.log(text);
-    settextSearch(text);
-  };
-
-  const onRefresh = async () => {
+  useEffect(() => {
     _Exhibitor();
-  };
-
+    _Search();
+  }, []);
   return (
     <View style={{flex: 1}}>
       <SafeAreaView style={{backgroundColor: '#23232390'}}>
@@ -148,14 +155,62 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                 color={'#44444480'}
                 style={styles.icon1}
               />
-              <TextInput
-                clearButtonMode="always"
+              <Autocomplete
+                data={state}
+                value={query}
+                hideResults={query.length == 0 ? true : false}
+                autoCorrect={false}
                 placeholder="What are you looking for?"
-                placeholderTextColor={'#44444480'}
+                onChangeText={text => {
+                  test(text);
+                }}
+                flatListProps={{
+                  keyExtractor: (_, idx) => idx,
+                  renderItem: ({item}) => {
+                    return (
+                      <TouchableOpacity
+                        onPress={async () => {
+                          var request =
+                            'meet=' +
+                            '2' +
+                            '&tags=' +
+                            '' +
+                            '&type=' +
+                            '' +
+                            '&text=' +
+                            item;
+                          const response = await dispatch(
+                            Exhibitor_List(request),
+                          );
+                          if (response.res_code == '00') {
+                            navigation.navigate('Search', {
+                              item: response.res_result,
+                              text: item,
+                            });
+                          } else {
+                            console.log('2222');
+                          }
+                        }}>
+                        <Text
+                          style={{
+                            fontSize: ViewScale(18),
+                            padding: ViewScale(3),
+                            fontFamily: 'Cantoria MT Std',
+                          }}>
+                          {item}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  },
+                }}
                 style={styles.input}
-                onSubmitEditing={searchSubmit}
-                onChange={event => {
-                  searchChange(event.nativeEvent.text);
+                listContainerStyle={{
+                  width: ViewScale(320),
+                  marginTop: ViewScale(38),
+                  position: 'absolute',
+                  borderRadius: 5,
+                  backgroundColor: '#fff',
+                  zIndex: 999,
                 }}
               />
             </View>
@@ -168,6 +223,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
               />
             </TouchableOpacity>
           </View>
+
           <FlatList
             data={data}
             numColumns={2}
@@ -176,44 +232,42 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
             renderItem={({index, item}) => {
               // console.log(item);
               return (
-                <View>
-                  <TouchableOpacity
-                    onPress={async () => {
-                      try {
-                        var request = 'exid=' + item.company_id;
-                        const response = await dispatch(Exprofile(request));
-                        //console.log(response);
-                        if (response.res_code == '00') {
-                          // setdetail(response.res_result);
-                          navigation.navigate('ExhibitorsDetail', {
-                            res: response.res_result,
-                          });
-                          // console.log('1111');
-                        } else {
-                          // console.log('2222');
-                        }
-                      } catch (error) {}
-                    }}
-                    style={styles.buttonflat}>
+                <TouchableOpacity
+                  onPress={async () => {
+                    try {
+                      var request = 'exid=' + item.company_id;
+                      const response = await dispatch(Exprofile(request));
+                      //console.log(response);
+                      if (response.res_code == '00') {
+                        // setdetail(response.res_result);
+                        navigation.navigate('ExhibitorsDetail', {
+                          res: response.res_result,
+                        });
+                        // console.log('1111');
+                      } else {
+                        // console.log('2222');
+                      }
+                    } catch (error) {}
+                  }}
+                  style={styles.buttonflat}>
+                  <Image
+                    resizeMode="cover"
+                    style={styles.imgflat}
+                    source={{uri: item.company_cover}}
+                    defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
+                  />
+                  <View style={styles.row}>
                     <Image
                       resizeMode="cover"
-                      style={styles.imgflat}
-                      source={{uri: item.company_cover}}
+                      style={styles.imglogo}
+                      source={{uri: item.company_logo}}
                       defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                     />
-                    <View style={styles.row}>
-                      <Image
-                        resizeMode="cover"
-                        style={styles.imglogo}
-                        source={{uri: item.company_logo}}
-                        defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
-                      />
-                      <Text numberOfLines={2} style={styles.text}>
-                        {item.company_name}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
+                    <Text numberOfLines={2} style={styles.text}>
+                      {item.company_name}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               );
             }}
             onEndReached={() => {
@@ -227,6 +281,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
               <RefreshControl refreshing={isrefresh} onRefresh={onRefresh} />
             }
           />
+
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={onPressTouch}
