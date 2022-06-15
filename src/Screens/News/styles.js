@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
@@ -9,12 +9,12 @@ const styles = StyleSheet.create({
   },
   buttonflat: {
     width: width,
-    height: ViewScale(210),
+    height: ViewScale(260),
     marginBottom: ViewScale(5),
   },
   linear: {
     width: width,
-    height: ViewScale(210),
+    height: ViewScale(260),
     zIndex: 99,
     justifyContent: 'flex-end',
     paddingLeft: ViewScale(10),
@@ -73,18 +73,18 @@ const styles = StyleSheet.create({
   icon: {
     alignSelf: 'center',
   },
-  input: {
-    width: width * 0.9,
-    height: ViewScale(35),
-    border: 1,
-    backgroundColor: '#fff',
-    paddingLeft: ViewScale(35),
-    borderRadius: ViewScale(8),
-    fontSize: ViewScale(16),
-    color: '#888888',
-    fontFamily: 'Cantoria MT Std',
-    alignSelf: 'center',
-  },
+  // input: {
+  //   width: width * 0.9,
+  //   height: ViewScale(35),
+  //   border: 1,
+  //   backgroundColor: '#fff',
+  //   paddingLeft: ViewScale(35),
+  //   borderRadius: ViewScale(8),
+  //   fontSize: ViewScale(16),
+  //   color: '#888888',
+  //   fontFamily: 'Cantoria MT Std',
+  //   alignSelf: 'center',
+  // },
 
   viewsearch: {
     flexDirection: 'row',
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   input: {
-    width: ViewScale(270),
-    height: ViewScale(35),
+    width: ViewScale(325),
+    height: Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
     marginLeft: ViewScale(10),
     borderRadius: ViewScale(8),
     fontSize: ViewScale(16),
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
   },
   iconsea: {
-    width: ViewScale(25),
-    height: ViewScale(25),
+    width: ViewScale(30),
+    height: ViewScale(30),
     alignSelf: 'center',
   },
   containersort: {
@@ -175,6 +175,26 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     color: '#DAA560',
     alignSelf: 'center',
+  },
+  FloatingActionButtonStyle: {
+    position: 'absolute',
+    width: ViewScale(40),
+    height: ViewScale(40),
+    backgroundColor: '#fff',
+    transform: [{rotate: '45deg'}],
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: ViewScale(30),
+    bottom: ViewScale(120),
+    borderColor: '#000000',
+    shadowColor: '#00000029',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: ViewScale(15),
   },
 });
 

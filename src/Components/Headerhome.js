@@ -31,12 +31,12 @@ const Headerhome = ({navigation, dispatch}) => {
           style={{alignSelf: 'center'}}
         />
       </TouchableOpacity>
-      <View style={styles.row}>
-        <Image
-          source={require('../../assets/image/BKKGEMSlogo.png')}
-          style={styles.logoBkk}
-        />
-      </View>
+
+      <Image
+        source={require('../../assets/image/BKKGEMSlogo.png')}
+        style={styles.logoBkk}
+      />
+
       <View style={styles.row}>
         <TouchableOpacity
           // disabled

@@ -27,6 +27,15 @@ const News = ({navigation, dispatch}) => {
   const refRBSheet = useRef();
   const [data, setData] = useState([]);
   const [textSearch, settextSearch] = useState('');
+
+  const scrollRef = useRef();
+  const onPressTouch = () => {
+    scrollRef?.current?.scrollToIndex({index: 0});
+    // scrollRef.current?.scrollTo({
+    //   y: 0,
+    //   animated: true,
+    // });
+  };
   const _News = async values => {
     try {
       var request = 'page=' + '' + '&limits=' + '10' + '&order=' + 'desc';
@@ -224,8 +233,8 @@ const News = ({navigation, dispatch}) => {
               />
               <TextInput
                 clearButtonMode="always"
-                placeholder="What are you looking for?"
-                placeholderTextColor={'#44444480'}
+                placeholder="Search news or articles"
+                placeholderTextColor={'#444444'}
                 style={styles.input}
                 onSubmitEditing={searchSubmit}
                 onChange={event => {
@@ -244,6 +253,7 @@ const News = ({navigation, dispatch}) => {
           </View>
           <FlatList
             data={data}
+            ref={scrollRef}
             style={{height: height * 0.725}}
             renderItem={({index, item}) => {
               return (
@@ -266,7 +276,17 @@ const News = ({navigation, dispatch}) => {
               );
             }}
           />
-
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={onPressTouch}
+            style={styles.FloatingActionButtonStyle}>
+            <Feather
+              size={ViewScale(25)}
+              name="arrow-up-left"
+              color={'#DAA560'}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
           <View style={{marginBottom: ViewScale(50)}} />
         </View>
       </View>

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   imgHeader: {
     width: width,
-    height: ViewScale(250),
+    height: ViewScale(350),
     justifyContent: 'flex-end',
   },
   header: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: width * 0.8,
     backgroundColor: '#fff',
-    borderRadius: ViewScale(8),
+    borderRadius: ViewScale(4),
   },
   icon: {
     alignSelf: 'center',
@@ -37,23 +37,24 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   input: {
-    width: ViewScale(270),
-    height: ViewScale(35),
+    width: ViewScale(320),
+    height: Platform.OS === 'ios' ? ViewScale(35) : ViewScale(48),
     marginLeft: ViewScale(10),
-    borderRadius: 8,
+    borderRadius: ViewScale(20),
     fontSize: ViewScale(16),
     color: '#888888',
     fontFamily: 'Cantoria MT Std',
   },
   iconsea: {
-    width: ViewScale(25),
-    height: ViewScale(25),
+    width: ViewScale(30),
+    height: ViewScale(30),
     alignSelf: 'center',
   },
   texthead: {
-    fontSize: ViewScale(14),
+    fontSize: ViewScale(12),
     color: '#fff',
     fontFamily: 'Cantoria MT Std',
+    width: width * 0.96,
   },
   textdetail: {
     fontSize: ViewScale(18),
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   linersort: {
-    width: width * 0.85,
+    width: width * 0.88,
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#444',
@@ -133,6 +134,11 @@ const styles = StyleSheet.create({
     fontSize: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
     color: '#DAA560',
+    alignSelf: 'center',
+  },
+  imgHeader1: {
+    width: width * 0.9,
+    height: ViewScale(350),
     alignSelf: 'center',
   },
 });

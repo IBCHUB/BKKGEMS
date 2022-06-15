@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#DAA560',
     width: width * 0.267,
     paddingHorizontal: 5,
+    justifyContent: 'center',
   },
   review1: {
     height: ViewScale(60),

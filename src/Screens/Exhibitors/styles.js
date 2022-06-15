@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
@@ -14,40 +14,42 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     alignSelf: 'center',
     marginLeft: ViewScale(10),
+    zIndex: 999,
   },
   viewinsearch: {
     flexDirection: 'row',
     width: width * 0.8,
     backgroundColor: '#fff',
-    borderRadius: ViewScale(8),
+    borderRadius: ViewScale(5),
   },
   icon1: {
     alignSelf: 'center',
-    marginLeft: ViewScale(10),
+    marginHorizontal: ViewScale(10),
     zIndex: 99,
   },
   input: {
-    width: ViewScale(315),
-    height: ViewScale(35),
-    marginLeft: ViewScale(10),
+    width: ViewScale(320),
+    height: Platform.OS === 'ios' ? ViewScale(35) : ViewScale(48),
+    // marginLeft: ViewScale(10),
     borderRadius: ViewScale(8),
     fontSize: ViewScale(14),
     color: '#888888',
     fontFamily: 'Cantoria MT Std',
+    paddingLeft: ViewScale(10),
   },
   iconsea: {
-    width: ViewScale(25),
-    height: ViewScale(25),
+    width: ViewScale(30),
+    height: ViewScale(30),
     alignSelf: 'center',
   },
   buttonflat: {
     backgroundColor: '#fff',
-    width: width * 0.42,
-    height: ViewScale(150),
+    width: width * 0.45,
+    height: ViewScale(200),
     alignSelf: 'center',
     marginTop: ViewScale(20),
     borderRadius: ViewScale(5),
-    marginLeft: ViewScale(20),
+    marginLeft: ViewScale(15),
     shadowColor: '#00000029',
     shadowOffset: {
       width: 0,
@@ -58,12 +60,12 @@ const styles = StyleSheet.create({
     elevation: ViewScale(15),
   },
   imgflat: {
-    width: width * 0.42,
-    height: ViewScale(120),
+    width: width * 0.45,
+    height: ViewScale(170),
     borderTopLeftRadius: ViewScale(5),
     borderTopRightRadius: ViewScale(5),
     borderBottomWidth: ViewScale(0.5),
-    borderBottomColor: '#33333ViewScale(35)0',
+    borderBottomColor: '#33333350',
   },
   buttonloadmore: {
     width: width * 0.45,
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: ViewScale(40),
     height: ViewScale(40),
-    backgroundColor: '#DAA560',
+    backgroundColor: '#fff',
     transform: [{rotate: '45deg'}],
     alignItems: 'center',
     justifyContent: 'center',

@@ -227,7 +227,7 @@ function TabStackScreen(navigation) {
               }}>
               <Foundation
                 name="star"
-                size={focused ? ViewScale(30) : ViewScale(25)}
+                size={focused ? ViewScale(30) : ViewScale(28)}
                 color={focused ? '#fff' : '#000'}
               />
               <Text
@@ -256,7 +256,7 @@ function TabStackScreen(navigation) {
               }}>
               <MaterialCommunityIcons
                 name="ticket-confirmation"
-                size={focused ? ViewScale(30) : ViewScale(25)}
+                size={focused ? ViewScale(30) : ViewScale(27)}
                 color={focused ? '#fff' : '#000'}
               />
               <Text
@@ -287,16 +287,24 @@ function TabStackScreen(navigation) {
                 name="file-document"
                 size={focused ? ViewScale(30) : ViewScale(25)}
                 color={focused ? '#fff' : '#000'}
+                style={{marginTop: Platform.OS === 'ios' ? 0 : ViewScale(15)}}
               />
               <Text
                 style={{
-                  fontSize: focused ? ViewScale(9) : ViewScale(7),
+                  fontSize: focused ? ViewScale(8) : ViewScale(7),
                   color: focused ? '#fff' : '#000',
                   fontWeight: focused ? '500' : '100',
                   fontFamily: 'Cantoria MT Std',
-                  width: focused ? ViewScale(40) : ViewScale(35),
+                  width: focused
+                    ? Platform.OS === 'ios'
+                      ? ViewScale(45)
+                      : ViewScale(65)
+                    : Platform.OS === 'ios'
+                    ? ViewScale(40)
+                    : ViewScale(50),
                   marginBottom: focused ? ViewScale(-5) : -3,
-                  marginTop: 5,
+                  marginBottom: Platform.OS === 'ios' ? 0 : -5,
+                  textAlign: 'center',
                 }}>
                 NEWS & TRENDS
               </Text>

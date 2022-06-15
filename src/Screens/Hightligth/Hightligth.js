@@ -10,6 +10,7 @@ import {
   FlatList,
   RefreshControl,
   Dimensions,
+  Platform,
 } from 'react-native';
 import Headercomp from '../../Components/Headercomp';
 import Feather from 'react-native-vector-icons/Feather';
@@ -54,7 +55,9 @@ const Hightligth = ({navigation, dispatch}) => {
         <FlatList
           data={highlight}
           numColumns={2}
-          style={{height: height * 0.81}}
+          style={{
+            height: Platform.OS === 'ios' ? height * 0.81 : height * 0.84,
+          }}
           ref={scrollRef}
           renderItem={({index, item}) => {
             return (
@@ -110,7 +113,7 @@ const Hightligth = ({navigation, dispatch}) => {
         <Feather
           size={ViewScale(25)}
           name="arrow-up-left"
-          color={'#fff'}
+          color={'#DAA560'}
           style={styles.icon}
         />
       </TouchableOpacity>

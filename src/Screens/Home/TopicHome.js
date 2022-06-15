@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, ImageBackground, Linking} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  Linking,
+  Platform,
+} from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -70,7 +77,7 @@ const TopicHome = ({dispatch}) => {
     var h = day[1].split(':')[0];
     var mm = day[1].split(':')[1];
     var ss = day[1].split(':')[2];
-    var countDownDate = new Date(2022, 9, 7, 10, 0, 0).getTime();
+    var countDownDate = new Date(2022, 8, 7, 10, 0, 0).getTime();
     // console.log('123456', new Date());
     // console.log(time);
     var x = setInterval(function () {
@@ -126,6 +133,8 @@ const TopicHome = ({dispatch}) => {
             fontSize: ViewScale(12),
             fontFamily: 'Cantoria MT Std',
             marginLeft: ViewScale(70),
+            color: '#000',
+            marginTop: Platform.OS === 'ios' ? 0 : -5,
           }}>
           Fair start in
         </Text>

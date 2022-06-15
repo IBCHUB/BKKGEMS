@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
   buttonflat: {
     width: width * 0.85,
-    height: ViewScale(70),
+    height: Platform.OS == 'ios' ? ViewScale(70) : ViewScale(80),
     alignSelf: 'center',
     backgroundColor: '#343434',
     marginVertical: ViewScale(10),

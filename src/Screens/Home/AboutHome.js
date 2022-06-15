@@ -48,7 +48,7 @@ const AboutHome = ({navigation}) => {
           <Text style={styles.textsup}>Exhibitors</Text>
         </View>
         <View style={styles.review1}>
-          <Text style={styles.textnumber}>50+</Text>
+          <Text style={[styles.textnumber, {marginTop: 5}]}>50+</Text>
           <Text style={[styles.textsup, {fontSize: 10}]}>
             Country from Around the world
           </Text>
@@ -59,7 +59,7 @@ const AboutHome = ({navigation}) => {
         style={styles.imgpat}
       />
       <Text style={styles.textsuphead}>Exquisiteness of Southeast Asia</Text>
-      <Text style={styles.textdetail}>
+      <Text style={[styles.textdetail, {textAlign: 'center'}]}>
         Gems and jewelry rank at No.3 of Thailand’s most exported industries,
         creating over a millionjobs and generating more than USD 15,000 million.
       </Text>

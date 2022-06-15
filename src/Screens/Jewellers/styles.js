@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
 
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   viewdetail1: {
     width: width,
     backgroundColor: '#000',
+    paddingBottom: Platform.OS === 'ios' ? 10 : 50,
   },
   imgdetail1: {
     width: width * 1,

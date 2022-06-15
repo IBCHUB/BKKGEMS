@@ -11,7 +11,7 @@ import {
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {Tags} from '../../action/data.action';
+import {Exhibitor_List, Tags} from '../../action/data.action';
 import {connect} from 'react-redux';
 const {width, height} = Dimensions.get('window');
 const RBSheetall = ({
@@ -21,7 +21,9 @@ const RBSheetall = ({
   selectedtagsSend,
   selectedIdSend,
   Search,
+  key,
 }) => {
+  console.log('key11', key);
   const [selectedtags, setselectedtags] = useState([]);
   console.log(selectedtags);
   const [checkedtags, setCheckedtags] = useState(false);
@@ -41,6 +43,7 @@ const RBSheetall = ({
     }
     setCheckedtags(selectedtags.length + 1 == tags.length);
   };
+  const [tags, settags] = useState([]);
   const _Tags = async values => {
     try {
       const response = await dispatch(Tags());
@@ -147,8 +150,32 @@ const RBSheetall = ({
           <Text style={styles.textouch}>CLEAR</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {
+          onPress={async () => {
             onPress();
+            var request =
+              'meet=' +
+              '2' +
+              '&tags=' +
+              selectedtags +
+              '&type=' +
+              '1' +
+              '&text=' +
+              '';
+            const response = await dispatch(Exhibitor_List(request));
+            console.log('123456>', response);
+            if (response.res_code == '00') {
+              navigation.navigate('Search', {
+                item: response.res_result,
+                text: '',
+                selectedId: '1',
+                selectedtags: selectedtags,
+              });
+            } else {
+              console.log('2222');
+            }
+            //   navigation.navigate('Search', {
+            //     item: {selectedId, selectedtags},
+            //   });
           }}
           style={[styles.touch, {backgroundColor: '#DAA560'}]}>
           <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>

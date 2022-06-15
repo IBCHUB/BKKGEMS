@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 const {width, height} = Dimensions.get('window');
 import {ViewScale} from '../../config/ViewScale';
 const styles = StyleSheet.create({
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: width * 0.8,
     backgroundColor: '#fff',
-    borderRadius: ViewScale(8),
+    borderRadius: ViewScale(5),
   },
   icon: {
     alignSelf: 'center',
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   input: {
-    width: ViewScale(270),
-    height: ViewScale(30),
+    width: ViewScale(320),
+    height: Platform.OS === 'ios' ? ViewScale(35) : ViewScale(48),
     marginLeft: ViewScale(10),
     borderRadius: ViewScale(20),
     fontSize: ViewScale(16),
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
   },
   iconsea: {
-    width: ViewScale(25),
-    height: ViewScale(25),
+    width: ViewScale(30),
+    height: ViewScale(30),
     alignSelf: 'center',
   },
   linearGradient: {
@@ -82,17 +82,17 @@ const styles = StyleSheet.create({
   },
 
   imgpre: {
-    width: width * 0.62,
-    height: ViewScale(48),
+    width: Platform.OS === 'ios' ? width * 0.62 : width * 0.66,
+    height: Platform.OS === 'ios' ? ViewScale(48) : ViewScale(50),
     alignSelf: 'center',
     marginVertical: ViewScale(10),
   },
   imgtime: {
     width: width,
-    height: ViewScale(95),
+    height: Platform.OS === 'ios' ? ViewScale(95) : ViewScale(108),
     alignSelf: 'center',
     paddingVertical: ViewScale(10),
-    marginBottom: -ViewScale(10),
+    marginBottom: ViewScale(-10),
   },
   row: {
     flexDirection: 'row',
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   viewfair: {
     alignSelf: 'center',
-    width: width * 0.6,
+    width: width * 0.65,
     justifyContent: 'center',
     paddingLeft: ViewScale(5),
     marginTop: ViewScale(20),
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   linersort: {
-    width: width * 0.85,
+    width: width * 0.88,
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#444',
@@ -255,24 +255,29 @@ const styles = StyleSheet.create({
     width: width * 0.65,
     alignSelf: 'center',
     justifyContent: 'space-between',
-    marginTop: ViewScale(3),
+    marginTop: Platform.OS === 'ios' ? ViewScale(3) : ViewScale(-3),
   },
   count: {
     fontSize: ViewScale(32),
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
+    fontWeight: '600',
+    color: '#000',
+    marginTop: Platform.OS === 'ios' ? 0 : ViewScale(-10),
   },
   count1: {
-    fontSize: ViewScale(12),
+    fontSize: Platform.OS === 'ios' ? ViewScale(12) : ViewScale(10),
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
-    marginTop: ViewScale(-5),
+    marginTop: Platform.OS === 'ios' ? 0 : ViewScale(-8),
+    color: '#000',
   },
   count2: {
     fontSize: ViewScale(32),
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
     marginTop: -ViewScale(10),
+    color: '#000',
   },
 });
 

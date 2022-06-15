@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     height: ViewScale(40),
     width: ViewScale(130),
     alignSelf: 'center',
-    marginLeft: ViewScale(30),
+    // marginLeft: ViewScale(30),
   },
   row: {
     flexDirection: 'row',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     color: '#DAA560',
     textAlign: 'center',
     fontFamily: 'Cantoria MT Std',
-    marginLeft: ViewScale(30),
+
     alignSelf: 'center',
     marginTop: ViewScale(5),
     width: width * 0.5,

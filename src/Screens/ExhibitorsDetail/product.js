@@ -559,7 +559,7 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
           );
         }}
       />
-      <Text style={styles.texthead}>OTHER PRODUCTS</Text>
+      <Text style={[styles.texthead, {color: '#DAA560'}]}>OTHER PRODUCTS</Text>
       <View style={{paddingBottom: ViewScale(20)}}>
         <FlatList
           data={data.filter(

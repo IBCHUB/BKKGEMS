@@ -550,9 +550,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             }}>
             <Text style={styles.touchindrawer}>{I18n.t('ChangeLanguage')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <Text style={styles.touchindrawer}>{I18n.t('ChangePassword')}</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       )}
     </View>

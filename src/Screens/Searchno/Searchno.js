@@ -15,8 +15,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import RBSheetsearch from './RBSheetsearch';
-import {Exhibitor_List} from '../../action/data.action';
+import {Exhibitor_List, Exprofile} from '../../action/data.action';
 import {connect} from 'react-redux';
+import {ViewScale} from '../../config/ViewScale';
 const Searchno = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
   const item = route.params.item;
@@ -26,16 +27,17 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
 
   const [product, setproduct] = useState(item.product);
   console.log(product);
-  const [company, setcompany] = useState(item.brand);
-  const [brand, setbrand] = useState(item.company);
+  const [company, setcompany] = useState(item.company);
+  const [brand, setbrand] = useState(item.brand);
   const [datatext, setdatatext] = useState();
   const [textSearch, settextSearch] = useState('');
   console.log(datatext);
   const [categorys, setcategorys] = useState([
-    // {
-    //   img: require('../../../assets/image/iocn/014.png'),
-    //   text: 'GOLD JEWELRY',
-    // },
+    {
+      img: require('../../../assets/image/iocn/014.png'),
+      text: 'GOLD JEWELRY',
+      product_category_id: 1,
+    },
     {
       img: require('../../../assets/image/iocn/005.png'),
       text: 'GEMSTONES',
@@ -87,22 +89,22 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
       product_category_id: 11,
     },
     {
-      img: require('../../../assets/image/iocn/008.png'),
+      img: require('../../../assets/image/iocn/010.png'),
       text: 'PRECIOUS METALS',
       product_category_id: 12,
     },
     {
-      img: require('../../../assets/image/iocn/011.png'),
+      img: require('../../../assets/image/iocn/003.png'),
       text: 'COSTUME & FASHION JEWELRY',
       product_category_id: 13,
     },
     {
-      img: require('../../../assets/image/iocn/003.png'),
+      img: require('../../../assets/image/iocn/011.png'),
       text: 'JEWELRY PARTS',
       product_category_id: 14,
     },
     {
-      img: require('../../../assets/image/iocn/010.png'),
+      img: require('../../../assets/image/iocn/008.png'),
       text: 'MACHINERY',
       product_category_id: 15,
     },
@@ -188,13 +190,14 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           <View style={styles.viewinsearch}>
             <FontAwesome5
               name="search"
-              size={20}
+              size={ViewScale(20)}
               color={'#44444480'}
               style={styles.icon1}
             />
             <TextInput
               clearButtonMode="always"
               placeholder="What are you looking for?"
+              placeholderTextColor={'#888888'}
               style={styles.input}
               onSubmitEditing={searchSubmit}
               onChange={event => {
@@ -452,6 +455,7 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
                       <Image
                         style={styles.imgflat}
                         source={{uri: item.company_cover}}
+                        resizeMode="stretch"
                       />
 
                       <View style={styles.row}>

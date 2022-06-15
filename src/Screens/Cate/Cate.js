@@ -10,6 +10,7 @@ import {
   FlatList,
   TextInput,
   RefreshControl,
+  Platform,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -61,6 +62,7 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
   };
 
   const [data, setData] = useState([]);
+  console.log('11>>11', data.length);
   const _Categ = async values => {
     try {
       var request = 'tags=' + '' + '&type=' + '4' + '&text=' + item;
@@ -122,6 +124,7 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
               hideResults={query.length == 0 ? true : false}
               autoCorrect={false}
               placeholder="What are you looking for?"
+              placeholderTextColor={'#888888'}
               onChangeText={text => {
                 test(text);
               }}
@@ -157,6 +160,7 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
                           fontSize: ViewScale(18),
                           padding: ViewScale(3),
                           fontFamily: 'Cantoria MT Std',
+                          color: '#000',
                         }}>
                         {item}
                       </Text>
@@ -167,7 +171,8 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
               style={styles.input}
               listContainerStyle={{
                 width: ViewScale(325),
-                marginTop: ViewScale(38),
+                marginTop:
+                  Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
                 position: 'absolute',
                 borderRadius: 5,
                 backgroundColor: '#fff',
@@ -229,7 +234,7 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
                       source={{uri: item.company_logo}}
                       defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                     />
-                    <Text numberOfLines={2} style={styles.text}>
+                    <Text numberOfLines={1} style={styles.text}>
                       {item.company_name}
                     </Text>
                   </View>
@@ -240,17 +245,19 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
           refreshControl={<RefreshControl refreshing={isrefresh} />}
         />
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={onPressTouch}
-          style={styles.FloatingActionButtonStyle}>
-          <Feather
-            size={ViewScale(25)}
-            name="arrow-up-left"
-            color={'#fff'}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
+        {data.length > 8 && (
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={onPressTouch}
+            style={styles.FloatingActionButtonStyle}>
+            <Feather
+              size={25}
+              name="arrow-up-left"
+              color={'#DAA560'}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

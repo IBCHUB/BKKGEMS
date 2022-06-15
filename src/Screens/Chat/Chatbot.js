@@ -42,7 +42,6 @@ class Chatbot extends Component {
     this.state = {
       messages: [],
       getUniqueId1: '',
-      getUniqueId1: '',
     };
   }
 
@@ -58,7 +57,6 @@ class Chatbot extends Component {
   componentDidMount() {
     this._CreatechatToken();
     // this._GenerateRandomNumber();
-    console.log(getUniqueId());
     this.setState({getUniqueId1: getUniqueId()});
   }
 
@@ -81,25 +79,13 @@ class Chatbot extends Component {
           '&text=' +
           this.state.getUniqueId1;
         const response2 = await this.props.dispatch(ativebotChat(request));
-        console.log('>>>>', response2);
+        // console.log('>>>>', response2);
         const payload1 = {
           result: {
-            uid:
-              this.props.authUser.token === null
-                ? this.state.getUniqueId1
-                : this.props.authUser.token.user_id,
-            socialUserRefId:
-              this.props.authUser.token === null
-                ? this.state.getUniqueId1
-                : this.props.authUser.token.user_id,
-            accountName:
-              this.props.authUser.token === null
-                ? this.state.getUniqueId1
-                : this.props.authUser.token.fullname,
-            firstName:
-              this.props.authUser.token === null
-                ? this.state.getUniqueId1
-                : this.props.authUser.token.company_name,
+            uid: this.state.getUniqueId1,
+            socialUserRefId: this.state.getUniqueId1,
+            accountName: this.state.getUniqueId1,
+            firstName: this.state.getUniqueId1,
             lastName: '',
             isActivate: 'true',
             isActivateBot: 'true',
@@ -107,10 +93,7 @@ class Chatbot extends Component {
             info: [
               {
                 key: 'uuid',
-                value:
-                  this.props.authUser.token === null
-                    ? this.state.getUniqueId1
-                    : this.props.authUser.token.user_id,
+                value: this.state.getUniqueId1,
                 type: 'string',
               },
               {
@@ -128,10 +111,7 @@ class Chatbot extends Component {
         if (response1.responseBody.status === '400 BAD_REQUEST') {
           const payload = {
             result: {
-              uid:
-                this.props.authUser.token === null
-                  ? this.state.getUniqueId1
-                  : this.props.authUser.token.user_id,
+              uid: this.state.getUniqueId1,
             },
             token: response.appToken,
           };
@@ -139,7 +119,7 @@ class Chatbot extends Component {
             generatechattoken(payload),
           );
           if ((response2?.chatToken !== undefined) === true) {
-            console.log(response2.chatToken);
+            console.log('1234', response2.chatToken);
 
             this.socket = SocketIOClient(
               'wss://prod-mojito-gateway.socialenable.co',
@@ -154,7 +134,7 @@ class Chatbot extends Component {
               },
             );
 
-            console.log(this.socket);
+            console.log('321', this.socket);
 
             const t = this;
             t.socket.on('connected', async res => {
@@ -162,10 +142,8 @@ class Chatbot extends Component {
               console.log(res);
 
               // const uid = this.props.getUser.userDetails.res_result.naturalId;
-              const uid =
-                this.props.authUser.token === null
-                  ? this.state.getUniqueId1
-                  : this.props.authUser.token.user_id;
+              const uid = this.state.getUniqueId1;
+
               await t.socket.emit('join', uid);
             });
             t.socket.on('join', async res => {
@@ -180,10 +158,7 @@ class Chatbot extends Component {
         } else {
           const payload = {
             result: {
-              uid:
-                this.props.authUser.token === null
-                  ? this.state.getUniqueId1
-                  : this.props.authUser.token.user_id,
+              uid: this.state.getUniqueId1,
             },
             token: response.appToken,
           };
@@ -206,10 +181,7 @@ class Chatbot extends Component {
 
   getstartChat = async value => {
     try {
-      const uid =
-        this.props.authUser.token === null
-          ? this.state.getUniqueId1
-          : this.props.authUser.token.user_id;
+      const uid = this.state.getUniqueId1;
       const payload = {
         sender: {
           id: `${uid}`,
@@ -229,7 +201,7 @@ class Chatbot extends Component {
         timestamp: new Date().getTime(),
       };
       await this.socket.emit('chat', payload);
-      console.log(payload);
+      console.log('879', payload);
       this.socket.on('chat', dataChat => {
         if (
           dataChat !== null &&
@@ -427,7 +399,7 @@ class Chatbot extends Component {
                               }}
                               style={{
                                 borderWidth: 1,
-                                marginHorizontal: 45,
+                                alignSelf: 'center',
                                 borderRadius: 10,
                                 marginBottom: 15,
                                 marginTop: 5,
@@ -435,6 +407,7 @@ class Chatbot extends Component {
                                 justifyContent: 'center',
                                 borderColor: '#FFF',
                                 backgroundColor: '#fff',
+                                width: 150,
                               }}>
                               <Text
                                 numberOfLines={2}

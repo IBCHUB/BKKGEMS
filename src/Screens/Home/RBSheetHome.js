@@ -17,7 +17,7 @@ const {width, height} = Dimensions.get('window');
 const RBSheetHome = ({onPress, navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
   console.log(selectedId);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const [tags, settags] = useState([]);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -49,7 +49,6 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
     },
   ];
   const [selectedtags, setselectedtags] = useState([]);
-  console.log(selectedtags);
   const [checkedtags, setCheckedtags] = useState(false);
   const isCheckedtags = id => {
     const isChecktags = selectedtags.includes(id);
@@ -83,6 +82,12 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
 
   useEffect(() => {
     _Tags();
+
+    let ids2 = [];
+    sort.map((value, item) => {
+      ids2.push(value.id);
+    });
+    setselectedId(ids2);
   }, []);
 
   const renderItem = ({item}) => {
@@ -226,6 +231,9 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
                 '&text=' +
                 '';
               const response = await dispatch(Exhibitor_List(request));
+              console.log(selectedId);
+              console.log(selectedtags);
+              console.log(response.res_result);
               if (response.res_code == '00') {
                 navigation.navigate('Searchno', {
                   item: response.res_result,

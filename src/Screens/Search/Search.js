@@ -30,12 +30,13 @@ const Search = ({navigation, dispatch, authUser, route}) => {
   const [brand, setbrand] = useState(item.company);
   const [datatext, setdatatext] = useState();
   const [textSearch, settextSearch] = useState('');
-  console.log(datatext);
+
   const [categorys, setcategorys] = useState([
-    // {
-    //   img: require('../../../assets/image/iocn/014.png'),
-    //   text: 'GOLD JEWELRY',
-    // },
+    {
+      img: require('../../../assets/image/iocn/014.png'),
+      text: 'GOLD JEWELRY',
+      product_category_id: 1,
+    },
     {
       img: require('../../../assets/image/iocn/005.png'),
       text: 'GEMSTONES',
@@ -87,22 +88,22 @@ const Search = ({navigation, dispatch, authUser, route}) => {
       product_category_id: 11,
     },
     {
-      img: require('../../../assets/image/iocn/008.png'),
+      img: require('../../../assets/image/iocn/010.png'),
       text: 'PRECIOUS METALS',
       product_category_id: 12,
     },
     {
-      img: require('../../../assets/image/iocn/011.png'),
+      img: require('../../../assets/image/iocn/003.png'),
       text: 'COSTUME & FASHION JEWELRY',
       product_category_id: 13,
     },
     {
-      img: require('../../../assets/image/iocn/003.png'),
+      img: require('../../../assets/image/iocn/011.png'),
       text: 'JEWELRY PARTS',
       product_category_id: 14,
     },
     {
-      img: require('../../../assets/image/iocn/010.png'),
+      img: require('../../../assets/image/iocn/008.png'),
       text: 'MACHINERY',
       product_category_id: 15,
     },
@@ -198,6 +199,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             <TextInput
               clearButtonMode="always"
               placeholder="What are you looking for?"
+              placeholderTextColor={'#888888'}
               style={styles.input}
               onSubmitEditing={searchSubmit}
               onChange={event => {
@@ -338,45 +340,43 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               renderItem={({index, item}) => {
                 return (
                   <View style={{marginRight: 20}}>
-                    {index <= 2 && (
-                      <TouchableOpacity
-                        onPress={async () => {
-                          try {
-                            var request = 'exid=' + item.company_id;
-                            const response = await dispatch(Exprofile(request));
-                            //console.log(response);
-                            if (response.res_code == '00') {
-                              // setdetail(response.res_result);
-                              setTimeout(() => {
-                                navigation.navigate('ExhibitorsDetail', {
-                                  res: response.res_result,
-                                });
-                              }, 300);
+                    <TouchableOpacity
+                      onPress={async () => {
+                        try {
+                          var request = 'exid=' + item.company_id;
+                          const response = await dispatch(Exprofile(request));
+                          //console.log(response);
+                          if (response.res_code == '00') {
+                            // setdetail(response.res_result);
+                            setTimeout(() => {
+                              navigation.navigate('ExhibitorsDetail', {
+                                res: response.res_result,
+                              });
+                            }, 300);
 
-                              // console.log('1111');
-                            } else {
-                              // console.log('2222');
-                            }
-                          } catch (error) {}
-                        }}
-                        style={styles.buttonflat}>
+                            // console.log('1111');
+                          } else {
+                            // console.log('2222');
+                          }
+                        } catch (error) {}
+                      }}
+                      style={styles.buttonflat}>
+                      <Image
+                        style={styles.imgflat}
+                        source={{uri: item.company_cover}}
+                        resizeMode="stretch"
+                      />
+
+                      <View style={styles.row}>
                         <Image
-                          style={styles.imgflat}
-                          source={{uri: item.company_cover}}
-                          resizeMode="stretch"
+                          style={styles.imglogo}
+                          source={{uri: item.company_logo}}
                         />
-
-                        <View style={styles.row}>
-                          <Image
-                            style={styles.imglogo}
-                            source={{uri: item.company_logo}}
-                          />
-                          <Text numberOfLines={1} style={styles.text}>
-                            {item.company_name}
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    )}
+                        <Text numberOfLines={1} style={styles.text}>
+                          {item.company_name}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 );
               }}
@@ -423,44 +423,42 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               renderItem={({index, item}) => {
                 return (
                   <View style={{marginRight: 20}}>
-                    {index <= 2 && (
-                      <TouchableOpacity
-                        onPress={async () => {
-                          try {
-                            var request = 'exid=' + item.company_id;
-                            const response = await dispatch(Exprofile(request));
-                            //console.log(response);
-                            if (response.res_code == '00') {
-                              // setdetail(response.res_result);
-                              setTimeout(() => {
-                                navigation.navigate('ExhibitorsDetail', {
-                                  res: response.res_result,
-                                });
-                              }, 300);
+                    <TouchableOpacity
+                      onPress={async () => {
+                        try {
+                          var request = 'exid=' + item.company_id;
+                          const response = await dispatch(Exprofile(request));
+                          //console.log(response);
+                          if (response.res_code == '00') {
+                            // setdetail(response.res_result);
+                            setTimeout(() => {
+                              navigation.navigate('ExhibitorsDetail', {
+                                res: response.res_result,
+                              });
+                            }, 300);
 
-                              // console.log('1111');
-                            } else {
-                              // console.log('2222');
-                            }
-                          } catch (error) {}
-                        }}
-                        style={styles.buttonflat}>
+                            // console.log('1111');
+                          } else {
+                            // console.log('2222');
+                          }
+                        } catch (error) {}
+                      }}
+                      style={styles.buttonflat}>
+                      <Image
+                        style={styles.imgflat}
+                        source={{uri: item.company_cover}}
+                      />
+
+                      <View style={styles.row}>
                         <Image
-                          style={styles.imgflat}
-                          source={{uri: item.company_cover}}
+                          style={styles.imglogo}
+                          source={{uri: item.company_logo}}
                         />
-
-                        <View style={styles.row}>
-                          <Image
-                            style={styles.imglogo}
-                            source={{uri: item.company_logo}}
-                          />
-                          <Text numberOfLines={1} style={styles.text}>
-                            {item.company_name}
-                          </Text>
-                        </View>
-                      </TouchableOpacity>
-                    )}
+                        <Text numberOfLines={1} style={styles.text}>
+                          {item.company_name}
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
                 );
               }}

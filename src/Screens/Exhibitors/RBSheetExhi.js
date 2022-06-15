@@ -16,7 +16,7 @@ const {width, height} = Dimensions.get('window');
 import {connect} from 'react-redux';
 const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const [tags, settags] = useState([]);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -81,6 +81,11 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
 
   useEffect(() => {
     _Tags();
+    let ids2 = [];
+    sort.map((value, item) => {
+      ids2.push(value.id);
+    });
+    setselectedId(ids2);
   }, []);
   const renderItem = ({item}) => {
     return (

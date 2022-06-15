@@ -9,6 +9,8 @@ import {
   ImageBackground,
   Text,
   Linking,
+  Dimensions,
+  Platform,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headerhome from '../../Components/Headerhome';
@@ -23,12 +25,13 @@ import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
 import {Exhibitor_List, Search, Topic} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
-
+const {width, height} = Dimensions.get('window');
 const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState();
-  console.log(online);
+  // console.log(online);
   const refRBSheet = useRef();
-  const [state, setstate] = useState();
+  const [state, setstate] = useState([]);
+  // console.log('456789', state.slice(0, 5));
   const [query, setQuery] = useState('');
 
   const test = text => {
@@ -148,17 +151,18 @@ const Home = ({navigation, dispatch, authData}) => {
                 style={styles.icon}
               />
               <Autocomplete
-                data={state}
+                data={state.slice(0, 10)}
                 value={query}
                 hideResults={query.length == 0 ? true : false}
                 autoCorrect={false}
                 placeholder="What are you looking for?"
+                placeholderTextColor={'#888888'}
                 onChangeText={text => {
                   test(text);
                 }}
                 flatListProps={{
                   keyExtractor: (_, idx) => idx,
-                  renderItem: ({item}) => {
+                  renderItem: ({item, index}) => {
                     return (
                       <TouchableOpacity
                         onPress={
@@ -175,7 +179,7 @@ const Home = ({navigation, dispatch, authData}) => {
                             const response = await dispatch(
                               Exhibitor_List(request),
                             );
-                            console.log(response);
+                            // console.log(response);
                             if (response.res_code == '00') {
                               navigation.navigate('Searchno', {
                                 item: response.res_result,
@@ -192,6 +196,7 @@ const Home = ({navigation, dispatch, authData}) => {
                             fontSize: ViewScale(18),
                             padding: ViewScale(3),
                             fontFamily: 'Cantoria MT Std',
+                            color: '#000',
                           }}>
                           {item}
                         </Text>
@@ -201,8 +206,9 @@ const Home = ({navigation, dispatch, authData}) => {
                 }}
                 style={styles.input}
                 listContainerStyle={{
-                  width: '100%',
-                  marginTop: ViewScale(35),
+                  width: ViewScale(325),
+                  marginTop:
+                    Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
                   zIndex: 99,
                   position: 'absolute',
                   borderRadius: ViewScale(5),
@@ -222,30 +228,33 @@ const Home = ({navigation, dispatch, authData}) => {
 
           <TopicHome />
 
-          {online != undefined && online === 0 ? (
-            <TouchableOpacity
-              onPress={() => {
-                Linking.openURL('https://www.bgjf-vtf.com/');
-              }}
-              style={styles.imglive}>
-              <Image
-                source={require('../../../assets/image/join.png')}
-                style={styles.imgS}
-              />
-            </TouchableOpacity>
-          ) : (
-            <View style={styles.imglive}>
-              <Image
+          {/* {online != undefined && online === 0 ? ( */}
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL('https://www.bgjf-vtf.com/');
+            }}
+            style={styles.imglive}>
+            <Image
+              source={require('../../../assets/image/join.png')}
+              style={styles.imgS}
+            />
+          </TouchableOpacity>
+
+          {/* <View style={styles.imglive}> */}
+          {/* <Image
                 source={require('../../../assets/image/join-mobile.png')}
                 style={styles.imgS}
               />
-            </View>
-          )}
+            </View> */}
 
           <AboutHome navigation={navigation} />
         </View>
 
-        <View style={{marginBottom: ViewScale(50)}} />
+        <View
+          style={{
+            height: Platform.OS === 'ios' ? height * 0.18 : height * 0.65,
+          }}
+        />
       </ScrollView>
     </View>
   );

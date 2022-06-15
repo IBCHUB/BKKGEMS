@@ -135,9 +135,10 @@ const aboutexhi = ({detail}) => {
       ) : (
         <Text style={[styles.textdetailabout, {marginBottom: 0}]}>-</Text>
       )}
-      <Text style={[styles.textsupabout, {marginTop: ViewScale(20)}]}>
+      {/* <Text style={[styles.textsupabout, {marginTop: ViewScale(20)}]}>
         DOWNLOAD
       </Text>
+      
       <TouchableOpacity style={styles.buttondowload}>
         <Text style={styles.textpage}>Catalog {detail.year}</Text>
         <Ionicons
@@ -146,7 +147,8 @@ const aboutexhi = ({detail}) => {
           color={'#000'}
           style={{alignSelf: 'center'}}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <View style={{marginBottom: 20}}></View>
     </View>
   );
 };

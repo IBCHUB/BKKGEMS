@@ -12,6 +12,7 @@ import {
   Alert,
   RefreshControl,
   Dimensions,
+  Platform,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Headercomp from '../../Components/Headercomp';
@@ -91,7 +92,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const onRefresh = async () => {
     _Exhibitor();
   };
-  const [state, setstate] = useState();
+  const [state, setstate] = useState([]);
   const [query, setQuery] = useState('');
   console.log(query);
   const test = text => {
@@ -156,11 +157,12 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                 style={styles.icon1}
               />
               <Autocomplete
-                data={state}
+                data={state.slice(0, 10)}
                 value={query}
                 hideResults={query.length == 0 ? true : false}
                 autoCorrect={false}
                 placeholder="What are you looking for?"
+                placeholderTextColor={'#888888'}
                 onChangeText={text => {
                   test(text);
                 }}
@@ -196,6 +198,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                             fontSize: ViewScale(18),
                             padding: ViewScale(3),
                             fontFamily: 'Cantoria MT Std',
+                            color: '#000',
                           }}>
                           {item}
                         </Text>
@@ -206,7 +209,8 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                 style={styles.input}
                 listContainerStyle={{
                   width: ViewScale(320),
-                  marginTop: ViewScale(38),
+                  marginTop:
+                    Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
                   position: 'absolute',
                   borderRadius: 5,
                   backgroundColor: '#fff',
@@ -228,7 +232,9 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
             data={data}
             numColumns={2}
             ref={scrollRef}
-            style={{height: height * 0.725}}
+            style={{
+              height: Platform.OS === 'ios' ? height * 0.725 : height * 0.74,
+            }}
             renderItem={({index, item}) => {
               // console.log(item);
               return (
@@ -251,7 +257,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                   }}
                   style={styles.buttonflat}>
                   <Image
-                    resizeMode="cover"
+                    resizeMode="stretch"
                     style={styles.imgflat}
                     source={{uri: item.company_cover}}
                     defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
@@ -263,7 +269,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                       source={{uri: item.company_logo}}
                       defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                     />
-                    <Text numberOfLines={2} style={styles.text}>
+                    <Text numberOfLines={1} style={styles.text}>
                       {item.company_name}
                     </Text>
                   </View>
@@ -289,7 +295,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
             <Feather
               size={ViewScale(25)}
               name="arrow-up-left"
-              color={'#fff'}
+              color={'#DAA560'}
               style={styles.icon}
             />
           </TouchableOpacity>

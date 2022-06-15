@@ -17,7 +17,7 @@ const {width, height} = Dimensions.get('window');
 const RBSheet = ({onPress, navigation, dispatch}) => {
   const [selectedId, setselectedId] = useState([]);
   console.log(selectedId);
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const [tags, settags] = useState([]);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -83,6 +83,11 @@ const RBSheet = ({onPress, navigation, dispatch}) => {
 
   useEffect(() => {
     _Tags();
+    let ids2 = [];
+    sort.map((value, item) => {
+      ids2.push(value.id);
+    });
+    setselectedId(ids2);
   }, []);
 
   const renderItem = ({item}) => {

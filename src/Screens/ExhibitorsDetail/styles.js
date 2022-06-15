@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
   },
   texthead: {
-    fontSize: ViewScale(14),
+    fontSize: ViewScale(18),
     color: '#000',
     alignSelf: 'center',
-    marginTop: ViewScale(10),
+    marginTop: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
   },
   textloca: {

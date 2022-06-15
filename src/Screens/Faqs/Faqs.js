@@ -9,6 +9,7 @@ import {
   ImageBackground,
   FlatList,
   TextInput,
+  Linking,
 } from 'react-native';
 
 import Headerback from '../../Components/Headerback';
@@ -40,7 +41,13 @@ const Faqs = ({navigation, dispatch}) => {
     }
     setChecked(selectedId.length + 1 == faqs.length);
   };
-
+  const onBridgeMessage = url => {
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      }
+    });
+  };
   const _Faqs = async values => {
     try {
       const response = await dispatch(Faq());
@@ -101,6 +108,7 @@ const Faqs = ({navigation, dispatch}) => {
                              font-size: 18px !important;
                            }
                          `}
+                          onBridgeMessage={onBridgeMessage}
                         />
                       </Animated.View>
                     )}

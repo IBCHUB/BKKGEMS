@@ -19,6 +19,7 @@ import RBSheetsearch from './RBSheetall';
 import Feather from 'react-native-vector-icons/Feather';
 import {connect} from 'react-redux';
 import {Exhibitor_List, Exprofile} from '../../action/data.action';
+import {ViewScale} from '../../config/ViewScale';
 
 const Seeall = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
@@ -92,6 +93,7 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
             refRBSheet.current.close();
           }}
           navigation={navigation}
+          key={key}
         />
       </RBSheet>
       <View style={{backgroundColor: '#EEECE2'}}>
@@ -99,13 +101,14 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
           <View style={styles.viewinsearch}>
             <FontAwesome5
               name="search"
-              size={20}
+              size={ViewScale(20)}
               color={'#44444480'}
               style={styles.icon1}
             />
             <TextInput
               clearButtonMode="always"
               placeholder="What are you looking for?"
+              placeholderTextColor={'#888888'}
               style={styles.input}
               onSubmitEditing={searchSubmit}
               onChange={event => {
@@ -173,7 +176,7 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
                         style={styles.imglogo}
                         source={{uri: item.company_logo}}
                       />
-                      <Text numberOfLines={2} style={styles.text}>
+                      <Text numberOfLines={1} style={styles.text}>
                         {item.company_name}
                       </Text>
                     </View>
@@ -191,7 +194,7 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
               <Feather
                 size={25}
                 name="arrow-up-left"
-                color={'#fff'}
+                color={'#DAA560'}
                 style={styles.icon}
               />
             </TouchableOpacity>
