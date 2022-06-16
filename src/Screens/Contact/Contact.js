@@ -87,91 +87,89 @@ const Contact = ({navigation, dispatch}) => {
           </View>
         </View>
       </Modal>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback navigation={navigation} item={'CONTACT US'} />
-        <ScrollView style={{backgroundColor: '#000', marginBottom: 10}}>
-          <Formik
-            initialValues={{
-              name: '',
-              company: '',
-              email: '',
-              subject: '',
-              message: '',
-            }}
-            onSubmit={values => {
-              // console.log(values);
-              _contactUs(values);
-            }}
-            validationSchema={yup.object().shape({
-              name: yup.string().required(),
-              company: yup.string().required(),
-              email: yup.string().email().required(),
-              subject: yup.string().required(),
-              message: yup.string().required(),
-            })}>
-            {({
-              values,
-              handleChange,
-              errors,
-              setFieldTouched,
-              touched,
-              isValid,
-              handleSubmit,
-            }) => (
-              <Fragment>
-                <View style={styles.viewinput}>
-                  <TextInput
-                    style={styles.input}
-                    placeholderTextColor="#646363"
-                    placeholder="Name"
-                    onChangeText={handleChange('name')}
-                    onBlur={() => setFieldTouched('name')}
-                    value={values.name}
-                  />
-                  <TextInput
-                    style={styles.input}
-                    placeholderTextColor="#646363"
-                    placeholder="Company"
-                    onChangeText={handleChange('company')}
-                    onBlur={() => setFieldTouched('company')}
-                    value={values.company}
-                  />
-                  <TextInput
-                    style={styles.input}
-                    placeholderTextColor="#646363"
-                    placeholder="Email"
-                    autoCapitalize="none"
-                    onChangeText={handleChange('email')}
-                    onBlur={() => setFieldTouched('email')}
-                    value={values.email}
-                  />
-                  <TextInput
-                    style={styles.input}
-                    placeholderTextColor="#646363"
-                    placeholder="Subject"
-                    onChangeText={handleChange('subject')}
-                    onBlur={() => setFieldTouched('subject')}
-                    value={values.subject}
-                  />
-                  <TextInput
-                    style={styles.input1}
-                    placeholderTextColor="#646363"
-                    placeholder="Type message..."
-                    multiline
-                    onChangeText={handleChange('message')}
-                    onBlur={() => setFieldTouched('message')}
-                    value={values.message}
-                  />
-                  <TouchableOpacity
-                    onPress={handleSubmit}
-                    style={styles.botton}>
-                    <Text style={styles.textbotton}>SEND MESSAGE</Text>
-                  </TouchableOpacity>
-                </View>
-              </Fragment>
-            )}
-          </Formik>
-          {/* <View style={styles.viewinput}>
+
+      <Headerback navigation={navigation} item={'CONTACT US'} />
+      <ScrollView style={{backgroundColor: '#000', marginBottom: 10}}>
+        <Formik
+          initialValues={{
+            name: '',
+            company: '',
+            email: '',
+            subject: '',
+            message: '',
+          }}
+          onSubmit={values => {
+            // console.log(values);
+            _contactUs(values);
+          }}
+          validationSchema={yup.object().shape({
+            name: yup.string().required(),
+            company: yup.string().required(),
+            email: yup.string().email().required(),
+            subject: yup.string().required(),
+            message: yup.string().required(),
+          })}>
+          {({
+            values,
+            handleChange,
+            errors,
+            setFieldTouched,
+            touched,
+            isValid,
+            handleSubmit,
+          }) => (
+            <Fragment>
+              <View style={styles.viewinput}>
+                <TextInput
+                  style={styles.input}
+                  placeholderTextColor="#646363"
+                  placeholder="Name"
+                  onChangeText={handleChange('name')}
+                  onBlur={() => setFieldTouched('name')}
+                  value={values.name}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholderTextColor="#646363"
+                  placeholder="Company"
+                  onChangeText={handleChange('company')}
+                  onBlur={() => setFieldTouched('company')}
+                  value={values.company}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholderTextColor="#646363"
+                  placeholder="Email"
+                  autoCapitalize="none"
+                  onChangeText={handleChange('email')}
+                  onBlur={() => setFieldTouched('email')}
+                  value={values.email}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholderTextColor="#646363"
+                  placeholder="Subject"
+                  onChangeText={handleChange('subject')}
+                  onBlur={() => setFieldTouched('subject')}
+                  value={values.subject}
+                />
+                <TextInput
+                  style={styles.input1}
+                  placeholderTextColor="#646363"
+                  placeholder="Type message..."
+                  multiline
+                  onChangeText={handleChange('message')}
+                  onBlur={() => setFieldTouched('message')}
+                  value={values.message}
+                />
+                <TouchableOpacity onPress={handleSubmit} style={styles.botton}>
+                  <Text style={styles.textbotton}>SEND MESSAGE</Text>
+                </TouchableOpacity>
+              </View>
+            </Fragment>
+          )}
+        </Formik>
+        {/* <View style={styles.viewinput}>
             <TextInput style={styles.input} placeholder="Name" />
             <TextInput style={styles.input} placeholder="Company Name" />
             <TextInput style={styles.input} placeholder="E-mail" />
@@ -185,62 +183,61 @@ const Contact = ({navigation, dispatch}) => {
               <Text style={styles.textbotton}>SEND MESSAGE</Text>
             </TouchableOpacity>
           </View> */}
-          <View style={styles.viewtags}>
-            <Text style={styles.textt}>SHOW ORGANIZER</Text>
-            <Text style={styles.textags}>
-              Office of Lifestyle Trade Promotion Department of International
-              Trade Promotion Ministry of Commerce, Thailand
-            </Text>
-            <View style={styles.rowtags}>
-              <Image
-                style={styles.icon}
-                source={require('../../../assets/image/ban.png')}
-              />
-              <Text style={styles.textags1}>+66 2507 8392 to 3</Text>
-            </View>
-            <View style={styles.rowtags}>
-              <Image
-                style={styles.icon}
-                source={require('../../../assets/image/ban2.png')}
-              />
-              <Text style={styles.textags1}>+66 2547 4292</Text>
-            </View>
-            <View style={styles.rowtags}>
-              <Image
-                style={styles.icon}
-                source={require('../../../assets/image/ban1.png')}
-              />
-              <Text style={styles.textags1}>official@bkkgems.com</Text>
-            </View>
-            <View style={{marginTop: ViewScale(30)}} />
-            <Text style={styles.textt}>EXHIBITOR APPLICATION</Text>
-            <Text style={styles.textags}>
-              The Gem and Jewelry Institute of Thailand (Public Organization)
-            </Text>
-            <View style={styles.rowtags}>
-              <Image
-                style={styles.icon}
-                source={require('../../../assets/image/ban.png')}
-              />
-              <Text style={styles.textags1}>+66 2634 4999 ext. 635-642</Text>
-            </View>
-            <View style={styles.rowtags}>
-              <Image
-                style={styles.icon}
-                source={require('../../../assets/image/ban2.png')}
-              />
-              <Text style={styles.textags1}>+66 2634 4970</Text>
-            </View>
-            <View style={styles.rowtags}>
-              <Image
-                style={styles.icon}
-                source={require('../../../assets/image/ban1.png')}
-              />
-              <Text style={styles.textags1}>bd@git.or.th</Text>
-            </View>
+        <View style={styles.viewtags}>
+          <Text style={styles.textt}>SHOW ORGANIZER</Text>
+          <Text style={styles.textags}>
+            Office of Lifestyle Trade Promotion Department of International
+            Trade Promotion Ministry of Commerce, Thailand
+          </Text>
+          <View style={styles.rowtags}>
+            <Image
+              style={styles.icon}
+              source={require('../../../assets/image/ban.png')}
+            />
+            <Text style={styles.textags1}>+66 2507 8392 to 3</Text>
           </View>
-        </ScrollView>
-      </SafeAreaView>
+          <View style={styles.rowtags}>
+            <Image
+              style={styles.icon}
+              source={require('../../../assets/image/ban2.png')}
+            />
+            <Text style={styles.textags1}>+66 2547 4292</Text>
+          </View>
+          <View style={styles.rowtags}>
+            <Image
+              style={styles.icon}
+              source={require('../../../assets/image/ban1.png')}
+            />
+            <Text style={styles.textags1}>official@bkkgems.com</Text>
+          </View>
+          <View style={{marginTop: ViewScale(30)}} />
+          <Text style={styles.textt}>EXHIBITOR APPLICATION</Text>
+          <Text style={styles.textags}>
+            The Gem and Jewelry Institute of Thailand (Public Organization)
+          </Text>
+          <View style={styles.rowtags}>
+            <Image
+              style={styles.icon}
+              source={require('../../../assets/image/ban.png')}
+            />
+            <Text style={styles.textags1}>+66 2634 4999 ext. 635-642</Text>
+          </View>
+          <View style={styles.rowtags}>
+            <Image
+              style={styles.icon}
+              source={require('../../../assets/image/ban2.png')}
+            />
+            <Text style={styles.textags1}>+66 2634 4970</Text>
+          </View>
+          <View style={styles.rowtags}>
+            <Image
+              style={styles.icon}
+              source={require('../../../assets/image/ban1.png')}
+            />
+            <Text style={styles.textags1}>bd@git.or.th</Text>
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };

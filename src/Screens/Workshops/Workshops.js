@@ -13,22 +13,20 @@ import styles from './styles';
 const Workshops = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback
-          navigation={navigation}
-          item={'Workshops and Demonstrations'}
+      <Headerback
+        navigation={navigation}
+        item={'Workshops and Demonstrations'}
+      />
+      <View style={styles.viewdetail}>
+        <Image
+          source={require('../../../assets/image/Jewellers/32.png')}
+          style={styles.imgdetail}
         />
-        <View style={styles.viewdetail}>
-          <Image
-            source={require('../../../assets/image/Jewellers/32.png')}
-            style={styles.imgdetail}
-          />
-          <Image
-            source={require('../../../assets/image/Jewellers/33.png')}
-            style={styles.imgdetail}
-          />
-        </View>
-      </SafeAreaView>
+        <Image
+          source={require('../../../assets/image/Jewellers/33.png')}
+          style={styles.imgdetail}
+        />
+      </View>
     </View>
   );
 };

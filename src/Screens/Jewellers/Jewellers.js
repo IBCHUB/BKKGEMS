@@ -35,35 +35,33 @@ const Jewellers = ({navigation}) => {
   ]);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback item={'The Jewellers'} navigation={navigation} />
-        <View style={styles.containerview}>
-          <FlatList
-            data={data}
-            renderItem={({index, item}) => {
-              return (
-                <View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (item.navigation === '') {
-                        Linking.openURL(
-                          'https://www.bkkgems.com/data/file/special_activity/file11.pdf',
-                        );
-                      } else {
-                        navigation.navigate(item.navigation);
-                      }
-                    }}
-                    style={styles.buttonflat}>
-                    <Text numberOfLines={2} style={styles.text1}>
-                      {item.text}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              );
-            }}
-          />
-        </View>
-      </SafeAreaView>
+      <Headerback item={'The Jewellers'} navigation={navigation} />
+      <View style={styles.containerview}>
+        <FlatList
+          data={data}
+          renderItem={({index, item}) => {
+            return (
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    if (item.navigation === '') {
+                      Linking.openURL(
+                        'https://www.bkkgems.com/data/file/special_activity/file11.pdf',
+                      );
+                    } else {
+                      navigation.navigate(item.navigation);
+                    }
+                  }}
+                  style={styles.buttonflat}>
+                  <Text numberOfLines={2} style={styles.text1}>
+                    {item.text}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        />
+      </View>
     </View>
   );
 };

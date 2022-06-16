@@ -34,27 +34,25 @@ const Event = ({navigation}) => {
   ]);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headercomp item={'EVENTS'} navigation={navigation} />
-        <View style={styles.containerview}>
-          <FlatList
-            data={data}
-            renderItem={({index, item}) => {
-              return (
-                <View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate(item.navigation);
-                    }}
-                    style={styles.buttonflat}>
-                    <Text style={styles.text}>{item.text}</Text>
-                  </TouchableOpacity>
-                </View>
-              );
-            }}
-          />
-        </View>
-      </SafeAreaView>
+      <Headercomp item={'EVENTS'} navigation={navigation} />
+      <View style={styles.containerview}>
+        <FlatList
+          data={data}
+          renderItem={({index, item}) => {
+            return (
+              <View>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate(item.navigation);
+                  }}
+                  style={styles.buttonflat}>
+                  <Text style={styles.text}>{item.text}</Text>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        />
+      </View>
     </View>
   );
 };

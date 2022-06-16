@@ -76,7 +76,6 @@ const Inmylist = ({navigation, route, dispatch}) => {
   }, []);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerback item={item.my_list_name} navigation={navigation} />
       <RBSheet
         ref={refRBSheet}

@@ -52,68 +52,66 @@ const Login = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <Image
-          source={require('../../../assets/image/BKKGEMSlogo.png')}
-          style={styles.logobkk}
-        />
-        <View style={styles.view}>
-          <Animated.View style={styles.row}>
-            <TouchableOpacity
-              onPress={() => {
-                setpage(0);
-              }}
+      <Image
+        source={require('../../../assets/image/BKKGEMSlogo.png')}
+        style={styles.logobkk}
+      />
+      <View style={styles.view}>
+        <Animated.View style={styles.row}>
+          <TouchableOpacity
+            onPress={() => {
+              setpage(0);
+            }}
+            style={[
+              styles.buttonsign,
+              {
+                backgroundColor: page === 0 ? '#DAA560' : '#EEECE2',
+                height: page === 0 ? 55 : 50,
+                marginTop: page === 0 ? -5 : 0,
+              },
+            ]}>
+            <Text
               style={[
-                styles.buttonsign,
+                styles.textsige,
                 {
-                  backgroundColor: page === 0 ? '#DAA560' : '#EEECE2',
-                  height: page === 0 ? 55 : 50,
-                  marginTop: page === 0 ? -5 : 0,
+                  color: page === 0 ? '#fff' : '#000',
+                  fontSize: page === 0 ? 22 : 18,
                 },
               ]}>
-              <Text
-                style={[
-                  styles.textsige,
-                  {
-                    color: page === 0 ? '#fff' : '#000',
-                    fontSize: page === 0 ? 22 : 18,
-                  },
-                ]}>
-                SIGN UP
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setpage(1);
-              }}
+              SIGN UP
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setpage(1);
+            }}
+            style={[
+              styles.buttonsign,
+              {
+                backgroundColor: page === 1 ? '#DAA560' : '#EEECE2',
+                height: page === 1 ? 55 : 50,
+                marginTop: page === 1 ? -5 : 0,
+              },
+            ]}>
+            <Text
               style={[
-                styles.buttonsign,
+                styles.textsige,
                 {
-                  backgroundColor: page === 1 ? '#DAA560' : '#EEECE2',
-                  height: page === 1 ? 55 : 50,
-                  marginTop: page === 1 ? -5 : 0,
+                  color: page === 1 ? '#fff' : '#000',
+                  fontSize: page === 1 ? 22 : 18,
                 },
               ]}>
-              <Text
-                style={[
-                  styles.textsige,
-                  {
-                    color: page === 1 ? '#fff' : '#000',
-                    fontSize: page === 1 ? 22 : 18,
-                  },
-                ]}>
-                SIGN IN
-              </Text>
-            </TouchableOpacity>
-          </Animated.View>
-          {page === 0 && (
-            <Signup onPress={() => setpage(1)} navigation={navigation} />
-          )}
-          {page === 1 && (
-            <Signin onPress={() => setpage(0)} navigation={navigation} />
-          )}
-        </View>
-      </SafeAreaView>
+              SIGN IN
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
+        {page === 0 && (
+          <Signup onPress={() => setpage(1)} navigation={navigation} />
+        )}
+        {page === 1 && (
+          <Signin onPress={() => setpage(0)} navigation={navigation} />
+        )}
+      </View>
     </View>
   );
 };

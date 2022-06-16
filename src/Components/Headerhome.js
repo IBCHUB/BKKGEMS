@@ -6,7 +6,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import {connect} from 'react-redux';
 import {logoutUser} from '../action/auth.action';
 import {ViewScale} from '../config/ViewScale';
-
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 const Headerhome = ({navigation, dispatch}) => {
   // const [id, setid] = useState('');
   // const _GenerateRandomNumber = () => {

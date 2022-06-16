@@ -1,6 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import {ViewScale} from '../config/ViewScale';
 const {width, height} = Dimensions.get('window');
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -10,6 +11,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     borderBottomWidth: 0.5,
     borderBottomColor: '#FFECAC',
+    marginTop:
+      Platform.OS === 'ios' ? StaticSafeAreaInsets.safeAreaInsetsTop : 0,
   },
   logoBkk: {
     height: ViewScale(40),

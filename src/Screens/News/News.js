@@ -134,7 +134,6 @@ const News = ({navigation, dispatch}) => {
   // 2 trends
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headercomp item={'NEWS & TRENDS'} navigation={navigation} />
       <RBSheet
         ref={refRBSheet}

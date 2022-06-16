@@ -350,6 +350,8 @@ PODS:
     - React-RCTImage
   - RNShare (7.3.7):
     - React-Core
+  - RNStaticSafeAreaInsets (2.1.2):
+    - React
   - RNVectorIcons (9.1.0):
     - React-Core
   - Yoga (1.14.0)
@@ -406,6 +408,7 @@ DEPENDENCIES:
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
+  - RNStaticSafeAreaInsets (from `../node_modules/react-native-static-safe-area-insets`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -521,6 +524,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNShare:
     :path: "../node_modules/react-native-share"
+  RNStaticSafeAreaInsets:
+    :path: "../node_modules/react-native-static-safe-area-insets"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -586,6 +591,7 @@ SPEC CHECKSUMS:
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: 2559f98b0835103cbef3b26ba77fa61d4bb37ae7
   RNShare: f116bbb04f310c665ca483d0bd1e88cf59b3b334
+  RNStaticSafeAreaInsets: bb611be967ba27ced2fbf9aca0f067a786175ea6
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   Yoga: 9b6696970c3289e8dea34b3eda93f23e61fb8121
 

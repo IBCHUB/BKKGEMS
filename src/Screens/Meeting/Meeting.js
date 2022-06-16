@@ -216,7 +216,7 @@ const Meeting = ({navigation, route, authUser, dispatch}) => {
           </View>
         </View>
       </Modal>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
+
       <Headerback navigation={navigation} item={'REQUEST MEETING'} />
       <ScrollView style={{width: '100%'}}>
         <Text style={styles.text}>Add appointment Option</Text>

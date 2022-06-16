@@ -47,7 +47,6 @@ const Suppliers = ({navigation, dispatch}) => {
   const refRBSheet = useRef();
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerback navigation={navigation} />
       <RBSheet
         ref={refRBSheet}
@@ -94,7 +93,7 @@ const Suppliers = ({navigation, dispatch}) => {
                   style={[styles.icon, {marginRight: ViewScale(3)}]}
                 />
                 <Autocomplete
-                  data={state.slice(0, 15)}
+                  data={state.slice(0, 10)}
                   value={query}
                   hideResults={query.length == 0 ? true : false}
                   autoCorrect={false}

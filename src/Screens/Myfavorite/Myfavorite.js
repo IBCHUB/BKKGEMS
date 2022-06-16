@@ -228,7 +228,7 @@ const Myfavorite = ({navigation, dispatch}) => {
           </View>
         </View>
       </Modal>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
+
       <Headerback item={'MY FAVORITE'} navigation={navigation} />
       <RBSheet
         ref={refRBSheet}

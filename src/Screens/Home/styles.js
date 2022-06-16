@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     marginTop: ViewScale(20),
   },
   linerfair: {
-    width: width * 0.55,
+    width: width * 0.6,
     borderBottomColor: '#DAA560',
     borderBottomWidth: 1,
     alignSelf: 'center',
@@ -278,6 +278,23 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: -ViewScale(10),
     color: '#000',
+  },
+  bb: {
+    width: Platform.OS === 'ios' ? width * 0.6 : width * 0.66,
+    height: Platform.OS === 'ios' ? ViewScale(48) : ViewScale(50),
+    alignSelf: 'center',
+    marginVertical: ViewScale(10),
+    borderWidth: 2,
+    borderColor: '#DAA560',
+    borderRadius: 2,
+    justifyContent: 'center',
+  },
+  textbb: {
+    fontSize: ViewScale(24),
+    fontFamily: 'Cantoria MT Std',
+    alignSelf: 'center',
+    color: '#DAA560',
+    fontWeight: Platform.OS === 'ios' ? '700' : '100',
   },
 });
 

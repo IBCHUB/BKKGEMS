@@ -19,15 +19,13 @@ const Plan = ({navigation, dispatch}) => {
   const item = require('../../../assets/image/parn.png');
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback navigation={navigation} item={'FLOOR PLAN'} />
+      <Headerback navigation={navigation} item={'FLOOR PLAN'} />
 
-        <View style={styles.view}>
-          <Image style={styles.img} source={item} />
+      <View style={styles.view}>
+        <Image style={styles.img} source={item} />
 
-          <View style={{marginBottom: 30}} />
-        </View>
-      </SafeAreaView>
+        <View style={{marginBottom: 30}} />
+      </View>
     </View>
   );
 };

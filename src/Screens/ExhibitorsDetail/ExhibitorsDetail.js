@@ -43,7 +43,6 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <ScrollView>
         <Headerback navigation={navigation} />
         <View style={styles.viewHeader}>

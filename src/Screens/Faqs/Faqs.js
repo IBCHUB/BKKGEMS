@@ -43,11 +43,13 @@ const Faqs = ({navigation, dispatch}) => {
   };
   const onBridgeMessage = url => {
     Linking.canOpenURL(url).then(supported => {
+      console.log(supported);
       if (supported) {
         Linking.openURL(url);
       }
     });
   };
+
   const _Faqs = async values => {
     try {
       const response = await dispatch(Faq());
@@ -65,60 +67,62 @@ const Faqs = ({navigation, dispatch}) => {
   }, []);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback navigation={navigation} item={'FAQs'} />
-        <ScrollView style={{backgroundColor: '#000'}}>
-          <View style={styles.containerview}>
-            <FlatList
-              data={faqs}
-              renderItem={({index, item}) => {
-                console.log(item);
-                return (
-                  <Animated.View>
-                    <TouchableOpacity
-                      onPress={() => {
-                        handleCheckBox(item.faq_id);
-                      }}
-                      style={styles.buttonflat}>
-                      <Text style={styles.text}>{item.faq_title}</Text>
-                      <Entypo
-                        name="chevron-thin-down"
-                        size={ViewScale(18)}
-                        color={'#DAA560'}
-                        style={{alignSelf: 'center'}}
-                      />
-                    </TouchableOpacity>
-                    {isChecked(item.faq_id) && (
-                      <Animated.View style={styles.containertags}>
-                        <AutoHeightWebView
-                          style={styles.auto}
-                          source={{
-                            html: item.faq_detail,
-                          }}
-                          // onLoad={x => {
-                          //   setloadhtml(false);
-                          // }}
-                          viewportContent={
-                            'width=device-width, user-scalable=no'
-                          }
-                          scrollEnabled={false}
-                          customStyle={`
+      <Headerback navigation={navigation} item={'FAQs'} />
+      <ScrollView style={{backgroundColor: '#000'}}>
+        <View style={styles.containerview}>
+          <FlatList
+            data={faqs}
+            renderItem={({index, item}) => {
+              console.log(item);
+              return (
+                <Animated.View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      handleCheckBox(item.faq_id);
+                    }}
+                    style={styles.buttonflat}>
+                    <Text style={styles.text}>{item.faq_title}</Text>
+                    <Entypo
+                      name="chevron-thin-down"
+                      size={ViewScale(18)}
+                      color={'#DAA560'}
+                      style={{alignSelf: 'center'}}
+                    />
+                  </TouchableOpacity>
+                  {isChecked(item.faq_id) && (
+                    <Animated.View style={styles.containertags}>
+                      <AutoHeightWebView
+                        style={styles.auto}
+                        source={{
+                          html: item.faq_detail,
+                        }}
+                        // onLoad={x => {
+                        //   setloadhtml(false);
+                        // }}
+                        viewportContent={'width=device-width, user-scalable=no'}
+                        scrollEnabled={false}
+                        customStyle={`
                            * {
                              color:#646363 !important;
                              font-size: 18px !important;
+                             
                            }
                          `}
-                          onBridgeMessage={onBridgeMessage}
-                        />
-                      </Animated.View>
-                    )}
-                  </Animated.View>
-                );
-              }}
-            />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+                        onShouldStartLoadWithRequest={request => {
+                          if (request.url !== 'about:blank') {
+                            Linking.openURL(request.url);
+                            return false;
+                          } else return true;
+                        }}
+                      />
+                    </Animated.View>
+                  )}
+                </Animated.View>
+              );
+            }}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 };

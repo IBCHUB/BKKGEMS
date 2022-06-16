@@ -28,7 +28,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
   const [page, setpage] = useState(0);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
+     
       {page === 0 && (
         <View style={{backgroundColor: '#232323', height: '100%'}}>
           <ScrollView>

@@ -20,101 +20,99 @@ const Survey = ({navigation, dispatch}) => {
   const [checked2, setChecked2] = useState(false);
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerback navigation={navigation} item={'SURVEY'} />
+      <Headerback navigation={navigation} item={'SURVEY'} />
 
-        <View style={styles.view}>
-          <Text style={styles.texttop}>Please rate your experience</Text>
-          <View style={styles.viewin}>
-            <TouchableOpacity onPress={() => setChecked(val => !val)}>
+      <View style={styles.view}>
+        <Text style={styles.texttop}>Please rate your experience</Text>
+        <View style={styles.viewin}>
+          <TouchableOpacity onPress={() => setChecked(val => !val)}>
+            <Image
+              style={styles.img}
+              source={
+                checked === true
+                  ? require('../../../assets/image/ya1.png')
+                  : require('../../../assets/image/ya.png')
+              }
+            />
+            <Text style={styles.textcenter}>Poor</Text>
+            <View style={styles.row}>
               <Image
-                style={styles.img}
-                source={
-                  checked === true
-                    ? require('../../../assets/image/ya1.png')
-                    : require('../../../assets/image/ya.png')
-                }
+                style={styles.icon}
+                source={require('../../../assets/image/st.png')}
               />
-              <Text style={styles.textcenter}>Poor</Text>
-              <View style={styles.row}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st.png')}
-                />
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st1.png')}
-                />
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st1.png')}
-                />
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setChecked1(val => !val)}>
               <Image
-                style={styles.img}
-                source={
-                  checked1 === true
-                    ? require('../../../assets/image/yo1.png')
-                    : require('../../../assets/image/yo.png')
-                }
+                style={styles.icon}
+                source={require('../../../assets/image/st1.png')}
               />
-              <Text style={styles.textcenter}>OK</Text>
-              <View style={styles.row}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st.png')}
-                />
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st.png')}
-                />
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st1.png')}
-                />
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setChecked2(val => !val)}>
               <Image
-                style={styles.img}
-                source={
-                  checked2 === true
-                    ? require('../../../assets/image/yim1.png')
-                    : require('../../../assets/image/yim.png')
-                }
+                style={styles.icon}
+                source={require('../../../assets/image/st1.png')}
               />
-              <Text style={styles.textcenter}>Great</Text>
-              <View style={styles.row}>
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st.png')}
-                />
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st.png')}
-                />
-                <Image
-                  style={styles.icon}
-                  source={require('../../../assets/image/st.png')}
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.texttop}>What can we do to improve service?</Text>
-          <TextInput
-            multiline
-            placeholder="Type message..."
-            placeholderTextColor={'#646363'}
-            style={styles.input}
-          />
-          <TouchableOpacity style={styles.botton}>
-            <Text style={styles.textbotton}>SEND FEEDBACK</Text>
+            </View>
           </TouchableOpacity>
-          <View style={{marginBottom: 30}} />
+          <TouchableOpacity onPress={() => setChecked1(val => !val)}>
+            <Image
+              style={styles.img}
+              source={
+                checked1 === true
+                  ? require('../../../assets/image/yo1.png')
+                  : require('../../../assets/image/yo.png')
+              }
+            />
+            <Text style={styles.textcenter}>OK</Text>
+            <View style={styles.row}>
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/st.png')}
+              />
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/st.png')}
+              />
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/st1.png')}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setChecked2(val => !val)}>
+            <Image
+              style={styles.img}
+              source={
+                checked2 === true
+                  ? require('../../../assets/image/yim1.png')
+                  : require('../../../assets/image/yim.png')
+              }
+            />
+            <Text style={styles.textcenter}>Great</Text>
+            <View style={styles.row}>
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/st.png')}
+              />
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/st.png')}
+              />
+              <Image
+                style={styles.icon}
+                source={require('../../../assets/image/st.png')}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
-      </SafeAreaView>
+        <Text style={styles.texttop}>What can we do to improve service?</Text>
+        <TextInput
+          multiline
+          placeholder="Type message..."
+          placeholderTextColor={'#646363'}
+          style={styles.input}
+        />
+        <TouchableOpacity style={styles.botton}>
+          <Text style={styles.textbotton}>SEND FEEDBACK</Text>
+        </TouchableOpacity>
+        <View style={{marginBottom: 30}} />
+      </View>
     </View>
   );
 };

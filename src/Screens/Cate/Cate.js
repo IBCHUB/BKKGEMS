@@ -82,7 +82,6 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
   }, []);
   return (
     <View style={{flex: 1}}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerback item={'Categories'} navigation={navigation} />
       <RBSheet
         ref={refRBSheet}

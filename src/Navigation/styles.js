@@ -1,10 +1,12 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {ViewScale} from '../config/ViewScale';
 const {width, height} = Dimensions.get('window');
-
+import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 const styles = StyleSheet.create({
   container: {
     height: height,
+    marginTop:
+      Platform.OS === 'ios' ? StaticSafeAreaInsets.safeAreaInsetsTop : 0,
   },
   touchdrawer: {
     fontSize: ViewScale(20),

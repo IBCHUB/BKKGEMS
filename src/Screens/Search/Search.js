@@ -156,7 +156,6 @@ const Search = ({navigation, dispatch, authUser, route}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerback navigation={navigation} item="SEARCH" />
       <RBSheet
         ref={refRBSheet}

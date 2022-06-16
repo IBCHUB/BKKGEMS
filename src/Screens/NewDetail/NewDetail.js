@@ -56,7 +56,6 @@ const NewDetail = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerback navigation={navigation} item={item.blog_title} />
       <ScrollView
         style={{backgroundColor: '#EEECE2', marginBottom: ViewScale(20)}}>

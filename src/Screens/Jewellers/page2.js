@@ -14,7 +14,6 @@ import styles from './styles';
 const page2 = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headerback navigation={navigation} item={'The Jewellers'} />
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
         <View style={styles.viewdetail}>

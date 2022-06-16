@@ -155,18 +155,17 @@ const Splash = ({navigation}) => {
           </View>
         </View>
       </Modal> */}
-      <SafeAreaView>
-        <View>
-          <Image
-            source={require('../../../assets/image/splash.png')}
-            style={styles.imssplash}
-          />
-          <Image
-            source={require('../../../assets/image/dimon.png')}
-            style={styles.imgdimon}
-          />
-        </View>
-      </SafeAreaView>
+
+      <View>
+        <Image
+          source={require('../../../assets/image/splash.png')}
+          style={styles.imssplash}
+        />
+        <Image
+          source={require('../../../assets/image/dimon.png')}
+          style={styles.imgdimon}
+        />
+      </View>
     </View>
   );
 };

@@ -119,11 +119,14 @@ const TopicHome = ({dispatch}) => {
       <TouchableOpacity
         onPress={() => {
           Linking.openURL('https://bgjf.git.or.th/git');
-        }}>
-        <Image
-          source={require('../../../assets/image/logopre.png')}
+        }}
+        style={styles.bb}>
+        <Text style={styles.textbb}>Exhibitor Registration</Text>
+
+        {/* <Image
+          source={require('../../../assets/image/pp.png')}
           style={styles.imgpre}
-        />
+        /> */}
       </TouchableOpacity>
       <ImageBackground
         source={require('../../../assets/image/imgtime.png')}
@@ -170,7 +173,7 @@ const TopicHome = ({dispatch}) => {
               fontSize: 30,
               fontWeight: '600',
               fontFamily: 'Cantoria MT Std',
-            }}
+            }}p
             // timeToShow={['M', 'S']}
             // timeLabels={{m: 'MM', s: 'SS'}}
             separatorStyle={{

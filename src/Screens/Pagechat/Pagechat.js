@@ -153,95 +153,93 @@ const Pagechat = ({authUser, dispatch, route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}}>
-        <Headerpage navigation={navigation} item={item.company_name} />
-        <View style={styles.chat}>
-          <GiftedChat
-            // ref={c => {
-            //   console.log(c);
-            // }}
-            scrollToBottom={false}
-            style={{borderWidth: 1, flex: 1}}
-            renderAvatarOnTop={true}
-            messages={messages}
-            onSend={messages => {
-              _SeadChat();
-              onSend(messages);
-            }}
-            user={{
-              _id: UserId,
-            }}
-            showAvatarForEveryMessage={true}
-            alwaysShowSend={true}
-            showUserAvatar={false}
-            isTyping={false}
-            renderInputToolbar={props => (
+      <Headerpage navigation={navigation} item={item.company_name} />
+      <View style={styles.chat}>
+        <GiftedChat
+          // ref={c => {
+          //   console.log(c);
+          // }}
+          scrollToBottom={false}
+          style={{borderWidth: 1, flex: 1}}
+          renderAvatarOnTop={true}
+          messages={messages}
+          onSend={messages => {
+            _SeadChat();
+            onSend(messages);
+          }}
+          user={{
+            _id: UserId,
+          }}
+          showAvatarForEveryMessage={true}
+          alwaysShowSend={true}
+          showUserAvatar={false}
+          isTyping={false}
+          renderInputToolbar={props => (
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+              }}>
               <View
                 style={{
-                  flex: 1,
                   flexDirection: 'row',
                 }}>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                  }}>
-                  <TouchableOpacity style={{marginLeft: 15}}>
-                    <Image
-                      style={{width: 20, resizeMode: 'contain', marginTop: 4}}
-                      source={require('../../../assets/image/Paper.png')}
-                    />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{marginLeft: 15}}>
-                    <Image
-                      style={{width: 23, resizeMode: 'contain', marginTop: 4}}
-                      source={require('../../../assets/image/Image1.png')}
-                    />
-                  </TouchableOpacity>
-                </View>
-                <View style={{width: width * 0.66}}>
-                  <InputToolbar
-                    {...props}
-                    placeholder="Message..."
-                    textInputStyle={{
-                      fontSize: 18,
-                      fontWeight: 'normal',
-                    }}
-                    containerStyle={{
-                      borderTopWidth: 1.5,
-                      borderTopColor: '#e7e7e7',
-                      borderLeftWidth: 1.5,
-                      borderLeftColor: '#e7e7e7',
-                      marginLeft: Platform.OS === 'android' ? 15 : 15,
-                      flex: 1,
-                      borderRadius: 8,
-                      height: 40,
-                      width: width * 0.75,
-                    }}
+                <TouchableOpacity style={{marginLeft: 15}}>
+                  <Image
+                    style={{width: 20, resizeMode: 'contain', marginTop: 4}}
+                    source={require('../../../assets/image/Paper.png')}
                   />
-                </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginLeft: 15}}>
+                  <Image
+                    style={{width: 23, resizeMode: 'contain', marginTop: 4}}
+                    source={require('../../../assets/image/Image1.png')}
+                  />
+                </TouchableOpacity>
               </View>
-            )}
-            renderSend={props => (
-              <Send
-                {...props}
-                containerStyle={{
-                  borderTopColor: '#FFF',
-                }}>
-                <Image
-                  style={{
-                    width: 20,
-                    resizeMode: 'contain',
-                    marginRight: 5,
-                    marginBottom: 5,
+              <View style={{width: width * 0.66}}>
+                <InputToolbar
+                  {...props}
+                  placeholder="Message..."
+                  textInputStyle={{
+                    fontSize: 18,
+                    fontWeight: 'normal',
                   }}
-                  source={require('../../../assets/image/iconSend.png')}
+                  containerStyle={{
+                    borderTopWidth: 1.5,
+                    borderTopColor: '#e7e7e7',
+                    borderLeftWidth: 1.5,
+                    borderLeftColor: '#e7e7e7',
+                    marginLeft: Platform.OS === 'android' ? 15 : 15,
+                    flex: 1,
+                    borderRadius: 8,
+                    height: 40,
+                    width: width * 0.75,
+                  }}
                 />
-              </Send>
-            )}
-            renderTime={renderTime}
-          />
-        </View>
-      </SafeAreaView>
+              </View>
+            </View>
+          )}
+          renderSend={props => (
+            <Send
+              {...props}
+              containerStyle={{
+                borderTopColor: '#FFF',
+              }}>
+              <Image
+                style={{
+                  width: 20,
+                  resizeMode: 'contain',
+                  marginRight: 5,
+                  marginBottom: 5,
+                }}
+                source={require('../../../assets/image/iconSend.png')}
+              />
+            </Send>
+          )}
+          renderTime={renderTime}
+        />
+      </View>
     </View>
   );
 };

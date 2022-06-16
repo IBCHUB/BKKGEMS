@@ -49,7 +49,6 @@ const Hightligth = ({navigation, dispatch}) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{backgroundColor: '#23232390'}} />
       <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
       <View style={{backgroundColor: '#010302', marginBottom: ViewScale(20)}}>
         <FlatList
