@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   textshare: {
     fontFamily: 'Cantoria MT Std',
-    fontSize: ViewScale(13),
+    fontSize: ViewScale(11),
     color: '#fff',
     alignSelf: 'center',
   },

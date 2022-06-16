@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   buttonflat: {
     backgroundColor: '#fff',
     width: width * 0.45,
-    height: ViewScale(190),
+    height: ViewScale(210),
     alignSelf: 'center',
     marginTop: ViewScale(20),
     borderRadius: ViewScale(5),
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   imgflat: {
     width: width * 0.45,
-    height: ViewScale(150),
+    height: ViewScale(180),
     borderTopLeftRadius: ViewScale(5),
     borderTopRightRadius: ViewScale(5),
     borderBottomWidth: 0.5,
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     color: '#646363',
     alignSelf: 'center',
     marginLeft: ViewScale(10),
+    width: width * 0.36,
   },
   FloatingActionButtonStyle: {
     position: 'absolute',

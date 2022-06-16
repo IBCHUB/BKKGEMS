@@ -169,17 +169,17 @@ const Home = ({navigation, dispatch, authData}) => {
                           async () => {
                             var request =
                               'meet=' +
-                              '2' +
+                              '1' +
                               '&tags=' +
                               '' +
                               '&type=' +
-                              '' +
+                              [1, 2, 3] +
                               '&text=' +
                               item;
                             const response = await dispatch(
                               Exhibitor_List(request),
                             );
-                            // console.log(response);
+                            console.log(response);
                             if (response.res_code == '00') {
                               navigation.navigate('Searchno', {
                                 item: response.res_result,

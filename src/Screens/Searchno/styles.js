@@ -145,13 +145,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.5,
     elevation: 2,
-    height: ViewScale(200),
+    height: ViewScale(210),
     backgroundColor: '#fff',
     borderRadius: 5,
   },
   imgflat: {
     width: width * 0.45,
-    height: ViewScale(170),
+    height: ViewScale(180),
     alignSelf: 'center',
   },
   text: {
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     color: '#646363',
     alignSelf: 'center',
+    width: width * 0.36,
   },
   imgflat1: {
     width: ViewScale(150),
@@ -187,6 +188,8 @@ const styles = StyleSheet.create({
   },
   com: {
     marginVertical: height * 0.1,
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#DAA560',
   },
   textccom: {
     fontSize: ViewScale(26),
@@ -194,13 +197,29 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
   },
-  // row: {
-  //   flexDirection: 'row',
-  //   width: width * 0.42,
-  //   paddingHorizontal: ViewScale(5),
-  //   alignSelf: 'center',
-  //   height: ViewScale(30),
-  // },
+  imglogo: {
+    width: ViewScale(20),
+    height: ViewScale(20),
+    alignSelf: 'center',
+    borderRadius: ViewScale(10),
+    borderColor: '#444',
+    borderWidth: 0.1,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: ViewScale(15),
+    marginRight: 5,
+  },
+  row: {
+    flexDirection: 'row',
+    width: width * 0.4,
+    alignSelf: 'center',
+    height: ViewScale(30),
+  },
 });
 
 export default styles;

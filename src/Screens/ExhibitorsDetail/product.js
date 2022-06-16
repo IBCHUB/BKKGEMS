@@ -585,7 +585,9 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
                   defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                 />
 
-                <Text style={styles.textflat}>{item.product_img_title}</Text>
+                <Text numberOfLines={1} style={styles.textflat}>
+                  {item.product_img_title}
+                </Text>
               </TouchableOpacity>
             );
           }}

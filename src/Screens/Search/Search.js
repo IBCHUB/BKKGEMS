@@ -17,6 +17,7 @@ import styles from './styles';
 import RBSheetsearch from './RBSheetsearch';
 import {Exhibitor_List, Exprofile} from '../../action/data.action';
 import {connect} from 'react-redux';
+import {ViewScale} from '../../config/ViewScale';
 
 const Search = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
@@ -217,8 +218,21 @@ const Search = ({navigation, dispatch, authUser, route}) => {
           </TouchableOpacity>
         </View>
 
-        {product.length == 0 ? (
-          <View />
+        {product.count == 0 ? (
+          <View style={styles.tags}>
+            <Text style={styles.texttags}>
+              Company{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                “{datatext}”
+              </Text>{' '}
+              Found {company.count} Items
+            </Text>
+            <Image
+              source={require('../../../assets/image/folder.png')}
+              style={styles.iconsea2}
+            />
+            <Text style={styles.textccom}>No result found</Text>
+          </View>
         ) : (
           <View style={styles.tags}>
             <View style={styles.roww}>
@@ -300,8 +314,21 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {company.length == 0 ? (
-          <View />
+        {company.count == 0 ? (
+          <View style={styles.tags}>
+            <Text style={styles.texttags}>
+              Company{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                “{datatext}”
+              </Text>{' '}
+              Found {company.count} Items
+            </Text>
+            <Image
+              source={require('../../../assets/image/folder.png')}
+              style={styles.iconsea2}
+            />
+            <Text style={styles.textccom}>No result found</Text>
+          </View>
         ) : (
           <View style={styles.tags}>
             <View style={styles.roww}>
@@ -383,8 +410,21 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {brand.length == 0 ? (
-          <View />
+        {brand.count == 0 ? (
+          <View style={styles.tags}>
+            <Text style={styles.texttags}>
+              Company{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                “{datatext}”
+              </Text>{' '}
+              Found {company.count} Items
+            </Text>
+            <Image
+              source={require('../../../assets/image/folder.png')}
+              style={styles.iconsea2}
+            />
+            <Text style={styles.textccom}>No result found</Text>
+          </View>
         ) : (
           <View style={styles.tags}>
             <View style={styles.roww}>

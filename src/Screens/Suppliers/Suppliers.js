@@ -115,7 +115,7 @@ const Suppliers = ({navigation, dispatch}) => {
                               '&tags=' +
                               '' +
                               '&type=' +
-                              '' +
+                              [1, 2, 3] +
                               '&text=' +
                               item;
                             const response = await dispatch(

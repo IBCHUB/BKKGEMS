@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     fontSize: Platform.OS === 'ios' ? ViewScale(12) : ViewScale(10),
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
-    marginTop: Platform.OS === 'ios' ? 0 : ViewScale(-8),
+    marginTop: Platform.OS === 'ios' ? ViewScale(-5) : ViewScale(-8),
     color: '#000',
   },
   count2: {

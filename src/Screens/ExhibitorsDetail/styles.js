@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: ViewScale(20),
     alignSelf: 'center',
+    marginBottom: ViewScale(15),
   },
   viewlist: {
     flexDirection: 'row',

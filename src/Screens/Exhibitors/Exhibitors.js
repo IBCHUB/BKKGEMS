@@ -178,7 +178,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                             '&tags=' +
                             '' +
                             '&type=' +
-                            '' +
+                            [1, 2, 3] +
                             '&text=' +
                             item;
                           const response = await dispatch(

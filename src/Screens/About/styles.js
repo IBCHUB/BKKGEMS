@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   imgHeader: {
     width: width,
-    height: ViewScale(250),
+    height: ViewScale(360),
   },
   imgdetail: {
     width: width * 0.88,

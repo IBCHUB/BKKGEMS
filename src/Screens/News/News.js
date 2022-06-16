@@ -209,11 +209,14 @@ const News = ({navigation, dispatch}) => {
                 // console.log(response);
                 if (response.res_code == '00') {
                   setData(response.res_result);
-                  refRBSheet.current.close();
+
                   console.log('1111');
                 } else {
                   console.log('2222');
                 }
+                setTimeout(() => {
+                  refRBSheet.current.close();
+                }, 300);
               }}
               style={[styles.touch, {backgroundColor: '#DAA560'}]}>
               <Text style={[styles.textouch, {color: '#fff'}]}>DONE</Text>

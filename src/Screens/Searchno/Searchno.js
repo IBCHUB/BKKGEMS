@@ -215,18 +215,21 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           </TouchableOpacity>
         </View>
 
-        {product.count === 0 && company.count === 0 && brand.count === 0 && (
-          <View style={styles.com}>
+        {product.count === 0 ? (
+          <View style={styles.tags}>
+            <Text style={styles.texttags}>
+              Company{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                “{datatext}”
+              </Text>{' '}
+              Found {company.count} Items
+            </Text>
             <Image
               source={require('../../../assets/image/folder.png')}
               style={styles.iconsea2}
             />
             <Text style={styles.textccom}>No result found</Text>
           </View>
-        )}
-
-        {product.count === 0 ? (
-          <View />
         ) : (
           <View style={styles.tags}>
             <View style={styles.roww}>
@@ -309,7 +312,20 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           </View>
         )}
         {company.count == 0 ? (
-          <View />
+          <View style={styles.tags}>
+            <Text style={styles.texttags}>
+              Company{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                “{datatext}”
+              </Text>{' '}
+              Found {company.count} Items
+            </Text>
+            <Image
+              source={require('../../../assets/image/folder.png')}
+              style={styles.iconsea2}
+            />
+            <Text style={styles.textccom}>No result found</Text>
+          </View>
         ) : (
           <View style={styles.tags}>
             <View style={styles.roww}>
@@ -392,7 +408,20 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           </View>
         )}
         {brand.count == 0 ? (
-          <View />
+          <View style={styles.tags}>
+            <Text style={styles.texttags}>
+              Company{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
+                “{datatext}”
+              </Text>{' '}
+              Found {company.count} Items
+            </Text>
+            <Image
+              source={require('../../../assets/image/folder.png')}
+              style={styles.iconsea2}
+            />
+            <Text style={styles.textccom}>No result found</Text>
+          </View>
         ) : (
           <View style={styles.tags}>
             <View style={styles.roww}>
