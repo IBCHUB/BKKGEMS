@@ -14,6 +14,11 @@ import styles from './styles';
 const Thenewfaces = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'The New Faces'} />
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
         <View style={styles.viewdetail}>

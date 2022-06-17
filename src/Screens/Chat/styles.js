@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   container: {
     width: width,
     height: height,
+    backgroundColor: '#000',
   },
   viewrow: {
     flexDirection: 'row',
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     width: width * 0.15,
   },
   chat: {
-    height: height * 0.9,
+    height: height * 0.915,
   },
 });
 

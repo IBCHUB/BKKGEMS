@@ -10,6 +10,7 @@ import {
   Modal,
   Dimensions,
   TextInput,
+  Platform,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
@@ -19,6 +20,11 @@ const Plan = ({navigation, dispatch}) => {
   const item = require('../../../assets/image/parn.png');
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'FLOOR PLAN'} />
 
       <View style={styles.view}>

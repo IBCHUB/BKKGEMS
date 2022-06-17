@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ImageBackground,
+  Platform,
 } from 'react-native';
 import Headerchat from '../../Components/Headerchat';
 import Allchat from './Allchat';
@@ -18,8 +19,14 @@ const Chat = ({navigation, route}) => {
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerchat item={'CHAT'} navigation={navigation} />
-      {/* <View style={styles.viewrow}>
+      <View style={{backgroundColor: '#fff'}}>
+        {/* <View style={styles.viewrow}>
         <TouchableOpacity
           onPress={() => {
             setpage(0);
@@ -53,8 +60,9 @@ const Chat = ({navigation, route}) => {
           </Text>
         </TouchableOpacity>
       </View> */}
-      <Chatbot />
-      {/* {page === 1 && <Allchat navigation={navigation} />} */}
+        <Chatbot />
+        {/* {page === 1 && <Allchat navigation={navigation} />} */}
+      </View>
     </View>
   );
 };

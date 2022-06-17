@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Linking,
+  Platform,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
@@ -35,6 +36,11 @@ const Jewellers = ({navigation}) => {
   ]);
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback item={'The Jewellers'} navigation={navigation} />
       <View style={styles.containerview}>
         <FlatList

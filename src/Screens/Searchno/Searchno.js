@@ -9,6 +9,7 @@ import {
   ImageBackground,
   FlatList,
   TextInput,
+  Platform,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -155,6 +156,11 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
   };
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item="SEARCH" />
       <RBSheet
         ref={refRBSheet}

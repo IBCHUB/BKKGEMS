@@ -15,6 +15,11 @@ import LinearGradient from 'react-native-linear-gradient';
 const About = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'ABOUT FAIR'} />
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
         <Image

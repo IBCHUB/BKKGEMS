@@ -10,6 +10,7 @@ import {
   Modal,
   Dimensions,
   TextInput,
+  Platform,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
@@ -18,6 +19,11 @@ import {connect} from 'react-redux';
 const Adminsion = ({navigation, dispatch}) => {
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'ADMISSION'} />
       <ScrollView>
         <View style={styles.view}>

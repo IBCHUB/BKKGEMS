@@ -10,6 +10,7 @@ import {
   FlatList,
   TextInput,
   Linking,
+  Platform,
 } from 'react-native';
 
 import Headerback from '../../Components/Headerback';
@@ -67,6 +68,11 @@ const Faqs = ({navigation, dispatch}) => {
   }, []);
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'FAQs'} />
       <ScrollView style={{backgroundColor: '#000'}}>
         <View style={styles.containerview}>

@@ -26,6 +26,7 @@ import Autocomplete from 'react-native-autocomplete-input';
 import {Exhibitor_List, Search, Topic} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
+import GeneralStatusBarColor from '../../Components/GeneralStatusBarColor';
 const {width, height} = Dimensions.get('window');
 const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState();
@@ -88,6 +89,7 @@ const Home = ({navigation, dispatch, authData}) => {
 
   return (
     <View style={styles.container}>
+      <GeneralStatusBarColor barStyle="light-content" />
       <Headerhome navigation={navigation} />
       <RBSheet
         ref={refRBSheet}

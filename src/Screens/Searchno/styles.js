@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   container: {
     width: width,
     height: height,
+    backgroundColor: '#000',
   },
   viewsearch: {
     flexDirection: 'row',
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
     color: '#646363',
     alignSelf: 'center',
-    width: width * 0.32,
+    width: width * 0.35,
     textAlign: 'center',
     marginTop: ViewScale(10),
   },

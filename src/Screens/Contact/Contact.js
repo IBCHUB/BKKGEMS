@@ -10,6 +10,7 @@ import {
   Modal,
   Dimensions,
   TextInput,
+  Platform,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
@@ -87,7 +88,11 @@ const Contact = ({navigation, dispatch}) => {
           </View>
         </View>
       </Modal>
-
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'CONTACT US'} />
       <ScrollView style={{backgroundColor: '#000', marginBottom: 10}}>
         <Formik

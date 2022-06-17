@@ -10,13 +10,19 @@ import {
   Modal,
   Dimensions,
   TextInput,
+  Platform,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import {connect} from 'react-redux';
 const Term = ({navigation, dispatch}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {}]}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'TERMS OF USE'} />
 
       <ScrollView>

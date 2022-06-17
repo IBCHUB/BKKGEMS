@@ -156,6 +156,11 @@ const Search = ({navigation, dispatch, authUser, route}) => {
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item="SEARCH" />
       <RBSheet
         ref={refRBSheet}

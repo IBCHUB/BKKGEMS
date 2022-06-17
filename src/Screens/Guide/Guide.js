@@ -18,6 +18,11 @@ import {ViewScale} from '../../config/ViewScale';
 const Guide = ({navigation, dispatch}) => {
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'VISITOR GUIDE'} />
 
       <ScrollView>

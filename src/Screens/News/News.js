@@ -134,6 +134,11 @@ const News = ({navigation, dispatch}) => {
   // 2 trends
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headercomp item={'NEWS & TRENDS'} navigation={navigation} />
       <RBSheet
         ref={refRBSheet}

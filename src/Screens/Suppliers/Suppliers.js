@@ -47,6 +47,11 @@ const Suppliers = ({navigation, dispatch}) => {
   const refRBSheet = useRef();
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} />
       <RBSheet
         ref={refRBSheet}
@@ -75,8 +80,7 @@ const Suppliers = ({navigation, dispatch}) => {
           navigation={navigation}
         />
       </RBSheet>
-      <ScrollView
-        style={{backgroundColor: '#EEECE2', paddingBottom: ViewScale(50)}}>
+      <ScrollView style={{backgroundColor: '#EEECE2'}}>
         <ImageBackground
           source={require('../../../assets/image/sup.png')}
           style={[styles.imgHeader, {zIndex: 999}]}>

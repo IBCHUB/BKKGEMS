@@ -29,6 +29,7 @@ import {
 } from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
 import Autocomplete from 'react-native-autocomplete-input';
+import GeneralStatusBarColor from '../../Components/GeneralStatusBarColor';
 
 const {width, height} = Dimensions.get('window');
 const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
@@ -119,7 +120,8 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
     _Search();
   }, []);
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
+      <GeneralStatusBarColor barStyle="light-content" />
       <Headercomp item={'EXHIBITOR  LIST'} navigation={navigation} />
       <RBSheet
         ref={refRBSheet}

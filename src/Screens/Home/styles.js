@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   container: {
     width: width,
     height: height,
+    backgroundColor: '#000',
   },
   viewback: {
     backgroundColor: '#000',

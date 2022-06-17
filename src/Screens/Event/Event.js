@@ -34,6 +34,11 @@ const Event = ({navigation}) => {
   ]);
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headercomp item={'EVENTS'} navigation={navigation} />
       <View style={styles.containerview}>
         <FlatList

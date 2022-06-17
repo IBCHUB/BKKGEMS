@@ -7,12 +7,18 @@ import {
   ScrollView,
   TouchableOpacity,
   ImageBackground,
+  Platform,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 const Fashion = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback navigation={navigation} item={'Fashion Show'} />
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
         <View style={styles.viewdetail}>

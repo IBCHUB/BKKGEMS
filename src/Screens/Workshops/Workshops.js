@@ -13,6 +13,11 @@ import styles from './styles';
 const Workshops = ({navigation}) => {
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback
         navigation={navigation}
         item={'Workshops and Demonstrations'}

@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   container: {
     width: width,
     height: height,
+    backgroundColor: '#000',
   },
   containerview: {
     paddingBottom: ViewScale(50),

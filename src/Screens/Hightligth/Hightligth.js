@@ -19,6 +19,7 @@ import styles from './styles';
 import {Exprofile, Product_Highlight} from '../../action/data.action';
 import {connect} from 'react-redux';
 import {ViewScale} from '../../config/ViewScale';
+
 const {width, height} = Dimensions.get('window');
 const Hightligth = ({navigation, dispatch}) => {
   const [highlight, setHighlight] = useState([]);
@@ -49,6 +50,11 @@ const Hightligth = ({navigation, dispatch}) => {
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
       <View style={{backgroundColor: '#010302', marginBottom: ViewScale(20)}}>
         <FlatList

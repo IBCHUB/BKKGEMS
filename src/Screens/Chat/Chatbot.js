@@ -721,6 +721,7 @@ class Chatbot extends Component {
           marginHorizontal: 10,
           justifyContent: 'center',
           height: 45,
+          marginVertical: 15,
         }}
       />
     );

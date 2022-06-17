@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Platform,
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from './styles';

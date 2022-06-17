@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
   container: {
     height: height,
     marginTop:
-      Platform.OS === 'ios' ? StaticSafeAreaInsets.safeAreaInsetsTop : 0,
+      Platform.OS === 'ios' ? StaticSafeAreaInsets.safeAreaInsetsTop : 25,
+    backgroundColor: '#000',
   },
   touchdrawer: {
     fontSize: ViewScale(20),
