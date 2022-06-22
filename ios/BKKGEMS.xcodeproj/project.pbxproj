@@ -13,7 +13,7 @@
 		46B32FD2547DDF974DF96C8B /* libPods-BKKGEMS-BKKGEMSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E541F36A11276811BED739 /* libPods-BKKGEMS-BKKGEMSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A4BA4429F46B7AF103CB0DA0 /* libPods-BKKGEMS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 748B2ADF5B6FD653A055167F /* libPods-BKKGEMS.a */; };
-		E80299FC27F1A555008A4628 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E80299FB27F1A554008A4628 /* GoogleService-Info.plist */; };
+		E80CF4BE286016620068FAF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E80CF4BD286016610068FAF1 /* GoogleService-Info.plist */; };
 		E8901961283C802C00EBF34B /* Cantoria-MT-Std_9238.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8901960283C7BFF00EBF34B /* Cantoria-MT-Std_9238.ttf */; };
 		E8938A6027E98BA60094585B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		E8B2EA8027E8795A0035F440 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -62,7 +62,7 @@
 		D8F6F05D6D645253B27F9910 /* Pods-BKKGEMS-BKKGEMSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BKKGEMS-BKKGEMSTests.debug.xcconfig"; path = "Target Support Files/Pods-BKKGEMS-BKKGEMSTests/Pods-BKKGEMS-BKKGEMSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E09A1195EC074D9A9ABD9F10 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		E6232E5C194B4A04AE14F9B9 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		E80299FB27F1A554008A4628 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E80CF4BD286016610068FAF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/ไฟล์ google services/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E8901960283C7BFF00EBF34B /* Cantoria-MT-Std_9238.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Cantoria-MT-Std_9238.ttf"; path = "../../../Downloads/Cantoria-MT-Std_9238.ttf"; sourceTree = "<group>"; };
 		E8D7C0A727BF9F9E00E942FE /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		E8D7C0A827BF9F9E00E942FE /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
@@ -125,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				E80CF4BD286016610068FAF1 /* GoogleService-Info.plist */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -154,7 +155,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				E80299FB27F1A554008A4628 /* GoogleService-Info.plist */,
 				E8901960283C7BFF00EBF34B /* Cantoria-MT-Std_9238.ttf */,
 				E8D7C0A627BF9F9E00E942FE /* Fonts */,
 				13B07FAE1A68108700A75B9A /* BKKGEMS */,
@@ -335,7 +335,7 @@
 			files = (
 				E8901961283C802C00EBF34B /* Cantoria-MT-Std_9238.ttf in Resources */,
 				E8938A6027E98BA60094585B /* Images.xcassets in Resources */,
-				E80299FC27F1A555008A4628 /* GoogleService-Info.plist in Resources */,
+				E80CF4BE286016620068FAF1 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,7 @@ import {
   Button,
   Linking,
   Dimensions,
+  KeyboardAvoidingView,
 } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import {
@@ -29,11 +30,13 @@ import {
   createTokenChat,
   createuserChat,
   generatechattoken,
+  HisChat,
 } from '../../action/data.action';
 import CustomView from './CustomView';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import IconAndroid from 'react-native-vector-icons/MaterialIcons';
 import {getUniqueId, getManufacturer} from 'react-native-device-info';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 const {width, height} = Dimensions.get('window');
 
 class Chatbot extends Component {
@@ -42,6 +45,8 @@ class Chatbot extends Component {
     this.state = {
       messages: [],
       getUniqueId1: '',
+      totalCount: null,
+      dataHistoryChat: [],
     };
   }
 
@@ -69,7 +74,6 @@ class Chatbot extends Component {
         },
       };
       const response = await this.props.dispatch(createTokenChat(payload));
-
       if ((response?.appToken !== undefined) === true) {
         // console.log(response?.appToken);
         var request =
@@ -79,7 +83,7 @@ class Chatbot extends Component {
           '&text=' +
           this.state.getUniqueId1;
         const response2 = await this.props.dispatch(ativebotChat(request));
-        // console.log('>>>>', response2);
+
         const payload1 = {
           result: {
             uid: this.state.getUniqueId1,
@@ -108,6 +112,34 @@ class Chatbot extends Component {
         };
         const response1 = await this.props.dispatch(createuserChat(payload1));
 
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        var dayStart = yyyy + '-' + mm + '-' + dd + 'T00:00:00.000Z';
+        var dayend = yyyy + '-' + mm + '-' + dd + 'T23:59:59.999Z';
+
+        const payload2 = {
+          result: {
+            limit: 100,
+            page: 0,
+            period: {
+              start: dayStart,
+              end: dayend,
+            },
+            social_network_ref_id: 'uNPxpBP5afzA4u5NtZxSahtUsKZSX40k',
+            social_user_ref_id: this.state.getUniqueId1,
+          },
+          token: response.appToken,
+        };
+
+        const response3 = await this.props.dispatch(HisChat(payload2));
+
+        console.log('2233', response3);
+        this.setState({
+          totalCount: response3.totalCount,
+          dataHistoryChat: response3.messages,
+        });
         if (response1.responseBody.status === '400 BAD_REQUEST') {
           const payload = {
             result: {
@@ -182,26 +214,113 @@ class Chatbot extends Component {
   getstartChat = async value => {
     try {
       const uid = this.state.getUniqueId1;
-      const payload = {
-        sender: {
-          id: `${uid}`,
-          type: 'user',
-          avatar: '',
-        },
-        recipient: {
-          id: `${value.refId}`,
-        },
-        message: {
-          web_mid: `${uid}` + new Date().getTime(),
-          postback: {
-            title: 'เริ่มต้นแชท',
-            payload: 'get_started',
+      if (this.state.totalCount === 0) {
+        const payload = {
+          sender: {
+            id: `${uid}`,
+            type: 'user',
+            avatar: '',
           },
-        },
-        timestamp: new Date().getTime(),
-      };
-      await this.socket.emit('chat', payload);
-      console.log('879', payload);
+          recipient: {
+            id: `${value.refId}`,
+          },
+          message: {
+            web_mid: `${uid}` + new Date().getTime(),
+            postback: {
+              title: 'เริ่มต้นแชท',
+              payload: 'get_started',
+            },
+          },
+          timestamp: new Date().getTime(),
+        };
+        await this.socket.emit('chat', payload);
+        console.log('879', payload);
+      } else {
+        let numchat = parseInt(this.state.totalCount);
+        console.log('LLLKLKLK', this.state.dataHistoryChat);
+        // let gg = numchat -1
+
+        for (var i = numchat >= 25 ? 10 : numchat - 1; i >= 0; i--) {
+          // alert('kkk' + i);
+
+          if (
+            this.state.dataHistoryChat[i].message != null &&
+            this.state.dataHistoryChat[i].sender != null &&
+            this.state.dataHistoryChat[i].recipient != null &&
+            this.state.dataHistoryChat[i].message?.postback?.payload !==
+              'get_started'
+          ) {
+            const dataBack = {
+              dataquick_replies:
+                this.state.dataHistoryChat[i].message?.quick_replies ===
+                undefined
+                  ? undefined
+                  : this.state.dataHistoryChat[i].message?.quick_replies,
+              title_name:
+                this.state.dataHistoryChat[i].message?.postback?.title,
+              text1:
+                this.state.dataHistoryChat[i].message !== undefined
+                  ? this.state.dataHistoryChat[i].message?.text
+                  : this.state.dataHistoryChat[i].message?.postback?.title,
+
+              showtextdataquick_replies:
+                this.state.dataHistoryChat[i].message !== undefined
+                  ? this.state.dataHistoryChat[i].message?.text
+                  : this.state.dataHistoryChat[i].message?.postback?.title,
+
+              textdataquick_replies:
+                this.state.dataHistoryChat[i].message !== undefined
+                  ? this.state.dataHistoryChat[i].message?.attachment ===
+                    undefined
+                    ? ''
+                    : this.state.dataHistoryChat[i].message?.text
+                  : this.state.dataHistoryChat[i].message?.postback?.title,
+              image:
+                this.state.dataHistoryChat[i].message?.attachment !==
+                  undefined &&
+                this.state.dataHistoryChat[i].message?.attachment?.type ===
+                  'image'
+                  ? this.state.dataHistoryChat[i].message.attachment.payload.url
+                  : this.state.dataHistoryChat[i].message?.type === 'IMAGE'
+                  ? this.state.dataHistoryChat[i].message?.url
+                  : '',
+
+              imageList:
+                this.state.dataHistoryChat[i].message?.attachment !==
+                  undefined &&
+                this.state.dataHistoryChat[i].message?.attachment?.type ===
+                  'template'
+                  ? this.state.dataHistoryChat[i].message?.attachment?.payload
+                      ?.template_type === 'generic'
+                    ? this.state.dataHistoryChat[i].message?.attachment?.payload
+                        ?.elements
+                    : this.state.dataHistoryChat[i].message?.attachment?.payload
+                  : undefined,
+
+              user: {
+                _id:
+                  this.state.dataHistoryChat[i].sender?.type === undefined
+                    ? this.state.dataHistoryChat[i].sender?.id ===
+                      this.state.getUniqueId1
+                      ? 'user'
+                      : 'bot'
+                    : this.state.dataHistoryChat[i].sender?.type,
+
+                name: 'name',
+                avatar:
+                  this.state.dataHistoryChat[i].sender.type === 'user'
+                    ? require('../../../assets/image/iconProfile.png')
+                    : 'http://one.ditp.go.th/dist/img/icon/iconAdminChat.png',
+              },
+              iduser: this.state.dataHistoryChat[i].recipient.id,
+              _id: 'HomeBot',
+            };
+            this.setState(previousState => ({
+              messages: GiftedChat.append(previousState.messages, dataBack),
+            }));
+          }
+        }
+      }
       this.socket.on('chat', dataChat => {
         if (
           dataChat !== null &&
@@ -327,7 +446,7 @@ class Chatbot extends Component {
             <ScrollView
               horizontal={true}
               style={{
-                width: width,
+                width: width * 0.8,
                 backgroundColor: '#FFF',
                 borderRadius: 13,
               }}>
@@ -454,7 +573,10 @@ class Chatbot extends Component {
                   fontFamily: 'Cantoria MT Std',
                   fontWeight: 'normal',
                 }}>
-                {props.currentMessage.imageList.text}
+                {props.currentMessage.imageList.text.replace(
+                  getUniqueId(),
+                  'BKKGEMS User',
+                )}
               </Text>
               <View>
                 {props.currentMessage.imageList.buttons.map(data => {
@@ -519,7 +641,7 @@ class Chatbot extends Component {
                             borderWidth: 1,
                             marginHorizontal: 15,
                             borderRadius: 10,
-                            marginBottom: 5,
+                            marginBottom: 10,
                             marginTop: 5,
                             height: 30,
                             justifyContent: 'center',
@@ -721,7 +843,7 @@ class Chatbot extends Component {
           marginHorizontal: 10,
           justifyContent: 'center',
           height: 45,
-          marginVertical: 15,
+          marginBottom: Platform.OS === 'ios' ? 0 : 5,
         }}
       />
     );
@@ -747,37 +869,51 @@ class Chatbot extends Component {
   }
   render() {
     return (
-      <View style={styles.chat}>
-        <GiftedChat
-          messages={this.state.messages}
-          renderAvatarOnTop={true}
-          onSend={(text1, text2, text3, text4, text5, text6, text7, text8) => {
-            if (text1 === '') {
-              console.log(
-                text1 + text2 + text3 + text4 + text5 + text6 + text7 + text8,
-              );
-              this.onSend(text1, text2, text3, text4, text5, text6, text7);
-            } else {
-              // alert(text1[0].text)
-              this.onSend(text1[0].text);
-            }
-          }}
-          user={{
-            _id: 'user',
-          }}
-          showAvatarForEveryMessage={true}
-          alwaysShowSend={true}
-          showUserAvatar={true}
-          isTyping={true}
-          renderTime={this.renderTime}
-          renderMessageImage={this.renderMessageImage}
-          renderBubble={this.renderBubble}
-          renderCustomView={this.renderCustomView}
-          renderAvatar={this.renderAvatar}
-          renderSend={this.renderSend}
-          renderInputToolbar={this.renderInputToolbar}
-        />
-      </View>
+      <KeyboardAwareScrollView
+        extraScrollHeight={275}
+        enableOnAndroid={true}
+        contentContainerStyle={{flexGrow: 1}}>
+        <View style={styles.chat}>
+          <GiftedChat
+            messages={this.state.messages}
+            renderAvatarOnTop={true}
+            onSend={(
+              text1,
+              text2,
+              text3,
+              text4,
+              text5,
+              text6,
+              text7,
+              text8,
+            ) => {
+              if (text1 === '') {
+                console.log(
+                  text1 + text2 + text3 + text4 + text5 + text6 + text7 + text8,
+                );
+                this.onSend(text1, text2, text3, text4, text5, text6, text7);
+              } else {
+                // alert(text1[0].text)
+                this.onSend(text1[0].text);
+              }
+            }}
+            user={{
+              _id: 'user',
+            }}
+            showAvatarForEveryMessage={true}
+            alwaysShowSend={true}
+            showUserAvatar={true}
+            isTyping={true}
+            renderTime={this.renderTime}
+            renderMessageImage={this.renderMessageImage}
+            renderBubble={this.renderBubble}
+            renderCustomView={this.renderCustomView}
+            renderAvatar={this.renderAvatar}
+            renderSend={this.renderSend}
+            renderInputToolbar={this.renderInputToolbar}
+          />
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 }

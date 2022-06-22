@@ -493,7 +493,7 @@ export const Categories = payload => {
         payload,
         'BASE',
       );
-      // console.log(response);
+      console.log(response);
       if (response.res_code === '00') {
         return response;
       } else {
@@ -552,7 +552,28 @@ export const createTokenChat = payload => {
     }
   };
 };
+export const HisChat = payload => {
+  return async dispatch => {
+    try {
+      const response = await fetchApi(
+        '/chat/history',
+        'POST',
+        dispatch,
+        payload.result,
+        'SSO',
+        payload.token,
+      );
 
+      if (response.res_code === '00') {
+        return response;
+      } else {
+        return response;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
 export const createuserChat = payload => {
   // console.log('>>>>>', payload);
   return async (dispatch, getState) => {
@@ -598,6 +619,7 @@ export const ativebotChat = payload => {
     }
   };
 };
+
 export const generatechattoken = payload => {
   return async (dispatch, getState) => {
     try {

@@ -10,6 +10,7 @@ import {
   Modal,
   TextInput,
   Linking,
+  Platform,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
@@ -43,6 +44,11 @@ const ExhibitorsDetail = ({navigation, route, dispatch}) => {
 
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <ScrollView>
         <Headerback navigation={navigation} />
         <View style={styles.viewHeader}>

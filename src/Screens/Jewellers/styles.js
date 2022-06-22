@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   imgdetail1: {
     width: width * 1,
-    height: height * 0.12,
+    height: height * 0.135,
     alignSelf: 'center',
   },
   imgdetail2: {

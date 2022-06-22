@@ -95,6 +95,30 @@ const styles = StyleSheet.create({
   chat: {
     height: height * 0.915,
   },
+  viewCenterInput: {
+    width: width * 0.96,
+    borderRadius: 5,
+    alignSelf: 'center',
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.84,
+    elevation: 2,
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
+  inputChat: {
+    width: width * 0.9,
+    borderRadius: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    height: 45,
+    paddingLeft: 20,
+  },
 });
 
 export default styles;

@@ -32,7 +32,8 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
   const scrollRef = useRef();
   const {item} = route.params;
   console.log(item);
-  const [state, setstate] = useState();
+  const {text} = route.params;
+  const [state, setstate] = useState([]);
   const [query, setQuery] = useState('');
   console.log(query);
   const test = text => {
@@ -76,12 +77,47 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
       }
     } catch (error) {}
   };
+  const [textSearch, settextSearch] = useState('');
+  console.log(textSearch);
+
+  const onSubmit = async values => {
+    var request =
+      'meet=' +
+      '2' +
+      '&tags=' +
+      '' +
+      '&type=' +
+      [1, 2, 3] +
+      '&text=' +
+      textSearch;
+    console.log(request);
+    const response = await dispatch(Exhibitor_List(request));
+
+    if (response.res_code == '00') {
+      console.log(response);
+      setstate([]);
+      navigation.navigate('Search', {
+        item: response.res_result,
+        text: textSearch,
+      });
+    } else {
+      console.log('2222');
+    }
+  };
+  const renderTextInput = props => {
+    return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
+  };
   useEffect(() => {
     _Search();
     _Categ();
   }, []);
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: '#000'}}>
+      <View
+        style={{
+          marginTop: Platform.OS === 'android' && 25,
+        }}
+      />
       <Headerback item={'Categories'} navigation={navigation} />
       <RBSheet
         ref={refRBSheet}
@@ -118,42 +154,49 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
               style={styles.icon1}
             />
             <Autocomplete
-              data={state}
+              data={state.slice(0, 10)}
               value={query}
               hideResults={query.length == 0 ? true : false}
               autoCorrect={false}
               placeholder="What are you looking for?"
               placeholderTextColor={'#888888'}
+              renderTextInput={renderTextInput}
               onChangeText={text => {
                 test(text);
+                settextSearch(text);
               }}
               flatListProps={{
                 keyExtractor: (_, idx) => idx,
-                renderItem: ({item}) => {
+                renderItem: ({item, index}) => {
                   return (
                     <TouchableOpacity
-                      onPress={async () => {
-                        var request =
-                          'meet=' +
-                          '2' +
-                          '&tags=' +
-                          '' +
-                          '&type=' +
-                          '' +
-                          '&text=' +
-                          item;
-                        const response = await dispatch(
-                          Exhibitor_List(request),
-                        );
-                        if (response.res_code == '00') {
-                          navigation.navigate('Search', {
-                            item: response.res_result,
-                            text: item,
-                          });
-                        } else {
-                          console.log('2222');
+                      onPress={
+                        async () => {
+                          var request =
+                            'meet=' +
+                            '2' +
+                            '&tags=' +
+                            '' +
+                            '&type=' +
+                            [1, 2, 3] +
+                            '&text=' +
+                            item;
+                          const response = await dispatch(
+                            Exhibitor_List(request),
+                          );
+                          console.log(response);
+                          if (response.res_code == '00') {
+                            setstate([]);
+                            navigation.navigate('Search', {
+                              item: response.res_result,
+                              text: item,
+                            });
+                          } else {
+                            console.log('2222');
+                          }
                         }
-                      }}>
+                        // navigation.navigate('Searchno', {text: item})
+                      }>
                       <Text
                         style={{
                           fontSize: ViewScale(18),
@@ -169,13 +212,12 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
               }}
               style={styles.input}
               listContainerStyle={{
-                width: ViewScale(325),
+                width: ViewScale(320),
                 marginTop:
                   Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
+                zIndex: 99,
                 position: 'absolute',
-                borderRadius: 5,
-                backgroundColor: '#fff',
-                zIndex: 999,
+                borderRadius: ViewScale(5),
               }}
             />
           </View>
@@ -191,8 +233,8 @@ const Cate = ({navigation, dispatch, authUser, route}) => {
         <View style={styles.roww}>
           <Text style={styles.texttags}>
             Categories{' '}
-            <Text style={[styles.texttags, {color: '#DAA560'}]}>""</Text> Found{' '}
-            {data.length} Items
+            <Text style={[styles.texttags, {color: '#DAA560'}]}>"{text}"</Text>{' '}
+            Found {data.length} Items
           </Text>
         </View>
         <FlatList

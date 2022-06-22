@@ -16,23 +16,54 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import RBSheetsearch from './RBSheetsearch';
-import {Exhibitor_List, Exprofile} from '../../action/data.action';
+import {Exhibitor_List, Exprofile, Search} from '../../action/data.action';
 import {connect} from 'react-redux';
 import {ViewScale} from '../../config/ViewScale';
+import Autocomplete from 'react-native-autocomplete-input';
+
 const Searchno = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
   const item = route.params.item;
   const text = route.params.text;
   const {selectedId, selectedtags} = route.params;
-  console.log(item);
 
+  const [state, setstate] = useState([]);
+  // console.log('456789', state.slice(0, 5));
+  const [query, setQuery] = useState('');
+
+  const test = text => {
+    setQuery(text);
+    let i = 3;
+    let interval = setInterval(() => {
+      if (i > 1) {
+        _Search1(text);
+        clearInterval(interval);
+
+        return i;
+      }
+      i += 1;
+    }, 1000);
+  };
+  const _Search1 = async values => {
+    try {
+      var request = 'text=' + values + '&type=' + '1';
+      const response = await dispatch(Search(request));
+      // console.log('2222222>>>>>>', response);
+      if (response.res_code == '00') {
+        setstate(response.res_result);
+        // console.log('1111');
+      } else {
+        // console.log('2222');
+      }
+    } catch (error) {}
+  };
   const [product, setproduct] = useState(item.product);
   console.log(product);
   const [company, setcompany] = useState(item.company);
   const [brand, setbrand] = useState(item.brand);
-  const [datatext, setdatatext] = useState();
-  const [textSearch, settextSearch] = useState('');
-  console.log(datatext);
+
+  const [textSearch, settextSearch] = useState(text);
+
   const [categorys, setcategorys] = useState([
     {
       img: require('../../../assets/image/iocn/014.png'),
@@ -135,25 +166,42 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
         typetem +
         '&text=' +
         textSearch;
-      console.log(request);
+
       const response = await dispatch(Exhibitor_List(request));
       // console.log('????????', response.res_result);
       if (response.res_code == '00') {
         setproduct(response.res_result.product);
+        console.log('>>>>', response.res_result);
       } else {
         console.log('2222');
       }
     } catch (error) {}
   };
+  const onSubmit = async values => {
+    var request =
+      'meet=' +
+      '1' +
+      '&tags=' +
+      '' +
+      '&type=' +
+      [1, 2, 3] +
+      '&text=' +
+      textSearch;
+    const response = await dispatch(Exhibitor_List(request));
+    if (response.res_code == '00') {
+      setstate([]);
+      setproduct(response.res_result.product);
+      setbrand(response.res_result.brand);
+      setcompany(response.res_result.company);
+    } else {
+      console.log('2222');
+    }
+  };
 
-  const searchSubmit = text => {
-    console.log('searchSubmit');
-    _Search();
+  const renderTextInput = props => {
+    return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
   };
-  const searchChange = text => {
-    console.log(text);
-    settextSearch(text);
-  };
+
   return (
     <View style={styles.container}>
       <View
@@ -199,7 +247,74 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
               color={'#44444480'}
               style={styles.icon1}
             />
-            <TextInput
+            <Autocomplete
+              data={state.slice(0, 10)}
+              value={query}
+              hideResults={query.length == 0 ? true : false}
+              autoCorrect={false}
+              placeholder="What are you looking for?"
+              placeholderTextColor={'#888888'}
+              renderTextInput={renderTextInput}
+              onChangeText={text => {
+                test(text);
+                settextSearch(text);
+              }}
+              flatListProps={{
+                keyExtractor: (_, idx) => idx,
+                renderItem: ({item, index}) => {
+                  return (
+                    <TouchableOpacity
+                      onPress={
+                        async () => {
+                          var request =
+                            'meet=' +
+                            '1' +
+                            '&tags=' +
+                            '' +
+                            '&type=' +
+                            [1, 2, 3] +
+                            '&text=' +
+                            item;
+                          const response = await dispatch(
+                            Exhibitor_List(request),
+                          );
+                          console.log(response);
+                          if (response.res_code == '00') {
+                            setstate([]);
+                            setproduct(response.res_result.product);
+                            setbrand(response.res_result.brand);
+                            setcompany(response.res_result.company);
+                            settextSearch(item);
+                          } else {
+                            console.log('2222');
+                          }
+                        }
+                        // navigation.navigate('Searchno', {text: item})
+                      }>
+                      <Text
+                        style={{
+                          fontSize: ViewScale(18),
+                          padding: ViewScale(3),
+                          fontFamily: 'Cantoria MT Std',
+                          color: '#000',
+                        }}>
+                        {item}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                },
+              }}
+              style={styles.input}
+              listContainerStyle={{
+                width: ViewScale(325),
+                marginTop:
+                  Platform.OS === 'ios' ? ViewScale(40) : ViewScale(45),
+                zIndex: 99,
+                position: 'absolute',
+                borderRadius: ViewScale(5),
+              }}
+            />
+            {/* <TextInput
               clearButtonMode="always"
               placeholder="What are you looking for?"
               placeholderTextColor={'#888888'}
@@ -208,7 +323,7 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
               onChange={event => {
                 searchChange(event.nativeEvent.text);
               }}
-            />
+            /> */}
           </View>
           <TouchableOpacity
             onPress={() => refRBSheet.current.open()}
@@ -220,14 +335,20 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           </TouchableOpacity>
         </View>
 
-        {product.count === 0 ? (
+        {product.count === 0 || product.count.length === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
-              Company{' '}
-              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                “{datatext}”
+              Product{' '}
+              <Text
+                numberOfLines={1}
+                style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                “
+                {textSearch.length > 15
+                  ? textSearch.substring(0, 15) + '...'
+                  : textSearch}
+                ”
               </Text>{' '}
-              Found {company.count} Items
+              Found {product.count} Items
             </Text>
             <Image
               source={require('../../../assets/image/folder.png')}
@@ -241,8 +362,12 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
               <Text style={styles.texttags}>
                 Product{' '}
                 <Text
-                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                  “{datatext}”
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                  “
+                  {textSearch.length > 15
+                    ? textSearch.substring(0, 15) + '...'
+                    : textSearch}
+                  ”
                 </Text>{' '}
                 Found {product.count} Items
               </Text>
@@ -316,12 +441,16 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {company.count == 0 ? (
+        {company.count == 0 || company.count.length === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
               Company{' '}
-              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                “{datatext}”
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                “
+                {textSearch.length > 15
+                  ? textSearch.substring(0, 15) + '...'
+                  : textSearch}
+                ”
               </Text>{' '}
               Found {company.count} Items
             </Text>
@@ -337,8 +466,12 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
               <Text style={styles.texttags}>
                 Company{' '}
                 <Text
-                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                  “{datatext}”
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                  “
+                  {textSearch.length > 15
+                    ? textSearch.substring(0, 15) + '...'
+                    : textSearch}
+                  ”
                 </Text>{' '}
                 Found {company.count} Items
               </Text>
@@ -412,14 +545,18 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {brand.count == 0 ? (
+        {brand.count === 0 || brand.count.length === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
-              Company{' '}
-              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                “{datatext}”
+              Brand{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                “
+                {textSearch.length > 15
+                  ? textSearch.substring(0, 15) + '...'
+                  : textSearch}
+                ”
               </Text>{' '}
-              Found {company.count} Items
+              Found {brand.count} Items
             </Text>
             <Image
               source={require('../../../assets/image/folder.png')}
@@ -433,8 +570,12 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
               <Text style={styles.texttags}>
                 Brand{' '}
                 <Text
-                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                  “{datatext}”
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                  “
+                  {textSearch.length > 15
+                    ? textSearch.substring(0, 15) + '...'
+                    : textSearch}
+                  ”
                 </Text>{' '}
                 Found {brand.count} Items
               </Text>
@@ -526,12 +667,12 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
             data={categorys}
             horizontal={true}
             renderItem={({index, item}) => {
-              console.log(item);
               return (
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Cate', {
                       item: item.product_category_id,
+                      text: item.text,
                     });
                   }}
                   style={{marginRight: 20}}>

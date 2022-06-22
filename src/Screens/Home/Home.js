@@ -50,7 +50,6 @@ const Home = ({navigation, dispatch, authData}) => {
   };
 
   const _Search = async values => {
-    // console.log('xxxx');
     try {
       var request = 'text=' + values + '&type=' + '1';
       const response = await dispatch(Search(request));
@@ -80,6 +79,37 @@ const Home = ({navigation, dispatch, authData}) => {
     } catch (error) {}
   };
   // 166251960.
+  const [textSearch, settextSearch] = useState('');
+  console.log(textSearch);
+
+  const onSubmit = async values => {
+    var request =
+      'meet=' +
+      '1' +
+      '&tags=' +
+      '' +
+      '&type=' +
+      [1, 2, 3] +
+      '&text=' +
+      textSearch;
+    console.log(request);
+    const response = await dispatch(Exhibitor_List(request));
+
+    if (response.res_code == '00') {
+      console.log(response);
+      setstate([]);
+      navigation.navigate('Searchno', {
+        item: response.res_result,
+        text: textSearch,
+      });
+    } else {
+      console.log('2222');
+    }
+  };
+
+  const renderTextInput = props => {
+    return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
+  };
 
   useEffect(() => {
     // _loginUser();
@@ -138,20 +168,13 @@ const Home = ({navigation, dispatch, authData}) => {
         <View style={styles.viewon}>
           <View style={styles.viewsearch}>
             <View style={styles.viewinsearch}>
-              {/* <TextInput
-                  clearButtonMode="always"
-                  placeholder="What are you looking for?"
-                  style={styles.input}
-                  // onChangeText={e => {
-                  //   SearchSubmit(e);
-                  // }}
-                /> */}
               <FontAwesome5
                 name="search"
                 size={ViewScale(18)}
                 color={'#44444480'}
                 style={styles.icon}
               />
+
               <Autocomplete
                 data={state.slice(0, 10)}
                 value={query}
@@ -159,8 +182,10 @@ const Home = ({navigation, dispatch, authData}) => {
                 autoCorrect={false}
                 placeholder="What are you looking for?"
                 placeholderTextColor={'#888888'}
+                renderTextInput={renderTextInput}
                 onChangeText={text => {
                   test(text);
+                  settextSearch(text);
                 }}
                 flatListProps={{
                   keyExtractor: (_, idx) => idx,
@@ -183,6 +208,7 @@ const Home = ({navigation, dispatch, authData}) => {
                             );
                             console.log(response);
                             if (response.res_code == '00') {
+                              setstate([]);
                               navigation.navigate('Searchno', {
                                 item: response.res_result,
                                 text: item,

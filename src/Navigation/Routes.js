@@ -59,7 +59,7 @@ import {
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
 import {ViewScale} from '../config/ViewScale';
-
+import analytics from '@react-native-firebase/analytics';
 const {width, height} = Dimensions.get('window');
 
 const HomeStack = createNativeStackNavigator();
@@ -398,7 +398,16 @@ const linking = {
 const Routes = ({dispatch, authData, LoadingCounters}) => {
   // console.log(authData);
   return (
-    <NavigationContainer linking={linking}>
+    <NavigationContainer
+      onStateChange={async () => {
+        const Screen = navigationRef.current.getCurrentRoute().name;
+        console.log(Screen);
+        await analytics().logScreenView({
+          screen_name: 'BKKGEMS ' + Screen,
+          screen_class: 'BKKGEMS ' + Screen,
+        });
+      }}
+      linking={linking}>
       {LoadingCounters > 0 && <Loader />}
       {/* {authData.isLoggedIn === true ? LoginStackScreen() : DrawerStack()} */}
       {/* {authData.isLoggedIn || authData.isSkip === true ? ( */}

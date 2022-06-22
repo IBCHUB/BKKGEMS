@@ -5,7 +5,7 @@ import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 const styles = StyleSheet.create({
   container: {
     height: height,
-    marginTop:
+    paddingTop:
       Platform.OS === 'ios' ? StaticSafeAreaInsets.safeAreaInsetsTop : 25,
     backgroundColor: '#000',
   },

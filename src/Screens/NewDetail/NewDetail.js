@@ -12,6 +12,7 @@ import {
   Share,
   Dimensions,
   Platform,
+  Linking,
 } from 'react-native';
 import Headerback from '../../Components/Headerback';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -98,6 +99,12 @@ const NewDetail = ({navigation, route}) => {
                   
                 }
               `}
+          onShouldStartLoadWithRequest={request => {
+            if (request.url !== 'about:blank') {
+              Linking.openURL(request.url);
+              return false;
+            } else return true;
+          }}
         />
         <View
           style={{

@@ -115,6 +115,34 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
     } catch (error) {}
   };
 
+  const onSubmit = async values => {
+    var request =
+      'meet=' +
+      '2' +
+      '&tags=' +
+      '' +
+      '&type=' +
+      [1, 2, 3] +
+      '&text=' +
+      textSearch;
+    console.log(request);
+    const response = await dispatch(Exhibitor_List(request));
+
+    if (response.res_code == '00') {
+      console.log(response);
+      setstate([]);
+      navigation.navigate('Search', {
+        item: response.res_result,
+        text: textSearch,
+      });
+    } else {
+      console.log('2222');
+    }
+  };
+
+  const renderTextInput = props => {
+    return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
+  };
   useEffect(() => {
     _Exhibitor();
     _Search();
@@ -164,36 +192,43 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
               autoCorrect={false}
               placeholder="What are you looking for?"
               placeholderTextColor={'#888888'}
+              renderTextInput={renderTextInput}
               onChangeText={text => {
                 test(text);
+                settextSearch(text);
               }}
               flatListProps={{
                 keyExtractor: (_, idx) => idx,
-                renderItem: ({item}) => {
+                renderItem: ({item, index}) => {
                   return (
                     <TouchableOpacity
-                      onPress={async () => {
-                        var request =
-                          'meet=' +
-                          '2' +
-                          '&tags=' +
-                          '' +
-                          '&type=' +
-                          [1, 2, 3] +
-                          '&text=' +
-                          item;
-                        const response = await dispatch(
-                          Exhibitor_List(request),
-                        );
-                        if (response.res_code == '00') {
-                          navigation.navigate('Search', {
-                            item: response.res_result,
-                            text: item,
-                          });
-                        } else {
-                          console.log('2222');
+                      onPress={
+                        async () => {
+                          var request =
+                            'meet=' +
+                            '2' +
+                            '&tags=' +
+                            '' +
+                            '&type=' +
+                            [1, 2, 3] +
+                            '&text=' +
+                            item;
+                          const response = await dispatch(
+                            Exhibitor_List(request),
+                          );
+                          console.log(response);
+                          if (response.res_code == '00') {
+                            setstate([]);
+                            navigation.navigate('Search', {
+                              item: response.res_result,
+                              text: item,
+                            });
+                          } else {
+                            console.log('2222');
+                          }
                         }
-                      }}>
+                        // navigation.navigate('Searchno', {text: item})
+                      }>
                       <Text
                         style={{
                           fontSize: ViewScale(18),
@@ -209,13 +244,12 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
               }}
               style={styles.input}
               listContainerStyle={{
-                width: ViewScale(320),
+                width: ViewScale(325),
                 marginTop:
                   Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
+                zIndex: 99,
                 position: 'absolute',
-                borderRadius: 5,
-                backgroundColor: '#fff',
-                zIndex: 999,
+                borderRadius: ViewScale(5),
               }}
             />
           </View>

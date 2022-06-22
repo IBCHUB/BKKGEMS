@@ -9,28 +9,61 @@ import {
   ImageBackground,
   FlatList,
   TextInput,
+  Platform,
+  Dimensions,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Headerback from '../../Components/Headerback';
 import styles from './styles';
 import RBSheetsearch from './RBSheetsearch';
-import {Exhibitor_List, Exprofile} from '../../action/data.action';
+import {Exhibitor_List, Exprofile, Search} from '../../action/data.action';
 import {connect} from 'react-redux';
 import {ViewScale} from '../../config/ViewScale';
-
-const Search = ({navigation, dispatch, authUser, route}) => {
+import Autocomplete from 'react-native-autocomplete-input';
+const {width, height} = Dimensions.get('window');
+const Search1 = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
   const item = route.params.item;
   const text = route.params.text;
   const {selectedId, selectedtags} = route.params;
-  console.log(item);
 
+  const [state, setstate] = useState([]);
+  // console.log('456789', state.slice(0, 5));
+  const [query, setQuery] = useState('');
+
+  const test = text => {
+    setQuery(text);
+    let i = 3;
+    let interval = setInterval(() => {
+      if (i > 1) {
+        _Search1(text);
+        clearInterval(interval);
+
+        return i;
+      }
+      i += 1;
+    }, 1000);
+  };
+  const _Search1 = async values => {
+    try {
+      var request = 'text=' + values + '&type=' + '1';
+      const response = await dispatch(Search(request));
+      // console.log('2222222>>>>>>', response);
+      if (response.res_code == '00') {
+        setstate(response.res_result);
+        // console.log('1111');
+      } else {
+        // console.log('2222');
+      }
+    } catch (error) {}
+  };
   const [product, setproduct] = useState(item.product);
-  const [company, setcompany] = useState(item.brand);
-  const [brand, setbrand] = useState(item.company);
-  const [datatext, setdatatext] = useState();
-  const [textSearch, settextSearch] = useState('');
+  console.log(product);
+  const [company, setcompany] = useState(item.company);
+  const [brand, setbrand] = useState(item.brand);
+
+  const [textSearch, settextSearch] = useState(text);
 
   const [categorys, setcategorys] = useState([
     {
@@ -134,24 +167,40 @@ const Search = ({navigation, dispatch, authUser, route}) => {
         typetem +
         '&text=' +
         textSearch;
-      console.log(request);
+
       const response = await dispatch(Exhibitor_List(request));
       // console.log('????????', response.res_result);
       if (response.res_code == '00') {
         setproduct(response.res_result.product);
+        console.log('>>>>', response.res_result);
       } else {
         console.log('2222');
       }
     } catch (error) {}
   };
-
-  const searchSubmit = text => {
-    console.log('searchSubmit');
-    _Search();
+  const onSubmit = async values => {
+    var request =
+      'meet=' +
+      '2' +
+      '&tags=' +
+      '' +
+      '&type=' +
+      [1, 2, 3] +
+      '&text=' +
+      textSearch;
+    const response = await dispatch(Exhibitor_List(request));
+    if (response.res_code == '00') {
+      setstate([]);
+      setproduct(response.res_result.product);
+      setbrand(response.res_result.brand);
+      setcompany(response.res_result.company);
+    } else {
+      console.log('2222');
+    }
   };
-  const searchChange = text => {
-    console.log(text);
-    settextSearch(text);
+
+  const renderTextInput = props => {
+    return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
   };
 
   return (
@@ -164,12 +213,10 @@ const Search = ({navigation, dispatch, authUser, route}) => {
       <Headerback navigation={navigation} item="SEARCH" />
       <RBSheet
         ref={refRBSheet}
-        openDuration={250}
-        animationType="slide"
         closeOnPressMask={false}
         customStyles={{
           wrapper: {
-            // backgroundColor: 'transparent',
+            backgroundColor: 'transparent',
           },
           draggableIcon: {
             backgroundColor: '#000',
@@ -197,11 +244,78 @@ const Search = ({navigation, dispatch, authUser, route}) => {
           <View style={styles.viewinsearch}>
             <FontAwesome5
               name="search"
-              size={20}
+              size={ViewScale(20)}
               color={'#44444480'}
               style={styles.icon1}
             />
-            <TextInput
+            <Autocomplete
+              data={state.slice(0, 10)}
+              value={query}
+              hideResults={query.length == 0 ? true : false}
+              autoCorrect={false}
+              placeholder="What are you looking for?"
+              placeholderTextColor={'#888888'}
+              renderTextInput={renderTextInput}
+              onChangeText={text => {
+                test(text);
+                settextSearch(text);
+              }}
+              flatListProps={{
+                keyExtractor: (_, idx) => idx,
+                renderItem: ({item, index}) => {
+                  return (
+                    <TouchableOpacity
+                      onPress={
+                        async () => {
+                          var request =
+                            'meet=' +
+                            '2' +
+                            '&tags=' +
+                            '' +
+                            '&type=' +
+                            [1, 2, 3] +
+                            '&text=' +
+                            item;
+                          const response = await dispatch(
+                            Exhibitor_List(request),
+                          );
+                          console.log(response);
+                          if (response.res_code == '00') {
+                            setstate([]);
+                            setproduct(response.res_result.product);
+                            setbrand(response.res_result.brand);
+                            setcompany(response.res_result.company);
+                            settextSearch(item);
+                          } else {
+                            console.log('2222');
+                          }
+                        }
+                        // navigation.navigate('Searchno', {text: item})
+                      }>
+                      <Text
+                        style={{
+                          fontSize: ViewScale(18),
+                          padding: ViewScale(3),
+                          fontFamily: 'Cantoria MT Std',
+                          color: '#000',
+                        }}>
+                        {item}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                },
+              }}
+              style={styles.input}
+              listContainerStyle={{
+                width: ViewScale(325),
+                marginTop:
+                  Platform.OS === 'ios' ? ViewScale(40) : ViewScale(45),
+                zIndex: 99,
+                position: 'absolute',
+                borderRadius: ViewScale(5),
+              }}
+            />
+            {/* <TextInput
               clearButtonMode="always"
               placeholder="What are you looking for?"
               placeholderTextColor={'#888888'}
@@ -210,7 +324,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               onChange={event => {
                 searchChange(event.nativeEvent.text);
               }}
-            />
+            /> */}
           </View>
           <TouchableOpacity
             onPress={() => refRBSheet.current.open()}
@@ -222,14 +336,20 @@ const Search = ({navigation, dispatch, authUser, route}) => {
           </TouchableOpacity>
         </View>
 
-        {product.count == 0 ? (
+        {product.count === 0 || product.count.length === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
-              Company{' '}
-              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                “{datatext}”
+              Product{' '}
+              <Text
+                numberOfLines={1}
+                style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                “
+                {textSearch.length > 15
+                  ? textSearch.substring(0, 15) + '...'
+                  : textSearch}
+                ”
               </Text>{' '}
-              Found {company.count} Items
+              Found {product.count} Items
             </Text>
             <Image
               source={require('../../../assets/image/folder.png')}
@@ -243,8 +363,13 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               <Text style={styles.texttags}>
                 Product{' '}
                 <Text
-                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                  “{datatext}”
+                  numberOfLines={1}
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 12}]}>
+                  “
+                  {textSearch.length > 15
+                    ? textSearch.substring(0, 15) + '...'
+                    : textSearch}
+                  ”
                 </Text>{' '}
                 Found {product.count} Items
               </Text>
@@ -318,12 +443,16 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {company.count == 0 ? (
+        {company.count == 0 || company.count.length === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
               Company{' '}
-              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                “{datatext}”
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                “
+                {textSearch.length > 15
+                  ? textSearch.substring(0, 15) + '...'
+                  : textSearch}
+                ”
               </Text>{' '}
               Found {company.count} Items
             </Text>
@@ -339,8 +468,12 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               <Text style={styles.texttags}>
                 Company{' '}
                 <Text
-                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                  “{datatext}”
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                  “
+                  {textSearch.length > 15
+                    ? textSearch.substring(0, 15) + '...'
+                    : textSearch}
+                  ”
                 </Text>{' '}
                 Found {company.count} Items
               </Text>
@@ -414,14 +547,18 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {brand.count == 0 ? (
+        {brand.count === 0 || brand.count.length === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
-              Company{' '}
-              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                “{datatext}”
+              Brand{' '}
+              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                “
+                {textSearch.length > 15
+                  ? textSearch.substring(0, 15) + '...'
+                  : textSearch}
+                ”
               </Text>{' '}
-              Found {company.count} Items
+              Found {brand.count} Items
             </Text>
             <Image
               source={require('../../../assets/image/folder.png')}
@@ -435,8 +572,12 @@ const Search = ({navigation, dispatch, authUser, route}) => {
               <Text style={styles.texttags}>
                 Brand{' '}
                 <Text
-                  style={[styles.texttags, {color: '#DAA560', fontSize: 11}]}>
-                  “{datatext}”
+                  style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                  “
+                  {textSearch.length > 15
+                    ? textSearch.substring(0, 15) + '...'
+                    : textSearch}
+                  ”
                 </Text>{' '}
                 Found {brand.count} Items
               </Text>
@@ -491,6 +632,7 @@ const Search = ({navigation, dispatch, authUser, route}) => {
                       <Image
                         style={styles.imgflat}
                         source={{uri: item.company_cover}}
+                        resizeMode="stretch"
                       />
 
                       <View style={styles.row}>
@@ -527,12 +669,12 @@ const Search = ({navigation, dispatch, authUser, route}) => {
             data={categorys}
             horizontal={true}
             renderItem={({index, item}) => {
-              console.log(item);
               return (
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('Cate', {
                       item: item.product_category_id,
+                      text: item.text,
                     });
                   }}
                   style={{marginRight: 20}}>
@@ -565,4 +707,4 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search1);

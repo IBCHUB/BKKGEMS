@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   imgdetail: {
     width: width,
-    height: ViewScale(280),
+    height: ViewScale(320),
     alignSelf: 'center',
     marginVertical: 5,
   },

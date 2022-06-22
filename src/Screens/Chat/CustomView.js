@@ -15,7 +15,7 @@ import styles from './styles';
 // import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {getUniqueId, getManufacturer} from 'react-native-device-info';
 class CustomView extends React.Component {
   // export default class CustomView extends React.Component {
 
@@ -91,9 +91,7 @@ class CustomView extends React.Component {
                     backgroundColor: 'red',
                     width: null,
                     height: null,
-
                     borderRadius: 8,
-
                     flex: 1,
                     marginHorizontal: 4,
                     marginTop: 5,
@@ -193,7 +191,8 @@ class CustomView extends React.Component {
 
                 textAlign: 'left',
                 marginHorizontal: 15,
-                color: '#4d4d4d',
+                color: 'red',
+                borderWidth: 1,
               }}>
               {this.props.currentMessage.imageList.text}
             </Text>
@@ -291,32 +290,47 @@ class CustomView extends React.Component {
       </View>
     );
   };
-  rendeonlyText = props => {
-    return (
-      <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-        <Text
-          style={{
-            borderRadius: 10,
-            marginBottom: 10,
-            marginTop: 5,
-            height: null,
-            justifyContent: 'center',
-            fontFamily: 'Cantoria MT Std',
-            fontWeight: 'normal',
-            fontSize: 18,
 
-            textAlign: 'left',
-            marginHorizontal: 15,
-            color: '#4d4d4d',
-          }}>
-          {this.props.currentMessage.text1}
-        </Text>
-      </View>
+  rendeonlyText = props => {
+    var arr = this.props.currentMessage.text1.replace(
+      getUniqueId(),
+      'BKKGEMS User',
+    );
+    console.log('>>>', arr);
+    return (
+      <>
+        <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+          <Text
+            style={{
+              borderRadius: 10,
+              marginBottom: 10,
+              marginTop: 5,
+              height: null,
+              justifyContent: 'center',
+              fontFamily: 'Cantoria MT Std',
+              fontWeight: 'normal',
+              fontSize: 18,
+
+              textAlign: 'left',
+              marginHorizontal: 15,
+              color: '#4d4d4d',
+            }}>
+            {/* {this.props.currentMessage.text1} */}
+            {arr}
+            {console.log('122', this.props.currentMessage.text1)}
+          </Text>
+        </View>
+      </>
     );
   };
+
   renderBotDetail = props => {
     return (
-      <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+        }}>
         <Text
           style={{
             borderRadius: 10,
@@ -334,6 +348,10 @@ class CustomView extends React.Component {
             color: '#4d4d4d',
           }}>
           {this.props.currentMessage.title_name}
+          {console.log(
+            'this.props.currentMessage.title_name',
+            this.props.currentMessage.title_name,
+          )}
         </Text>
       </View>
     );
@@ -341,7 +359,11 @@ class CustomView extends React.Component {
 
   textuser = props => {
     return (
-      <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+        }}>
         <Text
           style={{
             borderRadius: 10,
@@ -356,15 +378,23 @@ class CustomView extends React.Component {
 
             textAlign: 'right',
             marginHorizontal: 15,
-            color: 'red',
+            color: '#4d4d4d',
           }}>
           {this.props.currentMessage.text1}
+          {console.log(
+            'this.props.currentMessage.text1',
+            this.props.currentMessage.text1,
+          )}
         </Text>
       </View>
     );
   };
 
   renderDataquickreplies = props => {
+    var arr = this.props.currentMessage.showtextdataquick_replies.replace(
+      getUniqueId(),
+      'BKKGEMS User',
+    );
     return (
       <View style={styles.viewMainBotChat}>
         {this.props.currentMessage.text1 !== '' ? (
@@ -384,7 +414,7 @@ class CustomView extends React.Component {
               marginHorizontal: 15,
               color: '#4d4d4d',
             }}>
-            {this.props.currentMessage.showtextdataquick_replies}
+            {arr}
           </Text>
         ) : (
           <Text />

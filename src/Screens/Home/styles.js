@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   imgtime: {
     width: width,
-    height: Platform.OS === 'ios' ? ViewScale(95) : ViewScale(108),
+    height: Platform.OS === 'ios' ? ViewScale(95) : ViewScale(109),
     alignSelf: 'center',
     paddingVertical: ViewScale(10),
     marginBottom: ViewScale(-10),
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontWeight: '600',
     color: '#000',
-    marginTop: Platform.OS === 'ios' ? 0 : ViewScale(-10),
+    marginTop: Platform.OS === 'ios' ? 0 : ViewScale(-5),
   },
   count1: {
     fontSize: Platform.OS === 'ios' ? ViewScale(12) : ViewScale(10),

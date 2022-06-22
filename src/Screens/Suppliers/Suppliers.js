@@ -41,6 +41,35 @@ const Suppliers = ({navigation, dispatch}) => {
       }
     } catch (error) {}
   };
+  const [textSearch, settextSearch] = useState('');
+  const onSubmit = async values => {
+    var request =
+      'meet=' +
+      '2' +
+      '&tags=' +
+      '' +
+      '&type=' +
+      [1, 2, 3] +
+      '&text=' +
+      textSearch;
+    console.log(request);
+    const response = await dispatch(Exhibitor_List(request));
+
+    if (response.res_code == '00') {
+      console.log(response);
+      setstate([]);
+      navigation.navigate('Search', {
+        item: response.res_result,
+        text: textSearch,
+      });
+    } else {
+      console.log('2222');
+    }
+  };
+
+  const renderTextInput = props => {
+    return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
+  };
   useEffect(() => {
     _Search();
   }, []);
@@ -103,36 +132,44 @@ const Suppliers = ({navigation, dispatch}) => {
                   autoCorrect={false}
                   placeholder="What are you looking for?"
                   placeholderTextColor={'#888888'}
+                  renderTextInput={renderTextInput}
                   onChangeText={text => {
                     test(text);
+                    settextSearch(text);
                   }}
                   flatListProps={{
                     keyExtractor: (_, idx) => idx,
-                    renderItem: ({item}) => {
+                    renderItem: ({item, index}) => {
                       return (
                         <TouchableOpacity
-                          onPress={async () => {
-                            var request =
-                              'meet=' +
-                              '2' +
-                              '&tags=' +
-                              '' +
-                              '&type=' +
-                              [1, 2, 3] +
-                              '&text=' +
-                              item;
-                            const response = await dispatch(
-                              Exhibitor_List(request),
-                            );
-                            if (response.res_code == '00') {
-                              navigation.navigate('Search', {
-                                item: response.res_result,
-                                text: item,
-                              });
-                            } else {
-                              console.log('2222');
+                          onPress={
+                            async () => {
+                              var request =
+                                'meet=' +
+                                '2' +
+                                '&tags=' +
+                                '' +
+                                '&type=' +
+                                [1, 2, 3] +
+                                '&text=' +
+                                item;
+                              const response = await dispatch(
+                                Exhibitor_List(request),
+                              );
+                              console.log(response);
+                              if (response.res_code == '00') {
+                                setstate([]);
+                                settextSearch('');
+                                navigation.navigate('Search', {
+                                  item: response.res_result,
+                                  text: item,
+                                });
+                              } else {
+                                console.log('2222');
+                              }
                             }
-                          }}>
+                            // navigation.navigate('Searchno', {text: item})
+                          }>
                           <Text
                             style={{
                               fontSize: ViewScale(18),
@@ -151,10 +188,9 @@ const Suppliers = ({navigation, dispatch}) => {
                     width: ViewScale(325),
                     marginTop:
                       Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
-                    zIndex: 999,
+                    zIndex: 99,
                     position: 'absolute',
-                    borderRadius: 5,
-                    backgroundColor: '#fff',
+                    borderRadius: ViewScale(5),
                   }}
                 />
               </View>

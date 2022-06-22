@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     alignSelf: 'center',
     marginLeft: ViewScale(10),
+    zIndex: 999,
   },
   viewinsearch: {
     flexDirection: 'row',
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   input: {
-    width: ViewScale(270),
+    width: ViewScale(320),
     height: Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
     marginLeft: ViewScale(10),
     borderRadius: ViewScale(8),
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     color: '#444444',
   },
   bottomsort: {
-    width: ViewScale(20),
+    woidth: ViewScale(20),
     height: ViewScale(20),
     borderRadius: ViewScale(10),
     borderWidth: 1,

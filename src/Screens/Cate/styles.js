@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     zIndex: 99,
   },
   input: {
-    width: ViewScale(320),
+    width: ViewScale(315),
     height: Platform.OS === 'ios' ? ViewScale(35) : ViewScale(45),
     marginLeft: ViewScale(10),
     borderRadius: ViewScale(8),

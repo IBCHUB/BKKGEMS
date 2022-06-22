@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "446523232279",
+    "project_id": "bkkgems---ga4",
+    "storage_bucket": "bkkgems---ga4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446523232279:android:dfa4d7758c9bd25d554c52",
+        "android_client_info": {
+          "package_name": "com.bkkgems"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446523232279-77icl2llrrmmujdq0q2etnhlo28p3ib1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7_agjSKH7cjMxYT1rWRwspzzvAFTrv1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446523232279-77icl2llrrmmujdq0q2etnhlo28p3ib1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "446523232279-gv2mqdf57vb0ir7uimj0ps8j5km5sif4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "th.go.ditp.bkkgams"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446523232279:android:2906a81ea26ef4e1554c52",
+        "android_client_info": {
+          "package_name": "th.go.ditp.bkkgams"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446523232279-77icl2llrrmmujdq0q2etnhlo28p3ib1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7_agjSKH7cjMxYT1rWRwspzzvAFTrv1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446523232279-77icl2llrrmmujdq0q2etnhlo28p3ib1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "446523232279-gv2mqdf57vb0ir7uimj0ps8j5km5sif4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "th.go.ditp.bkkgams"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
