@@ -25,7 +25,8 @@ import Autocomplete from 'react-native-autocomplete-input';
 const Seeall = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
   const scrollRef = useRef();
-  const [textSearch, settextSearch] = useState('');
+  const textSearch1 = route.params.textSearch;
+  const [textSearch, settextSearch] = useState(textSearch1);
   console.log(textSearch);
   const [isrefresh, setIsRefresh] = useState(false);
   const onPressTouch = () => {
@@ -37,6 +38,7 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
   };
   const key = route.params.key;
   console.log(key);
+
   const [deatilall, setdeatilallall] = useState(route.params.data);
   console.log(deatilall);
   const _Search = async value => {

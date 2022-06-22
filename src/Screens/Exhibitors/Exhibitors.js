@@ -118,7 +118,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   const onSubmit = async values => {
     var request =
       'meet=' +
-      '2' +
+      '1' +
       '&tags=' +
       '' +
       '&type=' +
@@ -131,7 +131,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
     if (response.res_code == '00') {
       console.log(response);
       setstate([]);
-      navigation.navigate('Search', {
+      navigation.navigate('Searchno', {
         item: response.res_result,
         text: textSearch,
       });
@@ -206,7 +206,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                         async () => {
                           var request =
                             'meet=' +
-                            '2' +
+                            '1' +
                             '&tags=' +
                             '' +
                             '&type=' +
@@ -219,7 +219,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                           console.log(response);
                           if (response.res_code == '00') {
                             setstate([]);
-                            navigation.navigate('Search', {
+                            navigation.navigate('Searchno', {
                               item: response.res_result,
                               text: item,
                             });

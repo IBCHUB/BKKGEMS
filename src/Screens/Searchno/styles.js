@@ -122,6 +122,12 @@ const styles = StyleSheet.create({
     paddingLeft: ViewScale(20),
     paddingVertical: ViewScale(20),
   },
+  tags1: {
+    width: width,
+
+    paddingLeft: ViewScale(20),
+    paddingTop: ViewScale(20),
+  },
   texttags: {
     fontSize: ViewScale(16),
     color: '#646363',

@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     width: width * 0.45,
     height: ViewScale(200),
     alignSelf: 'center',
-    marginTop: ViewScale(20),
+    marginBottom: ViewScale(10),
     borderRadius: ViewScale(5),
     marginLeft: ViewScale(15),
     shadowColor: '#00000029',

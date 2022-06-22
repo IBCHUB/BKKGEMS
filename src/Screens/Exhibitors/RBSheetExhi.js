@@ -220,7 +220,7 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
               onPress();
               var request =
                 'meet=' +
-                '2' +
+                '1' +
                 '&tags=' +
                 selectedtags +
                 '&type=' +
@@ -230,7 +230,7 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
               const response = await dispatch(Exhibitor_List(request));
               console.log(response);
               if (response.res_code == '00') {
-                navigation.navigate('Search', {
+                navigation.navigate('Searchno', {
                   item: response.res_result,
                   text: '',
                   selectedId: selectedId,

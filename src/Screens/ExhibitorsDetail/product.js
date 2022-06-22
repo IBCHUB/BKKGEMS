@@ -567,7 +567,7 @@ const product = ({item, navigation, detail, dispatch, authUser}) => {
           )}
           // extraData={img}
           scrollEnabled={true}
-          style={{height: ViewScale(200)}}
+          style={{height: ViewScale(220)}}
           horizontal={true}
           renderItem={({index, item}) => {
             return (

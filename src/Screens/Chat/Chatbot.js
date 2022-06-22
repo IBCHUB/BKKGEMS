@@ -485,6 +485,7 @@ class Chatbot extends Component {
                           fontFamily: 'Cantoria MT Std',
                           fontWeight: 'normal',
                           marginTop: -20,
+                          color: '#000',
                         }}>
                         {item.title}
                       </Text>
@@ -867,53 +868,131 @@ class Chatbot extends Component {
       </Send>
     );
   }
+
   render() {
     return (
-      <KeyboardAwareScrollView
-        extraScrollHeight={275}
-        enableOnAndroid={true}
-        contentContainerStyle={{flexGrow: 1}}>
-        <View style={styles.chat}>
-          <GiftedChat
-            messages={this.state.messages}
-            renderAvatarOnTop={true}
-            onSend={(
-              text1,
-              text2,
-              text3,
-              text4,
-              text5,
-              text6,
-              text7,
-              text8,
-            ) => {
-              if (text1 === '') {
-                console.log(
-                  text1 + text2 + text3 + text4 + text5 + text6 + text7 + text8,
-                );
-                this.onSend(text1, text2, text3, text4, text5, text6, text7);
-              } else {
-                // alert(text1[0].text)
-                this.onSend(text1[0].text);
-              }
-            }}
-            user={{
-              _id: 'user',
-            }}
-            showAvatarForEveryMessage={true}
-            alwaysShowSend={true}
-            showUserAvatar={true}
-            isTyping={true}
-            renderTime={this.renderTime}
-            renderMessageImage={this.renderMessageImage}
-            renderBubble={this.renderBubble}
-            renderCustomView={this.renderCustomView}
-            renderAvatar={this.renderAvatar}
-            renderSend={this.renderSend}
-            renderInputToolbar={this.renderInputToolbar}
-          />
-        </View>
-      </KeyboardAwareScrollView>
+      <View>
+        {Platform.OS === 'ios' ? (
+          <KeyboardAvoidingView>
+            <View style={styles.chat}>
+              <GiftedChat
+                messages={this.state.messages}
+                renderAvatarOnTop={true}
+                onSend={(
+                  text1,
+                  text2,
+                  text3,
+                  text4,
+                  text5,
+                  text6,
+                  text7,
+                  text8,
+                ) => {
+                  if (text1 === '') {
+                    console.log(
+                      text1 +
+                        text2 +
+                        text3 +
+                        text4 +
+                        text5 +
+                        text6 +
+                        text7 +
+                        text8,
+                    );
+                    this.onSend(
+                      text1,
+                      text2,
+                      text3,
+                      text4,
+                      text5,
+                      text6,
+                      text7,
+                    );
+                  } else {
+                    // alert(text1[0].text)
+                    this.onSend(text1[0].text);
+                  }
+                }}
+                user={{
+                  _id: 'user',
+                }}
+                showAvatarForEveryMessage={true}
+                alwaysShowSend={true}
+                showUserAvatar={true}
+                isTyping={true}
+                renderTime={this.renderTime}
+                renderMessageImage={this.renderMessageImage}
+                renderBubble={this.renderBubble}
+                renderCustomView={this.renderCustomView}
+                renderAvatar={this.renderAvatar}
+                renderSend={this.renderSend}
+                renderInputToolbar={this.renderInputToolbar}
+              />
+            </View>
+          </KeyboardAvoidingView>
+        ) : (
+          <KeyboardAwareScrollView
+            extraScrollHeight={height * 0.32}
+            enableOnAndroid={true}
+            contentContainerStyle={{flexGrow: 1}}>
+            <View style={styles.chat}>
+              <GiftedChat
+                messages={this.state.messages}
+                renderAvatarOnTop={true}
+                onSend={(
+                  text1,
+                  text2,
+                  text3,
+                  text4,
+                  text5,
+                  text6,
+                  text7,
+                  text8,
+                ) => {
+                  if (text1 === '') {
+                    console.log(
+                      text1 +
+                        text2 +
+                        text3 +
+                        text4 +
+                        text5 +
+                        text6 +
+                        text7 +
+                        text8,
+                    );
+                    this.onSend(
+                      text1,
+                      text2,
+                      text3,
+                      text4,
+                      text5,
+                      text6,
+                      text7,
+                    );
+                  } else {
+                    // alert(text1[0].text)
+                    this.onSend(text1[0].text);
+                  }
+                }}
+                user={{
+                  _id: 'user',
+                }}
+                showAvatarForEveryMessage={true}
+                alwaysShowSend={true}
+                showUserAvatar={true}
+                isTyping={true}
+                renderTime={this.renderTime}
+                renderMessageImage={this.renderMessageImage}
+                renderBubble={this.renderBubble}
+                renderCustomView={this.renderCustomView}
+                renderAvatar={this.renderAvatar}
+                renderSend={this.renderSend}
+                renderInputToolbar={this.renderInputToolbar}
+              />
+            </View>
+          </KeyboardAwareScrollView>
+        )}
+      </View>
     );
   }
 }

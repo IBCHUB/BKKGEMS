@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   viewproduct: {
     width: width * 0.8,
-    height: ViewScale(260),
+    height: ViewScale(330),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -162,11 +162,11 @@ const styles = StyleSheet.create({
   buttonflat: {
     backgroundColor: '#fff',
     width: width * 0.42,
-    height: ViewScale(150),
+    height: ViewScale(180),
     alignSelf: 'center',
     marginTop: ViewScale(20),
     borderRadius: ViewScale(5),
-    marginLeft: ViewScale(20),
+    marginLeft: ViewScale(15),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   imgflat: {
     width: width * 0.42,
-    height: ViewScale(120),
+    height: ViewScale(150),
     borderTopLeftRadius: ViewScale(5),
     borderTopRightRadius: ViewScale(5),
     alignSelf: 'center',

@@ -32,6 +32,35 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
   // console.log('456789', state.slice(0, 5));
   const [query, setQuery] = useState('');
 
+  const [textag, settextag] = useState('');
+  const _selectag = () => {
+    if (selectedtags != undefined && selectedtags[0] === 1) {
+      settextag('Creative Jewelry');
+    } else if (selectedtags != undefined && selectedtags[0] === 2) {
+      settextag('Decorative Item');
+    } else if (selectedtags != undefined && selectedtags[0] === 3) {
+      settextag('Everyday Jewelry');
+    } else if (selectedtags != undefined && selectedtags[0] === 4) {
+      settextag('Fashion Jewelry');
+    } else if (selectedtags != undefined && selectedtags[0] === 5) {
+      settextag('Craft & Heritage');
+    } else if (selectedtags != undefined && selectedtags[0] === 6) {
+      settextag('High Jewelry');
+    } else if (selectedtags != undefined && selectedtags[0] === 7) {
+      settextag('Jewelry For Men');
+    } else if (selectedtags != undefined && selectedtags[0] === 8) {
+      settextag('Jewelry For Pet');
+    } else if (selectedtags != undefined && selectedtags[0] === 9) {
+      settextag('Jewelry For Seniors');
+    } else if (selectedtags != undefined && selectedtags[0] === 10) {
+      settextag('Special Occasions');
+    } else if (selectedtags != undefined && selectedtags[0] === 11) {
+      settextag('Spiritual Power');
+    }
+  };
+  useEffect(() => {
+    _selectag();
+  }, []);
   const test = text => {
     setQuery(text);
     let i = 3;
@@ -335,7 +364,26 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
             />
           </TouchableOpacity>
         </View>
-
+        <View style={styles.tags1}>
+          <Text style={styles.texttags}>
+            All Results For{' '}
+            <Text
+              numberOfLines={1}
+              style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+              “
+              {textag === ''
+                ? textSearch.length > 15
+                  ? textSearch.substring(0, 15) + '...'
+                  : textSearch
+                : textag}
+              ”
+            </Text>{' '}
+            Total{' '}
+            {parseInt(product.count) +
+              parseInt(company.count + parseInt(brand.count))}{' '}
+            Items
+          </Text>
+        </View>
         {product.count === 0 || product.count.length === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
@@ -379,6 +427,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                     navigation.navigate('Seeall', {
                       key: 'product',
                       data: product,
+                      textSearch: textSearch,
                     })
                   }
                   style={styles.line}>
@@ -399,7 +448,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
               horizontal={true}
               renderItem={({index, item}) => {
                 return (
-                  <View style={{marginRight: 20}}>
+                  <View style={{marginRight: 10}}>
                     <TouchableOpacity
                       onPress={async () => {
                         try {
@@ -484,6 +533,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                     navigation.navigate('Seeall', {
                       key: 'company',
                       data: company,
+                      textSearch: textSearch,
                     })
                   }>
                   <Text
@@ -503,7 +553,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
               horizontal={true}
               renderItem={({index, item}) => {
                 return (
-                  <View style={{marginRight: 20}}>
+                  <View style={{marginRight: 10}}>
                     <TouchableOpacity
                       onPress={async () => {
                         try {
@@ -587,6 +637,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                     navigation.navigate('Seeall', {
                       key: 'brand',
                       data: brand,
+                      textSearch: textSearch,
                     })
                   }
                   style={styles.line}>
@@ -607,7 +658,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
               horizontal={true}
               renderItem={({index, item}) => {
                 return (
-                  <View style={{marginRight: 20}}>
+                  <View style={{marginRight: 10}}>
                     <TouchableOpacity
                       onPress={async () => {
                         try {
@@ -677,7 +728,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                       text: item.text,
                     });
                   }}
-                  style={{marginRight: 20}}>
+                  style={{marginRight: 10}}>
                   <ImageBackground
                     source={require('../../../assets/image/iocn/000.png')}
                     style={styles.imgflat1}>
