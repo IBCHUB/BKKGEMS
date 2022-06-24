@@ -240,7 +240,7 @@ class Chatbot extends Component {
         console.log('LLLKLKLK', this.state.dataHistoryChat);
         // let gg = numchat -1
 
-        for (var i = numchat >= 25 ? 10 : numchat - 1; i >= 0; i--) {
+        for (var i = numchat >= 35 ? 30 : numchat - 1; i >= 0; i--) {
           // alert('kkk' + i);
 
           if (
@@ -310,7 +310,7 @@ class Chatbot extends Component {
                 avatar:
                   this.state.dataHistoryChat[i].sender.type === 'user'
                     ? require('../../../assets/image/iconProfile.png')
-                    : 'http://one.ditp.go.th/dist/img/icon/iconAdminChat.png',
+                    : require('../../../assets/image/iconAdminChat.png'),
               },
               iduser: this.state.dataHistoryChat[i].recipient.id,
               _id: 'HomeBot',
@@ -368,7 +368,7 @@ class Chatbot extends Component {
               avatar:
                 dataChat.sender.type === 'user'
                   ? require('../../../assets/image/iconProfile.png')
-                  : 'http://one.ditp.go.th/dist/img/icon/iconAdminChat.png',
+                  : require('../../../assets/image/iconAdminChat.png'),
             },
             iduser: dataChat.recipient.id,
             _id: 'HomeBot',
@@ -386,46 +386,11 @@ class Chatbot extends Component {
   };
 
   async OpenWeb(item) {
-    console.log(item);
-
-    const deepLink = getDeepLinkAct();
-    const url = item;
-    console.log('OK', url);
-
-    const headers = {};
-    const client_id = {};
+    console.log('>>>', item);
     try {
-      if (await InAppBrowser.isAvailable()) {
-        const result = await InAppBrowser.open(url, deepLink, {
-          // iOS Properties
-          dismissButtonStyle: 'cancel',
-          preferredBarTintColor: '#453AA4',
-          preferredControlTintColor: 'white',
-          readerMode: false,
-          animated: true,
-          modalPresentationStyle: 'fullScreen',
-          modalTransitionStyle: 'partialCurl',
-          modalEnabled: true,
-          enableBarCollapsing: false,
-          // Android Properties
-          showTitle: true,
-          toolbarColor: '#6200EE',
-          secondaryToolbarColor: 'black',
-          enableUrlBarHiding: true,
-          enableDefaultShare: true,
-          forceCloseOnRedirection: false,
-          // Specify full animation resource identifier(package:anim/name)
-          // or only resource name(in case of animation bundled with app).
-          animations: {
-            startEnter: 'slide_in_right',
-            startExit: 'slide_out_left',
-            endEnter: 'slide_in_left',
-            endExit: 'slide_out_right',
-          },
-        });
-      } else Linking.openURL(url);
+      Linking.openURL(item);
     } catch (error) {
-      Linking.openURL(url);
+      Linking.openURL(item);
     }
   }
   renderCustomView(props) {
@@ -530,7 +495,7 @@ class Chatbot extends Component {
                                 width: 150,
                               }}>
                               <Text
-                                numberOfLines={2}
+                                numberOfLines={1}
                                 style={{
                                   fontSize: 14,
                                   fontWeight: 'bold',
@@ -873,7 +838,7 @@ class Chatbot extends Component {
     return (
       <View>
         {Platform.OS === 'ios' ? (
-          <KeyboardAvoidingView>
+          <KeyboardAvoidingView behavior="padding">
             <View style={styles.chat}>
               <GiftedChat
                 messages={this.state.messages}

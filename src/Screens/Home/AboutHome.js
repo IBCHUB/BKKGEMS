@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, Linking} from 'react-native';
 import styles from './stylesAbout';
 
 const AboutHome = ({navigation}) => {
@@ -55,14 +55,29 @@ const AboutHome = ({navigation}) => {
         </View>
       </View>
       <Image
-        source={require('../../../assets/image/pet.png')}
+        source={require('../../../assets/image/2200.jpeg')}
         style={styles.imgpat}
       />
-      <Text style={styles.textsuphead}>Exquisiteness of Southeast Asia</Text>
-      <Text style={[styles.textdetail, {textAlign: 'center'}]}>
-        Gems and jewelry rank at No.3 of Thailand’s most exported industries,
-        creating over a millionjobs and generating more than USD 15,000 million.
+      <Text style={styles.textsuphead}>
+        The coming back of the ‘67th Bangkok Gems and Jewelry Fair’ after the
+        Covid-19 outbreak
       </Text>
+      <Text style={[styles.textdetail, {marginBottom: 20}]}>
+        Thailand’s gems and jewelry industry has long been an important
+        contributor to the country’s economy, thriving through economic
+        slowdowns over the decades, with international shipments worth more than
+        6 billion US dollars last year.
+      </Text>
+      {/* <TouchableOpacity
+        onPress={() => {
+          Linking.openURL('https://www.bkkgems.com/newdetail/15');
+        }}
+        style={[
+          styles.button,
+          {alignSelf: 'flex-start', marginLeft: 20, zIndex: 999},
+        ]}>
+        <Text style={styles.textbutton}>Read More</Text>
+      </TouchableOpacity> */}
       <View style={styles.head}>
         <Image
           source={require('../../../assets/image/12.png')}

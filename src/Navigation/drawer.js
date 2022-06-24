@@ -28,7 +28,6 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
   const [page, setpage] = useState(0);
   return (
     <View style={styles.container}>
-     
       {page === 0 && (
         <View style={{backgroundColor: '#232323', height: '100%'}}>
           <ScrollView>
@@ -247,7 +246,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
               navigation.navigate('Suppliers');
             }}>
             <Text style={styles.touchindrawer}>
-              Suppliers and Manufacturers
+              Thailand : World’s Gems & Jewelry Destination
             </Text>
           </TouchableOpacity>
         </View>
@@ -270,6 +269,16 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             }}>
             <Text style={styles.touchindrawer}>
               {I18n.t('ApplicationForm')}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL(
+                'https://www.bkkgems.com/data/file/exhibitors/application%20NEWFACES%2067.pdf',
+              );
+            }}>
+            <Text style={styles.touchindrawer}>
+              Application Form (New Faces)
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -305,7 +314,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity
             onPress={() => {
               Linking.openURL(
-                'https://pre.eventthai.com/home/register/visitor',
+                'https://pre.eventthai.com/publics/create/visitor/bgjf22/step1',
               );
             }}>
             <Text style={styles.touchindrawer}>
@@ -334,9 +343,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              Linking.openURL(
-                'https://about.thaitrade.com/business-matching/guest',
-              );
+              alert('Coming Soon');
             }}>
             <Text style={styles.touchindrawer}>
               {I18n.t('BusinessMatching')}
@@ -350,7 +357,9 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Guide');
+              Linking.openURL(
+                'https://www.bkkgems.com/data/file/For%20Visitor/65th_Visitor%20Guide.pdf',
+              );
             }}>
             <Text style={styles.touchindrawer}>{I18n.t('VisitorGuide')}</Text>
           </TouchableOpacity>
@@ -395,7 +404,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           <TouchableOpacity
             onPress={() => {
               Linking.openURL(
-                'https://www.bkkgems.com/data/file/BGJF/Exhibitor_Manual.pdf',
+                'https://www.bkkgems.com/data/file/BGJF/BGJF%20Virtual%20Trade%20Fair%202022%20-%20Exhibitor%20Manual.pdf',
               );
             }}>
             <Text style={styles.touchindrawer}>

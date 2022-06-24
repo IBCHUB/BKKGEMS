@@ -111,7 +111,11 @@ const styles = StyleSheet.create({
   roww: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: width * 0.9,
+  },
+  roow: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    width: width * 0.96,
     marginBottom: ViewScale(10),
   },
   icon: {
@@ -211,6 +215,22 @@ const styles = StyleSheet.create({
     fontSize: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
     color: '#DAA560',
+    alignSelf: 'center',
+  },
+  botton: {
+    width: 40,
+    height: 20,
+    backgroundColor: '#DAA560',
+    marginRight: 10,
+    justifyContent: 'center',
+    borderRadius: 8,
+    alignSelf: 'center',
+    marginTop: -5,
+  },
+  textb: {
+    fontSize: ViewScale(15),
+    fontFamily: 'Cantoria MT Std',
+    color: '#444444',
     alignSelf: 'center',
   },
 });

@@ -27,6 +27,9 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
   const scrollRef = useRef();
   const textSearch1 = route.params.textSearch;
   const [textSearch, settextSearch] = useState(textSearch1);
+  const [CKAZ, setCKAZ] = useState(true);
+  const [CKZA, setCKZA] = useState(false);
+
   console.log(textSearch);
   const [isrefresh, setIsRefresh] = useState(false);
   const onPressTouch = () => {
@@ -41,26 +44,29 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
 
   const [deatilall, setdeatilallall] = useState(route.params.data);
   console.log(deatilall);
-  const _Search = async value => {
-    try {
-      var request =
-        'meet=' + '2' + '&tags=' + '' + '&type=' + '' + '&text=' + textSearch;
+  // const _Search = async value => {
+  //   try {
+  //     var request =
+  //       'meet=' + '2' + '&tags=' + '' + '&type=' + '' + '&text=' + textSearch;
 
-      const response = await dispatch(Exhibitor_List(request));
-      console.log('????????', response.res_result);
-      if (response.res_code == '00') {
-        if (key === 'product') {
-          setdeatilallall(response.res_result.product);
-        } else if (key === 'company') {
-          setdeatilallall(response.res_result.company);
-        } else {
-          setdeatilallall(response.res_result.brand);
-        }
-      } else {
-        console.log('2222');
-      }
-    } catch (error) {}
-  };
+  //     const response = await dispatch(Exhibitor_List(request));
+  //     console.log('????????', response.res_result);
+  //     if (response.res_code == '00') {
+  //       if (key === 'product') {
+  //         setdeatilallall(response.res_result.product);
+  //       } else if (key === 'company') {
+  //         setdeatilallall(response.res_result.company);
+  //       } else {
+  //         setdeatilallall(response.res_result.brand);
+  //       }
+  //     } else {
+  //       console.log('2222');
+  //     }
+  //   } catch (error) {}
+  // };
+  // useEffect(() => {
+  //   _Search();
+  // }, []);
   const [state, setstate] = useState([]);
   // console.log('456789', state.slice(0, 5));
   const [query, setQuery] = useState('');
@@ -94,7 +100,7 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
   const onSubmit = async values => {
     var request =
       'meet=' +
-      '2' +
+      '1' +
       '&tags=' +
       '' +
       '&type=' +
@@ -104,9 +110,13 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
     const response = await dispatch(Exhibitor_List(request));
     if (response.res_code == '00') {
       setstate([]);
-      setproduct(response.res_result.product);
-      setbrand(response.res_result.brand);
-      setcompany(response.res_result.company);
+      if (key === 'product') {
+        setdeatilallall(response.res_result.product);
+      } else if (key === 'company') {
+        setdeatilallall(response.res_result.company);
+      } else {
+        setdeatilallall(response.res_result.brand);
+      }
     } else {
       console.log('2222');
     }
@@ -182,7 +192,7 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
                             key === 'product' ? 1 : key === 2 ? 'company' : 3;
                           var request =
                             'meet=' +
-                            '2' +
+                            '1' +
                             '&tags=' +
                             '' +
                             '&type=' +
@@ -255,24 +265,101 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
         </View>
 
         <View style={styles.tags}>
-          <View style={styles.roww}>
-            <Text style={styles.texttags}>
-              {key === 'product'
-                ? 'Product'
-                : key === 'company'
-                ? 'Company'
-                : 'Brand'}{' '}
-              <Text style={[styles.texttags, {color: '#DAA560'}]}>
-                “
-                {textSearch != undefined && textSearch.length > 15
-                  ? textSearch.substring(0, 14) + '...'
-                  : textSearch}
-                ”
-              </Text>{' '}
-              Found {deatilall.count} Items
-            </Text>
+          <View style={styles.roow}>
+            <View style={styles.roww}>
+              <Text style={styles.texttags}>
+                {key === 'product'
+                  ? 'Product'
+                  : key === 'company'
+                  ? 'Company'
+                  : 'Brand'}{' '}
+                <Text style={[styles.texttags, {color: '#DAA560'}]}>
+                  “
+                  {textSearch != undefined && textSearch.length > 15
+                    ? textSearch.substring(0, 14) + '...'
+                    : textSearch}
+                  ”
+                </Text>{' '}
+                Found {deatilall.count} Items
+              </Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity
+                onPress={async () => {
+                  let data = key === 'product' ? 1 : key === 2 ? 'company' : 3;
+                  var request =
+                    'meet=' +
+                    '1' +
+                    '&tags=' +
+                    '' +
+                    '&type=' +
+                    data +
+                    '&text=' +
+                    '' +
+                    '&order=' +
+                    'ASC';
+                  console.log(request);
+                  const response = await dispatch(Exhibitor_List(request));
+                  console.log(response);
+                  if (response.res_code == '00') {
+                    if (key === 'product') {
+                      setdeatilallall(response.res_result.product);
+                    } else if (key === 'company') {
+                      setdeatilallall(response.res_result.company);
+                    } else {
+                      setdeatilallall(response.res_result.brand);
+                    }
+                    setCKAZ(true);
+                    setCKZA(false);
+                  } else {
+                    console.log('2222');
+                  }
+                }}
+                style={[
+                  styles.botton,
+                  {backgroundColor: CKAZ === true ? '#DAA560' : '#EEECE2'},
+                ]}>
+                <Text style={styles.textb}>A-Z</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={async () => {
+                  let data = key === 'product' ? 1 : key === 2 ? 'company' : 3;
+                  var request =
+                    'meet=' +
+                    '1' +
+                    '&tags=' +
+                    '' +
+                    '&type=' +
+                    data +
+                    '&text=' +
+                    '' +
+                    '&order=' +
+                    'DESC';
+                  console.log(request);
+                  const response = await dispatch(Exhibitor_List(request));
+                  console.log(response);
+                  if (response.res_code == '00') {
+                    if (key === 'product') {
+                      setdeatilallall(response.res_result.product);
+                    } else if (key === 'company') {
+                      setdeatilallall(response.res_result.company);
+                    } else {
+                      setdeatilallall(response.res_result.brand);
+                    }
+                    setCKAZ(false);
+                    setCKZA(true);
+                  } else {
+                    console.log('2222');
+                  }
+                }}
+                style={[
+                  styles.botton,
+                  {backgroundColor: CKZA === true ? '#DAA560' : '#EEECE2'},
+                ]}>
+                <Text style={styles.textb}>Z-A</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-
           <FlatList
             data={deatilall.data}
             numColumns={2}
@@ -301,7 +388,12 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
                     style={styles.buttonflat}>
                     <Image
                       style={styles.imgflat}
-                      source={{uri: item.company_cover}}
+                      source={{
+                        uri:
+                          item.product_img_name != undefined
+                            ? item.product_img_name
+                            : item.company_cover,
+                      }}
                     />
                     <View style={styles.row}>
                       <Image
@@ -309,7 +401,9 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
                         source={{uri: item.company_logo}}
                       />
                       <Text numberOfLines={1} style={styles.text}>
-                        {item.company_name}
+                        {item.product_img_title != undefined
+                          ? item.product_img_title
+                          : item.company_name}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -318,19 +412,18 @@ const Seeall = ({navigation, dispatch, authUser, route}) => {
             }}
             refreshControl={<RefreshControl refreshing={isrefresh} />}
           />
-          {deatilall.data.length > 8 && (
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={onPressTouch}
-              style={styles.FloatingActionButtonStyle}>
-              <Feather
-                size={25}
-                name="arrow-up-left"
-                color={'#DAA560'}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-          )}
+
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={onPressTouch}
+            style={styles.FloatingActionButtonStyle}>
+            <Feather
+              size={25}
+              name="arrow-up-left"
+              color={'#DAA560'}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>

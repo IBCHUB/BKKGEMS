@@ -30,9 +30,13 @@ import {
 import {ViewScale} from '../../config/ViewScale';
 import Autocomplete from 'react-native-autocomplete-input';
 import GeneralStatusBarColor from '../../Components/GeneralStatusBarColor';
+import {savePtag, saveRBSearch} from '../../recoil/atoms';
+import {useRecoilState} from 'recoil';
 
 const {width, height} = Dimensions.get('window');
 const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
+  const [Ptag, setPtag] = useRecoilState(savePtag);
+  const [selectedtags, setselectedtags] = useRecoilState(saveRBSearch);
   const refRBSheet = useRef();
   const [data, setData] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -146,6 +150,8 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
   useEffect(() => {
     _Exhibitor();
     _Search();
+    setPtag([]);
+    setselectedtags([]);
   }, []);
   return (
     <View style={styles.container}>

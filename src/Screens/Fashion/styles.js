@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     fontSize: ViewScale(22),
     color: '#DAA560',
     marginVertical: ViewScale(20),
-
     fontFamily: 'Cantoria MT Std',
   },
   textdetail: {

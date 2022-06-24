@@ -32,31 +32,43 @@ const About = ({navigation}) => {
             Bangkok Gems & Jewelry Fair (BGJF)
           </Text>{' '}
           is one of the world’s most renowned and longest-celebrated gems and
-          jewelry trade fair in the industry. Organized on a biannual basis by
-          Thailand’s Department of International Trade Promotion (DITP) in
-          February and September, the Bangkok Gems & Jewelry Fair is regarded as
-          a significant trading arena where all key players in the global gems
-          and jewelry business can achieve their purposes of sourcing, trading
-          and networking.
+          jewelry trade fairs in the industry. Organized by Thailand’s
+          Department of International Trade Promotion (DITP) and Gems Jewelry
+          Institute of Thailand (Public Organization) or GIT in September, BGJF
+          is regarded as a significant trading arena where all key players in
+          the global gems and jewelry business can achieve their purposes of
+          sourcing, trading and networking.
         </Text>
         <Text style={styles.textdetail}>
-          The Bangkok Gems & Jewelry Fair is a globally-trusted marketplace for
-          a wide range of quality products, extensive resources, and innovative
-          designs. Following the great success of its previous editions, the
-          65th BGJF is organized under a new theme THAILAND’S MAGIC HANDS the
-          spirit of Jewelry Making to showcase the skilled craftsmanship of
-          Thailand’s manufacturers. Meanwhile, the fair aims to provide the
-          greatest satisfaction to exhibitors, traders and visitors with
-          first-rate facilities and services such as complimentary shuttle
-          transport, interpreters, business matching zone, business lounge,
-          Wi-Fi service, as well as exciting talks and seminars.
+          Thailand’s BGJF is a globally-trusted marketplace for a wide range of
+          quality products, extensive resources, and innovative designs.
+          Especially, it is globally recognized as a sourcing and manufacturing
+          hub as well as the gathering of professional and delicate jewelry
+          craftsmanship.
+        </Text>
+        <Text style={styles.textdetail}>
+          BGJF is featuring a wide range of precious stones, semi-precious
+          stones, rough stones and synthetic stones sourced from Thailand and
+          the supply chain of gemstones around the world. The fair also offers
+          extensive of jewelry from manufacturers in Thailand and overseas,
+          namely, pearls, diamonds, gold jewelry, fine jewelry, silver jewelry,
+          costume & fashion jewelry, including display & packaging, jewelry
+          parts, equipment & tools machinery.
+        </Text>
+        <Text style={styles.textdetail}>
+          The fair is expecting to welcome 10,000 buyers and visitors including
+          all stakeholders from global gems and jewelry industry. For the number
+          of exhibitors, it covers 700 companies in 1,000 booths from selected
+          domestic and international exhibitors.
         </Text>
         <Image
           source={require('../../../assets/image/about2.png')}
           style={styles.imgHeader}
         />
         <View style={styles.viewdetail}>
-          <Text style={styles.textheader}>Expected number of exhibitors</Text>
+          <Text style={[styles.textheader, {alignSelf: 'flex-start'}]}>
+            Expected number of exhibitors
+          </Text>
           <Text style={[styles.textdetail, {color: '#fff'}]}>
             900 companies in 2,000 booths from selected domestic and
             international exhibitors.

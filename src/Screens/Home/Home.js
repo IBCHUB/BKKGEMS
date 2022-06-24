@@ -27,6 +27,8 @@ import {Exhibitor_List, Search, Topic} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import GeneralStatusBarColor from '../../Components/GeneralStatusBarColor';
+import {savePtag, saveRBSearch} from '../../recoil/atoms';
+import {useRecoilState} from 'recoil';
 const {width, height} = Dimensions.get('window');
 const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState();
@@ -280,7 +282,7 @@ const Home = ({navigation, dispatch, authData}) => {
 
         <View
           style={{
-            height: Platform.OS === 'ios' ? height * 0.18 : height * 0.65,
+            height: Platform.OS === 'ios' ? height * 0.28 : height * 0.65,
           }}
         />
       </ScrollView>

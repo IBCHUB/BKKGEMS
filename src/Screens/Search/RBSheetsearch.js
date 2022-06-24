@@ -13,6 +13,8 @@ import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {Tags} from '../../action/data.action';
 import {connect} from 'react-redux';
+import {useRecoilState} from 'recoil';
+import {savePtag1, saveRBSearch, saveRBSearch1} from '../../recoil/atoms';
 const {width, height} = Dimensions.get('window');
 const RBSheetsearch = ({
   onPress,
@@ -22,6 +24,8 @@ const RBSheetsearch = ({
   selectedIdSend,
   Search,
 }) => {
+  const [selectedtags, setselectedtags] = useRecoilState(saveRBSearch1);
+  const [ta, setta] = useRecoilState(savePtag1);
   const [selectedId, setselectedId] = useState(
     selectedIdSend === undefined ? [] : selectedIdSend,
   );
@@ -56,23 +60,25 @@ const RBSheetsearch = ({
       text: 'by company',
     },
   ];
-  const [selectedtags, setselectedtags] = useState(
-    selectedtagsSend === undefined ? [] : selectedtagsSend,
-  );
+
   const [checkedtags, setCheckedtags] = useState(false);
   const isCheckedtags = id => {
     const isChecktags = selectedtags.includes(id);
     return isChecktags;
   };
 
-  const handleCheckBoxtags = id => {
+  const handleCheckBoxtags = (id, idt) => {
+    console.log(idt);
     const ids = [...selectedtags, id];
+    const idtext = [...ta, idt];
     if (isCheckedtags(id)) {
       console.log('เอาออก');
       setselectedtags(selectedtags.filter(item => item !== id));
+      setta(ta.filter(item => item !== idt));
     } else {
       console.log('เอาเข้า');
       setselectedtags(ids);
+      setta(idtext);
     }
     setCheckedtags(selectedtags.length + 1 == tags.length);
   };
@@ -172,7 +178,7 @@ const RBSheetsearch = ({
               <View style={{flex: 1}}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleCheckBoxtags(item.tags_id);
+                    handleCheckBoxtags(item.tags_id, item.tags_name);
                   }}
                   style={[
                     styles.bottontags,

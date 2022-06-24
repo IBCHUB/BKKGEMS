@@ -47,7 +47,7 @@ export default {
   SAVEPROFILE: 'SAVE PROFILE',
   ForExhibitor: 'For Exhibitor',
   ApplicationForm: 'Application Form',
-  Letter: 'Letter Of Confirmation For Custom',
+  Letter: 'Letter of confirmation for custom purpose',
   Manual: 'Exhibitor Manual',
   BGJF: 'BGJF Virtual',
   AboutBGJF: 'About BGJF Virtual Trade Fair',

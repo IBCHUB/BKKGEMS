@@ -18,7 +18,7 @@ const Jewellers = ({navigation}) => {
       navigation: 'Page1',
     },
     {
-      text: '64st The Jeweller and Innovation Design Zone (IDZ)',
+      text: '64th The Jeweller and Innovation Design Zone (IDZ)',
       navigation: 'Page2',
     },
     {

@@ -13,8 +13,14 @@ import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {Exhibitor_List, Tags} from '../../action/data.action';
 import {connect} from 'react-redux';
+import {useRecoilState} from 'recoil';
+import {saveRBSearch, savePtag} from '@recoil/atoms';
+
 const {width, height} = Dimensions.get('window');
 const RBSheetHome = ({onPress, navigation, dispatch}) => {
+  const [selectedtags, setselectedtags] = useRecoilState(saveRBSearch);
+  const [ta, setta] = useRecoilState(savePtag);
+
   const [selectedId, setselectedId] = useState([]);
   console.log(selectedId);
   const [checked, setChecked] = useState(true);
@@ -48,21 +54,26 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
       text: 'by company',
     },
   ];
-  const [selectedtags, setselectedtags] = useState([]);
+
+  // const [selectedtags, setselectedtags] = useState([]);
   const [checkedtags, setCheckedtags] = useState(false);
-  const isCheckedtags = id => {
+  const isCheckedtags = (id, idt) => {
     const isChecktags = selectedtags.includes(id);
     return isChecktags;
   };
 
-  const handleCheckBoxtags = id => {
+  const handleCheckBoxtags = (id, idt) => {
+    console.log(idt);
     const ids = [...selectedtags, id];
+    const idtext = [...ta, idt];
     if (isCheckedtags(id)) {
       console.log('เอาออก');
       setselectedtags(selectedtags.filter(item => item !== id));
+      setta(ta.filter(item => item !== idt));
     } else {
       console.log('เอาเข้า');
       setselectedtags(ids);
+      setta(idtext);
     }
     setCheckedtags(selectedtags.length + 1 == tags.length);
   };
@@ -170,7 +181,7 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
               <View style={{flex: 1}}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleCheckBoxtags(item.tags_id);
+                    handleCheckBoxtags(item.tags_id, item.tags_name);
                   }}
                   style={[
                     styles.bottontags,
@@ -203,6 +214,7 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
                 setselectedtags([]);
               } else {
                 let ids2 = [];
+
                 sort.map((value, item) => {
                   ids2.push(value.id);
                 });
@@ -210,6 +222,7 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
                 tags.map((value, item) => {
                   ids2.push(value.id);
                 });
+
                 setselectedtags(ids2);
                 setCheckedtags(!checkedtags);
               }

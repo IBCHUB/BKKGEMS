@@ -23,9 +23,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {ViewScale} from '../../config/ViewScale';
 const {width, height} = Dimensions.get('window');
-const News = ({navigation, dispatch}) => {
+const News = ({navigation, dispatch, route}) => {
   const refRBSheet = useRef();
   const [data, setData] = useState([]);
+  console.log(data);
   const [textSearch, settextSearch] = useState('');
 
   const scrollRef = useRef();
@@ -38,9 +39,17 @@ const News = ({navigation, dispatch}) => {
   };
   const _News = async values => {
     try {
-      var request = 'page=' + '' + '&limits=' + '10' + '&order=' + 'desc';
+      var request =
+        'page=' +
+        '' +
+        '&limits=' +
+        '10' +
+        '&order=' +
+        'desc' +
+        '&type' +
+        [1, 2];
       const response = await dispatch(New(request));
-      // console.log(response);
+      console.log(response);
       if (response.res_code == '00') {
         setData(response.res_result);
         console.log('1111');
@@ -210,7 +219,7 @@ const News = ({navigation, dispatch}) => {
                   '&type=' +
                   selectedId;
                 const response = await dispatch(New(request));
-                // console.log(response);
+                console.log(response);
                 if (response.res_code == '00') {
                   setData(response.res_result);
 

@@ -25,8 +25,14 @@ import {
 import {connect} from 'react-redux';
 import {ViewScale} from '../../config/ViewScale';
 import Autocomplete from 'react-native-autocomplete-input';
+import {savePtag} from '../../recoil/atoms';
+import {useRecoilState} from 'recoil';
+import Headerbacksearch from '../../Components/Headerbacksearch';
+import Loader from '../../Components/Loader';
 
-const Searchno = ({navigation, dispatch, authUser, route}) => {
+const Searchno = ({navigation, dispatch, route, LoadingCounters}) => {
+  const [Ptag, setPtag] = useRecoilState(savePtag);
+  console.log(Ptag);
   const refRBSheet = useRef();
   const item = route.params.item;
 
@@ -34,37 +40,9 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
   const {selectedId, selectedtags} = route.params;
 
   const [state, setstate] = useState([]);
-  // console.log('456789', state.slice(0, 5));
+  const [typetem, settypetem] = useState(selectedtags);
   const [query, setQuery] = useState('');
-  const [textag, settextag] = useState('');
-  const _selectag = () => {
-    if (selectedtags != undefined && selectedtags[0] === 1) {
-      settextag('Creative Jewelry');
-    } else if (selectedtags != undefined && selectedtags[0] === 2) {
-      settextag('Decorative Item');
-    } else if (selectedtags != undefined && selectedtags[0] === 3) {
-      settextag('Everyday Jewelry');
-    } else if (selectedtags != undefined && selectedtags[0] === 4) {
-      settextag('Fashion Jewelry');
-    } else if (selectedtags != undefined && selectedtags[0] === 5) {
-      settextag('Craft & Heritage');
-    } else if (selectedtags != undefined && selectedtags[0] === 6) {
-      settextag('High Jewelry');
-    } else if (selectedtags != undefined && selectedtags[0] === 7) {
-      settextag('Jewelry For Men');
-    } else if (selectedtags != undefined && selectedtags[0] === 8) {
-      settextag('Jewelry For Pet');
-    } else if (selectedtags != undefined && selectedtags[0] === 9) {
-      settextag('Jewelry For Seniors');
-    } else if (selectedtags != undefined && selectedtags[0] === 10) {
-      settextag('Special Occasions');
-    } else if (selectedtags != undefined && selectedtags[0] === 11) {
-      settextag('Spiritual Power');
-    }
-  };
-  useEffect(() => {
-    _selectag();
-  }, []);
+
   const test = text => {
     setQuery(text);
     let i = 3;
@@ -175,12 +153,13 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
   ]);
 
   const _Search = async (v1, v2) => {
-    // console.log(values);
+    renderNum();
+    console.log(v1);
     try {
       let tagstem = '';
       let typetem = '';
       if (v1 != undefined) {
-        tagstem = v1;
+        tagstem = [1, 2, 3];
       } else {
         tagstem = selectedtags;
       }
@@ -193,17 +172,57 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
         'meet=' +
         '1' +
         '&tags=' +
-        tagstem +
-        '&type=' +
         typetem +
+        '&type=' +
+        tagstem +
         '&text=' +
         textSearch;
-
+      console.log(request);
       const response = await dispatch(Exhibitor_List(request));
-      // console.log('????????', response.res_result);
+      console.log('????????', response.res_result);
       if (response.res_code == '00') {
+        settypetem(typetem);
         setproduct(response.res_result.product);
-        console.log('>>>>', response.res_result);
+        setbrand(response.res_result.brand);
+        setcompany(response.res_result.company);
+        if (response.res_result.product.count === 0) {
+          setNum(
+            parseInt(response.res_result.company.count) +
+              parseInt(response.res_result.brand.count),
+          );
+        } else if (response.res_result.company.count === 0) {
+          setNum(
+            parseInt(response.res_result.product.count) +
+              parseInt(response.res_result.brand.count),
+          );
+        } else if (response.res_result.brand.count === 0) {
+          setNum(
+            parseInt(response.res_result.product.count) +
+              parseInt(response.res_result.company.count),
+          );
+        } else if (
+          response.res_result.product.count === 0 &&
+          response.res_result.company.count === 0
+        ) {
+          setNum(parseInt(response.res_result.brand.count));
+        } else if (
+          response.res_result.brand.count === 0 &&
+          response.res_result.company.count === 0
+        ) {
+          setNum(parseInt(response.res_result.product.count));
+        } else if (
+          response.res_result.product.count === 0 &&
+          response.res_result.brand.count === 0 &&
+          response.res_result.company.count === 0
+        ) {
+          setNum('0');
+        } else {
+          setNum(
+            parseInt(response.res_result.product.count) +
+              parseInt(response.res_result.company.count) +
+              parseInt(response.res_result.brand.count),
+          );
+        }
       } else {
         console.log('2222');
       }
@@ -219,12 +238,52 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
       [1, 2, 3] +
       '&text=' +
       textSearch;
+    console.log(request);
     const response = await dispatch(Exhibitor_List(request));
+
     if (response.res_code == '00') {
       setstate([]);
       setproduct(response.res_result.product);
       setbrand(response.res_result.brand);
       setcompany(response.res_result.company);
+      if (response.res_result.product.count === 0) {
+        setNum(
+          parseInt(response.res_result.company.count) +
+            parseInt(response.res_result.brand.count),
+        );
+      } else if (response.res_result.company.count === 0) {
+        setNum(
+          parseInt(response.res_result.product.count) +
+            parseInt(response.res_result.brand.count),
+        );
+      } else if (response.res_result.brand.count === 0) {
+        setNum(
+          parseInt(response.res_result.product.count) +
+            parseInt(response.res_result.company.count),
+        );
+      } else if (
+        response.res_result.product.count === 0 &&
+        response.res_result.company.count === 0
+      ) {
+        setNum(parseInt(response.res_result.brand.count));
+      } else if (
+        response.res_result.brand.count === 0 &&
+        response.res_result.company.count === 0
+      ) {
+        setNum(parseInt(response.res_result.product.count));
+      } else if (
+        response.res_result.product.count === 0 &&
+        response.res_result.brand.count === 0 &&
+        response.res_result.company.count === 0
+      ) {
+        setNum('0');
+      } else {
+        setNum(
+          parseInt(response.res_result.product.count) +
+            parseInt(response.res_result.company.count) +
+            parseInt(response.res_result.brand.count),
+        );
+      }
     } else {
       console.log('2222');
     }
@@ -233,6 +292,36 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
   const renderTextInput = props => {
     return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
   };
+  const [Num, setNum] = useState('');
+  console.log(product.count, company.count, brand.count);
+  const renderNum = () => {
+    if (product.count === 0) {
+      setNum(parseInt(company.count) + parseInt(brand.count));
+    } else if (company.count === 0) {
+      setNum(parseInt(product.count) + parseInt(brand.count));
+    } else if (brand.count === 0) {
+      setNum(parseInt(product.count) + parseInt(company.count));
+    } else if (product.count === 0 && company.count === 0) {
+      setNum(parseInt(brand.count));
+    } else if (brand.count === 0 && company.count === 0) {
+      setNum(parseInt(product.count));
+    } else if (
+      product.count === 0 &&
+      brand.count === 0 &&
+      company.count === 0
+    ) {
+      setNum('0');
+    } else {
+      setNum(
+        parseInt(product.count) +
+          parseInt(company.count) +
+          parseInt(brand.count),
+      );
+    }
+  };
+  useEffect(() => {
+    renderNum();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -241,7 +330,7 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
           marginTop: Platform.OS === 'android' && 25,
         }}
       />
-      <Headerback navigation={navigation} item="SEARCH" />
+      <Headerbacksearch navigation={navigation} item="SEARCH" />
       <RBSheet
         ref={refRBSheet}
         closeOnPressMask={false}
@@ -373,17 +462,21 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
               numberOfLines={1}
               style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
               “
-              {textag === ''
+              {Ptag.length === 0
                 ? textSearch.length > 15
                   ? textSearch.substring(0, 15) + '...'
                   : textSearch
-                : textag}
+                : Ptag.map((step, i) => {
+                    return (
+                      <Text>
+                        {i > 0 && ','}
+                        {step}
+                      </Text>
+                    );
+                  })}
               ”
             </Text>{' '}
-            Total{' '}
-            {parseInt(product.count) +
-              parseInt(company.count + parseInt(brand.count))}{' '}
-            Items
+            Total {Num} Items
           </Text>
         </View>
         {product.count === 0 || product.count.length === 0 ? (
@@ -598,109 +691,120 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {brand.count === 0 || brand.count.length === 0 ? (
-          <View style={styles.tags}>
-            <Text style={styles.texttags}>
-              Brand{' '}
-              <Text style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
-                “
-                {textSearch.length > 15
-                  ? textSearch.substring(0, 15) + '...'
-                  : textSearch}
-                ”
-              </Text>{' '}
-              Found {brand.count} Items
-            </Text>
-            <Image
-              source={require('../../../assets/image/folder.png')}
-              style={styles.iconsea2}
-            />
-            <Text style={styles.textccom}>No result found</Text>
-          </View>
-        ) : (
-          <View style={styles.tags}>
-            <View style={styles.roww}>
-              <Text style={styles.texttags}>
-                Brand{' '}
-                <Text
-                  style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
-                  “
-                  {textSearch.length > 15
-                    ? textSearch.substring(0, 15) + '...'
-                    : textSearch}
-                  ”
-                </Text>{' '}
-                Found {brand.count} Items
-              </Text>
-              {brand.count > 3 && (
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('Seeall', {
-                      key: 'brand',
-                      data: brand,
-                      textSearch: textSearch,
-                    })
-                  }
-                  style={styles.line}>
+
+        {typetem.length === 0 && (
+          <View>
+            {brand.count === 0 || brand.count.length === 0 ? (
+              <View style={styles.tags}>
+                <Text style={styles.texttags}>
+                  Brand{' '}
                   <Text
-                    style={[
-                      styles.texttags,
-                      {
-                        color: '#DAA560',
-                      },
-                    ]}>
-                    SEE ALL
+                    style={[styles.texttags, {color: '#DAA560', fontSize: 14}]}>
+                    “
+                    {textSearch.length > 15
+                      ? textSearch.substring(0, 15) + '...'
+                      : textSearch}
+                    ”
+                  </Text>{' '}
+                  Found {brand.count} Items
+                </Text>
+                <Image
+                  source={require('../../../assets/image/folder.png')}
+                  style={styles.iconsea2}
+                />
+                <Text style={styles.textccom}>No result found</Text>
+              </View>
+            ) : (
+              <View style={styles.tags}>
+                <View style={styles.roww}>
+                  <Text style={styles.texttags}>
+                    Brand{' '}
+                    <Text
+                      style={[
+                        styles.texttags,
+                        {color: '#DAA560', fontSize: 14},
+                      ]}>
+                      “
+                      {textSearch.length > 15
+                        ? textSearch.substring(0, 15) + '...'
+                        : textSearch}
+                      ”
+                    </Text>{' '}
+                    Found {brand.count} Items
                   </Text>
-                </TouchableOpacity>
-              )}
-            </View>
-            <FlatList
-              data={brand.data}
-              horizontal={true}
-              renderItem={({index, item}) => {
-                return (
-                  <View style={{marginRight: 10}}>
+                  {brand.count > 3 && (
                     <TouchableOpacity
-                      onPress={async () => {
-                        try {
-                          var request = 'exid=' + item.company_id;
-                          const response = await dispatch(Exprofile(request));
-                          //console.log(response);
-                          if (response.res_code == '00') {
-                            // setdetail(response.res_result);
-                            setTimeout(() => {
-                              navigation.navigate('ExhibitorsDetail', {
-                                res: response.res_result,
-                              });
-                            }, 300);
-
-                            // console.log('1111');
-                          } else {
-                            // console.log('2222');
-                          }
-                        } catch (error) {}
-                      }}
-                      style={styles.buttonflat}>
-                      <Image
-                        style={styles.imgflat}
-                        source={{uri: item.company_cover}}
-                        resizeMode="stretch"
-                      />
-
-                      <View style={styles.row}>
-                        <Image
-                          style={styles.imglogo}
-                          source={{uri: item.company_logo}}
-                        />
-                        <Text numberOfLines={1} style={styles.text}>
-                          {item.company_name}
-                        </Text>
-                      </View>
+                      onPress={() =>
+                        navigation.navigate('Seeall', {
+                          key: 'brand',
+                          data: brand,
+                          textSearch: textSearch,
+                        })
+                      }
+                      style={styles.line}>
+                      <Text
+                        style={[
+                          styles.texttags,
+                          {
+                            color: '#DAA560',
+                          },
+                        ]}>
+                        SEE ALL
+                      </Text>
                     </TouchableOpacity>
-                  </View>
-                );
-              }}
-            />
+                  )}
+                </View>
+                <FlatList
+                  data={brand.data}
+                  horizontal={true}
+                  renderItem={({index, item}) => {
+                    return (
+                      <View style={{marginRight: 10}}>
+                        <TouchableOpacity
+                          onPress={async () => {
+                            try {
+                              var request = 'exid=' + item.company_id;
+                              const response = await dispatch(
+                                Exprofile(request),
+                              );
+                              //console.log(response);
+                              if (response.res_code == '00') {
+                                // setdetail(response.res_result);
+                                setTimeout(() => {
+                                  navigation.navigate('ExhibitorsDetail', {
+                                    res: response.res_result,
+                                  });
+                                }, 300);
+
+                                // console.log('1111');
+                              } else {
+                                // console.log('2222');
+                              }
+                            } catch (error) {}
+                          }}
+                          style={styles.buttonflat}>
+                          <Image
+                            style={styles.imgflat}
+                            source={{uri: item.company_cover}}
+                            resizeMode="stretch"
+                          />
+
+                          <View style={styles.row}>
+                            <Image
+                              style={styles.imglogo}
+                              source={{uri: item.company_logo}}
+                            />
+                            <Text numberOfLines={1} style={styles.text}>
+                              {item.company_name}
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    );
+                  }}
+                />
+              </View>
+            )}
           </View>
         )}
 
@@ -752,11 +856,11 @@ const Searchno = ({navigation, dispatch, authUser, route}) => {
     </View>
   );
 };
-// const mapStateToProps = state => ({
-//   authUser: state.authReducer.authUser,
-// });
+const mapStateToProps = state => ({
+  LoadingCounters: state.dataReducer.LoadingCounters,
+});
 const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(null, mapDispatchToProps)(Searchno);
+export default connect(mapStateToProps, mapDispatchToProps)(Searchno);

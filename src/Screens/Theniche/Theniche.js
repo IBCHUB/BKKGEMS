@@ -72,7 +72,7 @@ const Theniche = ({navigation}) => {
             source={require('../../../assets/image/n62.png')}
             style={styles.imgdetail}
           />
-          <Text style={styles.textheader}>63th THE NICHE SHOWCASE</Text>
+          <Text style={styles.textheader}>63rd THE NICHE SHOWCASE</Text>
           <Text style={[styles.textdetail, {color: '#fff'}]}>
             Department of International Trade Promotion, Ministry of Commerce
             highlights the craftsmanship of Thai artisans under the theme of

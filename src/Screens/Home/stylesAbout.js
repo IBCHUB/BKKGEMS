@@ -78,6 +78,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
+    width: width * 0.8,
+    alignSelf: 'center',
   },
   textdetail: {
     fontSize: ViewScale(18),

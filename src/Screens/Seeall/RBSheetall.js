@@ -13,6 +13,8 @@ import styles from './styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {Exhibitor_List, Tags} from '../../action/data.action';
 import {connect} from 'react-redux';
+import {useRecoilState} from 'recoil';
+import {savePtag, saveRBSearch} from '../../recoil/atoms';
 const {width, height} = Dimensions.get('window');
 const RBSheetall = ({
   onPress,
@@ -23,8 +25,8 @@ const RBSheetall = ({
   Search,
   key,
 }) => {
-  console.log('key11', key);
-  const [selectedtags, setselectedtags] = useState([]);
+  const [ta, setta] = useRecoilState(savePtag);
+  const [selectedtags, setselectedtags] = useRecoilState(saveRBSearch);
   console.log(selectedtags);
   const [checkedtags, setCheckedtags] = useState(false);
   const isCheckedtags = id => {
@@ -32,14 +34,18 @@ const RBSheetall = ({
     return isChecktags;
   };
 
-  const handleCheckBoxtags = id => {
+  const handleCheckBoxtags = (id, idt) => {
+    console.log(idt);
     const ids = [...selectedtags, id];
+    const idtext = [...ta, idt];
     if (isCheckedtags(id)) {
       console.log('เอาออก');
       setselectedtags(selectedtags.filter(item => item !== id));
+      setta(ta.filter(item => item !== idt));
     } else {
       console.log('เอาเข้า');
       setselectedtags(ids);
+      setta(idtext);
     }
     setCheckedtags(selectedtags.length + 1 == tags.length);
   };
@@ -102,7 +108,7 @@ const RBSheetall = ({
             <View style={{flex: 1}}>
               <TouchableOpacity
                 onPress={() => {
-                  handleCheckBoxtags(item.tags_id);
+                  handleCheckBoxtags(item.tags_id, item.tags_name);
                 }}
                 style={[
                   styles.bottontags,
@@ -154,7 +160,7 @@ const RBSheetall = ({
             onPress();
             var request =
               'meet=' +
-              '2' +
+              '1' +
               '&tags=' +
               selectedtags +
               '&type=' +
@@ -164,7 +170,7 @@ const RBSheetall = ({
             const response = await dispatch(Exhibitor_List(request));
             console.log('123456>', response);
             if (response.res_code == '00') {
-              navigation.navigate('Search', {
+              navigation.navigate('Searchno', {
                 item: response.res_result,
                 text: '',
                 selectedId: '1',

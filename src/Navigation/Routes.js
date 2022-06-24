@@ -55,6 +55,7 @@ import {
   Workshops,
   Searchno,
   Cate,
+  Seeall1,
 } from '../Screens';
 import CustomDrawerContent from './drawer';
 import Loader from '../Components/Loader';
@@ -351,6 +352,7 @@ function ScreenStack() {
       <Stack.Screen name="Workshops" component={Workshops} />
       <Stack.Screen name="Searchno" component={Searchno} />
       <Stack.Screen name="Cate" component={Cate} />
+      <Stack.Screen name="Seeall1" component={Seeall1} />
       <ExhibitorsStack.Screen
         name="ExhibitorsDetail"
         component={ExhibitorsDetail}

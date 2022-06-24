@@ -14,7 +14,11 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {Exhibitor_List, Tags} from '../../action/data.action';
 const {width, height} = Dimensions.get('window');
 import {connect} from 'react-redux';
+import {savePtag, saveRBSearch} from '../../recoil/atoms';
+import {useRecoilState} from 'recoil';
 const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
+  const [ta, setta] = useRecoilState(savePtag);
+  const [selectedtags, setselectedtags] = useRecoilState(saveRBSearch);
   const [selectedId, setselectedId] = useState([]);
   const [checked, setChecked] = useState(true);
   const [tags, settags] = useState([]);
@@ -47,21 +51,25 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
       text: 'by company',
     },
   ];
-  const [selectedtags, setselectedtags] = useState([]);
+
   const [checkedtags, setCheckedtags] = useState(false);
   const isCheckedtags = id => {
     const isChecktags = selectedtags.includes(id);
     return isChecktags;
   };
 
-  const handleCheckBoxtags = id => {
+  const handleCheckBoxtags = (id, idt) => {
+    console.log(idt);
     const ids = [...selectedtags, id];
+    const idtext = [...ta, idt];
     if (isCheckedtags(id)) {
       console.log('เอาออก');
       setselectedtags(selectedtags.filter(item => item !== id));
+      setta(ta.filter(item => item !== idt));
     } else {
       console.log('เอาเข้า');
       setselectedtags(ids);
+      setta(idtext);
     }
     setCheckedtags(selectedtags.length + 1 == tags.length);
   };
@@ -167,7 +175,7 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
               <View style={{flex: 1}}>
                 <TouchableOpacity
                   onPress={() => {
-                    handleCheckBoxtags(item.tags_id);
+                    handleCheckBoxtags(item.tags_id, item.tags_name);
                   }}
                   style={[
                     styles.bottontags,

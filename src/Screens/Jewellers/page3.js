@@ -24,7 +24,7 @@ const page3 = ({navigation}) => {
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
         <View style={styles.viewdetail}>
           <Text style={styles.textheader}>
-            63st The Jeweller and {'\n'}Innovation Design Zone (IDZ)
+            63rd The Jeweller and {'\n'}Innovation Design Zone (IDZ)
           </Text>
           <Image
             source={require('../../../assets/image/Jewellers/23.png')}

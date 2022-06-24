@@ -88,7 +88,7 @@ class CustomView extends React.Component {
               return (
                 <View
                   style={{
-                    backgroundColor: 'red',
+                    // backgroundColor: 'red',
                     width: null,
                     height: null,
                     borderRadius: 8,

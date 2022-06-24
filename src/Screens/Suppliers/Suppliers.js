@@ -19,7 +19,12 @@ import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
 import {Exhibitor_List, Search} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
+import {set} from 'react-native-reanimated';
+import {useRecoilState} from 'recoil';
+import {savePtag1, saveRBSearch1} from '../../recoil/atoms';
 const Suppliers = ({navigation, dispatch}) => {
+  const [Ptag, setPtag] = useRecoilState(savePtag1);
+  const [selectedtags, setselectedtags] = useRecoilState(saveRBSearch1);
   const [state, setstate] = useState([]);
   const [query, setQuery] = useState('');
   console.log(query);
@@ -72,6 +77,8 @@ const Suppliers = ({navigation, dispatch}) => {
   };
   useEffect(() => {
     _Search();
+    setPtag([]);
+    setselectedtags([]);
   }, []);
   const refRBSheet = useRef();
   return (
@@ -81,7 +88,10 @@ const Suppliers = ({navigation, dispatch}) => {
           marginTop: Platform.OS === 'android' && 25,
         }}
       />
-      <Headerback navigation={navigation} />
+      <Headerback
+        navigation={navigation}
+        item={'THAILAND : WORLD’S GEMS & JEWELRY DESTINATION'}
+      />
       <RBSheet
         ref={refRBSheet}
         openDuration={250}
