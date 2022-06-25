@@ -103,6 +103,7 @@ const Home = ({navigation, dispatch, authData}) => {
       navigation.navigate('Searchno', {
         item: response.res_result,
         text: textSearch,
+        selectedtags: [],
       });
     } else {
       console.log('2222');
@@ -214,6 +215,7 @@ const Home = ({navigation, dispatch, authData}) => {
                               navigation.navigate('Searchno', {
                                 item: response.res_result,
                                 text: item,
+                                selectedtags: [],
                               });
                             } else {
                               console.log('2222');

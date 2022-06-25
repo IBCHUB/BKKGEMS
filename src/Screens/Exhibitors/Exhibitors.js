@@ -138,6 +138,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
       navigation.navigate('Searchno', {
         item: response.res_result,
         text: textSearch,
+        selectedtags: [],
       });
     } else {
       console.log('2222');
@@ -228,6 +229,7 @@ const Exhibitors = ({navigation, dispatch, authUser, LoadingCounters}) => {
                             navigation.navigate('Searchno', {
                               item: response.res_result,
                               text: item,
+                              selectedtags: [],
                             });
                           } else {
                             console.log('2222');

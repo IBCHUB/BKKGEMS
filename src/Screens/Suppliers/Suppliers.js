@@ -66,6 +66,7 @@ const Suppliers = ({navigation, dispatch}) => {
       navigation.navigate('Search', {
         item: response.res_result,
         text: textSearch,
+        selectedtags: [],
       });
     } else {
       console.log('2222');
@@ -173,6 +174,7 @@ const Suppliers = ({navigation, dispatch}) => {
                                 navigation.navigate('Search', {
                                   item: response.res_result,
                                   text: item,
+                                  selectedtags: [],
                                 });
                               } else {
                                 console.log('2222');
