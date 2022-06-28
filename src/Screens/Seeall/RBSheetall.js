@@ -24,6 +24,11 @@ const RBSheetall = ({
   selectedIdSend,
   Search,
   key,
+  setproduct,
+  setcompany,
+  setbrand,
+  settypetem,
+  setNum,
 }) => {
   const [ta, setta] = useRecoilState(savePtag);
   const [selectedtags, setselectedtags] = useRecoilState(saveRBSearch);
@@ -136,21 +141,18 @@ const RBSheetall = ({
       <View style={styles.rowbar}>
         <TouchableOpacity
           onPress={() => {
-            if ({checked, checkedtags}) {
+            if ({checkedtags}) {
               setselectedtags([]);
+              setta([]);
             } else {
               let ids2 = [];
-              sort.map((value, item) => {
-                ids2.push(value.id);
-              });
-              setselectedId(ids2);
+
               tags.map((value, item) => {
                 ids2.push(value.id);
               });
               setselectedtags(ids2);
               setCheckedtags(!checkedtags);
             }
-            setChecked(!checked);
           }}
           style={styles.touch}>
           <Text style={styles.textouch}>CLEAR</Text>
@@ -164,12 +166,54 @@ const RBSheetall = ({
               '&tags=' +
               selectedtags +
               '&type=' +
-              '1' +
+              [1, 2, 3] +
               '&text=' +
               '';
             const response = await dispatch(Exhibitor_List(request));
             console.log('123456>', response);
             if (response.res_code == '00') {
+              setproduct(response.res_result.product);
+              setcompany(response.res_result.company);
+              setbrand(response.res_result.brand);
+              settypetem(selectedtags);
+              if (response.res_result.product.data.length === 0) {
+                setNum(
+                  parseInt(response.res_result.company.data.length) +
+                    parseInt(response.res_result.brand.data.length),
+                );
+              } else if (response.res_result.company.data.length === 0) {
+                setNum(
+                  parseInt(response.res_result.product.data.length) +
+                    parseInt(response.res_result.brand.data.length),
+                );
+              } else if (response.res_result.brand.data.length === 0) {
+                setNum(
+                  parseInt(response.res_result.product.data.length) +
+                    parseInt(response.res_result.company.data.length),
+                );
+              } else if (
+                response.res_result.product.data.length === 0 &&
+                response.res_result.company.data.length === 0
+              ) {
+                setNum(parseInt(response.res_result.brand.data.length));
+              } else if (
+                response.res_result.brand.data.length === 0 &&
+                response.res_result.company.data.length === 0
+              ) {
+                setNum(parseInt(response.res_result.product.data.length));
+              } else if (
+                response.res_result.product.data.length === 0 &&
+                response.res_result.brand.data.length === 0 &&
+                response.res_result.company.data.length === 0
+              ) {
+                setNum('0');
+              } else {
+                setNum(
+                  parseInt(response.res_result.product.data.length) +
+                    parseInt(response.res_result.company.data.length) +
+                    parseInt(response.res_result.brand.data.length),
+                );
+              }
               navigation.navigate('Searchno', {
                 item: response.res_result,
                 text: '',

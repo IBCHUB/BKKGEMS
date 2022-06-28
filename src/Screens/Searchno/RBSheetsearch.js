@@ -30,7 +30,9 @@ const RBSheetsearch = ({
   const [selectedId, setselectedId] = useState(
     selectedIdSend === undefined ? [] : selectedIdSend,
   );
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(
+    selectedId.length === 3 ? true : false,
+  );
   const [tags, settags] = useState([]);
   const isChecked = id => {
     const isCheck = selectedId.includes(id);
@@ -211,13 +213,11 @@ const RBSheetsearch = ({
           <TouchableOpacity
             onPress={() => {
               if ({checked, checkedtags}) {
-                setselectedId([]);
                 setselectedtags([]);
+                setta([]);
               } else {
                 let ids2 = [];
-                sort.map((value, item) => {
-                  ids2.push(value.id);
-                });
+
                 setselectedId(ids2);
                 tags.map((value, item) => {
                   ids2.push(value.id);
@@ -225,7 +225,6 @@ const RBSheetsearch = ({
                 setselectedtags(ids2);
                 setCheckedtags(!checkedtags);
               }
-              setChecked(!checked);
             }}
             style={styles.touch}>
             <Text style={styles.textouch}>CLEAR</Text>

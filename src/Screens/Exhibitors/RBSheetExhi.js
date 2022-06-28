@@ -204,13 +204,11 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
           <TouchableOpacity
             onPress={() => {
               if ({checked, checkedtags}) {
-                setselectedId([]);
+                setta([]);
                 setselectedtags([]);
               } else {
                 let ids2 = [];
-                sort.map((value, item) => {
-                  ids2.push(value.id);
-                });
+
                 setselectedId(ids2);
                 tags.map((value, item) => {
                   ids2.push(value.id);
@@ -218,7 +216,6 @@ const RBSheetExhi = ({onPress, navigation, refRBSheet, dispatch}) => {
                 setselectedtags(ids2);
                 setCheckedtags(!checkedtags);
               }
-              setChecked(!checked);
             }}
             style={styles.touch}>
             <Text style={styles.textouch}>CLEAR</Text>

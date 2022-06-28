@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
     width: width * 0.15,
   },
   chat: {
-    height: height * 0.915,
+    height: Platform.OS === 'ios' ? height * 0.9 : height * 0.915,
+    backgroundColor: '#ffffff',
   },
   viewCenterInput: {
     width: width * 0.96,

@@ -210,7 +210,7 @@ const RBSheetHome = ({onPress, navigation, dispatch}) => {
           <TouchableOpacity
             onPress={() => {
               if ({checked, checkedtags}) {
-                setselectedId([]);
+                // setselectedId([]);
                 setselectedtags([]);
               } else {
                 let ids2 = [];

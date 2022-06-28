@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: ViewScale(20),
     fontFamily: 'Cantoria MT Std',
+    color: '#000',
   },
   textsorthead: {
     fontSize: ViewScale(18),

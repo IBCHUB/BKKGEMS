@@ -182,42 +182,42 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
         setproduct(response.res_result.product);
         setbrand(response.res_result.brand);
         setcompany(response.res_result.company);
-        if (response.res_result.product.count === 0) {
+        if (response.res_result.product.data.length === 0) {
           setNum(
-            parseInt(response.res_result.company.count) +
-              parseInt(response.res_result.brand.count),
+            parseInt(response.res_result.company.data.length) +
+              parseInt(response.res_result.brand.data.length),
           );
-        } else if (response.res_result.company.count === 0) {
+        } else if (response.res_result.company.data.length === 0) {
           setNum(
-            parseInt(response.res_result.product.count) +
-              parseInt(response.res_result.brand.count),
+            parseInt(response.res_result.product.data.length) +
+              parseInt(response.res_result.brand.data.length),
           );
-        } else if (response.res_result.brand.count === 0) {
+        } else if (response.res_result.brand.data.length === 0) {
           setNum(
-            parseInt(response.res_result.product.count) +
-              parseInt(response.res_result.company.count),
+            parseInt(response.res_result.product.data.length) +
+              parseInt(response.res_result.company.data.length),
           );
         } else if (
-          response.res_result.product.count === 0 &&
-          response.res_result.company.count === 0
+          response.res_result.product.data.length === 0 &&
+          response.res_result.company.data.length === 0
         ) {
-          setNum(parseInt(response.res_result.brand.count));
+          setNum(parseInt(response.res_result.brand.data.length));
         } else if (
-          response.res_result.brand.count === 0 &&
-          response.res_result.company.count === 0
+          response.res_result.brand.data.length === 0 &&
+          response.res_result.company.data.length === 0
         ) {
-          setNum(parseInt(response.res_result.product.count));
+          setNum(parseInt(response.res_result.product.data.length));
         } else if (
-          response.res_result.product.count === 0 &&
-          response.res_result.brand.count === 0 &&
-          response.res_result.company.count === 0
+          response.res_result.product.data.length === 0 &&
+          response.res_result.brand.data.length === 0 &&
+          response.res_result.company.data.length === 0
         ) {
           setNum('0');
         } else {
           setNum(
-            parseInt(response.res_result.product.count) +
-              parseInt(response.res_result.company.count) +
-              parseInt(response.res_result.brand.count),
+            parseInt(response.res_result.product.data.length) +
+              parseInt(response.res_result.company.data.length) +
+              parseInt(response.res_result.brand.data.length),
           );
         }
       } else {
@@ -241,42 +241,42 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
       setproduct(response.res_result.product);
       setbrand(response.res_result.brand);
       setcompany(response.res_result.company);
-      if (response.res_result.product.count === 0) {
+      if (response.res_result.product.data.length === 0) {
         setNum(
-          parseInt(response.res_result.company.count) +
-            parseInt(response.res_result.brand.count),
+          parseInt(response.res_result.company.data.length) +
+            parseInt(response.res_result.brand.data.length),
         );
-      } else if (response.res_result.company.count === 0) {
+      } else if (response.res_result.company.data.length === 0) {
         setNum(
-          parseInt(response.res_result.product.count) +
-            parseInt(response.res_result.brand.count),
+          parseInt(response.res_result.product.data.length) +
+            parseInt(response.res_result.brand.data.length),
         );
-      } else if (response.res_result.brand.count === 0) {
+      } else if (response.res_result.brand.data.length === 0) {
         setNum(
-          parseInt(response.res_result.product.count) +
-            parseInt(response.res_result.company.count),
+          parseInt(response.res_result.product.data.length) +
+            parseInt(response.res_result.company.data.length),
         );
       } else if (
-        response.res_result.product.count === 0 &&
-        response.res_result.company.count === 0
+        response.res_result.product.data.length === 0 &&
+        response.res_result.company.data.length === 0
       ) {
-        setNum(parseInt(response.res_result.brand.count));
+        setNum(parseInt(response.res_result.brand.data.length));
       } else if (
-        response.res_result.brand.count === 0 &&
-        response.res_result.company.count === 0
+        response.res_result.brand.data.length === 0 &&
+        response.res_result.company.data.length === 0
       ) {
-        setNum(parseInt(response.res_result.product.count));
+        setNum(parseInt(response.res_result.product.data.length));
       } else if (
-        response.res_result.product.count === 0 &&
-        response.res_result.brand.count === 0 &&
-        response.res_result.company.count === 0
+        response.res_result.product.data.length === 0 &&
+        response.res_result.brand.data.length === 0 &&
+        response.res_result.company.data.length === 0
       ) {
         setNum('0');
       } else {
         setNum(
-          parseInt(response.res_result.product.count) +
-            parseInt(response.res_result.company.count) +
-            parseInt(response.res_result.brand.count),
+          parseInt(response.res_result.product.data.length) +
+            parseInt(response.res_result.company.data.length) +
+            parseInt(response.res_result.brand.data.length),
         );
       }
     } else {
@@ -290,27 +290,27 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
   const [Num, setNum] = useState('');
 
   const renderNum = () => {
-    if (product.count === 0) {
-      setNum(parseInt(company.count) + parseInt(brand.count));
-    } else if (company.count === 0) {
-      setNum(parseInt(product.count) + parseInt(brand.count));
-    } else if (brand.count === 0) {
-      setNum(parseInt(product.count) + parseInt(company.count));
-    } else if (product.count === 0 && company.count === 0) {
-      setNum(parseInt(brand.count));
-    } else if (brand.count === 0 && company.count === 0) {
-      setNum(parseInt(product.count));
+    if (product.data.length === 0) {
+      setNum(parseInt(company.data.length) + parseInt(brand.data.length));
+    } else if (company.data.length === 0) {
+      setNum(parseInt(product.data.length) + parseInt(brand.data.length));
+    } else if (brand.data.length === 0) {
+      setNum(parseInt(product.data.length) + parseInt(company.data.length));
+    } else if (product.data.length === 0 && company.data.length === 0) {
+      setNum(parseInt(brand.data.length));
+    } else if (brand.data.length === 0 && company.data.length === 0) {
+      setNum(parseInt(product.data.length));
     } else if (
-      product.count === 0 &&
-      brand.count === 0 &&
-      company.count === 0
+      product.data.length === 0 &&
+      brand.data.length === 0 &&
+      company.data.length === 0
     ) {
       setNum('0');
     } else {
       setNum(
-        parseInt(product.count) +
-          parseInt(company.count) +
-          parseInt(brand.count),
+        parseInt(product.data.length) +
+          parseInt(company.data.length) +
+          parseInt(brand.data.length),
       );
     }
   };
@@ -474,7 +474,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
             Total {Num} Items
           </Text>
         </View>
-        {product.count === 0 || product.count.length === 0 ? (
+        {(product.data.length === 0) === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
               Product{' '}
@@ -487,7 +487,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                   : textSearch}
                 ”
               </Text>{' '}
-              Found {product.count} Items
+              Found {product.data.length} Items
             </Text>
             <Image
               source={require('../../../assets/image/folder.png')}
@@ -509,15 +509,21 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                     : textSearch}
                   ”
                 </Text>{' '}
-                Found {product.count} Items
+                Found {product.data.length} Items
               </Text>
-              {product.count > 3 && (
+              {product.data.length > 3 && (
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate('Seeall1', {
                       key: 'product',
                       data: product,
                       textSearch: textSearch,
+                      selectedtags: selectedtags,
+                      setproduct: setproduct,
+                      setcompany: setcompany,
+                      setbrand: setbrand,
+                      settypetem: settypetem,
+                      setNum: setNum,
                     })
                   }
                   style={styles.line}>
@@ -582,7 +588,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
             />
           </View>
         )}
-        {company.count == 0 || company.count.length === 0 ? (
+        {(company.data.length == 0) === 0 ? (
           <View style={styles.tags}>
             <Text style={styles.texttags}>
               Company{' '}
@@ -593,7 +599,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                   : textSearch}
                 ”
               </Text>{' '}
-              Found {company.count} Items
+              Found {company.data.length} Items
             </Text>
             <Image
               source={require('../../../assets/image/folder.png')}
@@ -614,9 +620,9 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                     : textSearch}
                   ”
                 </Text>{' '}
-                Found {company.count} Items
+                Found {company.data.length} Items
               </Text>
-              {company.count > 3 && (
+              {company.data.length > 3 && (
                 <TouchableOpacity
                   style={styles.line}
                   onPress={() =>
@@ -624,6 +630,12 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                       key: 'company',
                       data: company,
                       textSearch: textSearch,
+                      selectedtags: selectedtags,
+                      setproduct: setproduct,
+                      setcompany: setcompany,
+                      setbrand: setbrand,
+                      settypetem: settypetem,
+                      setNum: setNum,
                     })
                   }>
                   <Text
@@ -689,7 +701,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
         )}
         {typetem.length === 0 && (
           <View>
-            {brand.count === 0 || brand.count.length === 0 ? (
+            {(brand.data.length === 0) === 0 ? (
               <View style={styles.tags}>
                 <Text style={styles.texttags}>
                   Brand{' '}
@@ -701,7 +713,7 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                       : textSearch}
                     ”
                   </Text>{' '}
-                  Found {brand.count} Items
+                  Found {brand.data.length} Items
                 </Text>
                 <Image
                   source={require('../../../assets/image/folder.png')}
@@ -725,15 +737,21 @@ const Search1 = ({navigation, dispatch, authUser, route}) => {
                         : textSearch}
                       ”
                     </Text>{' '}
-                    Found {brand.count} Items
+                    Found {brand.data.length} Items
                   </Text>
-                  {brand.count > 3 && (
+                  {brand.data.length > 3 && (
                     <TouchableOpacity
                       onPress={() =>
                         navigation.navigate('Seeall1', {
                           key: 'brand',
                           data: brand,
                           textSearch: textSearch,
+                          selectedtags: selectedtags,
+                          setproduct: setproduct,
+                          setcompany: setcompany,
+                          setbrand: setbrand,
+                          settypetem: settypetem,
+                          setNum: setNum,
                         })
                       }
                       style={styles.line}>

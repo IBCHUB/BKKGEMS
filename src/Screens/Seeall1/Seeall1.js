@@ -26,10 +26,11 @@ const Seeall1 = ({navigation, dispatch, authUser, route}) => {
   const refRBSheet = useRef();
   const scrollRef = useRef();
   const textSearch1 = route.params.textSearch;
+  const selectedtags = route.params.selectedtags;
   const [textSearch, settextSearch] = useState(textSearch1);
   const [CKAZ, setCKAZ] = useState(true);
   const [CKZA, setCKZA] = useState(false);
-  console.log(textSearch);
+
   const [isrefresh, setIsRefresh] = useState(false);
   const onPressTouch = () => {
     scrollRef?.current?.scrollToIndex({index: 0});
@@ -43,31 +44,8 @@ const Seeall1 = ({navigation, dispatch, authUser, route}) => {
 
   const [deatilall, setdeatilallall] = useState(route.params.data);
   console.log(deatilall);
-  // const _Search = async value => {
-  //   try {
-  //     var request =
-  //       'meet=' + '2' + '&tags=' + '' + '&type=' + '' + '&text=' + textSearch;
 
-  //     const response = await dispatch(Exhibitor_List(request));
-  //     console.log('????????', response.res_result);
-  //     if (response.res_code == '00') {
-  //       if (key === 'product') {
-  //         setdeatilallall(response.res_result.product);
-  //       } else if (key === 'company') {
-  //         setdeatilallall(response.res_result.company);
-  //       } else {
-  //         setdeatilallall(response.res_result.brand);
-  //       }
-  //     } else {
-  //       console.log('2222');
-  //     }
-  //   } catch (error) {}
-  // };
-  // useEffect(() => {
-  //   _Search();
-  // }, []);
   const [state, setstate] = useState([]);
-  // console.log('456789', state.slice(0, 5));
   const [query, setQuery] = useState('');
 
   const test = text => {
@@ -157,6 +135,11 @@ const Seeall1 = ({navigation, dispatch, authUser, route}) => {
           }}
           navigation={navigation}
           key={key}
+          setproduct={route.params.setproduct}
+          setcompany={route.params.setcompany}
+          setbrand={route.params.setbrand}
+          settypetem={route.params.settypetem}
+          setNum={route.params.setNum}
         />
       </RBSheet>
       <View style={{backgroundColor: '#EEECE2'}}>
@@ -285,12 +268,12 @@ const Seeall1 = ({navigation, dispatch, authUser, route}) => {
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity
                 onPress={async () => {
-                  let data = key === 'product' ? 1 : key === 2 ? 'company' : 3;
+                  let data = key === 'product' ? 1 : key === 'company' ? 3 : 2;
                   var request =
                     'meet=' +
                     '2' +
                     '&tags=' +
-                    '' +
+                    selectedtags +
                     '&type=' +
                     data +
                     '&text=' +
@@ -322,12 +305,12 @@ const Seeall1 = ({navigation, dispatch, authUser, route}) => {
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={async () => {
-                  let data = key === 'product' ? 1 : key === 2 ? 'company' : 3;
+                  let data = key === 'product' ? 1 : key === 'company' ? 3 : 2;
                   var request =
                     'meet=' +
                     '2' +
                     '&tags=' +
-                    '' +
+                    selectedtags +
                     '&type=' +
                     data +
                     '&text=' +
@@ -336,13 +319,13 @@ const Seeall1 = ({navigation, dispatch, authUser, route}) => {
                     'DESC';
                   console.log(request);
                   const response = await dispatch(Exhibitor_List(request));
-                  console.log(response);
                   if (response.res_code == '00') {
                     if (key === 'product') {
                       setdeatilallall(response.res_result.product);
                     } else if (key === 'company') {
                       setdeatilallall(response.res_result.company);
                     } else {
+                      // console.log(response.res_result);
                       setdeatilallall(response.res_result.brand);
                     }
                     setCKAZ(false);

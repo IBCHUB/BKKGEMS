@@ -809,7 +809,9 @@ class Chatbot extends Component {
           marginHorizontal: 10,
           justifyContent: 'center',
           height: 45,
-          marginBottom: Platform.OS === 'ios' ? 0 : 5,
+          paddingBottom: Platform.OS === 'ios' ? 0 : 5,
+          marginTop: Platform.OS === 'ios' ? -8 : 5,
+          marginBottom: 10,
         }}
       />
     );
@@ -828,6 +830,7 @@ class Chatbot extends Component {
             marginRight: 15,
             fontSize: 25,
             color: '#3A97F9',
+            alignSelf: 'center',
           }}
         />
       </Send>
@@ -838,7 +841,7 @@ class Chatbot extends Component {
     return (
       <View>
         {Platform.OS === 'ios' ? (
-          <KeyboardAvoidingView behavior="padding">
+          <KeyboardAvoidingView style={{paddingTop: -50}}>
             <View style={styles.chat}>
               <GiftedChat
                 messages={this.state.messages}
