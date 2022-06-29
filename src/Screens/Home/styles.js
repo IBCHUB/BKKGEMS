@@ -115,13 +115,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Cantoria MT Std',
   },
   imglive: {
-    width: width * 0.8,
+    width: width * 0.85,
     alignSelf: 'center',
     height: ViewScale(190),
     marginVertical: ViewScale(30),
+    marginBottom: ViewScale(10),
   },
   imgS: {
-    width: width * 0.8,
+    width: width * 0.85,
     height: ViewScale(140),
   },
   logob: {
@@ -268,7 +269,7 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === 'ios' ? 0 : ViewScale(-5),
   },
   count1: {
-    fontSize: Platform.OS === 'ios' ? ViewScale(12) : ViewScale(10),
+    fontSize: Platform.OS === 'ios' ? ViewScale(10) : ViewScale(9),
     fontFamily: 'Cantoria MT Std',
     alignSelf: 'center',
     marginTop: Platform.OS === 'ios' ? ViewScale(-5) : ViewScale(-8),

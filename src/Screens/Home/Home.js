@@ -260,24 +260,25 @@ const Home = ({navigation, dispatch, authData}) => {
 
           <TopicHome />
 
-          {/* {online != undefined && online === 0 ? ( */}
-          <TouchableOpacity
-            onPress={() => {
-              Linking.openURL('https://www.bgjf-vtf.com/');
-            }}
-            style={styles.imglive}>
-            <Image
-              source={require('../../../assets/image/join.png')}
-              style={styles.imgS}
-            />
-          </TouchableOpacity>
-
-          {/* <View style={styles.imglive}> */}
-          {/* <Image
-                source={require('../../../assets/image/join-mobile.png')}
+          {online != undefined && online === 0 ? (
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://www.bgjf-vtf.com/');
+              }}
+              style={styles.imglive}>
+              <Image
+                source={require('../../../assets/image/join.png')}
                 style={styles.imgS}
               />
-            </View> */}
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.imglive}>
+              <Image
+                source={require('../../../assets/image/logobkk.png')}
+                style={styles.imgS}
+              />
+            </View>
+          )}
 
           <AboutHome navigation={navigation} />
         </View>

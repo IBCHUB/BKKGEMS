@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
   buttonflat: {
     backgroundColor: '#fff',
     width: width * 0.5,
-    height: ViewScale(180),
+    height: ViewScale(200),
     alignSelf: 'center',
     borderWidth: 0.5,
     borderColor: '#EEECE2',
   },
   imgflat: {
     width: width * 0.5,
-    height: ViewScale(180),
+    height: ViewScale(200),
     borderTopLeftRadius: ViewScale(5),
     borderTopRightRadius: ViewScale(5),
     justifyContent: 'flex-end',
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
     height: ViewScale(40),
   },
   imglogo: {
-    width: ViewScale(20),
-    height: ViewScale(20),
+    width: ViewScale(24),
+    height: ViewScale(24),
     alignSelf: 'center',
-    borderRadius: ViewScale(10),
+    borderRadius: ViewScale(12),
   },
   text: {
     fontSize: ViewScale(12),

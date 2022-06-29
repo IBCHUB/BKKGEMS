@@ -58,7 +58,9 @@ const Hightligth = ({navigation, dispatch}) => {
       <Headercomp item={'HIGHLIGHT'} navigation={navigation} />
       <View style={{backgroundColor: '#010302', marginBottom: ViewScale(20)}}>
         <FlatList
-          data={highlight}
+          data={highlight.sort((a, b) => {
+            return a.company_name > b.company_name ? 1 : -1;
+          })}
           numColumns={2}
           style={{
             height: Platform.OS === 'ios' ? height * 0.81 : height * 0.84,
@@ -89,9 +91,10 @@ const Hightligth = ({navigation, dispatch}) => {
                   }}
                   style={styles.buttonflat}>
                   <ImageBackground
-                    resizeMode="cover"
+                    resizeMode="stretch"
                     style={styles.imgflat}
-                    source={{uri: item.product_img_name}}>
+                    source={{uri: item.product_img_name}}
+                    defaultSource={require('../../../assets/image/noimg-exhibitor.png')}>
                     <LinearGradient
                       colors={['#00000000', '#1D0F0FF7']}
                       style={styles.row}>
@@ -99,6 +102,7 @@ const Hightligth = ({navigation, dispatch}) => {
                         resizeMode="cover"
                         style={styles.imglogo}
                         source={{uri: item.company_logo}}
+                        defaultSource={require('../../../assets/image/noimg-exhibitor.png')}
                       />
                       <Text numberOfLines={1} style={styles.text}>
                         {item.company_name}
