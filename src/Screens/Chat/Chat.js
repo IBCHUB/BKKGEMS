@@ -24,7 +24,7 @@ const Chat = ({navigation, route}) => {
           marginTop: Platform.OS === 'android' && 25,
         }}
       />
-      <Headerchat item={'CHAT'} navigation={navigation} />
+      <Headerchat navigation={navigation} />
       <View style={{backgroundColor: '#fff'}}>
         {/* <View style={styles.viewrow}>
         <TouchableOpacity
@@ -60,7 +60,7 @@ const Chat = ({navigation, route}) => {
           </Text>
         </TouchableOpacity>
       </View> */}
-        <Chatbot />
+        <Chatbot navigation={navigation} />
         {/* {page === 1 && <Allchat navigation={navigation} />} */}
       </View>
     </View>

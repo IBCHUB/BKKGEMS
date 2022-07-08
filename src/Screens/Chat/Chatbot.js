@@ -60,9 +60,14 @@ class Chatbot extends Component {
   // };
 
   componentDidMount() {
+    // const {navigetion} = this.props;
     this._CreatechatToken();
     // this._GenerateRandomNumber();
-    this.setState({getUniqueId1: getUniqueId()});
+    this.setState({getUniqueId1: getUniqueId() + 1});
+
+    // setTimeout(() => {
+    //   this.props.navigation.navigate('Home');
+    // }, 60000);
   }
 
   _CreatechatToken = async value => {
@@ -83,7 +88,6 @@ class Chatbot extends Component {
           '&text=' +
           this.state.getUniqueId1;
         const response2 = await this.props.dispatch(ativebotChat(request));
-
         const payload1 = {
           result: {
             uid: this.state.getUniqueId1,
@@ -121,7 +125,7 @@ class Chatbot extends Component {
 
         const payload2 = {
           result: {
-            limit: 100,
+            limit: 30,
             page: 0,
             period: {
               start: dayStart,
@@ -172,7 +176,6 @@ class Chatbot extends Component {
             t.socket.on('connected', async res => {
               console.log('Connect==> New');
               console.log(res);
-
               // const uid = this.props.getUser.userDetails.res_result.naturalId;
               const uid = this.state.getUniqueId1;
 
@@ -240,7 +243,7 @@ class Chatbot extends Component {
         console.log('LLLKLKLK', this.state.dataHistoryChat);
         // let gg = numchat -1
 
-        for (var i = numchat >= 35 ? 30 : numchat - 1; i >= 0; i--) {
+        for (var i = numchat >= 25 ? 20 : numchat - 1; i >= 0; i--) {
           // alert('kkk' + i);
 
           if (
@@ -443,6 +446,7 @@ class Chatbot extends Component {
                         source={{uri: item.image_url}}
                       />
                       <Text
+                        numberOfLines={2}
                         style={{
                           fontSize: 18,
                           fontWeight: 'bold',
@@ -451,6 +455,8 @@ class Chatbot extends Component {
                           fontWeight: 'normal',
                           marginTop: -20,
                           color: '#000',
+                          width: 180,
+                          alignSelf: 'center',
                         }}>
                         {item.title}
                       </Text>
@@ -460,7 +466,7 @@ class Chatbot extends Component {
                           fontSize: 18,
                           fontWeight: 'bold',
                           textAlign: 'center',
-                          marginHorizontal: 20,
+                          marginHorizontal: 10,
                           color: '#4d4d4d',
                           fontFamily: 'Cantoria MT Std',
                           fontWeight: 'normal',
@@ -486,7 +492,7 @@ class Chatbot extends Component {
                                 borderWidth: 1,
                                 alignSelf: 'center',
                                 borderRadius: 10,
-                                marginBottom: 15,
+                                marginBottom: 5,
                                 marginTop: 5,
                                 height: 30,
                                 justifyContent: 'center',
@@ -740,13 +746,17 @@ class Chatbot extends Component {
 
   renderAvatar = props => {
     return (
-      <Avatar
-        {...props}
-        imageStyle={{
-          left: {width: 40, height: 40},
-          right: {width: 40, height: 40},
-        }}
-      />
+      <>
+        {props.currentMessage.title_name !== null && (
+          <Avatar
+            {...props}
+            imageStyle={{
+              left: {width: 40, height: 40},
+              right: {width: 40, height: 40},
+            }}
+          />
+        )}
+      </>
     );
   };
 
@@ -810,7 +820,7 @@ class Chatbot extends Component {
           justifyContent: 'center',
           height: 45,
           paddingBottom: Platform.OS === 'ios' ? 0 : 5,
-          marginTop: Platform.OS === 'ios' ? -8 : 5,
+          marginTop: Platform.OS === 'ios' ? -7 : 5,
           marginBottom: 10,
         }}
       />
@@ -945,6 +955,9 @@ class Chatbot extends Component {
                 user={{
                   _id: 'user',
                 }}
+                // shouldScrollTo={offset => {
+                //   console.log('offset', offset);
+                // }}
                 showAvatarForEveryMessage={true}
                 alwaysShowSend={true}
                 showUserAvatar={true}

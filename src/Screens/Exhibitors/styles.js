@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   linersort: {
-    width: ViewScale(width * 0.85),
+    width: ViewScale(width),
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#444',

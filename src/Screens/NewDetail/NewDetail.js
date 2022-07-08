@@ -108,7 +108,7 @@ const NewDetail = ({navigation, route}) => {
         />
         <View
           style={{
-            height: Platform.OS === 'ios' ? ViewScale(30) : height * 0.15,
+            height: Platform.OS === 'ios' ? ViewScale(80) : height * 0.15,
           }}
         />
         {/* <TouchableOpacity

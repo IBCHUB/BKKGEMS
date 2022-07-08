@@ -293,7 +293,7 @@ class CustomView extends React.Component {
 
   rendeonlyText = props => {
     var arr = this.props.currentMessage.text1.replace(
-      getUniqueId(),
+      getUniqueId() + 1,
       'BKKGEMS User',
     );
     console.log('>>>', arr);
@@ -392,7 +392,7 @@ class CustomView extends React.Component {
 
   renderDataquickreplies = props => {
     var arr = this.props.currentMessage.showtextdataquick_replies.replace(
-      getUniqueId(),
+      getUniqueId() + 1,
       'BKKGEMS User',
     );
     return (
@@ -513,7 +513,8 @@ class CustomView extends React.Component {
     } else if (
       this.props.currentMessage.text1 !== '' &&
       this.props.currentMessage._id === 'HomeBot' &&
-      this.props.currentMessage.title_name !== undefined
+      this.props.currentMessage.title_name !== undefined &&
+      this.props.currentMessage.title_name !== null
     ) {
       // return this.renderBot(); ปัจจุบัน คุณ สัณหภัค ดำเนินธุรกิจในลักษณะนิติบุคคลแล้วหรือยังคะ ?
       return this.renderBotDetail();
