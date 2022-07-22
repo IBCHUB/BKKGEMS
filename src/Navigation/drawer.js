@@ -245,9 +245,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             onPress={() => {
               navigation.navigate('Suppliers');
             }}>
-            <Text style={styles.touchindrawer}>
-              Thailand : World’s Gems & Jewelry Destination
-            </Text>
+            <Text style={styles.touchindrawer}>{I18n.t('Supplier')}</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -453,9 +451,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             onPress={() => {
               navigation.navigate('Workshops');
             }}>
-            <Text style={styles.touchindrawer}>
-              Workshops And Demonstrations
-            </Text>
+            <Text style={styles.touchindrawer}>{I18n.t('Word')}</Text>
           </TouchableOpacity>
         </View>
       )}

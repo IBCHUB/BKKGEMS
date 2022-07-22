@@ -1,7 +1,7 @@
 export default {
   Setting: 'Setting',
   AboutFair: 'About Fair',
-  Supplier: '',
+  Supplier: 'Thailand : World’s Gems & Jewelry Destination',
   ExhibitorsList: 'Exhibitor List',
   Highlight: '',
   News: 'News & Trends ',
@@ -54,4 +54,5 @@ export default {
   RegistrationForm: 'Registration Form',
   ExhibitorMeeting: 'Exhibitor Meeting',
   ExhibitorManual: 'Exhibitor Manual',
+  Word: 'Workshops and Demonstrations',
 };

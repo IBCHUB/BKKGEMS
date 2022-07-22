@@ -83,10 +83,7 @@ function ExhibitorsStackScreen() {
       initialRouteName="Exhibitors"
       screenOptions={{headerShown: false}}>
       <ExhibitorsStack.Screen name="Exhibitors" component={Exhibitors} />
-      <ExhibitorsStack.Screen
-        name="ExhibitorsDetail"
-        component={ExhibitorsDetail}
-      />
+
       <ExhibitorsStack.Screen name="Search" component={Search} />
     </ExhibitorsStack.Navigator>
   );
@@ -353,10 +350,7 @@ function ScreenStack() {
       <Stack.Screen name="Searchno" component={Searchno} />
       <Stack.Screen name="Cate" component={Cate} />
       <Stack.Screen name="Seeall1" component={Seeall1} />
-      <ExhibitorsStack.Screen
-        name="ExhibitorsDetail"
-        component={ExhibitorsDetail}
-      />
+      <Stack.Screen name="ExhibitorsDetail" component={ExhibitorsDetail} />
     </Stack.Navigator>
   );
 }
