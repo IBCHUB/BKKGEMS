@@ -5,6 +5,7 @@ export default {
   ExhibitorsList: 'รายชื่อผู้แสดงสินค้า',
   Highlight: '',
   News: 'ข่าว',
+  Neww: 'ข่าวสารและแนวโน้ม',
   Visitor: 'ผู้เข้าชม',
   PreRegistration: 'ลงทะเบียนล่วงหน้า',
   Admission: 'การเข้าชม',
@@ -55,4 +56,9 @@ export default {
   ExhibitorMeeting: 'การประชุมผู้แสดงสินค้า',
   ExhibitorManual: 'คู่มือการแสดงสินค้า',
   Word: 'เวิร์กช็อปและการสาธิตต่าง ๆ',
+  Up: 'รายชื่อผู้แสดงสินค้าครั้งที่ 67 (อัปเดต)',
+  Trends: 'แนวโน้ม',
+  ForPress: 'สำหรับผู้สื่อข่าว',
+  Photo: 'คลังภาพ',
+  Videos: 'วิดีโอ',
 };

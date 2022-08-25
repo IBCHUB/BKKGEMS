@@ -118,10 +118,12 @@ const TopicHome = ({dispatch}) => {
       </View>
       <TouchableOpacity
         onPress={() => {
-          Linking.openURL('https://bgjf.git.or.th/git');
+          Linking.openURL(
+            'https://pre.eventthai.com/publics/create/visitor/bgjf22/step1',
+          );
         }}
         style={styles.bb}>
-        <Text style={styles.textbb}>Exhibitor Registration</Text>
+        <Text style={styles.textbb}>Visitor Registrations</Text>
 
         {/* <Image
           source={require('../../../assets/image/pp.png')}

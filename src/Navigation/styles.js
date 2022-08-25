@@ -67,6 +67,23 @@ const styles = StyleSheet.create({
     marginLeft: ViewScale(15),
     fontFamily: 'Cantoria MT Std',
   },
+  rowfair: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  texttime: {
+    fontFamily: 'Cantoria MT Std',
+    fontSize: ViewScale(18),
+    alignSelf: 'center',
+    color: '#fff',
+  },
+  texttime1: {
+    fontFamily: 'Cantoria MT Std',
+    fontSize: ViewScale(10),
+    color: '#fff',
+    alignSelf: 'flex-start',
+  },
 });
 
 export default styles;

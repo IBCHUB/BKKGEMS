@@ -129,7 +129,7 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
                   setpage(6);
                 }}
                 style={styles.rowlist}>
-                <Text style={styles.touchdrawer}>{I18n.t('News')}</Text>
+                <Text style={styles.touchdrawer}>{I18n.t('Neww')}</Text>
                 <FontAwesome
                   name={'angle-right'}
                   size={ViewScale(20)}
@@ -341,6 +341,14 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
+              Linking.openURL(
+                'https://www.bkkgems.com/data/file/exhibitors/BGJF67%20E-Fair%20Cat%20A-Z.pdf',
+              );
+            }}>
+            <Text style={styles.touchindrawer}>{I18n.t('Up')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
               alert('Coming Soon');
             }}>
             <Text style={styles.touchindrawer}>
@@ -361,6 +369,19 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             }}>
             <Text style={styles.touchindrawer}>{I18n.t('VisitorGuide')}</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL('https://www.bkkgems.com/OfficialHotel');
+            }}>
+            <Text style={styles.touchindrawer}>Official Hotel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL('https://www.bkkgems.com/ShuttleBus');
+            }}>
+            <Text style={styles.touchindrawer}>Shuttle Bus</Text>
+          </TouchableOpacity>
+          {/* Shuttle Bus */}
         </View>
       )}
 
@@ -471,31 +492,31 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             onPress={() => {
               navigation.navigate('News');
             }}>
-            <Text style={styles.touchindrawer}>News</Text>
+            <Text style={styles.touchindrawer}>{I18n.t('News')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('News');
             }}>
-            <Text style={styles.touchindrawer}>Trends</Text>
+            <Text style={styles.touchindrawer}>{I18n.t('Trends')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               Linking.openURL('https://www.bkkgems.com/for_press/1-8');
             }}>
-            <Text style={styles.touchindrawer}>For Press</Text>
+            <Text style={styles.touchindrawer}>{I18n.t('ForPress')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               Linking.openURL('https://www.bkkgems.com/photoGallety');
             }}>
-            <Text style={styles.touchindrawer}>Photo Gallery</Text>
+            <Text style={styles.touchindrawer}>{I18n.t('Photo')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               Linking.openURL('https://www.bkkgems.com/videoGallety');
             }}>
-            <Text style={styles.touchindrawer}>Videos</Text>
+            <Text style={styles.touchindrawer}>{I18n.t('Videos')}</Text>
           </TouchableOpacity>
         </View>
       )}

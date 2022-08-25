@@ -28,7 +28,12 @@ const Plan = ({navigation, dispatch}) => {
       <Headerback navigation={navigation} item={'FLOOR PLAN'} />
 
       <View style={styles.view}>
-        <Image style={styles.img} source={item} />
+        <Image
+          style={styles.img}
+          source={{
+            uri: 'https://www.bkkgems.com/assets/image/visitor/visitor3.png',
+          }}
+        />
 
         <View style={{marginBottom: 30}} />
       </View>

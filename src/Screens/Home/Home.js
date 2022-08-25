@@ -23,7 +23,12 @@ import {getUser} from '../../action/auth.action';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {connect} from 'react-redux';
 import Autocomplete from 'react-native-autocomplete-input';
-import {Exhibitor_List, Search, Topic} from '../../action/data.action';
+import {
+  Exhibitor_List,
+  ImgTopic,
+  Search,
+  Topic,
+} from '../../action/data.action';
 import {ViewScale} from '../../config/ViewScale';
 import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import GeneralStatusBarColor from '../../Components/GeneralStatusBarColor';
@@ -35,7 +40,8 @@ const Home = ({navigation, dispatch, authData}) => {
   // console.log(online);
   const refRBSheet = useRef();
   const [state, setstate] = useState([]);
-  // console.log('456789', state.slice(0, 5));
+  const [img, setimg] = useState();
+  console.log('456789', img);
   const [query, setQuery] = useState('');
 
   const test = text => {
@@ -114,17 +120,31 @@ const Home = ({navigation, dispatch, authData}) => {
     return <TextInput {...props} onSubmitEditing={onSubmit}></TextInput>;
   };
 
+  const _Img = async values => {
+    try {
+      const response = await dispatch(ImgTopic());
+      console.log('2222222>>>>>>', response);
+      if (response.res_code == '00') {
+        const randomNumber = Math.floor(Math.random() * 5) + 1;
+        setimg(response.res_result[randomNumber].img);
+        // console.log('1111');
+      } else {
+        // console.log('2222');
+      }
+    } catch (error) {}
+  };
   useEffect(() => {
     // _loginUser();
     _Search();
     _Topic();
+    _Img();
   }, []);
 
   return (
     <View style={styles.container}>
       <GeneralStatusBarColor barStyle="light-content" />
       <Headerhome navigation={navigation} />
-      <RBSheet
+      {/* <RBSheet
         ref={refRBSheet}
         closeOnPressMask={false}
         customStyles={{
@@ -148,11 +168,12 @@ const Home = ({navigation, dispatch, authData}) => {
           }}
           navigation={navigation}
         />
-      </RBSheet>
+      </RBSheet> */}
       <ScrollView style={{backgroundColor: '#000'}}>
         <View style={styles.viewback}>
           <Image
-            source={require('../../../assets/image/imgpre.png')}
+            // source={require('../../../assets/image/imgpre.png')}
+            source={{uri: img}}
             style={styles.imgtop}
           />
           <Image
@@ -169,7 +190,7 @@ const Home = ({navigation, dispatch, authData}) => {
           />
         </View>
         <View style={styles.viewon}>
-          <View style={styles.viewsearch}>
+          {/* <View style={styles.viewsearch}>
             <View style={styles.viewinsearch}>
               <FontAwesome5
                 name="search"
@@ -256,7 +277,27 @@ const Home = ({navigation, dispatch, authData}) => {
                 style={styles.iconsea}
               />
             </TouchableOpacity>
-          </View>
+          </View> */}
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL(
+                'https://www.bkkgems.com/data/file/exhibitors/BGJF67%20E-Fair%20Cat%20A-Z.pdf',
+              );
+            }}
+            style={styles.viewsearch}>
+            <View style={styles.viewinsearch}>
+              <View style={styles.rowfair}>
+                <Text style={styles.up}>67</Text>
+                <Text style={styles.up1}>th</Text>
+                <Text style={styles.up}> EXHIBITOR LIST (UPDATED)</Text>
+              </View>
+            </View>
+            <ImageBackground
+              source={require('../../../assets/image/2.png')}
+              style={styles.new}>
+              <Text style={styles.textnew}> NEW</Text>
+            </ImageBackground>
+          </TouchableOpacity>
 
           <TopicHome />
 

@@ -376,10 +376,9 @@ function DrawerStack() {
 const linking = {
   prefixes: ['BKKGEMS://'],
   config: {
-    // initialRouteName: 'Login',
     screens: {
       Login: {
-        path: 'login/:id/:section',
+        path: 'login/:id',
         parse: {
           id: id => `${id}`,
         },
