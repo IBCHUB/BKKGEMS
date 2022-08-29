@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: width * 0.82,
     backgroundColor: '#fff',
-    borderRadius: ViewScale(5),
+
     height: ViewScale(40),
     backgroundColor: '#DAA560',
     justifyContent: 'center',
