@@ -23,6 +23,13 @@ const styles = StyleSheet.create({
     marginLeft: ViewScale(25),
     fontFamily: 'Cantoria MT Std',
   },
+  touchindrawer2: {
+    fontSize: ViewScale(16),
+    marginTop: ViewScale(20),
+    color: '#fff',
+    marginLeft: ViewScale(45),
+    fontFamily: 'Cantoria MT Std',
+  },
   imgprofile: {
     width: ViewScale(50),
     height: ViewScale(50),

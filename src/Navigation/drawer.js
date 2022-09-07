@@ -23,7 +23,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {ViewScale} from '../config/ViewScale';
 const CustomDrawerContent = ({props, dispatch, navigation}) => {
   const [visitor, setvisitor] = useState(false);
-  const [setting, setsetting] = useState(false);
+  const [seminer, setseminer] = useState(false);
   const [language, setlanguage] = useState('TH');
   const [page, setpage] = useState(0);
   return (
@@ -326,13 +326,38 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             <Text style={styles.touchindrawer}>{I18n.t('Admission')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={styles.rowlist}
             onPress={() => {
-              Linking.openURL(
-                'https://www.bkkgems.com/data/file/visitor/visitor_seminar.pdf',
-              );
+              setseminer(val => !val);
             }}>
             <Text style={styles.touchindrawer}>{I18n.t('Seminar')}</Text>
+            <FontAwesome
+              name={seminer === false ? 'angle-right' : 'angle-down'}
+              size={ViewScale(20)}
+              color={'#fff'}
+              style={{alignSelf: 'center', marginTop: ViewScale(15)}}
+            />
           </TouchableOpacity>
+          {seminer === true && (
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  Linking.openURL(
+                    'https://www.bkkgems.com/data/file/visitor/BGJF65.pdf',
+                  );
+                }}>
+                <Text style={styles.touchindrawer2}>65thBGF</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  Linking.openURL(
+                    'https://www.bkkgems.com/data/file/visitor/67thBGF.pdf',
+                  );
+                }}>
+                <Text style={styles.touchindrawer2}>67thBGF</Text>
+              </TouchableOpacity>
+            </View>
+          )}
           <TouchableOpacity
             onPress={() => {
               navigation.navigate('Exhibitors');
@@ -362,13 +387,34 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             <Text style={styles.touchindrawer}>{I18n.t('FloorPlan')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={styles.rowlist}
             onPress={() => {
-              Linking.openURL(
-                'https://www.bkkgems.com/data/file/For%20Visitor/65th_Visitor%20Guide.pdf',
-              );
+              setvisitor(val => !val);
             }}>
             <Text style={styles.touchindrawer}>{I18n.t('VisitorGuide')}</Text>
+            <FontAwesome
+              name={visitor === false ? 'angle-right' : 'angle-down'}
+              size={ViewScale(20)}
+              color={'#fff'}
+              style={{alignSelf: 'center', marginTop: ViewScale(15)}}
+            />
           </TouchableOpacity>
+          {visitor === true && (
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  Linking.openURL('https://online.fliphtml5.com/mlzxe/ysam/');
+                }}>
+                <Text style={styles.touchindrawer2}>65thBGF</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  Linking.openURL('https://online.fliphtml5.com/mlzxe/wmfk/');
+                }}>
+                <Text style={styles.touchindrawer2}>67thBGF</Text>
+              </TouchableOpacity>
+            </View>
+          )}
           <TouchableOpacity
             onPress={() => {
               Linking.openURL('https://www.bkkgems.com/OfficialHotel');

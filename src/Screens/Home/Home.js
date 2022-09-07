@@ -301,7 +301,7 @@ const Home = ({navigation, dispatch, authData}) => {
 
           <TopicHome />
 
-          {online != undefined && online === 0 ? (
+          {online >= 0 ? (
             <TouchableOpacity
               onPress={() => {
                 Linking.openURL('https://www.bgjf-vtf.com/');

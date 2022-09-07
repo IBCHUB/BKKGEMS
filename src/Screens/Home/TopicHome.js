@@ -25,6 +25,7 @@ const TopicHome = ({dispatch}) => {
 
   const [day, setday] = useState();
   const [hours, sethours] = useState();
+  console.log(hours);
   const [minutes, setminutes] = useState();
   const [seconds, setseconds] = useState();
 
@@ -87,6 +88,7 @@ const TopicHome = ({dispatch}) => {
       var hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
       );
+
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       if (distance > 0) {
@@ -145,22 +147,38 @@ const TopicHome = ({dispatch}) => {
         </Text>
         <View style={styles.rowcall}>
           <View>
-            <Text style={styles.count}>{day}</Text>
+            {day >= 0 ? (
+              <Text style={styles.count}>{day}</Text>
+            ) : (
+              <Text style={styles.count}>00</Text>
+            )}
             <Text style={styles.count1}>Days</Text>
           </View>
           <Text style={styles.count2}>:</Text>
           <View>
-            <Text style={styles.count}>{hours}</Text>
+            {hours >= 0 ? (
+              <Text style={styles.count}>{hours}</Text>
+            ) : (
+              <Text style={styles.count}>00</Text>
+            )}
             <Text style={styles.count1}>Hours</Text>
           </View>
           <Text style={styles.count2}>:</Text>
           <View>
-            <Text style={styles.count}>{minutes}</Text>
+            {minutes >= 0 ? (
+              <Text style={styles.count}>{minutes}</Text>
+            ) : (
+              <Text style={styles.count}>00</Text>
+            )}
             <Text style={styles.count1}>Minutes</Text>
           </View>
           <Text style={styles.count2}>:</Text>
           <View>
-            <Text style={styles.count}>{seconds}</Text>
+            {seconds >= 0 ? (
+              <Text style={styles.count}>{seconds}</Text>
+            ) : (
+              <Text style={styles.count}>00</Text>
+            )}
             <Text style={styles.count1}>Seconds</Text>
           </View>
         </View>
