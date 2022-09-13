@@ -61,4 +61,5 @@ export default {
   ForPress: 'สำหรับผู้สื่อข่าว',
   Photo: 'คลังภาพ',
   Videos: 'วิดีโอ',
+  Fair: 'Fair Catalogue',
 };

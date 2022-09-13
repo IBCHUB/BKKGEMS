@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: width * 0.82,
     backgroundColor: '#fff',
-
     height: ViewScale(40),
     backgroundColor: '#DAA560',
     justifyContent: 'center',
@@ -186,6 +185,7 @@ const styles = StyleSheet.create({
     marginVertical: ViewScale(10),
     alignSelf: 'center',
     justifyContent: 'center',
+    height: ViewScale(40),
   },
   dimon: {
     width: ViewScale(6),

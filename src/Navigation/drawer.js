@@ -326,6 +326,13 @@ const CustomDrawerContent = ({props, dispatch, navigation}) => {
             <Text style={styles.touchindrawer}>{I18n.t('Admission')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => {
+              Linking.openURL('https://online.fliphtml5.com/bsjek/rjpg/');
+            }}>
+            <Text style={styles.touchindrawer}>{I18n.t('Fair')}</Text>
+          </TouchableOpacity>
+          {/* Fair Catalogue */}
+          <TouchableOpacity
             style={styles.rowlist}
             onPress={() => {
               setseminer(val => !val);

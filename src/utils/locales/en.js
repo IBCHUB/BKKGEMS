@@ -61,4 +61,5 @@ export default {
   ForPress: 'For Press',
   Photo: 'Photo Gallery',
   Videos: 'Videos',
+  Fair: 'Fair Catalogue',
 };
