@@ -24,11 +24,11 @@ const Workshops = ({navigation}) => {
       />
       <View style={styles.viewdetail}>
         <Image
-          source={require('../../../assets/image/Jewellers/32.png')}
+          source={require('../../../assets/image/w67.jpeg')}
           style={styles.imgdetail}
         />
         <Image
-          source={require('../../../assets/image/Jewellers/33.png')}
+          source={require('../../../assets/image/w667.jpeg')}
           style={styles.imgdetail}
         />
       </View>

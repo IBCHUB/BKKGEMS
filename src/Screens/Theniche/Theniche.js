@@ -20,6 +20,45 @@ const Theniche = ({navigation}) => {
       />
       <Headerback navigation={navigation} item={'The Niche Showcase'} />
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
+        <View style={[styles.viewdetail, {backgroundColor: '#EEECE2'}]}>
+          <Image
+            source={require('../../../assets/image/nice67.png')}
+            style={styles.imgdetail}
+          />
+          <Text style={styles.textheader}>67th The Jewel Wonders Showcase</Text>
+          <Text style={[styles.textdetail, {color: '#636363'}]}>
+            The Jewel Wonders showcase hosted cutting-edge jewelry showcases,
+            workshops, jewelry-making demonstrations and consumer insights that
+            will shape the gems and jewelry market in the near future.{'\n'}
+            {'\n'}FIVE KEY TRENDS{'\n'}
+            <Text style={[styles.textdetail, {color: '#DAA560'}]}>
+              (1) Neo Heritage:
+            </Text>{' '}
+            jewelry creations that are made and inspired by traditional
+            artisanship{'\n'}
+            <Text style={[styles.textdetail, {color: '#DAA560'}]}>
+              (2) Circular Jewels:
+            </Text>{' '}
+            jewelry items that place ethical and environmental concerns at heart
+            from design to production{'\n'}
+            <Text style={[styles.textdetail, {color: '#DAA560'}]}>
+              (3) Metaverse Glam:
+            </Text>{' '}
+            cutting-edge jewelry creations that redefine the boundaries between
+            the real and digital worldse{'\n'}
+            <Text style={[styles.textdetail, {color: '#DAA560'}]}>
+              (4) Minimal Luxe:
+            </Text>{' '}
+            simple-yet-luxurious jewelry are currently in high demand among
+            young consumers{'\n'}
+            <Text style={[styles.textdetail, {color: '#DAA560'}]}>
+              (5) Modern Tribe:
+            </Text>{' '}
+            jewelry creations that are made and inspired by traditional
+            artisanshipmodern silver jewelry created by hill tribe people in the
+            north of Thailand
+          </Text>
+        </View>
         <View style={styles.viewdetail}>
           <Image
             source={require('../../../assets/image/n64.png')}

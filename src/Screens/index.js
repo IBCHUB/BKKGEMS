@@ -32,6 +32,7 @@ export {default as Page1} from './Jewellers/page1';
 export {default as Page2} from './Jewellers/page2';
 export {default as Page3} from './Jewellers/page3';
 export {default as Page4} from './Jewellers/page4';
+export {default as Page0} from './Jewellers/page0';
 export {default as Fashion} from './Fashion/Fashion';
 export {default as Workshops} from './Workshops/Workshops';
 export {default as Searchno} from './Searchno/Searchno';

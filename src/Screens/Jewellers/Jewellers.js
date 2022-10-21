@@ -14,6 +14,10 @@ import styles from '../Event/styles';
 const Jewellers = ({navigation}) => {
   const [data, setData] = useState([
     {
+      text: '67th The Jewellers',
+      navigation: 'Page0',
+    },
+    {
       text: '65th The Jewellers',
       navigation: 'Page1',
     },

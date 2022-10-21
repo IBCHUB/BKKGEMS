@@ -51,6 +51,7 @@ import {
   Page2,
   Page3,
   Page4,
+  Page0,
   Fashion,
   Workshops,
   Searchno,
@@ -345,6 +346,7 @@ function ScreenStack() {
       <Stack.Screen name="Page2" component={Page2} />
       <Stack.Screen name="Page3" component={Page3} />
       <Stack.Screen name="Page4" component={Page4} />
+      <Stack.Screen name="Page0" component={Page0} />
       <Stack.Screen name="Fashion" component={Fashion} />
       <Stack.Screen name="Workshops" component={Workshops} />
       <Stack.Screen name="Searchno" component={Searchno} />

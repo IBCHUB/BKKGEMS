@@ -21,6 +21,23 @@ const Fashion = ({navigation}) => {
       />
       <Headerback navigation={navigation} item={'Fashion Show'} />
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
+        <View style={[styles.viewdetail, {backgroundColor: '#EEECE2'}]}>
+          <Image
+            source={require('../../../assets/image/f67.png')}
+            style={styles.imgdetail}
+          />
+          <Text style={styles.textheader}>67th FASHION SHOW</Text>
+          <Text style={[styles.textdetail, {color: '#636363'}]}>
+            The activity offered a special platform for key figures in the gems
+            and jewelry industry to extend their business networks in a cozy,
+            yet glamorous atmosphere. For international buyers, the Networking
+            Reception is the first step towards meeting other professionals. The
+            event, which was joined by DITP and GIT representatives, trade
+            missions, ambassadors and VIPs from Thailand, featured a special
+            jewelry fashion show with selected jewelry pieces from Thai
+            exhibitors.
+          </Text>
+        </View>
         <View style={styles.viewdetail}>
           <Image
             source={require('../../../assets/image/Jewellers/31.png')}

@@ -136,7 +136,7 @@ android {
         applicationId "com.bkkgems"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 19
+        versionCode 29
         versionName "1"
     }
     splits {

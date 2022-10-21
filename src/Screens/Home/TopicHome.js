@@ -25,7 +25,7 @@ const TopicHome = ({dispatch}) => {
 
   const [day, setday] = useState();
   const [hours, sethours] = useState();
-  console.log(hours);
+
   const [minutes, setminutes] = useState();
   const [seconds, setseconds] = useState();
 
@@ -78,7 +78,7 @@ const TopicHome = ({dispatch}) => {
     var h = day[1].split(':')[0];
     var mm = day[1].split(':')[1];
     var ss = day[1].split(':')[2];
-    var countDownDate = new Date(2022, 8, 7, 10, 0, 0).getTime();
+    var countDownDate = new Date(2023, 8, 7, 10, 0, 0).getTime();
     // console.log('123456', new Date());
     // console.log(time);
     var x = setInterval(function () {
@@ -113,7 +113,7 @@ const TopicHome = ({dispatch}) => {
           <View style={styles.dimon} />
         </View>
         <View style={styles.rowfair}>
-          <Text style={styles.texttime}>67</Text>
+          <Text style={styles.texttime}>68</Text>
           <Text style={styles.texttime1}>th</Text>
           <Text style={styles.texttime}> Edition September 2022</Text>
         </View>

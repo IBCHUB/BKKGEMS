@@ -56,6 +56,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: ViewScale(20),
   },
+  imgdetail3: {
+    width: width * 1,
+    height: ViewScale(180),
+    alignSelf: 'center',
+    marginVertical: ViewScale(20),
+  },
 });
 
 export default styles;

@@ -37,11 +37,11 @@ import {useRecoilState} from 'recoil';
 const {width, height} = Dimensions.get('window');
 const Home = ({navigation, dispatch, authData}) => {
   const [online, setOnline] = useState();
-  // console.log(online);
+
   const refRBSheet = useRef();
   const [state, setstate] = useState([]);
   const [img, setimg] = useState();
-  console.log('456789', img);
+
   const [query, setQuery] = useState('');
 
   const test = text => {
@@ -88,7 +88,6 @@ const Home = ({navigation, dispatch, authData}) => {
   };
   // 166251960.
   const [textSearch, settextSearch] = useState('');
-  console.log(textSearch);
 
   const onSubmit = async values => {
     var request =
@@ -100,11 +99,10 @@ const Home = ({navigation, dispatch, authData}) => {
       [1, 2, 3] +
       '&text=' +
       textSearch;
-    console.log(request);
+
     const response = await dispatch(Exhibitor_List(request));
 
     if (response.res_code == '00') {
-      console.log(response);
       setstate([]);
       navigation.navigate('Searchno', {
         item: response.res_result,
@@ -123,7 +121,7 @@ const Home = ({navigation, dispatch, authData}) => {
   const _Img = async values => {
     try {
       const response = await dispatch(ImgTopic());
-      console.log('2222222>>>>>>', response);
+
       if (response.res_code == '00') {
         const randomNumber = Math.floor(Math.random() * 5) + 1;
         setimg(response.res_result[randomNumber].img);

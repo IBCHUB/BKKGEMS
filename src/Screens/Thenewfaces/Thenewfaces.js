@@ -21,6 +21,20 @@ const Thenewfaces = ({navigation}) => {
       />
       <Headerback navigation={navigation} item={'The New Faces'} />
       <ScrollView style={{backgroundColor: '#EEECE2'}}>
+        <View style={[styles.viewdetail, {backgroundColor: '#EEECE2'}]}>
+          <Image
+            source={require('../../../assets/image/67.png')}
+            style={styles.imgdetail}
+          />
+          <Text style={styles.textheader}>67th THE NEW FACES</Text>
+          <Text style={[styles.textdetail, {color: '#636363'}]}>
+            The new Faces exhibition provided a variety of jewelry creations to
+            serve various lifestyles. The project focused on highlighting the
+            talent of Thai artisans, the creativity of young designers, and the
+            exciting new collections from up-and-coming jewelers across
+            Thailand.
+          </Text>
+        </View>
         <View style={styles.viewdetail}>
           <Image
             source={require('../../../assets/image/652.png')}
