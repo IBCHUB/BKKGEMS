@@ -63,7 +63,7 @@ class Chatbot extends Component {
     // const {navigetion} = this.props;
     this._CreatechatToken();
     // this._GenerateRandomNumber();
-    this.setState({getUniqueId1: getUniqueId() + 1});
+    this.setState({getUniqueId1: getUniqueId() + 2});
 
     // setTimeout(() => {
     //   this.props.navigation.navigate('Home');
@@ -92,8 +92,8 @@ class Chatbot extends Component {
           result: {
             uid: this.state.getUniqueId1,
             socialUserRefId: this.state.getUniqueId1,
-            accountName: this.state.getUniqueId1,
-            firstName: this.state.getUniqueId1,
+            accountName: 'BKKGems User', //free text
+            firstName: 'BKKGems User', //free text
             lastName: '',
             isActivate: 'true',
             isActivateBot: 'true',
@@ -115,7 +115,7 @@ class Chatbot extends Component {
           token: response.appToken,
         };
         const response1 = await this.props.dispatch(createuserChat(payload1));
-
+        console.log('payload1', payload1);
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
